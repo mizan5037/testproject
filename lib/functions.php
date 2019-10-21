@@ -1,7 +1,5 @@
 <?php
 
-require_once 'config.php';
-
 function isLoggedIn()
 {
     if (!isset($_SESSION["isLogged"]) || $_SESSION["isLogged"] != true) {

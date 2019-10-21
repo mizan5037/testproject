@@ -8,10 +8,6 @@ require_once 'lib/functions.php';
 
 isLoggedIn();
 
-// $todaysDate=date('m/d/Y h: i',time());
-
-// die($todaysDate);
-
 if (isset($_GET['page']) && $_GET['page'] !== "") {
 	if (!file_exists('views/' . $_GET['page'] . '.php')) {
 		include 'views/404.php';

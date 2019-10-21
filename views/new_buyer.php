@@ -81,7 +81,7 @@ include_once "includes/header.php";
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltip03">City</label>
@@ -128,7 +128,12 @@ include_once "includes/header.php";
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-primary" type="submit">Add New LC</button>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
+                </div>
+
             </form>
         </div>
     </div>

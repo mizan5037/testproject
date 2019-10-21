@@ -41,7 +41,7 @@ $conn = db_connection();
                     </tr>
                 </thead>
                 <tbody>
-                     <?php
+                    <?php
 
                     $sql = "SELECT * FROM buyer WHERE status = 1";
                     $buyer = mysqli_query($conn, $sql);
@@ -51,21 +51,21 @@ $conn = db_connection();
 
 
                         ?>
-                    <tr>
-                        <th scope="row"><?php echo $count++ ; ?></th>
-                        <td><?php echo $key['BuyerName'] ?></td>
-                        <td><?php echo $key['BuyerEmail'] ?></td>
-                        
-                        <td>
-                            <a class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary" href="<?= $path ?>/index.php?page=single_buyer&buyer_id=<?php echo $key['BuyerID']; ?>">
-                            
-                                Details
-                             </a>
+                        <tr>
+                            <th scope="row"><?php echo $count++; ?></th>
+                            <td><?php echo $key['BuyerName'] ?></td>
+                            <td><?php echo $key['BuyerEmail'] ?></td>
 
-                           <button type="button" name="delete_btn" data-id13="<?php echo $key['BuyerID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-danger btn_delete">x</button>
-                        </td>
-                    </tr>
-                  <?php } ?>
+                            <td>
+                                <a class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary" href="<?= $path ?>/index.php?page=single_buyer&buyer_id=<?php echo $key['BuyerID']; ?>">
+
+                                    Details
+                                </a>
+
+                                <button type="button" name="delete_btn" data-id13="<?php echo $key['BuyerID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-danger btn_delete">x</button>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
@@ -82,35 +82,33 @@ function customPagefooter()
     ?>
 
     <script>
+        $(document).ready(function() {
+
+            $(document).on('click', '.btn_delete', function() {
+                var id = $(this).data("id13");
+
+                if (confirm("Are you sure you want to delete this Buyer?")) {
+                    $.ajax({
+                        url: "<?php echo $path; ?>/controller/buyer_delete.php",
+                        method: "POST",
+                        data: {
+                            id: id,
+                            token: '<?= get_ses('token') ?>'
+                        },
+                        dataType: "text",
+                        success: function(data) {
+                            $('#result').html("<div class='alert alert-danger'>" + data + "</div>");
+                            location.reload(true);
 
 
-   $(document).ready(function(){ 
+                        }
+                    });
+                }
+            });
 
-        $(document).on('click', '.btn_delete', function(){  
-        var id=$(this).data("id13");
-        
-        if(confirm("Are you sure you want to delete this Buyer?"))  
-        {  
-            $.ajax({  
-                url:"<?php echo $path;?>/controller/buyer_delete.php",  
-                method:"POST",  
-                data:{id:id},  
-                dataType:"text",  
-                success:function(data){  
-                    $('#result').html("<div class='alert alert-danger'>"+data+"</div>");
-                    location.reload(true);
-                     
-                      
-                }  
-            });  
-        }  
-    });
-            
 
-     }); 
-     
-      
-   </script>
+        });
+    </script>
 
 <?php }
 include_once "includes/footer.php";

@@ -21,6 +21,8 @@ if(isset($_POST['submit'])){
         set_ses('logInTime', time());
         set_ses('user', $result['Username']);
         set_ses('user_id', $result['UserID']);
+        $token = md5(uniqid(rand(), true));
+        set_ses('token', $token);
         if(isset($_GET['page'])){
             nowgo('/index.php?page=' . $_GET['page']);
         }else{
