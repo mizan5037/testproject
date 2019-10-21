@@ -39,36 +39,27 @@ include_once "includes/header.php";
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Style 1</td>
-                        <td>C-25, l-56, w-64</td>
-                        <td>
-                            <button class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                Details
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Style 2</td>
-                        <td>C-25, l-56, w-64</td>
-                        <td>
-                            <button class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                Details
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Style 3</td>
-                        <td>C-25, l-56, w-64</td>
-                        <td>
-                            <button class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                Details
-                            </button>
-                        </td>
-                    </tr>
+                    <?php
+                    $conn = db_connection();
+                    $sql = "SELECT StyleNumber, StyleDescription, StyleID FROM style WHERE status = 1";
+                    $item = mysqli_query($conn, $sql);
+
+                    $count = 1;
+                    while ($row = mysqli_fetch_assoc($item)) {
+
+
+                        ?>
+                        <tr>
+                            <th scope="row"><?= $count ?></th>
+                            <td><?= $row['StyleNumber'] ?></td>
+                            <td><?= $row['StyleDescription'] ?></td>
+                            <td>
+                                <a href="<?= $path ?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
+                                    Details
+                                </a>
+                            </td>
+                        </tr>
+                    <?php }  ?>
                 </tbody>
             </table>
         </div>

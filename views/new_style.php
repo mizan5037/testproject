@@ -3,9 +3,12 @@
 $PageTitle = "New Style | Optima Inventory";
 function customPageHeader()
 {
+    global $path;
     ?>
     <!--Arbitrary HTML Tags-->
+    
 <?php }
+include_once "controller/new_style.php";
 include_once "includes/header.php";
 
 ?>
@@ -29,45 +32,30 @@ include_once "includes/header.php";
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">New Style</h5>
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation" method="post"  enctype="multipart/form-data" novalidate>
                 <div class="form-row">
 
                     <div class="col-md-6 mb-3">
-                        <label for="validationTooltip02">Style Number</label>
-                        <input type="text" class="form-control form-control-sm " id="validationTooltip02" placeholder="Style Number" required>
+                        <label for="stylenumber">Style Number</label>
+                        <input type="text" class="form-control form-control-sm" name="stylenumber" id="stylenumber" placeholder="Style Number" required>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="validationTooltip03">Style Description</label>
-                        <input type="text" class="form-control form-control-sm " id="validationTooltip03" placeholder="Description" required>
-                        <div class="invalid-tooltip">
-                            Please provide a Buyer name.
-                        </div>
+                        <label for="styledescription">Style Description</label>
+                        <input type="text" class="form-control form-control-sm" name="styledescription" id="styledescription" placeholder="Description" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
-                        <label for="validationTooltip01">Fabric Details</label>
-                        <input type="text" class="form-control form-control-sm " id="validationTooltip01" placeholder="Fabric Details" required>
-                        <div class="valid-tooltip">
-                            Looks good!
-                        </div>
-                        <div class="invalid-tooltip">
-                            Please Enter the LC Number.
-                        </div>
+                        <label for="fabricdetails">Fabric Details</label>
+                        <input type="text" class="form-control form-control-sm" name="fabricdetails" id="fabricdetails" placeholder="Fabric Details" required>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationTooltip03">Proto No</label>
-                        <input type="text" class="form-control form-control-sm " id="validationTooltip03" placeholder="Proto No" required>
-                        <div class="invalid-tooltip">
-                            Please provide a Buyer name.
-                        </div>
+                        <label for="protono">Proto No</label>
+                        <input type="text" class="form-control form-control-sm" name="protono" id="protono" placeholder="Proto No" required>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationTooltip03">Wash</label>
-                        <input type="text" class="form-control form-control-sm " id="validationTooltip03" placeholder="Wash" required>
-                        <div class="invalid-tooltip">
-                            Please provide a Buyer name.
-                        </div>
+                        <label for="wash">Wash</label>
+                        <input type="text" class="form-control form-control-sm" name="wash" id="wash" placeholder="Wash" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -90,10 +78,10 @@ include_once "includes/header.php";
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>
-                                        <input placeholder="Name" type="text" name="name" class="mb-2 form-control-sm form-control" required>
+                                        <input placeholder="Name" type="text" name="trim_name[]" class="mb-2 form-control-sm form-control" required>
                                     </td>
                                     <td>
-                                        <input placeholder="Description" type="text" name="description" class="mb-2 form-control-sm form-control" required>
+                                        <input placeholder="Description" type="text" name="trim_description[]" class="mb-2 form-control-sm form-control" required>
                                     </td>
                                     <td><a class="deleteRow"></a></td>
                                 </tr>
@@ -114,11 +102,11 @@ include_once "includes/header.php";
 
                         <div class="row">
                             <div class="col-md-12">
-                                <img src="<?= $path ?>/assets/images/noimg.png" class="img-fluid img-thumbnail rounded" alt="No Image">
+                                <img src="<?= $path ?>/assets/images/noimg.png" id="image" class="img-fluid img-thumbnail rounded" alt="No Image">
                             </div>
                             <div class="col-md-12"><br></div>
                             <div class="col-md-4"><label for="img">Style Image:</label></div>
-                            <div class="col-md-8"><input type="file" name="img" class="form-control-file" id="img"></div>
+                            <div class="col-md-8"><input onchange="readURL(this);" type="file" name="img" class="form-control-file" id="img"></div>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -143,13 +131,23 @@ include_once "includes/header.php";
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>
-                                        <input placeholder="Size" type="text" name="size" class="mb-2 form-control-sm form-control" required>
+                                        <input placeholder="Size" type="text" name="size[]" class="mb-2 form-control-sm form-control" required>
                                     </td>
                                     <td>
-                                        <input placeholder="Item" type="text" name="item" class="mb-2 form-control-sm form-control" required>
+                                        <select name="item[]" class="item mb-2 form-control-sm form-control" required>
+                                            <option></option>
+                                            <?php
+                                            $conn = db_connection();
+                                            $sql = "SELECT * FROM item WHERE status = 1";
+                                            $results = mysqli_query($conn, $sql);
+                                            while ($result = mysqli_fetch_assoc($results)) {
+                                                echo '<option value="' . $result['ItemID'] . '">' . $result['ItemName'] . '</option>';
+                                            }
+                                            ?>
+                                        </select>
                                     </td>
                                     <td>
-                                        <input placeholder="Qty" type="number" name="qty" class="mb-2 form-control-sm form-control">
+                                        <input placeholder="Qty" type="number" name="qty[]" class="mb-2 form-control-sm form-control" required>
                                     </td>
                                     <td><a class="deleteRow"></a></td>
                                 </tr>
@@ -172,7 +170,7 @@ include_once "includes/header.php";
                 <br><br>
                 <div class="row">
                     <div class="col-md-6"><button class="btn btn-danger mr-auto" id="reset" type="reset">Reset</button></div>
-                    <div class="col-md-6 text-right"><button class="btn btn-primary" type="submit"><i class="metismenu-state-icon pe-7s-diskette"></i> &nbsp; Save </button></div>
+                    <div class="col-md-6 text-right"><button class="btn btn-primary" name="submit" type="submit"><i class="metismenu-state-icon pe-7s-diskette"></i> &nbsp; Save </button></div>
                 </div>
             </form>
         </div>
@@ -185,17 +183,33 @@ include_once "includes/header.php";
 <?php
 function customPagefooter()
 {
+    global $path;
     ?>
+    
     <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        
+        // Image Load
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
+                reader.onload = function(e) {
+                    $('#image')
+                        .attr('src', e.target.result)
+                        .width()
+                        .height();
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 
         //table Items 
         $(document).ready(function() {
             var counter = 0;
             var limit = 100;
 
-            $("#addrow").on("click", function() {
+            $("#addrow").on("focus", function() {
 
                 counter = $('#myTable tr').length - 2;
 
@@ -203,9 +217,18 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><input type="text" placeholder="Size" class="mb-2 form-control-sm form-control" name="size' + counter + '" required/></td>';
-                cols += '<td><input type="text" placeholder="Item" class="mb-2 form-control-sm form-control" name="style' + counter + '" required/></td>';
-                cols += '<td><input type="number" placeholder="Qty" class="mb-2 form-control-sm form-control" name="qty' + counter + '"/></td>';
+                cols += '<td><input type="text" placeholder="Size" class="mb-2 form-control-sm form-control" name="size[]" required/></td>';
+                cols += '<td><select name="item[]" class="item mb-2 form-control-sm form-control" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM item WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['ItemID'] . '">' . $result['ItemName'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
+                cols += '<td><input type="number" placeholder="Qty" class="mb-2 form-control-sm form-control" name="qty[]" required/></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-sm btn-warning"  value="Delete"></td>';
                 newRow.append(cols);
@@ -265,8 +288,8 @@ function customPagefooter()
                 var cols2 = "";
 
                 cols2 += '<th scope="row">' + counter2 + '</th>';
-                cols2 += '<td><input type="text" placeholder="Name" class="mb-2 form-control-sm form-control" name="name' + counter2 + '" required/></td>';
-                cols2 += '<td><input type="number" placeholder="Description" class="mb-2 form-control-sm form-control" name="description' + counter2 + '"/></td>';
+                cols2 += '<td><input type="text" placeholder="Name" class="mb-2 form-control-sm form-control" name="trim_name[]" required/></td>';
+                cols2 += '<td><input type="text" placeholder="Description" class="mb-2 form-control-sm form-control" name="trim_description[]"/></td>';
 
                 cols2 += '<td><input type="button" class="ibtnDel2 btn btn-sm btn-warning"  value="Delete"></td>';
                 newRow2.append(cols2);

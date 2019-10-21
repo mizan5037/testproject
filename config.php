@@ -1,19 +1,19 @@
 <?php
 
 // DB Details Sohag
+ define("HOST","localhost");
+ define("USER","root");
+ define("PASS","");
+ define("DBNAME","optima_inventory");
+// DB Details Mizan
 // define("HOST","localhost");
 // define("USER","root");
-// define("PASS","");
-// define("DBNAME","optima_inventory");
-// DB Details Mizan
-define("HOST","localhost");
-define("USER","root");
-define("PASS","sumon@2019");
-define("DBNAME","inventory");
+// define("PASS","sumon@2019");
+// define("DBNAME","inventory");
 
 
 //root folder
-$path =  "/inventory";
+$path =  "/inventory2";
 
 /*
 
