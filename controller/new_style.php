@@ -4,7 +4,7 @@ if (isset($_POST['stylenumber']) && $_POST['styledescription'] != '' && isset($_
 
     $imageFilename = '';
 
-    if ($_FILES['img']['size'] !== 0 && $_FILES['img']['error'] == 0) {
+    if ($_FILES['img']['size'] !== 0) {
 
         $target_dir = "/assets/images/uploads/";
         $target_file = $target_dir . basename($_FILES["img"]["name"]);
@@ -44,9 +44,10 @@ if (isset($_POST['stylenumber']) && $_POST['styledescription'] != '' && isset($_
             // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["img"]["tmp_name"], $imageFilename)) {
-                //echo "The file " . basename($_FILES["img"]["name"]) . " has been uploaded.";
+                echo "The file " . basename($_FILES["img"]["name"]) . " has been uploaded.";
             } else {
                 echo "Sorry, there was an error uploading your file.";
+                die();
             }
         }
     }
