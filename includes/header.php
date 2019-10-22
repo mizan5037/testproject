@@ -1,9 +1,3 @@
-<?php
-
-$pageName =  basename($_SERVER['PHP_SELF']);
-
-?>
-
 <!doctype html>
 <html lang="en">
 
@@ -25,6 +19,9 @@ $pageName =  basename($_SERVER['PHP_SELF']);
 </head>
 
 <body>
+    <?php if (function_exists('modal')) {
+        modal();
+    } ?>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo">

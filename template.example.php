@@ -6,6 +6,14 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
+
+function modal()
+{
+    ?>
+    <!--Modal Code if needed-->
+<?php }
+
+// keep the header always last.
 include_once "includes/header.php";
 
 ?>
