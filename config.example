@@ -15,8 +15,11 @@
 // define("DBNAME","inventory");
 
 
-//root folder
+//root folder (keep the format)
 $path =  "/inventory2";
+
+//where to upload the images of style (keep the format)
+$uploadpath = "/assets/images/uploads/";
 
 
 

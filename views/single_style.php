@@ -52,7 +52,7 @@ include_once "includes/header.php";
                     </ul>
                 </div>
                 <div class="col-md-6">
-                    <img src="<?= $path ?><?=$item['StyleImage']?>" class="img-fluid img-thumbnail rounded" alt="No Image">
+                    <img src="<?= $path.$uploadpath.$item['StyleImage']?>" class="img-fluid img-thumbnail rounded" alt="No Image">
                 </div>
             </div>
         </div>

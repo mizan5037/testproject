@@ -6,11 +6,10 @@ if (isset($_POST['stylenumber']) && $_POST['styledescription'] != '' && isset($_
 
     if ($_FILES['img']['size'] !== 0) {
 
-        $target_dir = "/assets/images/uploads/";
         $target_file = basename($_FILES["img"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        $imageFilename = $target_dir . rand(100000, 1000000000) . '_' . date("Y_M_d") . '_' . time() . '_' . get_ses('user_id') . '.' . $imageFileType;
+        $imageFilename = rand(100000, 1000000000) . '_' . date("Y_M_d") . '_' . time() . '_' . get_ses('user_id') . '.' . $imageFileType;
 
         // Check if image file is a actual image or fake image
         $check = getimagesize($_FILES["img"]["tmp_name"]);
@@ -44,17 +43,15 @@ if (isset($_POST['stylenumber']) && $_POST['styledescription'] != '' && isset($_
             // if everything is ok, try to upload file
         } else {
 
-            if (move_uploaded_file($_FILES["img"]["tmp_name"], $path . $imageFilename)) {
+            if (move_uploaded_file($_FILES["img"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . $path . $uploadpath . $imageFilename)) {
                 echo "The file " . basename($_FILES["img"]["name"]) . " has been uploaded.<br>";
-                echo $path . $imageFilename;
+                echo $imageFilename;
             } else {
                 echo "Sorry, there was an error uploading your file.";
-                
-                die();
             }
         }
     }
-    die();
+
     $conn = db_connection();
     $stylenumber = $_POST['stylenumber'];
     $styledescription = $_POST['styledescription'];
