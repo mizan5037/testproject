@@ -31,24 +31,53 @@ include_once "includes/header.php";
             <h5 class="card-title">PO</h5>
             <form class="needs-validation" novalidate>
                 <div class="form-row">
-                    <div class="col-md-6 mb-3">
-                        <label for="validationTooltip01">LC Number</label>
-                        <input type="text" class="form-control" id="validationTooltip01" placeholder="LC Number" required>
-                        <div class="valid-tooltip">
-                            Looks good!
-                        </div>
-                        <div class="invalid-tooltip">
-                            Please Enter the LC Number.
-                        </div>
+                <div class="col-md-3 mb-3">
+                        <label for="validationTooltip01">From</label>
+                        <input type="text" class="form-control" id="validationTooltip01" placeholder="From" required>
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-3 mb-3">
+                        <label for="validationTooltip01">Date</label>
+                        <input type="date" class="form-control" id="validationTooltip01" placeholder="LC Number" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
                         <label for="validationTooltip03">PO Number</label>
                         <input type="text" class="form-control" id="validationTooltip03" placeholder="PO Number" required>
                         <div class="invalid-tooltip">
                             Please provide a PO Number.
                         </div>
                     </div>
-
+                    <div class="col-md-3 mb-3">
+                        <label for="validationTooltip03">Currency</label>
+                        <input type="text" class="form-control" id="validationTooltip03" placeholder="Currency" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-3 mb-3">
+                        <label for="validationTooltip01">CMP</label>
+                        <input type="number" class="form-control" id="validationTooltip01" placeholder="CMP" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationTooltip03">Wash Cost</label>
+                        <input type="number" class="form-control" id="validationTooltip03" placeholder="Wash Cost" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationTooltip03">Hanger Cost</label>
+                        <input type="number" class="form-control" id="validationTooltip03" placeholder="Hanger Cost" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationTooltip03">CMP+W+Hanger</label>
+                        <input type="number" class="form-control" id="validationTooltip03" placeholder="CMP+W+Hanger" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-3 mb-3">
+                        <label for="validationTooltip01">Final Destination</label>
+                        <input type="Text" class="form-control" id="validationTooltip01" placeholder="Final Destination" required>
+                    </div>
+                    <div class="col-md-9 mb-3">
+                        <label for="validationTooltip03">Special Instruction</label>
+                        <textarea type="number" class="form-control" id="validationTooltip03" placeholder="Special Instruction" required></textarea>
+                    </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-12">
@@ -244,6 +273,7 @@ function customPagefooter()
             });
             $("#totalDZS").text(grandDZS.toFixed(0));
         }
+
         function calculatePPackTotal() {
             var grandPPack = 0;
             $("table.order-list1").find('input[name^="ppack"]').each(function() {
@@ -251,6 +281,7 @@ function customPagefooter()
             });
             $("#totalPpack").text(grandPPack.toFixed(0));
         }
+
         function calculateUnitsTotal() {
             var grandUnits = 0;
             $("table.order-list1").find('input[name^="units"]').each(function() {
