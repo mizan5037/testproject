@@ -1,5 +1,7 @@
 <?php
 
+//copy this file as config.php and uncomment your needed lines
+
 // DB Details Sohag
 //define("HOST", "localhost");
 //define("USER", "root");
