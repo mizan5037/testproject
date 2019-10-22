@@ -6,6 +6,17 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
+$conn = db_connection();
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+    $sql = "UPDATE style set status=0 where StyleID=" . $id;
+
+    if (mysqli_query($conn, $sql)) {
+        notice('success', 'Deleted Successfully');
+    } else {
+        notice('error', $sql . "<br>" . mysqli_error($conn));
+    }
+}
 include_once "includes/header.php";
 
 ?>
@@ -40,7 +51,6 @@ include_once "includes/header.php";
                 </thead>
                 <tbody>
                     <?php
-                    $conn = db_connection();
                     $sql = "SELECT StyleNumber, StyleDescription, StyleID FROM style WHERE status = 1";
                     $item = mysqli_query($conn, $sql);
 
@@ -57,9 +67,13 @@ include_once "includes/header.php";
                                 <a href="<?= $path ?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
                                     Details
                                 </a>
+                                /
+                                <a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=all_style&delete=<?php echo $row['StyleID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
+                                    <i class="fas fa-trash-alt" style="color: white;"></i>
+                                </a>
                             </td>
                         </tr>
-                    <?php }  ?>
+                    <?php $count++; }  ?>
                 </tbody>
             </table>
         </div>
