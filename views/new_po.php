@@ -6,6 +6,7 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
+include_once "controller/add_po.php";
 include_once "includes/header.php";
 
 ?>
@@ -29,54 +30,54 @@ include_once "includes/header.php";
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">PO</h5>
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation" method="POST" novalidate>
                 <div class="form-row">
                 <div class="col-md-3 mb-3">
                         <label for="validationTooltip01">From</label>
-                        <input type="text" class="form-control" id="validationTooltip01" placeholder="From" required>
+                        <input type="text" name="from" class="form-control" id="validationTooltip01" placeholder="From" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip01">Date</label>
-                        <input type="date" class="form-control" id="validationTooltip01" placeholder="LC Number" required>
+                        <input type="date" name="date" class="form-control" id="validationTooltip01"  required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip03">PO Number</label>
-                        <input type="text" class="form-control" id="validationTooltip03" placeholder="PO Number" required>
+                        <input type="text" name="po_number" class="form-control" id="validationTooltip03" placeholder="PO Number" required>
                         <div class="invalid-tooltip">
                             Please provide a PO Number.
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip03">Currency</label>
-                        <input type="text" class="form-control" id="validationTooltip03" placeholder="Currency" required>
+                        <input type="text" name="currency" class="form-control" id="validationTooltip03" placeholder="Currency" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip01">CMP</label>
-                        <input type="number" class="form-control" id="validationTooltip01" placeholder="CMP" required>
+                        <input type="number" name="cmp" class="form-control" id="validationTooltip01" placeholder="CMP" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip03">Wash Cost</label>
-                        <input type="number" class="form-control" id="validationTooltip03" placeholder="Wash Cost" required>
+                        <input type="number" name="wash_cost" class="form-control" id="validationTooltip03" placeholder="Wash Cost" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip03">Hanger Cost</label>
-                        <input type="number" class="form-control" id="validationTooltip03" placeholder="Hanger Cost" required>
+                        <input type="number" name="hanger_cost" class="form-control" id="validationTooltip03" placeholder="Hanger Cost" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip03">CMP+W+Hanger</label>
-                        <input type="number" class="form-control" id="validationTooltip03" placeholder="CMP+W+Hanger" required>
+                        <input type="number" name="cmp_w_wanger" class="form-control" id="validationTooltip03" placeholder="CMP+W+Hanger" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip01">Final Destination</label>
-                        <input type="Text" class="form-control" id="validationTooltip01" placeholder="Final Destination" required>
+                        <input type="Text" name="final_destination" class="form-control" id="validationTooltip01" placeholder="Final Destination" required>
                     </div>
                     <div class="col-md-9 mb-3">
                         <label for="validationTooltip03">Special Instruction</label>
-                        <textarea type="number" class="form-control" id="validationTooltip03" placeholder="Special Instruction" required></textarea>
+                        <textarea type="number" name="special_instruction" class="form-control" id="validationTooltip03" placeholder="Special Instruction" required></textarea>
                     </div>
                 </div>
                 <div class="form-row">
@@ -102,22 +103,32 @@ include_once "includes/header.php";
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>
-                                        <input placeholder="Style" type="text" name="style" class="mb-2 form-control-sm form-control" required>
+                                        <select name="style[]" class="style mb-2 form-control-sm form-control" required>
+                                            <option></option>
+                                            <?php
+                                            $conn = db_connection();
+                                            $sql = "SELECT * FROM style WHERE status = 1";
+                                            $results = mysqli_query($conn, $sql);
+                                            while ($result = mysqli_fetch_assoc($results)) {
+                                                echo '<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                            }
+                                            ?>
+                                        </select>
                                     </td>
                                     <td>
-                                        <input placeholder="Color" type="text" name="color" class="mb-2 form-control-sm form-control" required>
+                                        <input placeholder="Color" type="text" name="color[]" class="mb-2 form-control-sm form-control" required>
                                     </td>
                                     <td>
-                                        <input placeholder="CLR No" type="text" name="" class="mb-2 form-control-sm form-control" required>
+                                        <input placeholder="CLR No" type="text" name="clr_no[]" class="mb-2 form-control-sm form-control" required>
                                     </td>
                                     <td>
-                                        <input placeholder="DZS" type="number" name="dzs" class="mb-2 form-control-sm form-control">
+                                        <input placeholder="DZS" type="number" name="dzs[]" class="mb-2 form-control-sm form-control">
                                     </td>
                                     <td>
-                                        <input placeholder="P/Pack" type="number" name="ppack" class="mb-2 form-control-sm form-control">
+                                        <input placeholder="P/Pack" type="number" name="ppack[]" class="mb-2 form-control-sm form-control">
                                     </td>
                                     <td>
-                                        <input placeholder="Units" type="number" name="units" class="mb-2 form-control-sm form-control">
+                                        <input placeholder="Units" type="number" name="units[]" class="mb-2 form-control-sm form-control">
                                     </td>
                                     <td><a class="deleteRow"></a></td>
                                 </tr>
@@ -169,13 +180,13 @@ include_once "includes/header.php";
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>
-                                        <input placeholder="Size" type="text" name="size" class="mb-2 form-control-sm form-control" required>
+                                        <input placeholder="Size" type="text" name="size[]" class="mb-2 form-control-sm form-control" required>
                                     </td>
                                     <td>
-                                        <input placeholder="PrePack Code" type="text" name="ppk" class="mb-2 form-control-sm form-control" required>
+                                        <input placeholder="PrePack Code" type="text" name="ppk[]" class="mb-2 form-control-sm form-control" required>
                                     </td>
                                     <td>
-                                        <input placeholder="Qty" type="number" name="qty" class="mb-2 form-control-sm form-control">
+                                        <input placeholder="Qty" type="number" name="qty[]" class="mb-2 form-control-sm form-control">
                                     </td>
                                     <td><a class="deleteRow"></a></td>
                                 </tr>
@@ -227,7 +238,16 @@ function customPagefooter()
                 var cols1 = "";
 
                 cols1 += '<th scope="row">' + counter1 + '</th>';
-                cols1 += '<td><input type="text" placeholder="Style" class="mb-2 form-control-sm form-control" name="style' + counter1 + '" required/></td>';
+                cols1 += '<td><select name="style[]" class="style mb-2 form-control-sm form-control" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM style WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols1 += \'<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>\'; ';
+                    }
+                    ?>
+                cols1 += '</select></td>';
                 cols1 += '<td><input type="text" placeholder="Color" class="mb-2 form-control-sm form-control" name="color' + counter1 + '" required/></td>';
                 cols1 += '<td><input type="text" placeholder="CLR No" class="mb-2 form-control-sm form-control" name="clrno' + counter1 + '" required/></td>';
                 cols1 += '<td><input type="number" placeholder="DZS" class="mb-2 form-control-sm form-control" name="dzs' + counter1 + '"/></td>';
