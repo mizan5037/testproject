@@ -63,9 +63,7 @@ include_once "includes/header.php";
 
                                     while ($st = mysqli_fetch_assoc($style)) { ?>
 
-                                        <ol>
-                                            <li><?php echo $st['StyleID'] ?></li>
-                                        </ol>
+                                        
 
 
                                     <?php } ?>
