@@ -13,7 +13,7 @@ include_once "includes/header.php";
 if (isset($_GET['buyer_id'])) {
   $id = $_GET['buyer_id'];
 
-  $sql = "SELECT * FROM buyer where BuyerID='$id'";;
+  $sql = "SELECT * FROM buyer where BuyerID='$id'";
   $result = mysqli_query($conn, $sql);
   if ($result) {
     $detail = mysqli_fetch_assoc($result);
