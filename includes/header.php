@@ -77,46 +77,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="app-header-left">
-                    <div class="search-wrapper">
-                        <div class="input-holder">
-                            <input type="text" class="search-input" placeholder="Type to search">
-                            <button class="search-icon"><span></span></button>
-                        </div>
-                        <button class="close"></button>
-                    </div>
-                </div> -->
-                <!-- <div class="app-header-right"> 
-                    <div class="header-btn-lg pr-0">
-                        <div class="widget-content p-0">
-                            <div class="widget-content-wrapper">
-                                <div class="widget-content-left  ml-3 header-user-info">
-                                    <div class="widget-heading">
-                                        <div class="widget-content-left">
-                                            <div class="btn-group">
-                                                <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                                    User:
-                                                    <?php echo get_ses('user'); ?>
-                                                    <i class="fa fa-angle-down ml-2 opacity-8"></i>
-                                                    <div class="widget-subheading"> Login Time:
-                                                        <?php echo date("h:i a", get_ses('logInTime')); ?>
-                                                    </div>
-
-                                                </a>
-                                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                                    <a href="<?= $path ?>/index.php?page=user" tabindex="0" class="dropdown-item">User Account</a>
-                                                    <button type="button" tabindex="0" class="dropdown-item">Settings</button>
-                                                    <div tabindex="-1" class="dropdown-divider"></div>
-                                                    <a href="<?= $path ?>/logout.php" tabindex="0" class="dropdown-item">Log Out</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
         <div class="app-main">
@@ -560,18 +520,6 @@
                                             </i>Cutting Form
                                         </a>
                                     </li>
-                                    <!-- <li>
-                                        <a href="received_material.php">
-                                            <i class="metismenu-icon">
-                                            </i>Received Material (report)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="given_to_sewing.php">
-                                            <i class="metismenu-icon">
-                                            </i>Given to Sewing (report)
-                                        </a>
-                                    </li> -->
                                 </ul>
                             </li>
                             <li>
@@ -593,18 +541,6 @@
                                             </i>Wash
                                         </a>
                                     </li>
-                                    <!-- <li>
-                                        <a href="received_material.php">
-                                            <i class="metismenu-icon">
-                                            </i>Received Material (report)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="finished_goods.php">
-                                            <i class="metismenu-icon">
-                                            </i>Finished Goods (report)
-                                        </a>
-                                    </li> -->
                                 </ul>
                             </li>
                             <li>
@@ -620,36 +556,6 @@
                                             </i>Hourly Finishing Form
                                         </a>
                                     </li>
-                                    <!-- <li>
-                                        <a href="<?= $path ?>/index.php?page=requisition_form">
-                                            <i class="metismenu-icon">
-                                            </i>Requisition/Delivery Form
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="perfect_goods.php">
-                                            <i class="metismenu-icon">
-                                            </i>Perfect
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="rejected_goods.php">
-                                            <i class="metismenu-icon">
-                                            </i>Rejected
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="store_from_finishing.php">
-                                            <i class="metismenu-icon">
-                                            </i>Sent to Store (report)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="sent_to_pack_from_finishing.php">
-                                            <i class="metismenu-icon">
-                                            </i>Sent for Packing (report)
-                                        </a>
-                                    </li> -->
                                 </ul>
                             </li>
                             <li>
@@ -686,12 +592,6 @@
                                             </i>Shipment Form
                                         </a>
                                     </li>
-                                    <!-- <li>
-                                        <a href="packed_goods.php">
-                                            <i class="metismenu-icon">
-                                            </i>Packed Goods (report)
-                                        </a>
-                                    </li> -->
                                 </ul>
                             </li>
                         </ul>
