@@ -3,6 +3,27 @@
 $conn = db_connection();
 $user_id = get_ses('user_id');
 
+if (isset($_POST['form']) && $_POST['form'] = "editDetails") {
+    
+    $token = $_POST["token"];
+
+    if (get_ses('token') === $token) {
+        
+        $eid = $_POST["id"];
+        $cname = $_POST['cname'];
+        $text = $_POST["text"];
+
+
+        $sql = "UPDATE style SET " . $cname . "='" . $text . "' WHERE StyleID = '" . $eid . "'";
+        if (mysqli_query($conn, $sql)) {
+            echo 'Data Updated';
+        } else {
+            echo $sql . "<br>" . mysqli_error($conn);
+        }
+    }
+    die();
+}
+
 //Delete item requiremwnts
 if (isset($_GET['delete'])) {
     $itemid = $_GET['delete'];

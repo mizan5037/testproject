@@ -9,11 +9,11 @@ if (get_ses('token') === $token) {
 
 	$conn = db_connection();
 	$id = $_POST["id"];
-	$buyer_name = $_POST['buyer_name'];
+	$cname = $_POST['cname'];
 	$text = $_POST["text"];
 
 
-	$sql = "UPDATE buyer SET " . $text . "='" . $buyer_name . "' WHERE BuyerID='" . $id . "'";
+	$sql = "UPDATE buyer SET " . $cname . "='" . $text . "' WHERE BuyerID='" . $id . "'";
 	if (mysqli_query($conn, $sql)) {
 		echo 'Data Updated';
 	} else {
