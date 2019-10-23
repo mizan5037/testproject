@@ -19,7 +19,7 @@ if (isset($_POST['from'])  && isset($_POST['date']) && isset($_POST['po_number']
 
 	$sql = "INSERT INTO po (PONumber,POFrom,PODate,POCMPWH,POCurrency,POSpecialInstruction,POFinalDestination,POCMP,POWASH,POHANGER,AddedBy)
 
-	values('$po_number','$from','$DATE','$cmp_w_wanger' ,'$currency','$special_instruction','$final_destination','$cmp','$wash_cost','$hanger_cost','$user_id')";
+	values('$po_number','$from','$date','$cmp_w_wanger' ,'$currency','$special_instruction','$final_destination','$cmp','$wash_cost','$hanger_cost','$user_id')";
 
 	if (mysqli_query($conn, $sql)) {
 		notice('success', 'New PO added Successfully');

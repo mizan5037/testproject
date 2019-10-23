@@ -7,6 +7,22 @@ function customPageHeader()
     <!--Arbitrary HTML Tags-->
 <?php }
 $conn = db_connection();
+
+if (isset($_GET['delete_po'])) {
+    $delete_po = $_GET['delete_po'];
+
+    $sql = "UPDATE po SET Status=0 where POID='$delete_po'";
+
+    
+    if (mysqli_query($conn, $sql)) {
+		notice('danger', ' PO Deleted Successfully');
+		
+	} else {
+		notice('error', $sql . "<br>" . mysqli_error($conn));
+    }
+    
+}
+
 include_once "includes/header.php";
 
 ?>
@@ -36,7 +52,8 @@ include_once "includes/header.php";
                         <th>#</th>
                         <th>PO Number</th>
                         <th>Style</th>
-                        <th>Details</th>
+                        <th>Action</th>
+                       
                     </tr>
                 </thead>
                 <tbody>
@@ -73,11 +90,17 @@ include_once "includes/header.php";
 
                         </td>
                         <td>
-                            <a href="<?= $path ?>/index.php?page=po_update&POID=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
+                            <a href="<?= $path ?>/index.php?page=po_single&POID=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
                                 Details
                             </a>
                             <a href="<?= $path ?>/index.php?page=new_time_action" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
                                 Time/Action Calender
+                            </a>
+                            <a href="<?= $path ?>/index.php?page=all_po&delete_po=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-danger">
+                                DELETE
+                            </a>
+                            <a href="<?= $path ?>/index.php?page=po_edit&id=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-danger">
+                                EDIT
                             </a>
                         </td>
                     </tr>

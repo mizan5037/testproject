@@ -119,6 +119,7 @@ function customPagefooter()
     ?>
 
     <script>
+       
         $(document).ready(function() {
             var counter = 0;
             var limit = 100;
