@@ -51,7 +51,7 @@ include_once "includes/header.php";
                     <tr>
                         <th>#</th>
                         <th>PO Number</th>
-                        <th>Style</th>
+                        <th>PO Date</th>
                         <th>Action</th>
                        
                     </tr>
@@ -74,23 +74,10 @@ include_once "includes/header.php";
                     <tr>
                         <th scope="row"><?php echo $count++; ?></th>
                         <td><?php echo $key['PONumber']; ?></td>
+                        <td><?php echo $key['PODate']; ?></td>
+                        
                         <td>
-
-                            <?php 
-
-                                    while ($st = mysqli_fetch_assoc($style)) { ?>
-
-                                        <ol>
-                                            <li><?php echo $st['StyleID'] ?></li>
-                                        </ol>
-
-
-                                    <?php } ?>
-                             
-
-                        </td>
-                        <td>
-                            <a href="<?= $path ?>/index.php?page=po_single&POID=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
+                            <a href="<?= $path ?>/index.php?page=po_single&poid=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
                                 Details
                             </a>
                             <a href="<?= $path ?>/index.php?page=new_time_action" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
