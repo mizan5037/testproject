@@ -714,4 +714,6 @@
                 del_ses('notice');
                 del_ses('notice_content');
                 ?>
+
+                <div id="notice"></div>
                 <!-- Notice -->

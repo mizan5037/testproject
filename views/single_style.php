@@ -319,27 +319,31 @@ include_once "includes/header.php";
                     <table class="table table-bordered">
                         <tr>
                             <td width="25%">Style No:</td>
-                            <td width="75%"><b><?= $item['StyleNumber'] ?></b></td>
+                            <td width="75%" class="StyleNumber" data-id1="<?= $item['StyleID']; ?>" contenteditable><b><?= $item['StyleNumber'] ?></b></td>
                         </tr>
                         <tr>
                             <td>Description:</td>
-                            <td><b><?= $item['StyleDescription'] ?></b></td>
+                            <td class="StyleDescription" data-id1="<?= $item['StyleID']; ?>" contenteditable><b><?= $item['StyleDescription'] ?></b></td>
                         </tr>
                         <tr>
                             <td>Proto:</td>
-                            <td><b><?= $item['StyleProto'] ?></b></td>
+                            <td class="StyleProto" data-id1="<?= $item['StyleID']; ?>" contenteditable><b><?= $item['StyleProto'] ?></b></td>
                         </tr>
                         <tr>
                             <td>DIV No:</td>
-                            <td><b><?= $item['StyleDivitionNo'] ?></b></td>
+                            <td><b><?php echo $item['StyleDivitionNo'] ? $item['StyleDivitionNo'] : "No LC Found"; ?></b></td>
                         </tr>
                         <tr>
                             <td>Price:</td>
-                            <td><b><?= $item['StyleCurency'] . $item['StylePrice'] ?></b></td>
+                            <td><b><?php echo ($item['StylePrice']) ? $item['StyleCurency'] . $item['StylePrice'] : "No LC Found"; ?></b></td>
+                        </tr>
+                        <tr>
+                            <td>Fabric Details:</td>
+                            <td class="StyleFabricDetails" data-id1="<?= $item['StyleID']; ?>" contenteditable><b><?= $item['StyleFabricDetails'] ?></b></td>
                         </tr>
                         <tr>
                             <td>Wash:</td>
-                            <td><b><?= $item['StyleWash'] ?></b></td>
+                            <td class="StyleWash" data-id1="<?= $item['StyleID']; ?>" contenteditable><b><?= $item['StyleWash'] ?></b></td>
                         </tr>
                     </table>
                 </div>
@@ -453,6 +457,7 @@ include_once "includes/header.php";
 <?php
 function customPagefooter()
 {
+    global $path;
     ?>
 
     <script>
@@ -476,6 +481,84 @@ function customPagefooter()
         span.onclick = function() {
             modal.style.display = "none";
         }
+
+
+        //Edit Details
+        $(document).ready(function() {
+
+
+            function edit_data(id, text, column_name) {
+
+                $.ajax({
+                    url: "<?php echo  $path; ?>/index.php?page=single_style",
+                    method: "POST",
+                    data: {
+                        id: id,
+                        text: text,
+                        cname: column_name,
+                        token: '<?= get_ses('token') ?>',
+                        form: 'editDetails'
+                    },
+                    dataType: "text",
+                    success: function(data) {
+
+                        $('#notice').html('<div class="alert alert-success alert-dismissible fade show notification" role="alert">' + data + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+
+                    }
+                });
+            }
+
+            $(document).on('blur', '.StyleNumber', function() {
+                if (confirm('Do you want to edit this?')) {
+                    var id = $(this).attr("data-id1");
+                    var text = $(this).text();
+                    edit_data(id, text, "StyleNumber");
+                }else{
+                    location.reload();
+                }
+            });
+
+            $(document).on('blur', '.StyleDescription', function() {
+                if (confirm('Do you want to edit this?')) {
+                    var id = $(this).attr("data-id1");
+                    var text = $(this).text();
+                    edit_data(id, text, "StyleDescription");
+                }else{
+                    location.reload();
+                }
+            });
+
+            $(document).on('blur', '.StyleProto', function() {
+                if (confirm('Do you want to edit this?')) {
+                    var id = $(this).attr("data-id1");
+                    var text = $(this).text();
+                    edit_data(id, text, "StyleProto");
+                }else{
+                    location.reload();
+                }
+            });
+
+            $(document).on('blur', '.StyleFabricDetails', function() {
+                if (confirm('Do you want to edit this?')) {
+                    var id = $(this).attr("data-id1");
+                    var text = $(this).text();
+                    edit_data(id, text, "StyleFabricDetails");
+                }else{
+                    location.reload();
+                }
+            });
+
+            $(document).on('blur', '.StyleWash', function() {
+                if (confirm('Do you want to edit this?')) {
+                    var id = $(this).attr("data-id1");
+                    var text = $(this).text();
+                    edit_data(id, text, "StyleWash");
+                }else{
+                    location.reload();
+                }
+            });
+
+        });
     </script>
 
 <?php }
