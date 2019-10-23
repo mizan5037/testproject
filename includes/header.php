@@ -191,7 +191,7 @@
                                             <li <?php active('all_item'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=all_item">
                                                     <i class="metismenu-icon">
-                                                    </i>All Items (report)
+                                                    </i>All Items 
                                                 </a>
                                             </li>
                                         </ul>
@@ -213,7 +213,7 @@
                                             <li <?php active('all_style'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=all_style">
                                                     <i class="metismenu-icon">
-                                                    </i>All Style (report)
+                                                    </i>All Style 
                                                 </a>
                                             </li>
                                         </ul>
@@ -235,7 +235,7 @@
                                             <li <?php active('all_po'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=all_po">
                                                     <i class="metismenu-icon"></i>
-                                                    All PO (report)
+                                                    All PO 
                                                 </a>
                                             </li>
                                         </ul>
@@ -257,7 +257,7 @@
                                             <li <?php active('all_buyer'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=all_buyer">
                                                     <i class="metismenu-icon">
-                                                    </i>All Buyer (report)
+                                                    </i>All Buyer 
                                                 </a>
                                             </li>
                                         </ul>
@@ -279,7 +279,7 @@
                                             <li <?php active('all_master_lc'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=all_master_lc">
                                                     <i class="metismenu-icon"></i>
-                                                    All Master LC (report)
+                                                    All Master LC 
                                                 </a>
                                             </li>
                                         </ul>
@@ -309,7 +309,7 @@
                                             <li <?php active('all_b2b_lc'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=all_b2b_lc">
                                                     <i class="metismenu-icon"></i>
-                                                    All B2B LC (report)
+                                                    All B2B LC 
                                                 </a>
                                             </li>
                                         </ul>
@@ -331,7 +331,7 @@
                                             <li <?php active('all_pi'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=all_pi">
                                                     <i class="metismenu-icon"></i>
-                                                    All PI (report)
+                                                    All PI 
                                                 </a>
                                             </li>
                                         </ul>

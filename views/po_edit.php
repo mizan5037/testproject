@@ -1,5 +1,4 @@
 <?php
-
 $PageTitle = " PO EDIT | Optima Inventory";
 function customPageHeader()
 {
@@ -11,17 +10,12 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     $sql = "SELECT * FROM po where POID='$id'";
-
     $single_po = mysqli_fetch_assoc(mysqli_query($conn, $sql));
-    
 } else {
     nowgo('/index.php?page=all_po');
 }
 include_once "controller/po_update.php";
-
 include_once "includes/header.php";
-
-
 
 ?>
 
@@ -46,52 +40,52 @@ include_once "includes/header.php";
             <h5 class="card-title">PO</h5>
             <form class="needs-validation" method="POST" novalidate>
                 <div class="form-row">
-                <div class="col-md-3 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label for="validationTooltip01">From</label>
-                        <input type="text" name="from" value="<?=$single_po['POFrom'] ?>" class="form-control" id="validationTooltip01" placeholder="From" required>
+                        <input type="text" name="from" value="<?= $single_po['POFrom'] ?>" class="form-control" id="validationTooltip01" placeholder="From" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip01">Date</label>
-                        <input type="date" name="date" value="<?=$single_po['PODate'] ?>" class="form-control" id="validationTooltip01"  required>
+                        <input type="date" name="date" value="<?= $single_po['PODate'] ?>" class="form-control" id="validationTooltip01" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip03">PO Number</label>
-                        <input type="text" name="po_number" value="<?=$single_po['PONumber'] ?>" class="form-control" id="validationTooltip03" placeholder="PO Number" required>
+                        <input type="text" name="po_number" value="<?= $single_po['PONumber'] ?>" class="form-control" id="validationTooltip03" placeholder="PO Number" required>
                         <div class="invalid-tooltip">
                             Please provide a PO Number.
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip03">Currency</label>
-                        <input type="text" name="currency" value="<?=$single_po['POCurrency'] ?>" class="form-control" id="validationTooltip03" placeholder="Currency" required>
+                        <input type="text" name="currency" value="<?= $single_po['POCurrency'] ?>" class="form-control" id="validationTooltip03" placeholder="Currency" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip01">CMP</label>
-                        <input type="number" name="cmp"  value="<?=$single_po['POCMP'] ?>" class="form-control" id="validationTooltip01" placeholder="CMP" required>
+                        <input type="number" name="cmp" value="<?= $single_po['POCMP'] ?>" class="form-control" id="validationTooltip01" placeholder="CMP" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip03">Wash Cost</label>
-                        <input type="number" name="wash_cost"  value="<?=$single_po['POWASH'] ?>" class="form-control" id="validationTooltip03" placeholder="Wash Cost" required>
-                    </div> 
+                        <input type="number" name="wash_cost" value="<?= $single_po['POWASH'] ?>" class="form-control" id="validationTooltip03" placeholder="Wash Cost" required>
+                    </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip03">Hanger Cost</label>
-                        <input type="number" name="hanger_cost"  value="<?=$single_po['POHANGER'] ?>" class="form-control" id="validationTooltip03" placeholder="Hanger Cost" required>
+                        <input type="number" name="hanger_cost" value="<?= $single_po['POHANGER'] ?>" class="form-control" id="validationTooltip03" placeholder="Hanger Cost" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip03">CMP+W+Hanger</label>
-                        <input type="number" name="cmp_w_wanger"  value="<?=$single_po['POCMPWH'] ?>" class="form-control" id="validationTooltip03" placeholder="CMP+W+Hanger" required>
+                        <input type="number" name="cmp_w_wanger" value="<?= $single_po['POCMPWH'] ?>" class="form-control" id="validationTooltip03" placeholder="CMP+W+Hanger" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip01">Final Destination</label>
-                        <input type="Text" name="final_destination"  value="<?=$single_po['POFinalDestination'] ?>" class="form-control" id="validationTooltip01" placeholder="Final Destination" required>
+                        <input type="Text" name="final_destination" value="<?= $single_po['POFinalDestination'] ?>" class="form-control" id="validationTooltip01" placeholder="Final Destination" required>
                     </div>
                     <div class="col-md-9 mb-3">
                         <label for="validationTooltip03">Special Instruction</label>
-                        <textarea type="number" name="special_instruction"   class="form-control" id="validationTooltip03" placeholder="Special Instruction" required><?=$single_po['POSpecialInstruction'] ?></textarea>
+                        <textarea type="number" name="special_instruction" class="form-control" id="validationTooltip03" placeholder="Special Instruction" required><?= $single_po['POSpecialInstruction'] ?></textarea>
                     </div>
                 </div>
                 <div class="form-row">
@@ -100,88 +94,62 @@ include_once "includes/header.php";
                         <table class="mb-0 table table-bordered order-list1" id="myTable1" width="100%">
                             <thead>
                                 <tr>
-                                    <th colspan="8">Order Description</th>
+                                    <th colspan="7">Order Description</th>
                                 </tr>
                                 <tr>
                                     <th width="3%">#</th>
                                     <th width="20%">Style</th>
                                     <th width="20%">Color</th>
                                     <th width="15%">CLR No</th>
-                                    <th width="7%">DZS</th>
-                                    <th width="8%">P/Pack</th>
-                                    <th width="10%">Units</th>
-                                    <th width="17%">Action</th>
+                                    <th width="12%">DZS</th>
+                                    <th width="15%">P/Pack</th>
+                                    <th width="115%">Units</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                    $sql = "SELECT * FROM order_description where POID=$id";
-                                    $order = mysqli_query($conn, $sql);
+                                $sql = "SELECT * FROM order_description where POID=$id";
+                                $order = mysqli_query($conn, $sql);
+                                $counts = 1;
+                                while ($row = mysqli_fetch_assoc($order)) {
 
-                                    while ($row = mysqli_fetch_assoc($order)) {
-                                        
-                                 ?>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>
-                                        <select name="style[]" class="style mb-2 form-control-sm form-control" required>
-                                            <option></option>
-                                            <?php
-                                            $conn = db_connection();
-                                            $sql = "SELECT * FROM style WHERE status = 1";
-                                            $results = mysqli_query($conn, $sql);
-                                            while ($result = mysqli_fetch_assoc($results)) {
-                                                if ($row['StyleID']==$result['StyleID']) {
-                                                    $selected = 'selected';
-                                                }
-                                                echo '<option  selected=".$selected."  value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input placeholder="Color" type="text" value="<?= $row['Color']?>" name="color[]" class="mb-2 form-control-sm form-control" required>
-                                    </td>
-                                    <td>
-                                        <input placeholder="CLR No" type="text" value="<?= $row['ClrNo']?>" name="clr_no[]" class="mb-2 form-control-sm form-control" required>
-                                    </td>
-                                    <td>
-                                        <input placeholder="DZS" type="number" name="dzs[]" value="<?= $row['Dzs']?>" class="mb-2 form-control-sm form-control">
-                                    </td>
-                                    <td>
-                                        <input placeholder="P/Pack" type="number" name="ppack[]" value="<?= $row['PPack']?>" class="mb-2 form-control-sm form-control">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Units" type="number" name="units[]" value="<?= $row['Units']?>" class="mb-2 form-control-sm form-control">
-                                    </td>
-                                    <td><a class="deleteRow"></a></td>
-                                </tr>
+                                    ?>
+                                    <tr>
+                                        <th scope="row"><?= $counts++ ?></th>
+                                        <td>
+                                            <select name="style[]" class="style mb-2 form-control-sm form-control" required>
+                                                <?php
 
-                                <?php }?> 
+                                                    $sql = "SELECT * FROM style WHERE status = 1";
+                                                    $results = mysqli_query($conn, $sql);
+                                                    while ($result = mysqli_fetch_assoc($results)) {
+                                                        if ($row['StyleID'] == $result['StyleID']) {
+                                                            $selected = 'selected';
+                                                        }
+                                                        echo '<option  selected=".$selected."  value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                                    }
+                                                    ?>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input placeholder="Color" type="text" value="<?= $row['Color'] ?>" name="color[]" class="mb-2 form-control-sm form-control" required>
+                                        </td>
+                                        <td>
+                                            <input placeholder="CLR No" type="text" value="<?= $row['ClrNo'] ?>" name="clr_no[]" class="mb-2 form-control-sm form-control" required>
+                                        </td>
+                                        <td>
+                                            <input placeholder="DZS" type="number" name="dzs[]" value="<?= $row['Dzs'] ?>" class="mb-2 form-control-sm form-control">
+                                        </td>
+                                        <td>
+                                            <input placeholder="P/Pack" type="number" name="ppack[]" value="<?= $row['PPack'] ?>" class="mb-2 form-control-sm form-control">
+                                        </td>
+                                        <td>
+                                            <input placeholder="Units" type="number" name="units[]" value="<?= $row['Units'] ?>" class="mb-2 form-control-sm form-control">
+                                        </td>
+                                    </tr>
 
+                                <?php } ?>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="8" class="text-center"><input type="button" class="btn btn-sm btn-success" id="addrow1" value="Add Row" /><br></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4" class="text-right">Total
-
-                                    </td>
-                                    <td class="text-center"><span id="totalDZS"></span>
-
-                                    </td>
-                                    <td class="text-center"><span id="totalPpack"></span>
-
-                                    </td>
-                                    <td class="text-center"><span id="totalUnits"></span>
-
-                                    </td>
-                                    <td class="text-right"></span>
-
-                                    </td>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                 </div>
@@ -192,51 +160,39 @@ include_once "includes/header.php";
                         <table class="mb-0 table table-bordered order-list" id="myTable" width="100%">
                             <thead>
                                 <tr>
-                                    <th colspan="5">PRE-PACK ASSORT.</th>
+                                    <th colspan="4">PRE-PACK ASSORT.</th>
                                 </tr>
                                 <tr>
                                     <th width="3%">#</th>
-                                    <th width="30%">Size</th>
+                                    <th width="40%">Size</th>
                                     <th width="30%">PrePack Code</th>
-                                    <th width="20%">Qty</th>
-                                    <th width="17%">Action</th>
+                                    <th width="27%">Qty</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                 <?php
-                                    $sql = "SELECT * FROM prepack where POID=$id";
-                                    $prepack = mysqli_query($conn, $sql);
+                                <?php
+                                $sql = "SELECT * FROM prepack where POID=$id";
+                                $prepack = mysqli_query($conn, $sql);
+                                $count = 1;
+                                while ($row = mysqli_fetch_assoc($prepack)) {
 
-                                    while ($row = mysqli_fetch_assoc($prepack)) {
-                                        
-                                 ?>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>
-                                        <input placeholder="Size" type="text" name="size[]" value="<?= $row['PrePackSize']?>" class="mb-2 form-control-sm form-control" required>
-                                    </td>
-                                    <td>
-                                        <input placeholder="PrePack Code" type="text" name="ppk[]" value="<?= $row['PrePackCode']?>" class="mb-2 form-control-sm form-control" required>
-                                    </td>
-                                    <td>
-                                        <input placeholder="Qty" type="number" name="qty[]" value="<?= $row['PrepackQty']?>" class="mb-2 form-control-sm form-control">
-                                    </td>
-                                    <td><a class="deleteRow"></a></td>
-                                </tr>
+                                    ?>
+                                    <tr>
+                                        <th scope="row"><?= $count++ ?></th>
+                                        <td>
+                                            <input placeholder="Size" type="text" name="size[]" value="<?= $row['PrePackSize'] ?>" class="mb-2 form-control-sm form-control" required>
+                                        </td>
+                                        <td>
+                                            <input placeholder="PrePack Code" type="text" name="ppk[]" value="<?= $row['PrePackCode'] ?>" class="mb-2 form-control-sm form-control" required>
+                                        </td>
+                                        <td>
+                                            <input placeholder="Qty" type="number" name="qty[]" value="<?= $row['PrepackQty'] ?>" class="mb-2 form-control-sm form-control">
+                                        </td>
+                                    </tr>
 
-                                <?php }?>
+                                <?php } ?>
 
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="5" class="text-center"><input type="button" class="btn btn-sm btn-success" id="addrow" value="Add Row" /><br></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="5" class="text-right"><span id="grandtotal"></span>
-
-                                    </td>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                 </div>

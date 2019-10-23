@@ -348,7 +348,7 @@ include_once "includes/header.php";
                     </table>
                 </div>
                 <div class="col-md-6">
-                    <img style="max-height:230px;" id="myImg" src="<?= $path . $uploadpath . $item['StyleImage'] ?>" class="img-fluid img-thumbnail rounded" alt="<?= $item['StyleNumber'] ?>">
+                    <img style="max-height:230px;" onclick="view('myImg');" id="myImg" src="<?= $path . $uploadpath . $item['StyleImage'] ?>" class="img-fluid img-thumbnail rounded" alt="Style No: <?= $item['StyleNumber'] ?>">
                 </div>
             </div>
         </div>
@@ -465,13 +465,15 @@ function customPagefooter()
         var modal = document.getElementById("myModal");
 
         // Get the image and insert it inside the modal - use its "alt" text as a caption
-        var img = document.getElementById("myImg");
+        
         var modalImg = document.getElementById("img01");
         var captionText = document.getElementById("caption");
-        img.onclick = function() {
+
+        function view(id) {
+            var img = document.getElementById(id);
             modal.style.display = "block";
-            modalImg.src = this.src;
-            captionText.innerHTML = this.alt;
+            modalImg.src = img.src;
+            captionText.innerHTML = img.alt;
         }
 
         // Get the <span> element that closes the modal
