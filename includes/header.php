@@ -1,9 +1,3 @@
-<?php
-
-$pageName =  basename($_SERVER['PHP_SELF']);
-
-?>
-
 <!doctype html>
 <html lang="en">
 
@@ -25,6 +19,9 @@ $pageName =  basename($_SERVER['PHP_SELF']);
 </head>
 
 <body>
+    <?php if (function_exists('modal')) {
+        modal();
+    } ?>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo">
@@ -58,6 +55,28 @@ $pageName =  basename($_SERVER['PHP_SELF']);
                 </span>
             </div>
             <div class="app-header__content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-lg-right text-md-center text-sm-center">
+                            <div class="btn-group">
+                                <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
+                                    User:
+                                    <?php echo get_ses('user'); ?>
+                                    <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                    <div class="widget-subheading"> Login Time:
+                                        <?php echo date("h:i a", get_ses('logInTime')); ?>
+                                    </div>
+                                </a>
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                                    <a href="<?= $path ?>/index.php?page=user" tabindex="0" class="dropdown-item">My Profile</a>
+                                    <!-- <button type="button" tabindex="0" class="dropdown-item">Settings</button> -->
+                                    <div tabindex="-1" class="dropdown-divider"></div>
+                                    <a href="<?= $path ?>/logout.php" tabindex="0" class="dropdown-item">Log Out</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- <div class="app-header-left">
                     <div class="search-wrapper">
                         <div class="input-holder">
@@ -67,11 +86,10 @@ $pageName =  basename($_SERVER['PHP_SELF']);
                         <button class="close"></button>
                     </div>
                 </div> -->
-                <div class="app-header-right">
+                <!-- <div class="app-header-right"> 
                     <div class="header-btn-lg pr-0">
                         <div class="widget-content p-0">
                             <div class="widget-content-wrapper">
-
                                 <div class="widget-content-left  ml-3 header-user-info">
                                     <div class="widget-heading">
                                         <div class="widget-content-left">
@@ -94,13 +112,11 @@ $pageName =  basename($_SERVER['PHP_SELF']);
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="app-main">
