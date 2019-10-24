@@ -5,11 +5,11 @@ $user_id = get_ses('user_id');
 
 //edit table by ajax
 if (isset($_POST['form']) && $_POST['form'] = "editDetails") {
-    
+
     $token = $_POST["token"];
 
     if (get_ses('token') === $token) {
-        
+
         $eid = $_POST["id"];
         $cname = $_POST['cname'];
         $text = $_POST["text"];
@@ -28,10 +28,12 @@ if (isset($_POST['form']) && $_POST['form'] = "editDetails") {
 //Delete item requiremwnts
 if (isset($_GET['delete'])) {
     $itemid = $_GET['delete'];
+    $id = $_GET['id'];
     $sql = "DELETE FROM itemrequirment WHERE ItemRequirmentID=" . $itemid;
 
     if (mysqli_query($conn, $sql)) {
         notice('success', 'Item Deleted Successfully');
+        nowgo('/index.php?page=single_style&id=' . $id);
     } else {
         notice('error', $sql . "<br>" . mysqli_error($conn));
     }
@@ -40,10 +42,12 @@ if (isset($_GET['delete'])) {
 //delete trims & Accessories
 if (isset($_GET['deletet'])) {
     $tid = $_GET['deletet'];
+    $id = $_GET['id'];
     $sql = "DELETE FROM trimsaccess where TrimsAccessID=" . $tid;
 
     if (mysqli_query($conn, $sql)) {
         notice('success', 'TRIMS & ACCESSORIES Deleted Successfully');
+        nowgo('/index.php?page=single_style&id=' . $id);
     } else {
         notice('error', $sql . "<br>" . mysqli_error($conn));
     }
@@ -70,6 +74,7 @@ if (isset($_POST['size']) && isset($_POST['item']) && isset($_POST['qty'])) {
 
             if (mysqli_query($conn, $sqli)) {
                 notice('success', 'New Item Added Successfully.');
+                nowgo('/index.php?page=single_style&id=' . $id);
             } else {
                 notice('error', $sql . "<br>" . mysqli_error($conn));
             }
@@ -92,6 +97,7 @@ if (isset($_POST['trim_name']) && isset($_POST['trim_description'])) {
 
             if (mysqli_query($conn, $sql)) {
                 notice('success', 'New TRIMS & ACCESSORIES Added Successfully.');
+                nowgo('/index.php?page=single_style&id=' . $id);
             } else {
                 notice('error', $sql . "<br>" . mysqli_error($conn));
             }

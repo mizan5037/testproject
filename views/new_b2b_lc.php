@@ -32,52 +32,31 @@ include_once "includes/header.php";
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltip01">Master LC Number</label>
-                        <input type="text" class="form-control" id="validationTooltip01" placeholder="Master LC Number" required>
-                        <div class="valid-tooltip">
-                            Looks good!
-                        </div>
-                        <div class="invalid-tooltip">
-                            Please Enter the Master LC Number.
-                        </div>
+                        <input type="text" class="form-control  form-control-sm" placeholder="Master LC Number" required>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltip02">B2B LC Number</label>
-                        <input type="test" class="form-control" id="validationTooltip02" placeholder="B2B LC Number" required>
-                        <div class="valid-tooltip">
-                            Looks good!
-                        </div>
-                        <div class="invalid-tooltip">
-                            Please Enter the B2B LC Number.
-                        </div>
+                        <input type="test" class="form-control form-control-sm" placeholder="B2B LC Number" required>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationTooltip01">Supplier Name</label>
-                        <input type="text" class="form-control" id="validationTooltip01" placeholder="Supplier Name" required>
+                        <label>Supplier Name</label>
+                        <input type="text" class="form-control form-control-sm" placeholder="Supplier Name" required>
                     </div>
-                    <div class="col-md-4 mb-3">
-                        <label for="validationTooltip01">Supplier Contact Person</label>
-                        <input type="text" class="form-control" id="validationTooltip01" placeholder="Supplier Contact Person" required>
+                    <div class="col-md-3 mb-3">
+                        <label>Supplier Contact Person</label>
+                        <input type="text" class="form-control form-control-sm" placeholder="Supplier Contact Person" required>
                     </div>
-                    <div class="col-md-4 mb-3">
-                        <label for="validationTooltip01">Supplier Contact Number</label>
-                        <input type="text" class="form-control" id="validationTooltip01" placeholder="Supplier Contact Number" required>
+                    <div class="col-md-3 mb-3">
+                        <label>Supplier Contact Number</label>
+                        <input type="text" class="form-control form-control-sm" placeholder="Supplier Contact Number" required>
                     </div>
-                    <div class="col-md-4 mb-3">
-                        <label for="validationTooltip01">Supplier Address</label>
-                        <input type="text" class="form-control" id="validationTooltip01" placeholder="Supplier Address" required>
+                    <div class="col-md-3 mb-3">
+                        <label>Supplier Address</label>
+                        <input type="text" class="form-control form-control-sm" placeholder="Supplier Address" required>
                     </div>
-
-                    <div class="col-md-4 mb-3">
-                        <label for="validationTooltipUsername">Issue Date</label>
-                        <div class="input-group">
-                            <input type="date" class="form-control" id="validationTooltipUsername" placeholder="Supplier" aria-describedby="validationTooltipUsernamePrepend" required>
-                            <div class="valid-tooltip">
-                                Looks good!
-                            </div>
-                            <div class="invalid-tooltip">
-                                Please Enter the Issue Date.
-                            </div>
-                        </div>
+                    <div class="col-md-3 mb-3">
+                        <label>Issue Date</label>
+                        <input type="date" class="form-control form-control-sm" placeholder="Supplier" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -98,22 +77,22 @@ include_once "includes/header.php";
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <input placeholder="Item" type="text" class="mb-2 form-control-sm form-control">
+                                    <input placeholder="Item" type="text" class="mb-2 form-control-sm form-control" required>
                                 </td>
                                 <td>
-                                    <input placeholder="Style" type="text" class="mb-2 form-control-sm form-control">
+                                    <input placeholder="Style" type="text" class="mb-2 form-control-sm form-control" required>
                                 </td>
                                 <td>
-                                    <input placeholder="PO" type="text" class="mb-2 form-control-sm form-control">
+                                    <input placeholder="PO" type="text" class="mb-2 form-control-sm form-control" required>
                                 </td>
                                 <td>
-                                    <input placeholder="Qty" type="text" class="mb-2 form-control-sm form-control">
+                                    <input placeholder="Qty" type="text" class="mb-2 form-control-sm form-control" required>
                                 </td>
                                 <td>
-                                    <input placeholder="Price Per Unit" type="text" class="mb-2 form-control-sm form-control">
+                                    <input placeholder="Price Per Unit" type="text" class="mb-2 form-control-sm form-control" required>
                                 </td>
                                 <td>
-                                    <input placeholder="Total Price" type="text" class="mb-2 form-control-sm form-control">
+                                    <input placeholder="Total Price" type="text" class="mb-2 form-control-sm form-control" required>
                                 </td>
                                 <td><a class="deleteRow"></a></td>
                             </tr>
@@ -121,7 +100,7 @@ include_once "includes/header.php";
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="7" class="text-center"><input type="button" class="btn btn-sm btn-success" id="addrow" value="Add Row" /><br></td>
+                                <td colspan="8" class="text-center"><input type="button" class="btn btn-sm btn-success" id="addrow" value="Add Row" /><br></td>
                             </tr>
                         </tfoot>
                     </table>

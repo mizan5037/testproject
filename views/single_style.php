@@ -266,6 +266,33 @@ function modal()
                                         <input placeholder="Description" type="text" name="trim_description[]" class="mb-2 form-control-sm form-control" required>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>
+                                        <input placeholder="Name" type="text" name="trim_name[]" class="mb-2 form-control-sm form-control">
+                                    </td>
+                                    <td>
+                                        <input placeholder="Description" type="text" name="trim_description[]" class="mb-2 form-control-sm form-control">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>
+                                        <input placeholder="Name" type="text" name="trim_name[]" class="mb-2 form-control-sm form-control">
+                                    </td>
+                                    <td>
+                                        <input placeholder="Description" type="text" name="trim_description[]" class="mb-2 form-control-sm form-control">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4</th>
+                                    <td>
+                                        <input placeholder="Name" type="text" name="trim_name[]" class="mb-2 form-control-sm form-control">
+                                    </td>
+                                    <td>
+                                        <input placeholder="Description" type="text" name="trim_description[]" class="mb-2 form-control-sm form-control">
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -348,7 +375,7 @@ include_once "includes/header.php";
                     </table>
                 </div>
                 <div class="col-md-6">
-                    <img style="max-height:230px;" onclick="view('myImg');" id="myImg" src="<?= $path . $uploadpath . $item['StyleImage'] ?>" class="img-fluid img-thumbnail rounded" alt="Style No: <?= $item['StyleNumber'] ?>">
+                    <img style="max-height:265px;" onclick="view('myImg');" id="myImg" src="<?= $path . $uploadpath . $item['StyleImage'] ?>" class="img-fluid img-thumbnail rounded" alt="Style No: <?= $item['StyleNumber'] ?>">
                 </div>
             </div>
         </div>

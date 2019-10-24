@@ -174,11 +174,11 @@ include_once "includes/header.php";
                         </tr>
                         <tr>
                             <td>Sender Bank:</td>
-                            <td><b><?=$mlc['MasterLCSenderBank']?></b></td>
+                            <td><b><?= $mlc['MasterLCSenderBank'] ?></b></td>
                         </tr>
                         <tr>
                             <td>Receiver Bank:</td>
-                            <td><b><?=$mlc['MasterLCReceiverBank']?></b></td>
+                            <td><b><?= $mlc['MasterLCReceiverBank'] ?></b></td>
                         </tr>
                         <tr>
                             <td>Buyer:</td>
@@ -206,11 +206,11 @@ include_once "includes/header.php";
                         </tr>
                         <tr>
                             <td>Transshipment:</td>
-                            <td><b><?=$mlc['MasterLCTranshipment']?></b></td>
+                            <td><b><?= $mlc['MasterLCTranshipment'] ?></b></td>
                         </tr>
                         <tr>
                             <td>Port Of Loading:</td>
-                            <td><b><?=$mlc['MasterLCPortOfLoading']?></b></td>
+                            <td><b><?= $mlc['MasterLCPortOfLoading'] ?></b></td>
                         </tr>
                         <tr>
                             <td>Port Of Discharge:</td>
@@ -260,19 +260,33 @@ include_once "includes/header.php";
                             </tr>
                         </thead>
                         <?php
-                        $sql = "SELECT POID, StyleID, Qty, Unit, Price, LSDate FROM masterlc_description where Status = 1 AND MasterLCID ='$id'";
+                        $sql = "SELECT ID, POID, StyleID, Qty, Unit, Price, LSDate FROM masterlc_description where Status = 1 AND MasterLCID ='$id'";
 
                         $mlc = mysqli_query($conn, $sql);
                         $count = 1;
                         while ($row = mysqli_fetch_assoc($mlc)) {
                             ?>
                             <tr>
-                                <td><b><?=$count++ ?></b></td>
-                                <td><b><?= $row['POID'] ?></b></td>
-                                <td><b><?= $row['StyleID'] ?></b></td>
-                                <td><b><?= $row['Qty'] . $row['Unit']?></b></td>
+                                <td><b><?= $count++ ?></b></td>
                                 <td>
-                                    <a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=single_style&id=<?= $id ?>&deletet=<?php echo $row['TrimsAccessID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
+                                    <b>
+                                        <a class="btn btn-sm btn-outline-success" target="_blank" href="<?= $path ?>/index.php?page=po_single&poid=<?= $row['POID'] ?>">
+                                            <?= searchForVal($row['POID'], $poArr, 'POID', 'PONumber') ?>
+                                        </a>
+                                    </b>
+                                </td>
+                                <td>
+                                    <b>
+                                        <a class="btn btn-sm btn-outline-success" target="_blank" href="<?= $path ?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>">
+                                            <?= searchForVal($row['StyleID'], $styleArr, 'StyleID', 'StyleNumber') ?>
+                                        </a>
+                                    </b>
+                                </td>
+                                <td><b><?= $row['Qty'] . $row['Unit'] ?></b></td>
+                                <td><b><?= $row['Price'] ?></b></td>
+                                <td><b><?= $row['LSDate'] ?></b></td>
+                                <td>
+                                    <a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=single_masterlc&id=<?= $id ?>&delete=<?php echo $row['ID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
                                         <i class="fas fa-trash-alt" style="color: white;"></i>
                                     </a>
                                 </td>
