@@ -6,7 +6,16 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
-include_once "controller/pi_add.php";
+$conn = db_connection();
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+
+    $sql = "SELECT * FROM pi where PIID='$id' and Status=1";
+    $single_pi = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+} else {
+    nowgo('/index.php?page=all_pi');
+}
+include_once "controller/pi_update.php";
 include_once "includes/header.php";
 
 ?>
@@ -34,15 +43,15 @@ include_once "includes/header.php";
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltip01">REF NO</label>
-                        <input type="text" class="form-control" name="refno" id="validationTooltip01" placeholder="REF NO" required>
+                        <input type="text" class="form-control" value="<?= $single_pi['RefNo'] ?>" name="refno" id="validationTooltip01" placeholder="REF NO" required>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltip02">Issue Date</label>
-                        <input type="date" class="form-control" name="date" id="validationTooltip02" placeholder="Issue Date" required>
+                        <input type="date" class="form-control" value="<?= $single_pi['IssueDate'] ?>" name="date" id="validationTooltip02" placeholder="Issue Date" required>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltipUsername">Supplier</label>
-                        <input type="text" class="form-control" name="supplier" id="validationTooltipUsername" placeholder="Supplier" aria-describedby="validationTooltipUsernamePrepend" required>
+                        <input type="text" class="form-control" value="<?= $single_pi['SupplierName'] ?>" name="supplier" id="validationTooltipUsername" placeholder="Supplier" aria-describedby="validationTooltipUsernamePrepend" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -60,57 +69,65 @@ include_once "includes/header.php";
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>
-                                    <select name="po[]" class="po mb-2 form-control-sm form-control" required>
-                                        <option></option>
-                                        <?php
-                                        $conn = db_connection();
-                                        $sql = "SELECT * FROM po WHERE status = 1";
-                                        $results = mysqli_query($conn, $sql);
-                                        while ($result = mysqli_fetch_assoc($results)) {
-                                            echo '<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
-                                        }
-                                        ?>
-                                    </select>
-                                </td>
-                                <td>
+                            <?php
+                            $sql = "SELECT * FROM pi_description where PIID=$id and Status=1";
+                            $all = mysqli_query($conn, $sql);
+                            $counts = 1;
+                            while ($row = mysqli_fetch_assoc($all)) {
 
-                                    <select name="item[]" class="item mb-2 form-control-sm form-control" required>
-                                        <option></option>
-                                        <?php
-                                        $conn = db_connection();
-                                        $sql = "SELECT * FROM item WHERE status = 1";
-                                        $results = mysqli_query($conn, $sql);
-                                        while ($result = mysqli_fetch_assoc($results)) {
-                                            echo '<option value="' . $result['ItemID'] . '">' . $result['ItemName'] . '</option>';
-                                        }
-                                        ?>
-                                    </select>
+                                ?>
+                                <tr>
+                                    <th scope="row"><?= $counts++ ?></th>
+                                    <td>
+                                        <select name="po[]" class="po mb-2 form-control-sm form-control" required>
+                                            <?php
 
-                                </td>
-                                <td>
-                                    <textarea placeholder="Description" name="description"  type="text" class="mb-2 form-control-sm form-control"></textarea>
-                                </td>
-                                <td>
-                                    <input placeholder="Qty" id="qty" name="qty" type="number" class="mb-2 form-control-sm form-control" >
-                                </td>
-                                <td>
-                                    <input  id="ppu" name="ppu" type="number" class="mb-2 form-control-sm form-control">
-                                </td>
-                                <td>
-                                    <input  id="totalprice" name="totalprice" type="text" class="mb-2 form-control-sm form-control">
-                                </td>
-                                <td><a class="deleteRow"></a></td>
-                            </tr>
+                                                $sql = "SELECT * FROM po WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    if ($row['POID'] == $result['POID']) {
+                                                        $selected = 'selected';
+                                                    }
+                                                    echo '<option  selected=".$selected."  value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
+                                                }
+                                                ?>
+                                        </select>
+
+                                    </td>
+                                    <td>
+                                        <select name="item[]" class="item mb-2 form-control-sm form-control" required>
+                                            <?php
+
+                                                $sql = "SELECT * FROM item WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    if ($row['ItemID'] == $result['ItemID']) {
+                                                        $selected = 'selected';
+                                                    }
+                                                    echo '<option  selected=".$selected."  value="' . $result['ItemID'] . '">' . $result['ItemName'] . '</option>';
+                                                }
+                                                ?>
+                                        </select>
+
+                                    </td>
+                                    <td>
+                                        <textarea placeholder="Description" name="description" type="text"  class="mb-2 form-control-sm form-control"><?= $row['Description']?></textarea>
+                                    </td>
+                                    <td>
+                                        <input placeholder="Qty" id="qty" value="<?= $row['Qty']?>" name="qty" type="text" class="mb-2 form-control-sm form-control">
+                                    </td>
+                                    <td>
+                                        <input placeholder="Price Per Unit" id="ppu" name="ppu" value="<?= $row['PricePerUnit']?>" type="text" class="mb-2 form-control-sm form-control">
+                                    </td>
+                                    <td>
+                                        <input placeholder="Total Price" id="totalprice" name="totalprice" value="<?= $row['TotalPrice']?>" type="text" class="mb-2 form-control-sm form-control">
+                                    </td>
+                                    <td><a class="deleteRow"></a></td>
+                                </tr>
+                            <?php } ?>
 
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="8" class="text-center"><input type="button" class="btn btn-sm btn-success" id="addrow" value="Add Row" /><br></td>
-                            </tr>
-                        </tfoot>
+                       
                     </table>
                 </div>
                 <br><br>
@@ -148,7 +165,7 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th>' + counter + '</th>';
-                
+
                 cols += '<td><select name="po[]" class="po mb-2 form-control-sm form-control" required><option></option>';
                 <?php
                     $conn = db_connection();
@@ -170,8 +187,8 @@ function customPagefooter()
                     ?>
                 cols += '</select></td>';
                 cols += '<td><textarea placeholder="Description" name="description' + counter + '" type="text" class="mb-2 form-control-sm form-control"></textarea></td>';
-                cols += '<td><input name="qty' + counter + '" type="number" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input  name="ppu' + counter + '" type="number" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Qty" name="qty' + counter + '" type="text" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Price Per Unit" name="ppu' + counter + '" type="text" class="mb-2 form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Total Price" name="totalprice' + counter + '" type="text" class="mb-2 form-control-sm form-control"></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-danger"  value="Delete"></td>';
@@ -195,7 +212,7 @@ function customPagefooter()
                 $('#addrow').attr('disabled', false).prop('value', "Add Row");
             });
 
-            var theResult =  $("#qty").value+ $("#ppu").value; 
+            var theResult = $("#qty").value + $("#ppu").value;
             $('#totalprice').text(theResult);
 
 
@@ -235,8 +252,6 @@ function customPagefooter()
                 });
             }, false);
         })();
-
-
     </script>
 <?php }
 include_once "includes/footer.php";
