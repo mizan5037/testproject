@@ -115,7 +115,7 @@ function customPageHeader()
 <?php }
 $conn = db_connection();
 
-if (isset($_GET['piid'])) {
+if (isset($_GET['piid']) && $_GET['piid'] != '') {
     $piid = $_GET['piid'];
 } else {
     nowgo('/index.php?page=all_pi');
@@ -135,32 +135,25 @@ function modal()
     <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <form method="post">
-                <div class="modal-content">
+                <div class="modal-content" style="width:180%; margin-left:-200px;">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">PI Description</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
                     </div>
                     <div class="modal-body">
                         <table class="mb-0 table table-bordered order-list2" id="myTable2" width="100%">
                             <thead>
                                 <tr>
-                                    <th width="5%">#</th>
-                                    <th width="10%">PO No</th>
-                                    <th width="10%">Item</th>
+                                    <th width="20%">PO No</th>
+                                    <th width="20%">Item</th>
                                     <th width="30%">Description</th>
-                                    <th width="10%">Qty</th>
-                                    <th width="10%">Price Per Unit</th>
-                                    <th width="10%">Total Price</th>
-                                    <th width="15%"></th>
+                                    <th width="15%">Qty</th>
+                                    <th width="15%">Price Per Unit</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row">1</th>
                                     <td>
-                                        <select name="po[]" class="po mb-2 form-control-sm form-control" required>
+                                        <select name="po" class="po mb-2 form-control-sm form-control" required>
                                             <option></option>
                                             <?php
                                                 $conn = db_connection();
@@ -174,7 +167,7 @@ function modal()
                                     </td>
                                     <td>
 
-                                        <select name="item[]" class="item mb-2 form-control-sm form-control" required>
+                                        <select name="item" class="item mb-2 form-control-sm form-control" required>
                                             <option></option>
                                             <?php
                                                 $conn = db_connection();
@@ -196,10 +189,6 @@ function modal()
                                     <td>
                                         <input id="ppu" name="ppu" type="number" class="mb-2 form-control-sm form-control">
                                     </td>
-                                    <td>
-                                        <input id="totalprice" name="totalprice" type="text" class="mb-2 form-control-sm form-control">
-                                    </td>
-                                    <td><a class="deleteRow"></a></td>
                                 </tr>
 
                             </tbody>
@@ -263,7 +252,6 @@ include_once "includes/header.php";
                 <div class="col-md-12">
                     <table class="table table-bordered table-hover text-center">
                         <thead>
-                            <th>#</th>
                             <th>Reference Number</th>
                             <th>Issue Date</th>
                             <th>Supplier</th>
@@ -275,10 +263,8 @@ include_once "includes/header.php";
                             $sql = "SELECT * FROM pi where PIID='$piid'";
 
                             $single_pi = mysqli_fetch_assoc(mysqli_query($conn, $sql));
-                            $count = 1;
                             ?>
                             <tr>
-                                <td><?= $count ?></td>
                                 <td><?= $single_pi['RefNo'] ?></td>
                                 <td><?= $single_pi['IssueDate'] ?></td>
                                 <td><?= $single_pi['SupplierName'] ?></td>
@@ -327,9 +313,9 @@ include_once "includes/header.php";
                             $count = 1;
                             while ($row = mysqli_fetch_assoc($all)) {
 
-                                $sql = "SELECT * FROM po where POID=" . $row['POID'];
+                                $sql = "SELECT PONumber FROM po where POID=" . $row['POID'];
                                 $po_number = mysqli_fetch_assoc(mysqli_query($conn, $sql));
-                                $sql = "SELECT * FROM item where ItemID=" . $row['ItemID'];
+                                $sql = "SELECT ItemName FROM item where ItemID=" . $row['ItemID'];
                                 $item_name = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
 
@@ -337,8 +323,8 @@ include_once "includes/header.php";
                                 ?>
                                 <tr>
                                     <td><?= $count ?></td>
-                                    <td><?= $po_number['PONumber'] ?></td>
-                                    <td><?= $item_name['ItemName'] ?></td>
+                                    <td> <a class="btn btn-sm btn-outline-success" target="_blank" href="<?=$path?>/index.php?page=po_single&poid=<?=$row['POID']?>"> <?= $po_number['PONumber'] ?></a></td>
+                                    <td> <a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=all_item" target="_blank"><?= $item_name['ItemName'] ?></a> </td>
                                     <td><?= $row['Description'] ?></td>
                                     <td><?= $row['Qty'] ?></td>
                                     <td><?= $row['PricePerUnit'] ?></td>
