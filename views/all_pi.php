@@ -6,7 +6,19 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
+$conn = db_connection();
+if (isset($_GET['delete_pi'])) {
+    $id = $_GET['delete_pi'];
+    $sql = "UPDATE pi SET Status = 0 where PIID=".$id;
+    if (mysqli_query($conn, $sql)) {
+        notice('danger', 'PI Deleted  Successfully');
+    } else {
+        notice('error', $sql . "<br>" . mysqli_error($conn));
+    }
+}
+
 include_once "includes/header.php";
+
 
 ?>
 
@@ -28,47 +40,43 @@ include_once "includes/header.php";
     </div>
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <h5 class="card-title">LC List</h5>
+            <h5 class="card-title">PI List</h5>
             <table class="mb-0 table table-striped table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>PO Number</th>
-                        <th>Style</th>
+                        <th>Reference No.</th>
+                        <th>Issue Date</th>
                         <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>PO001</td>
-                        <td>Style 2</td>
-                        <td>
-                            <button class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                Details
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>PO002</td>
-                        <td>Style 1</td>
-                        <td>
-                            <button class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                Details
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>PO003</td>
-                        <td>Style 3</td>
-                        <td>
-                            <button class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                Details
-                            </button>
-                        </td>
-                    </tr>
+                    <?php
+
+                        $sql = "SELECT * FROM pi WHERE status = 1";
+                        $pi = mysqli_query($conn, $sql);
+
+                        $count = 1;
+                        while ($key = mysqli_fetch_assoc($pi)) {
+                          
+                    ?>
+                        <tr>
+                            <th scope="row"><?= $count++ ?></th>
+                            <th scope="row"><?= $key['RefNo']  ?></th>
+                            <td><?= $key['IssueDate']  ?></td>                        
+                            <td>
+                                <a href="<?= $path ?>/index.php?page=single_pi&piid=<?php echo $key['PIID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
+                                    Details
+                                </a>
+                                <a href="<?= $path ?>/index.php?page=all_pi&delete_pi=<?php echo $key['PIID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-danger">
+                                DELETE
+                                </a>
+                                <a href="<?= $path ?>/index.php?page=pi_edit&id=<?php echo $key['PIID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-primary">
+                                    EDIT
+                                </a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
