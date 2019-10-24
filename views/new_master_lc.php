@@ -9,6 +9,8 @@ function customPageHeader()
 
     <!--Arbitrary HTML Tags-->
 <?php }
+
+include_once "controller/new_master_lc.php";
 include_once "includes/header.php";
 
 ?>
@@ -32,96 +34,83 @@ include_once "includes/header.php";
     <div class="main-card mb-3 card">
         <div class="card-body">
             <!-- <h5 class="card-title">LC</h5> -->
-            <form class="needs-validation" id="form" novalidate>
+            <form class="needs-validation" id="form" method="post" novalidate>
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
-                        <label for="validationTooltip01">Master LC Number</label>
-                        <input type="text" class="form-control form-control-sm " id="validationTooltip01" placeholder="Master LC Number" required>
-                        <div class="valid-tooltip">
-                            Looks good!
-                        </div>
-                        <div class="invalid-tooltip">
-                            Please Enter the LC Number.
-                        </div>
+                        <label>Master LC Number</label>
+                        <input type="text" class="form-control form-control-sm" name="mlcnumber" placeholder="Master LC Number" required>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationTooltip02">Master LC Issue Date</label>
-                        <input type="date" class="form-control form-control-sm " id="validationTooltip02" placeholder="Master LC Issue Date" required>
-                        <div class="valid-tooltip">
-                            Looks good!
-                        </div>
-                        <div class="invalid-tooltip">
-                            Please Enter the LC Issue Date.
-                        </div>
+                        <label>Master LC Issue Date</label>
+                        <input type="date" class="form-control form-control-sm" name="mlcissuedate" placeholder="Master LC Issue Date" required>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationTooltip02">Master LC Expiry Date</label>
-                        <input type="date" class="form-control form-control-sm " id="validationTooltip02" placeholder="Master LC Expiry Date" required>
+                        <label>Master LC Expiry Date</label>
+                        <input type="date" class="form-control form-control-sm" name="mlcexpirydate" placeholder="Master LC Expiry Date" required>
 
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-2 mb-3">
-                        <label for="validationTooltip03">Sender Bank</label>
-                        <input type="text" class="form-control form-control-sm " id="validationTooltip03" placeholder="Sender Bank" required>
+                        <label>Sender Bank</label>
+                        <input type="text" class="form-control form-control-sm" name="sender_bank" placeholder="Sender Bank" required>
                     </div>
                     <div class="col-md-2 mb-3">
-                        <label for="validationTooltip03">Receiver Bank</label>
-                        <input type="text" class="form-control form-control-sm " id="validationTooltip03" placeholder="Receiver Bank" required>
+                        <label>Receiver Bank</label>
+                        <input type="text" class="form-control form-control-sm" name="receiver_bank" placeholder="Receiver Bank" required>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationTooltip03">Buyer Name</label>
-                        <input type="text" class="form-control form-control-sm " id="validationTooltip03" placeholder="Buyer" required>
-                        <div class="invalid-tooltip">
-                            Please provide a Buyer name.
-                        </div>
+                        <label>Buyer</label>
+                        <select class="form-control form-control-sm" name="buyer" required>
+                            <option></option>
+                            <?php
+                            $sql = "SELECT BuyerID, BuyerName FROM buyer WHERE Status = 1";
+                            $results = mysqli_query($conn, $sql);
+                            while ($result = mysqli_fetch_assoc($results)) {
+                                echo '<option value="' . $result['BuyerID'] . '">' . $result['BuyerName'] . '</option>';
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationTooltip03">LC Issued By</label>
-                        <input type="text" class="form-control form-control-sm " id="validationTooltip03" placeholder="LC Issued By" required>
-                        <div class="invalid-tooltip">
-                            Please provide a Buyer name.
-                        </div>
+                        <label>LC Issued By</label>
+                        <input type="text" class="form-control form-control-sm" name="lcissuedby" placeholder="LC Issued By" required>
                     </div>
                 </div>
                 <div class="form-row">
-                    <!-- <div class="col-md-4 mb-3">
-                        <label for="validationTooltip03">MUR No</label>
-                        <input type="text" class="form-control form-control-sm " id="validationTooltip03" placeholder="MUR No" required>
-                    </div> -->
                     <div class="col-md-4 mb-3">
-                        <label for="currency">Currency</label>
-                        <input type="text" class="form-control form-control-sm " id="currency" placeholder="Currency" required>
+                        <label>Currency</label>
+                        <input type="text" class="form-control form-control-sm" name="currency" placeholder="Currency" required>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationTooltip02">Amount</label>
-                        <input type="number" class="form-control form-control-sm " id="validationTooltip02" placeholder="Amount" required>
+                        <label>Amount</label>
+                        <input type="number" class="form-control form-control-sm" name="amount" placeholder="Amount" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip03">Partial Shipment</label>
-                        <select class="form-control form-control-sm " name="" id="">
-                            <!-- <option value=""></option> -->
-                            <option value="">Allowed</option>
-                            <option value="">Not Allowed</option>
+                        <label>Partial Shipment</label>
+                        <select class="form-control form-control-sm" name="partialshipment" required>
+                            <option></option>
+                            <option value="1">Allowed</option>
+                            <option value="0">Not Allowed</option>
                         </select>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip03">Transshipment</label>
-                        <select class="form-control form-control-sm " name="" id="">
-                            <!-- <option value=""></option> -->
-                            <option value="">Allowed</option>
-                            <option value="">Not Allowed</option>
+                        <label>Transshipment</label>
+                        <select class="form-control form-control-sm" name="transshipment" required>
+                            <option></option>
+                            <option value="1">Allowed</option>
+                            <option value="0">Not Allowed</option>
                         </select>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip02">Port Of Loading</label>
-                        <input type="number" class="form-control form-control-sm " id="validationTooltip02" placeholder="Port Of Loading" required>
+                        <label>Port Of Loading</label>
+                        <input type="text" class="form-control form-control-sm" name="portofloading" placeholder="Port Of Loading" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip02">Port Of Discharge</label>
-                        <input type="number" class="form-control form-control-sm " id="validationTooltip02" placeholder="Port Of Discharge" required>
+                        <label>Port Of Discharge</label>
+                        <input type="text" class="form-control form-control-sm" name="portofdischarge" placeholder="Port Of Discharge" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -150,22 +139,36 @@ include_once "includes/header.php";
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <input placeholder="P.O. No" type="text" name="pono" class="mb-2 form-control-sm form-control" required>
+                                    <select class="form-control form-control-sm" name="pono[]" required>
+                                        <option></option>
+                                        <?php
+                                        foreach ($poArr as $key) {
+                                            echo '<option value="' . $key['POID'] . '">' . $key['PONumber'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </td>
                                 <td>
-                                    <input placeholder="Style" type="text" name="style" class="mb-2 form-control-sm form-control" required>
+                                    <select class="form-control form-control-sm" name="style[]" required>
+                                        <option></option>
+                                        <?php
+                                        foreach ($styleArr as $key) {
+                                            echo '<option value="' . $key['StyleID'] . '">' . $key['StyleNumber'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </td>
                                 <td>
-                                    <input placeholder="Qty" type="number" name="qty" class="mb-2 form-control-sm form-control" required>
+                                    <input placeholder="Qty" type="number" name="qty[]" class="mb-2 form-control-sm form-control" required>
                                 </td>
                                 <td>
-                                    <input placeholder="U/Name" type="text" name="unitname" class="mb-2 form-control-sm form-control" required>
+                                    <input placeholder="U/Name" type="text" name="unitname[]" class="mb-2 form-control-sm form-control" required>
                                 </td>
                                 <td>
-                                    <input placeholder="U/Price" type="number" name="price" class="mb-2 form-control-sm form-control" required>
+                                    <input placeholder="U/Price" type="number" name="price[]" class="mb-2 form-control-sm form-control" required>
                                 </td>
                                 <td>
-                                    <input type="date" name="lsdate" class="mb-2 form-control-sm form-control">
+                                    <input type="date" name="lsdate[]" class="mb-2 form-control-sm form-control" required>
                                 </td>
                                 <td><a class="deleteRow btn btn-sm btn-warning disabled">First Row</a></td>
                             </tr>
@@ -204,6 +207,9 @@ include_once "includes/header.php";
 <?php
 function customPagefooter()
 {
+    global $styleArr;
+    global $poArr;
+
     ?>
     <!-- Include the Quill library -->
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -234,12 +240,12 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><input type="text" class="mb-2 form-control-sm form-control"  placeholder="P.O. No" type="text" name="pono' + counter + '" required/></td>';
-                cols += '<td><input type="text" placeholder="Style" class="mb-2 form-control-sm form-control" name="style' + counter + '" required/></td>';
-                cols += '<td><input type="number" placeholder="Qty" class="mb-2 form-control-sm form-control" name="qty' + counter + '"/></td>';
-                cols += '<td><input type="text" placeholder="U/Name" class="mb-2 form-control-sm form-control" name="unitname' + counter + '"/></td>';
-                cols += '<td><input placeholder="U/Price" type="number" class="mb-2 form-control-sm form-control" name="price' + counter + '"/></td>';
-                cols += '<td><input type="date" class="mb-2 form-control-sm form-control" name="lsdate' + counter + '"/></td>';
+                cols += '<td><select class="form-control form-control-sm" name="pono[]" required> <option></option> <?php foreach ($poArr as $key) { echo '<option value="' . $key['POID'] . '">' . $key['PONumber'] . '</option>'; } ?> </select></td>';
+                cols += '<td><select class="form-control form-control-sm" name="style[]" required> <option></option> <?php foreach ($styleArr as $key) { echo '<option value="' . $key['StyleID'] . '">' . $key['StyleNumber'] . '</option>'; }?> </select></td>';
+                cols += '<td><input type="number" placeholder="Qty" class="mb-2 form-control-sm form-control" name="qty[]"/></td>';
+                cols += '<td><input type="text" placeholder="U/Name" class="mb-2 form-control-sm form-control" name="unitname[]"/></td>';
+                cols += '<td><input placeholder="U/Price" type="number" class="mb-2 form-control-sm form-control" name="price[]"/></td>';
+                cols += '<td><input type="date" class="mb-2 form-control-sm form-control" name="lsdate[]"/></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-sm btn-warning"  value="Delete"></td>';
                 newRow.append(cols);

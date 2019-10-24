@@ -114,7 +114,7 @@ function customPageHeader()
     </style>
 <?php }
 
-if (isset($_GET['poid'])) {
+if (isset($_GET['poid'])  && $_GET['poid'] != '') {
     $poid = $_GET['poid'];
 } else {
     nowgo('/index.php?page=all_po');

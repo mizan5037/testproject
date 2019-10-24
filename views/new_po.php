@@ -19,7 +19,7 @@ include_once "includes/header.php";
                     <i class="pe-7s-note icon-gradient bg-mean-fruit">
                     </i>
                 </div>
-                <div>New PO Received
+                <div>New PO
                     <div class="page-title-subheading">
                         Please use this form to add a new PO.
                     </div>
@@ -29,7 +29,6 @@ include_once "includes/header.php";
     </div>
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <h5 class="card-title">PO</h5>
             <form class="needs-validation" method="POST" novalidate>
                 <div class="form-row">
                 <div class="col-md-3 mb-3">

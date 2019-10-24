@@ -3,6 +3,7 @@
 $conn = db_connection();
 $user_id = get_ses('user_id');
 
+//edit table by ajax
 if (isset($_POST['form']) && $_POST['form'] = "editDetails") {
     
     $token = $_POST["token"];
@@ -48,7 +49,7 @@ if (isset($_GET['deletet'])) {
     }
 }
 
-if (isset($_GET['id'])) {
+if (isset($_GET['id']) && $_GET['id'] != '') {
     $id = $_GET['id'];
 } else {
     nowgo('/index.php?page=all_style');

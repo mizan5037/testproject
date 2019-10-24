@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2019 at 11:07 AM
+-- Generation Time: Oct 24, 2019 at 02:05 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -110,8 +110,8 @@ CREATE TABLE `buyer` (
 
 INSERT INTO `buyer` (`BuyerID`, `BuyerName`, `BuyerEmail`, `BuyerPhone`, `BuyerAddress1`, `BuyerAddress2`, `BuyerCity`, `BuyerCountry`, `BuyerBuyingHouseName`, `BuyerContactPerson`, `ContactPersonDesignation`, `ContactPersonPhone`, `timestamp`, `AddedBy`, `Status`) VALUES
 (1, 'Shuvo s', 'fsdf@gmsgf', 'sdfsdf', 'sdf', 'sdfsdf', 'sdf', 'sdf', 'fsdfs', 'dfs', 'dfsd', 'f', '2019-10-21 09:42:17', 1, 0),
-(2, 'sdgsdg', 'fsdf@dfg', 'sdfsdf', 'sdfsd', 'fsdf', 'sdf', 'sdfsd', 'fsdf', 'sdfsdf', 'sdfsdf', 'sdf', '2019-10-21 09:57:58', 1, 0),
-(3, 'Shuvo', 'das@srf', 'dasd', 'asdas', 'dasdasd', 'asda', 'sda', 'sdas', 'sdasd', 'sda', 'dasda', '2019-10-21 13:23:39', 1, 1),
+(2, 'sdgsdg', 'fsdf@dfg', 'sdfsdf', 'sdfsd', 'fsdf', 'sdf', 'sdfsd', 'fsdf', 'sdfsdf', 'sdfsdf', 'sdf', '2019-10-24 04:56:44', 1, 1),
+(3, 'Shuvo123', 'das@srf123', 'dasd123', 'asdas123', 'dasdasd123', 'asda123', 'sda123', 'sdas123', 'sdasd123', 'sda123', 'dasda123', '2019-10-23 06:07:07', 1, 1),
 (4, 'sdf', 'sdfs@sdgfs.com', 'dfsdf', 'fsdf', 'sdfsdf', 'sdf', 'sdfs', 'dfsdf', 'sdfs', 'dfsd', 'fsdf', '2019-10-21 13:23:54', 1, 0);
 
 -- --------------------------------------------------------
@@ -398,7 +398,6 @@ CREATE TABLE `itemrequirment` (
   `ItemRequirmentItemID` int(11) NOT NULL,
   `ItemRequirmentSize` varchar(200) NOT NULL,
   `ItemRequirmentQty` int(11) NOT NULL,
-  `ItemRequirmentUnitID` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Status` tinyint(4) NOT NULL DEFAULT 1
@@ -408,13 +407,31 @@ CREATE TABLE `itemrequirment` (
 -- Dumping data for table `itemrequirment`
 --
 
-INSERT INTO `itemrequirment` (`ItemRequirmentID`, `ItemRequirmentStyleID`, `ItemRequirmentItemID`, `ItemRequirmentSize`, `ItemRequirmentQty`, `ItemRequirmentUnitID`, `AddedBy`, `timestamp`, `Status`) VALUES
-(1, 2, 1, 'XXS', 10, 0, 1, '2019-10-21 06:41:46', 1),
-(2, 2, 6, 'XXS', 4, 0, 1, '2019-10-21 06:41:46', 1),
-(3, 2, 1, 'XS', 8, 0, 1, '2019-10-21 06:41:46', 1),
-(4, 3, 8, 'XXl', 10, 0, 1, '2019-10-21 13:20:48', 1),
-(5, 3, 6, 'S', 5, 0, 1, '2019-10-21 13:20:48', 1),
-(6, 4, 6, 'sdfsdf', 3, 0, 1, '2019-10-21 13:22:34', 1);
+INSERT INTO `itemrequirment` (`ItemRequirmentID`, `ItemRequirmentStyleID`, `ItemRequirmentItemID`, `ItemRequirmentSize`, `ItemRequirmentQty`, `AddedBy`, `timestamp`, `Status`) VALUES
+(1, 2, 1, 'XXS', 10, 1, '2019-10-21 06:41:46', 1),
+(2, 2, 6, 'XXS', 4, 1, '2019-10-22 10:20:02', 0),
+(3, 2, 1, 'XS', 8, 1, '2019-10-21 06:41:46', 1),
+(4, 3, 8, 'XXl', 10, 1, '2019-10-22 09:31:14', 0),
+(5, 3, 6, 'S', 5, 1, '2019-10-22 09:51:38', 0),
+(6, 4, 6, 'sdfsdf', 3, 1, '2019-10-21 13:22:34', 1),
+(7, 5, 7, 'set', 3254, 1, '2019-10-22 09:21:37', 0),
+(8, 6, 8, 'sfsdf', 423, 1, '2019-10-22 05:16:36', 1),
+(9, 7, 7, 'dfg', 435, 1, '2019-10-22 06:19:25', 1),
+(10, 8, 7, 'asd', 4, 1, '2019-10-22 09:31:34', 0),
+(11, 8, 9, 'XXXXL', 12, 1, '2019-10-22 10:43:59', 1),
+(12, 8, 0, '', 0, 1, '2019-10-22 10:45:07', 0),
+(13, 8, 0, '', 0, 1, '2019-10-22 10:45:00', 0),
+(14, 8, 0, '', 0, 1, '2019-10-22 10:45:04', 0),
+(15, 8, 7, 'ML', 1, 1, '2019-10-22 10:47:11', 0),
+(16, 8, 0, '', 0, 1, '2019-10-22 10:47:23', 0),
+(17, 8, 0, '', 0, 1, '2019-10-22 10:47:19', 0),
+(18, 8, 0, '', 0, 1, '2019-10-22 10:47:16', 0),
+(19, 8, 8, 'SL', 32, 1, '2019-10-22 10:47:38', 1),
+(20, 0, 8, 'SL', 32, 1, '2019-10-22 10:48:36', 1),
+(21, 0, 7, 'SSL', 575, 1, '2019-10-22 10:48:53', 1),
+(22, 0, 7, 'SSL', 575, 1, '2019-10-22 10:49:05', 1),
+(23, 8, 7, 'SSL', 575, 1, '2019-10-22 10:49:54', 1),
+(24, 9, 6, 'dfgd', 456, 1, '2019-10-22 11:36:12', 1);
 
 -- --------------------------------------------------------
 
@@ -433,17 +450,6 @@ CREATE TABLE `item_issue_access` (
   `AddedBy` int(11) NOT NULL,
   `timestamp` int(11) NOT NULL,
   `Status` tinyint(4) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `item_style`
---
-
-CREATE TABLE `item_style` (
-  `ItemID` int(11) NOT NULL,
-  `StyleID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -499,9 +505,8 @@ CREATE TABLE `lay_form_details` (
 
 CREATE TABLE `masterlc` (
   `MasterLCID` int(11) NOT NULL,
-  `MasterLCCustomerID` int(11) NOT NULL,
   `MasterLCNumber` varchar(200) NOT NULL,
-  `MasterLCIsseDate` date NOT NULL,
+  `MasterLCIssueDate` date NOT NULL,
   `MasterLCExpiryDate` date NOT NULL,
   `MasterLCIssuingCompany` varchar(200) NOT NULL,
   `MasterLCBuyer` int(11) NOT NULL,
@@ -509,14 +514,50 @@ CREATE TABLE `masterlc` (
   `MasterLCReceiverBank` varchar(200) NOT NULL,
   `MasterLCCurrency` varchar(200) NOT NULL,
   `MasterLCAmount` int(11) NOT NULL,
-  `MasterLCPartialShipment` varchar(200) NOT NULL,
-  `MasterLCTranshipment` varchar(200) NOT NULL,
+  `MasterLCPartialShipment` tinyint(1) NOT NULL,
+  `MasterLCTranshipment` tinyint(1) NOT NULL,
   `MasterLCPortOfLoading` varchar(200) NOT NULL,
   `MasterLCPortOfDischarge` varchar(200) NOT NULL,
+  `Description` text NOT NULL,
   `AddedBy` int(11) NOT NULL,
   `Timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `masterlc`
+--
+
+INSERT INTO `masterlc` (`MasterLCID`, `MasterLCNumber`, `MasterLCIssueDate`, `MasterLCExpiryDate`, `MasterLCIssuingCompany`, `MasterLCBuyer`, `MasterLCSenderBank`, `MasterLCReceiverBank`, `MasterLCCurrency`, `MasterLCAmount`, `MasterLCPartialShipment`, `MasterLCTranshipment`, `MasterLCPortOfLoading`, `MasterLCPortOfDischarge`, `Description`, `AddedBy`, `Timestamp`, `Status`) VALUES
+(1, 'zxczc', '2019-10-24', '2019-10-24', 'zxczxc', 3, 'zxczxc', 'zxc', '$', 4534, 1, 0, 'xzdfdf', 'sdfsdf', '<h1>xdfsdfsdf</h1><p>sdfsdf</p><p><strong>sfdsdf</strong></p><p><strong><u>sdfsdf</u></strong></p><p><strong><u>sdfsd</u></strong></p><p><strong><u>sdfsdzf</u><em><u>zfzsdf</u></em></strong></p><p><strong><em><u>zsdzsd</u></em></strong></p>', 1, '2019-10-24 06:16:01', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `masterlc_description`
+--
+
+CREATE TABLE `masterlc_description` (
+  `ID` int(11) NOT NULL,
+  `MasterLCID` int(11) NOT NULL,
+  `POID` int(11) NOT NULL,
+  `StyleID` int(11) NOT NULL,
+  `Qty` int(11) NOT NULL,
+  `Unit` varchar(200) NOT NULL,
+  `Price` int(11) NOT NULL,
+  `LSDate` date NOT NULL,
+  `AddedBy` int(11) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `status` tinyint(4) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `masterlc_description`
+--
+
+INSERT INTO `masterlc_description` (`ID`, `MasterLCID`, `POID`, `StyleID`, `Qty`, `Unit`, `Price`, `LSDate`, `AddedBy`, `timestamp`, `status`) VALUES
+(1, 0, 1, 9, 34, 'piece', 234, '2019-10-24', 1, '2019-10-24 06:13:38', 1),
+(2, 1, 1, 9, 34, 'piece', 234, '2019-10-24', 1, '2019-10-24 06:16:01', 1);
 
 -- --------------------------------------------------------
 
@@ -537,6 +578,13 @@ CREATE TABLE `order_description` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order_description`
+--
+
+INSERT INTO `order_description` (`OrderdescriptionID`, `POID`, `StyleID`, `Color`, `ClrNo`, `Dzs`, `PPack`, `Units`, `AddedBy`, `timestamp`, `Status`) VALUES
+(1, 1, 9, 'bk', '23', 12, 12, 120, 1, '2019-10-23 08:46:44', 1);
 
 -- --------------------------------------------------------
 
@@ -561,6 +609,7 @@ CREATE TABLE `pi` (
 --
 
 CREATE TABLE `pi_description` (
+  `PIDescriptionID` int(11) NOT NULL,
   `PIID` int(11) NOT NULL,
   `POID` int(11) NOT NULL,
   `ItemID` int(11) NOT NULL,
@@ -598,6 +647,13 @@ CREATE TABLE `po` (
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `po`
+--
+
+INSERT INTO `po` (`POID`, `MasterLCOccupied`, `BTBLCIDOccupied`, `PONumber`, `POFrom`, `PODate`, `POCMPWH`, `POCurrency`, `POSpecialInstruction`, `POFinalDestination`, `POCMP`, `POWASH`, `POHANGER`, `AddedBy`, `Timestamp`, `Status`) VALUES
+(1, 0, 0, 'ert453tdt', 'ertert', '2019-10-23', 232, '$', 'sd ada\r\nda\r\nsda\r\nsd', 'dfggf', 12, 12, 12, 1, '2019-10-23 08:46:44', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -614,6 +670,13 @@ CREATE TABLE `prepack` (
   `Timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `prepack`
+--
+
+INSERT INTO `prepack` (`PrePackID`, `POID`, `PrePackCode`, `PrePackSize`, `PrepackQty`, `AddedBy`, `Timestamp`, `Status`) VALUES
+(1, 1, 'xzl', 'XL', 12, 1, '2019-10-23 08:46:44', 1);
 
 -- --------------------------------------------------------
 
@@ -712,10 +775,15 @@ CREATE TABLE `style` (
 --
 
 INSERT INTO `style` (`StyleID`, `StyleNumber`, `StyleDescription`, `StyleWash`, `StyleImage`, `StyleProto`, `StylePrice`, `StyleCurency`, `StyleDivitionNo`, `StyleFabricDetails`, `AddedBy`, `Timestamp`, `Status`) VALUES
-(1, '125678S0UFU', 'LS Stretch OXFORD-SO', 'NO Wash', 'assets/images/uploads/838226058_2019_Oct_21_1571639382_1.', 'B-2979', 0, '', '', '58% Cotton, 39% Poly, 3% Spandex, CVC SOLID Stretch Oxford', 1, '2019-10-21 06:29:42', 1),
-(2, '12A0553AUO5', 'Y/D CIRCLE DOBBY PATTERN-3A', 'MILD ENZYME WASH 15~20 MINUITES, LOW ENZYME RATIO ~1% ONLY, AND PLAIN SOFTENER', '/assets/images/uploads/89366661_2019_Oct_21_1571640105_1.jpg', 'B-03860', 0, '', '', '100% COTTON Y.D. Dobby Pattern', 1, '2019-10-21 08:28:42', 1),
-(3, 'fthgdfg', 'dfgdfg', 'gdfgdf', '/assets/images/uploads/373392644_2019_Oct_21_1571664047_1.jpg', 'gdfgdf', 0, '', '', 'dfgdf', 1, '2019-10-21 13:20:48', 1),
-(4, 'zdfcz', 'dfsdf', 'sdffs', '/assets/images/uploads/510841786_2019_Oct_21_1571664154_1.jpg', 'sdf', 0, '', '', 'safsdf', 1, '2019-10-21 13:22:34', 1);
+(1, '125678S0UFU', 'LS Stretch OXFORD-SO', 'NO Wash', 'assets/images/uploads/838226058_2019_Oct_21_1571639382_1.', 'B-2979', 0, '', '', '58% Cotton, 39% Poly, 3% Spandex, CVC SOLID Stretch Oxford', 1, '2019-10-22 08:33:17', 0),
+(2, '12A0553AUO5', 'Y/D CIRCLE DOBBY PATTERN-3A', 'MILD ENZYME WASH 15~20 MINUITES, LOW ENZYME RATIO ~1% ONLY, AND PLAIN SOFTENER', '/assets/images/uploads/89366661_2019_Oct_21_1571640105_1.jpg', 'B-03860', 0, '', '', '100% COTTON Y.D. Dobby Pattern', 1, '2019-10-22 08:33:51', 0),
+(3, 'fthgdfg', 'dfgdfg', 'gdfgdf', '/assets/images/uploads/373392644_2019_Oct_21_1571664047_1.jpg', 'gdfgdf', 0, '', '', 'dfgdf', 1, '2019-10-22 08:33:54', 0),
+(4, 'zdfcz', 'dfsdf', 'sdffs', '/assets/images/uploads/510841786_2019_Oct_21_1571664154_1.jpg', 'sdf', 0, '', '', 'safsdf', 1, '2019-10-22 08:33:56', 0),
+(5, 'test', 'test', 'set', '/assets/images/uploads/370812015_2019_Oct_22_1571721161_1.png', 'estse', 0, '', '', 'test', 1, '2019-10-22 08:33:59', 0),
+(6, '345345drg', 'set3', 'sdfsdfs', '/assets/images/uploads/107279576_2019_Oct_22_1571721396_1.png', 'sdf', 0, '', '', 'sef', 1, '2019-10-22 08:34:54', 0),
+(7, 'dfgdf', 'gdfgd', 'fgdfg', '/assets/images/63066480_2019_Oct_22_1571725164_1.png', 'dfgd', 0, '', '', 'dfg', 1, '2019-10-22 08:34:56', 0),
+(8, 'asd', 'aSDas', 'dasd', '822393490_2019_Oct_22_1571728270_1.png', 'as', 0, '', '', 'das', 1, '2019-10-22 07:11:10', 1),
+(9, 'Test121567asd', 'setseft133', '123121313', '388195506_2019_Oct_22_1571744171_1.png', 'ser123', 0, '', '', 'ser123asd', 1, '2019-10-23 05:56:28', 1);
 
 -- --------------------------------------------------------
 
@@ -768,7 +836,13 @@ INSERT INTO `trimsaccess` (`TrimsAccessID`, `TrimsAccessPOID`, `TrimsAccessStyle
 (16, 0, 3, 'sfs', 'sdfs', 1, '2019-10-21 13:20:48', 1),
 (17, 0, 3, 'sf', 'sfd', 1, '2019-10-21 13:20:48', 1),
 (18, 0, 3, 'sfsdf', 'sfds', 1, '2019-10-21 13:20:48', 1),
-(19, 0, 4, 'df', 'sdf', 1, '2019-10-21 13:22:34', 1);
+(19, 0, 4, 'df', 'sdf', 1, '2019-10-21 13:22:34', 1),
+(20, 0, 5, 'set', 'set', 1, '2019-10-22 05:12:41', 1),
+(21, 0, 6, 'dfsd', 'fsdf', 1, '2019-10-22 05:16:36', 1),
+(22, 0, 7, 'dfgd', 'fgdfg', 1, '2019-10-22 06:19:25', 1),
+(23, 0, 8, 'asd', 'asd', 1, '2019-10-22 07:11:10', 1),
+(24, 0, 8, 'Test1', 'Test1', 1, '2019-10-22 11:01:57', 1),
+(27, 0, 9, 'Test', 'Test', 1, '2019-10-22 12:32:37', 1);
 
 -- --------------------------------------------------------
 
@@ -984,13 +1058,6 @@ ALTER TABLE `item_issue_access`
   ADD KEY `POID` (`POID`);
 
 --
--- Indexes for table `item_style`
---
-ALTER TABLE `item_style`
-  ADD KEY `item_id` (`ItemID`),
-  ADD KEY `style_id` (`StyleID`);
-
---
 -- Indexes for table `lay_form`
 --
 ALTER TABLE `lay_form`
@@ -1017,6 +1084,12 @@ ALTER TABLE `masterlc`
   ADD KEY `AddedBy` (`AddedBy`);
 
 --
+-- Indexes for table `masterlc_description`
+--
+ALTER TABLE `masterlc_description`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `order_description`
 --
 ALTER TABLE `order_description`
@@ -1033,7 +1106,7 @@ ALTER TABLE `pi`
 -- Indexes for table `pi_description`
 --
 ALTER TABLE `pi_description`
-  ADD PRIMARY KEY (`PIID`),
+  ADD PRIMARY KEY (`PIDescriptionID`),
   ADD KEY `PIID` (`PIID`,`POID`,`ItemID`),
   ADD KEY `POID` (`POID`),
   ADD KEY `ItemID` (`ItemID`),
@@ -1236,7 +1309,7 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `itemrequirment`
 --
 ALTER TABLE `itemrequirment`
-  MODIFY `ItemRequirmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ItemRequirmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `item_issue_access`
@@ -1260,13 +1333,19 @@ ALTER TABLE `lay_form_details`
 -- AUTO_INCREMENT for table `masterlc`
 --
 ALTER TABLE `masterlc`
-  MODIFY `MasterLCID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MasterLCID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `masterlc_description`
+--
+ALTER TABLE `masterlc_description`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `order_description`
 --
 ALTER TABLE `order_description`
-  MODIFY `OrderdescriptionID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `OrderdescriptionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pi`
@@ -1278,19 +1357,19 @@ ALTER TABLE `pi`
 -- AUTO_INCREMENT for table `pi_description`
 --
 ALTER TABLE `pi_description`
-  MODIFY `PIID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PIDescriptionID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `po`
 --
 ALTER TABLE `po`
-  MODIFY `POID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `POID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `prepack`
 --
 ALTER TABLE `prepack`
-  MODIFY `PrePackID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PrePackID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `shipment_form`
@@ -1320,13 +1399,13 @@ ALTER TABLE `stationary_receive`
 -- AUTO_INCREMENT for table `style`
 --
 ALTER TABLE `style`
-  MODIFY `StyleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `StyleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `trimsaccess`
 --
 ALTER TABLE `trimsaccess`
-  MODIFY `TrimsAccessID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `TrimsAccessID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `users`

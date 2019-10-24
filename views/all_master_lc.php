@@ -6,6 +6,7 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
+include_once "controller/all_master_lc.php";
 include_once "includes/header.php";
 
 ?>
@@ -34,41 +35,34 @@ include_once "includes/header.php";
                     <tr>
                         <th>#</th>
                         <th>Master LC Number</th>
+                        <th>Buyer</th>
                         <th>Issue Date</th>
                         <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>LC001</td>
-                        <td>05-06-2019</td>
-                        <td>
-                            <button class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                Details
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>LC002</td>
-                        <td>06-04-2019</td>
-                        <td>
-                            <button class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                Details
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>LC003</td>
-                        <td>08-09-2019</td>
-                        <td>
-                            <button class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                Details
-                            </button>
-                        </td>
-                    </tr>
+                    <?php
+                    $sql = "SELECT MasterLCID, MasterLCBuyer, MasterLCIssueDate, MasterLCNumber FROM masterlc WHERE status = 1";
+                    $po = mysqli_query($conn, $sql);
+
+                    $count = 1;
+                    while ($key = mysqli_fetch_assoc($po)) {
+                        ?>
+                        <tr>
+                            <th scope="row"><?= $count++ ?></th>
+                            <td><?= $key['MasterLCNumber'] ?></td>
+                            <td>
+                                <a href="<?=$path?>/index.php?page=single_buyer&buyer_id=<?=$key['MasterLCBuyer']?>" target="_blank" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-success">
+                                <?= searchForBuyer($key['MasterLCBuyer'], $buyerArr) ?>
+                                </a></td>
+                            <td><?= $key['MasterLCIssueDate'] ?></td>
+                            <td>
+                                <a href="<?=$path?>/index.php?page=single_masterlc&id=<?=$key['MasterLCID']?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-primary">
+                                    Details
+                                </a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
