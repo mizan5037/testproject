@@ -52,13 +52,17 @@ include_once "includes/header.php";
                             <th scope="row"><?= $count++ ?></th>
                             <td><?= $key['MasterLCNumber'] ?></td>
                             <td>
-                                <a href="<?=$path?>/index.php?page=single_buyer&buyer_id=<?=$key['MasterLCBuyer']?>" target="_blank" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-success">
-                                <?= searchForBuyer($key['MasterLCBuyer'], $buyerArr) ?>
+                                <a href="<?= $path ?>/index.php?page=single_buyer&buyer_id=<?= $key['MasterLCBuyer'] ?>" target="_blank" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-success">
+                                    <?= searchForBuyer($key['MasterLCBuyer'], $buyerArr) ?>
                                 </a></td>
                             <td><?= $key['MasterLCIssueDate'] ?></td>
                             <td>
-                                <a href="<?=$path?>/index.php?page=single_masterlc&id=<?=$key['MasterLCID']?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-primary">
+                                <a href="<?= $path ?>/index.php?page=single_masterlc&id=<?= $key['MasterLCID'] ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-primary">
                                     Details
+                                </a>
+                                /
+                                <a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=all_master_lc&delete=<?=$key['MasterLCID']?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
+                                    <i class="fas fa-trash-alt" style="color: white;"></i>
                                 </a>
                             </td>
                         </tr>

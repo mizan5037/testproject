@@ -21,3 +21,14 @@ function searchForBuyer($id, $array)
 // echo searchForBuyer(5, $buyerArr);
 // die();
 
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+    $sql = "UPDATE masterlc set status=0 where MasterLCID=" . $id;
+
+    if (mysqli_query($conn, $sql)) {
+        notice('success', 'Deleted Successfully');
+        nowgo('/index.php?page=all_master_lc');
+    } else {
+        notice('error', $sql . "<br>" . mysqli_error($conn));
+    }
+}
