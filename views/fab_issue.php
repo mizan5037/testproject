@@ -6,6 +6,7 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
+include_once "controller/add_fab_issue.php";
 include_once "includes/header.php";
 
 ?>
@@ -30,19 +31,49 @@ include_once "includes/header.php";
         <div class="card-body">
             <!-- <h5 class="card-title">Card Title</h5> -->
             <div class="container">
-                <form action="" class="needs-validation" novalidate>
+                <form action="" class="needs-validation" method="POST" novalidate>
                     <div class="form-row">
                         <div class="col-md-4">
                             <label for="validationTooltip02">Buyer Name</label>
-                            <input type="text" class="form-control" id="validationTooltip02" placeholder="Buyer Name" required>
+                            <select name="buyer[]" class="buyer mb-2 form-control-sm form-control" required>
+                                <option></option>
+                                <?php
+                                $conn = db_connection();
+                                $sql = "SELECT * FROM buyer WHERE status = 1";
+                                $results = mysqli_query($conn, $sql);
+                                while ($result = mysqli_fetch_assoc($results)) {
+                                    echo '<option value="' . $result['BuyerID'] . '">' . $result['BuyerName'] . '</option>';
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="col-md-4">
                             <label for="validationTooltip02">Style No</label>
-                            <input type="text" class="form-control" id="validationTooltip02" placeholder="Style No" required>
+                            <select name="style[]" class="style mb-2 form-control-sm form-control" required>
+                                <option></option>
+                                <?php
+                                $conn = db_connection();
+                                $sql = "SELECT * FROM style WHERE status = 1";
+                                $results = mysqli_query($conn, $sql);
+                                while ($result = mysqli_fetch_assoc($results)) {
+                                    echo '<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="col-md-4">
                             <label for="validationTooltip02">P.O. No</label>
-                            <input type="text" class="form-control" id="validationTooltip02" placeholder="P.O. No" required>
+                            <select name="po[]" class="po mb-2 form-control-sm form-control" required>
+                                <option></option>
+                                <?php
+                                $conn = db_connection();
+                                $sql = "SELECT * FROM po WHERE status = 1";
+                                $results = mysqli_query($conn, $sql);
+                                while ($result = mysqli_fetch_assoc($results)) {
+                                    echo '<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
+                                }
+                                ?>
+                            </select>
                         </div>
                     </div>
                     <br>
@@ -65,25 +96,25 @@ include_once "includes/header.php";
                                 <tr>
                                     <th>1</th>
                                     <td>
-                                        <input class="mb-2 form-control-sm form-control" type="text" placeholder="Particulars" name="particulars" />
+                                        <input class="mb-2 form-control-sm form-control" type="text" placeholder="Particulars" name="particulars[]" />
                                     </td>
                                     <td>
-                                        <input class="mb-2 form-control-sm form-control" type="text" placeholder="Color" name="color" />
+                                        <input class="mb-2 form-control-sm form-control" type="text" placeholder="Color" name="color[]" />
                                     </td>
                                     <td>
-                                        <input class="mb-2 form-control-sm form-control" type="text" placeholder="QTZ (DZ)" name="qtz" />
+                                        <input class="mb-2 form-control-sm form-control" type="number" placeholder="QTZ (DZ)" name="qtz[]" />
                                     </td>
                                     <td>
-                                        <input class="mb-2 form-control-sm form-control" type="text" placeholder="Consuption" name="consuption" />
+                                        <input class="mb-2 form-control-sm form-control" type="number" placeholder="Consuption" name="consuption[]" />
                                     </td>
                                     <td>
-                                        <input class="mb-2 form-control-sm form-control" type="text" placeholder="RQD QTY" name="rqd" />
+                                        <input class="mb-2 form-control-sm form-control" type="number" placeholder="RQD QTY" name="rqd[]" />
                                     </td>
                                     <td>
-                                        <input class="mb-2 form-control-sm form-control" type="text" placeholder="ISSUE QTY" name="issue" />
+                                        <input class="mb-2 form-control-sm form-control" type="number" placeholder="ISSUE QTY" name="issue[]" />
                                     </td>
                                     <td>
-                                        <input class="mb-2 form-control-sm form-control" type="text" placeholder="Remark" name="remark" />
+                                        <input class="mb-2 form-control-sm form-control" type="text" placeholder="Remark" name="remark[]" />
                                     </td>
                                     <td><a class="deleteRow"></a>
 
@@ -119,7 +150,6 @@ function customPagefooter()
     ?>
 
     <script>
-       
         $(document).ready(function() {
             var counter = 0;
             var limit = 100;
@@ -132,13 +162,13 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th>' + counter + '</th>';
-                cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="Particulars" name="particulars" /></td>';
-                cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="Color" name="color"/></td>';
-                cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="QTZ (DZ)" name="qtz"/></td>';
-                cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="Consuption" name="consuption"/></td>';
-                cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="RQD QTY" name="rqd"/></td>';
-                cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="ISSUE QTY" name="issue" /></td>';
-                cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="Remark" name="remark"/></td>';
+                cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="Particulars" name="particulars[]" /></td>';
+                cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="Color" name="color[]"/></td>';
+                cols += '<td><input class="mb-2 form-control-sm form-control" type="number" placeholder="QTZ (DZ)" name="qtz[]"/></td>';
+                cols += '<td><input class="mb-2 form-control-sm form-control" type="number" placeholder="Consuption" name="consuption[]"/></td>';
+                cols += '<td><input class="mb-2 form-control-sm form-control" type="number" placeholder="RQD QTY" name="rqd[]"/></td>';
+                cols += '<td><input class="mb-2 form-control-sm form-control" type="number" placeholder="ISSUE QTY" name="issue[]" /></td>';
+                cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="Remark" name="remark[]"/></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-danger"  value="Delete"></td>';
                 newRow.append(cols);
