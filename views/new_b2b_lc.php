@@ -1,6 +1,7 @@
 <?php
 $conn = db_connection();
 $PageTitle = "New B2B LC | Optima Inventory";
+
 function customPageHeader()
 {
     ?>
@@ -87,13 +88,34 @@ include_once "includes/header.php";
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <input placeholder="Item" name="item[]" type="text" class="mb-2 form-control-sm form-control" required>
+                                    <select class="form-control form-control-sm" name="item[]" required>
+                                        <option></option>
+                                        <?php
+                                        foreach ($itemArr as $key) {
+                                            echo '<option value="' . $key['ItemID'] . '">' . $key['ItemName'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </td>
                                 <td>
-                                    <input placeholder="Style" name="style[]" type="text" class="mb-2 form-control-sm form-control" required>
+                                    <select class="form-control form-control-sm" name="style[]" required>
+                                        <option></option>
+                                        <?php
+                                        foreach ($styleArr as $key) {
+                                            echo '<option value="' . $key['StyleID'] . '">' . $key['StyleNumber'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </td>
                                 <td>
-                                    <input placeholder="PO" name="po[]" type="text" class="mb-2 form-control-sm form-control" required>
+                                    <select class="form-control form-control-sm" name="po[]" required>
+                                        <option></option>
+                                        <?php
+                                        foreach ($poArr as $key) {
+                                            echo '<option value="' . $key['POID'] . '">' . $key['PONumber'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </td>
                                 <td>
                                     <input placeholder="Qty" name="qty[]" type="number" class="mb-2 form-control-sm form-control" required>
@@ -135,6 +157,9 @@ include_once "includes/header.php";
 <?php
 function customPagefooter()
 {
+    global $styleArr;
+    global $itemArr;
+    global $poArr;
     ?>
     <script>
         // Add new row code
@@ -147,9 +172,9 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><input placeholder="Item" name="item[]" type="text" class="mb-2 form-control-sm form-control" required></td>';
-                cols += '<td><input placeholder="Style" name="style[]" type="text" class="mb-2 form-control-sm form-control" required></td>';
-                cols += '<td><input placeholder="PO" name="po[]" type="text" class="mb-2 form-control-sm form-control" required></td>';
+                cols += '<td><select class="form-control form-control-sm" name="item[]" required> <option></option>  <?php foreach ($itemArr as $key) { echo '<option value="' . $key['ItemID'] . '">' . $key['ItemName'] . '</option>'; } ?></select></td>';
+                cols += '<td><select class="form-control form-control-sm" name="style[]" required> <option></option> <?php foreach ($styleArr as $key) { echo '<option value="' . $key['StyleID'] . '">' . $key['StyleNumber'] . '</option>'; } ?> </select></td>';
+                cols += '<td><select class="form-control form-control-sm" name="po[]" required> <option></option>  <?php foreach ($poArr as $key) { echo '<option value="' . $key['POID'] . '">' . $key['PONumber'] . '</option>';  }  ?> </select></td>';
                 cols += '<td><input placeholder="Qty" name="qty[]" type="number" class="mb-2 form-control-sm form-control" required></td>';
                 cols += '<td><input placeholder="Price Per Unit" name="ppu[]" type="number" class="mb-2 form-control-sm form-control" required></td>';
                 cols += '<td><input placeholder="Total Price" name="tp[]" type="number" class="mb-2 form-control-sm form-control" required></td>';

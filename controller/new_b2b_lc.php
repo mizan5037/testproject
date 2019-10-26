@@ -1,5 +1,26 @@
 <?php
 
+$sqlp = "SELECT POID, PONumber FROM po";
+$resultps = mysqli_query($conn, $sqlp);
+$poArr = array();
+while ($resultp = mysqli_fetch_assoc($resultps)) {
+    $poArr[] = $resultp;
+}
+
+$sqls = "SELECT StyleID, StyleNumber FROM style";
+$resultss = mysqli_query($conn, $sqls);
+$styleArr = array();
+while ($results = mysqli_fetch_assoc($resultss)) {
+    $styleArr[] = $results;
+}
+
+$sqli = "SELECT ItemID, ItemName FROM item";
+$resultis = mysqli_query($conn, $sqli);
+$itemArr = array();
+while ($resulti = mysqli_fetch_assoc($resultis)) {
+    $itemArr[] = $resulti;
+}
+
 if(
     isset($_POST['masterlcid']) &&
     isset($_POST['b2blcnumber']) &&

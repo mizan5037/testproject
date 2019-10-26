@@ -604,7 +604,7 @@
                 <?php
                 //notice('error', 'Updated Successfully');
                 if (get_ses('notice')) { ?>
-                    <div class="alert alert-<?php echo get_ses('notice'); ?> alert-dismissible fade show notification" role="alert">
+                    <div class="alert alert-<?php echo get_ses('notice'); ?> alert-dismissible fade show notification" data-auto-dismiss="7000" role="alert">
                         <?php echo get_ses('notice_content'); ?>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>

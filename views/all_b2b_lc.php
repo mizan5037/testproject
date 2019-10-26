@@ -33,46 +33,35 @@ include_once "includes/header.php";
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Master LC Number</th>
                         <th>B2B LC Number</th>
+                        <th>Supplier Name</th>
                         <th>Issue Date</th>
                         <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>LC001</td>
-                        <td>B2B001</td>
-                        <td>05-06-2019</td>
-                        <td>
-                            <button class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                Details
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>LC002</td>
-                        <td>B2B002</td>
-                        <td>06-04-2019</td>
-                        <td>
-                            <button class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                Details
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>LC003</td>
-                        <td>B2B003</td>
-                        <td>08-09-2019</td>
-                        <td>
-                            <button class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                Details
-                            </button>
-                        </td>
-                    </tr>
+                    <?php
+                    $conn = db_connection();
+                    $sql = "SELECT B2BLCNumber, SupplierName, Issuedate, B2BLCID FROM b2blc WHERE Status = 1";
+                    $buyer = mysqli_query($conn, $sql);
+
+                    $count = 1;
+                    while ($key = mysqli_fetch_assoc($buyer)) {
+
+
+                        ?>
+                        <tr>
+                            <th scope="row"><?= $count++ ?></th>
+                            <td><?= $key['B2BLCNumber'] ?></td>
+                            <td><?= $key['SupplierName'] ?></td>
+                            <td><?= $key['Issuedate'] ?></td>
+                            <td>
+                                <a href="<?=$path?>/index.php?page=single_b2b_lc&id=<?=$key['B2BLCID']?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
+                                    Details
+                                </a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

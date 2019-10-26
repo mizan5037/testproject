@@ -135,116 +135,73 @@ function customPagefooter()
       }
 
       $(document).on('blur', '.name', function() {
-        if (confirm('Do you want to edit this?')) {
-          var id = $(this).attr("data-id1");
-          var text = $(this).text();
-          edit_data(id, text, "BuyerName");
-        } else {
-          location.reload();
-        }
+        var id = $(this).attr("data-id1");
+        var text = $(this).text();
+        edit_data(id, text, "BuyerName");
       });
 
       $(document).on('blur', '.email', function() {
-        if (confirm('Do you want to edit this?')) {
-          var id = $(this).attr("data-id1");
-          var text = $(this).text();
-          edit_data(id, text, "BuyerEmail");
-        } else {
-          location.reload();
-        }
+        var id = $(this).attr("data-id1");
+        var text = $(this).text();
+        edit_data(id, text, "BuyerEmail");
       });
 
       $(document).on('blur', '.BuyerPhone', function() {
-        if (confirm('Do you want to edit this?')) {
-          var id = $(this).attr("data-id1");
-          var text = $(this).text();
-          edit_data(id, text, "BuyerPhone");
-        } else {
-          location.reload();
-        }
+        var id = $(this).attr("data-id1");
+        var text = $(this).text();
+        edit_data(id, text, "BuyerPhone");
       });
 
       $(document).on('blur', '.BuyerAddress1', function() {
-        if (confirm('Do you want to edit this?')) {
-          var id = $(this).attr("data-id1");
-          var text = $(this).text();
-          edit_data(id, text, "BuyerAddress1");
-        } else {
-          location.reload();
-        }
+        var id = $(this).attr("data-id1");
+        var text = $(this).text();
+        edit_data(id, text, "BuyerAddress1");
       });
 
       $(document).on('blur', '.BuyerAddress2', function() {
-        if (confirm('Do you want to edit this?')) {
-          var id = $(this).attr("data-id1");
-          var text = $(this).text();
-          edit_data(id, text, "BuyerAddress2");
-        } else {
-          location.reload();
-        }
+        var id = $(this).attr("data-id1");
+        var text = $(this).text();
+        edit_data(id, text, "BuyerAddress2");
       });
 
       $(document).on('blur', '.BuyerCity', function() {
-        if (confirm('Do you want to edit this?')) {
-          var id = $(this).attr("data-id1");
-          var text = $(this).text();
-          edit_data(id, text, "BuyerCity");
-        } else {
-          location.reload();
-        }
+        var id = $(this).attr("data-id1");
+        var text = $(this).text();
+        edit_data(id, text, "BuyerCity");
       });
 
       $(document).on('blur', '.BuyerCountry', function() {
-        if (confirm('Do you want to edit this?')) {
-          var id = $(this).attr("data-id1");
-          var text = $(this).text();
-          edit_data(id, text, "BuyerCountry");
-        } else {
-          location.reload();
-        }
+        var id = $(this).attr("data-id1");
+        var text = $(this).text();
+        edit_data(id, text, "BuyerCountry");
       });
 
       $(document).on('blur', '.BuyerBuyingHouseName', function() {
-        if (confirm('Do you want to edit this?')) {
-          var id = $(this).attr("data-id1");
-          var text = $(this).text();
-          edit_data(id, text, "BuyerBuyingHouseName");
-        } else {
-          location.reload();
-        }
+        var id = $(this).attr("data-id1");
+        var text = $(this).text();
+        edit_data(id, text, "BuyerBuyingHouseName");
       });
 
       $(document).on('blur', '.BuyerContactPerson', function() {
-        if (confirm('Do you want to edit this?')) {
-          var id = $(this).attr("data-id1");
-          var text = $(this).text();
-          edit_data(id, text, "BuyerContactPerson");
-        } else {
-          location.reload();
-        }
+        var id = $(this).attr("data-id1");
+        var text = $(this).text();
+        edit_data(id, text, "BuyerContactPerson");
       });
 
       $(document).on('blur', '.ContactPersonDesignation', function() {
-        if (confirm('Do you want to edit this?')) {
-          var id = $(this).attr("data-id1");
-          var text = $(this).text();
-          edit_data(id, text, "ContactPersonDesignation");
-        } else {
-          location.reload();
-        }
+        var id = $(this).attr("data-id1");
+        var text = $(this).text();
+        edit_data(id, text, "ContactPersonDesignation");
       });
 
       $(document).on('blur', '.ContactPersonPhone', function() {
-        if (confirm('Do you want to edit this?')) {
-          var id = $(this).attr("data-id1");
-          var text = $(this).text();
-          edit_data(id, text, "ContactPersonPhone");
-        } else {
-          location.reload();
-        }
+        var id = $(this).attr("data-id1");
+        var text = $(this).text();
+        edit_data(id, text, "ContactPersonPhone");
       });
 
     });
+
   </script>
 
 <?php }

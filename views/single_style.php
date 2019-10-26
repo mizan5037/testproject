@@ -492,7 +492,7 @@ function customPagefooter()
         var modal = document.getElementById("myModal");
 
         // Get the image and insert it inside the modal - use its "alt" text as a caption
-        
+
         var modalImg = document.getElementById("img01");
         var captionText = document.getElementById("caption");
 
@@ -538,53 +538,33 @@ function customPagefooter()
             }
 
             $(document).on('blur', '.StyleNumber', function() {
-                if (confirm('Do you want to edit this?')) {
-                    var id = $(this).attr("data-id1");
-                    var text = $(this).text();
-                    edit_data(id, text, "StyleNumber");
-                }else{
-                    location.reload();
-                }
+                var id = $(this).attr("data-id1");
+                var text = $(this).text();
+                edit_data(id, text, "StyleNumber");
             });
 
             $(document).on('blur', '.StyleDescription', function() {
-                if (confirm('Do you want to edit this?')) {
-                    var id = $(this).attr("data-id1");
-                    var text = $(this).text();
-                    edit_data(id, text, "StyleDescription");
-                }else{
-                    location.reload();
-                }
+                var id = $(this).attr("data-id1");
+                var text = $(this).text();
+                edit_data(id, text, "StyleDescription");
             });
 
             $(document).on('blur', '.StyleProto', function() {
-                if (confirm('Do you want to edit this?')) {
-                    var id = $(this).attr("data-id1");
-                    var text = $(this).text();
-                    edit_data(id, text, "StyleProto");
-                }else{
-                    location.reload();
-                }
+                var id = $(this).attr("data-id1");
+                var text = $(this).text();
+                edit_data(id, text, "StyleProto");
             });
 
             $(document).on('blur', '.StyleFabricDetails', function() {
-                if (confirm('Do you want to edit this?')) {
-                    var id = $(this).attr("data-id1");
-                    var text = $(this).text();
-                    edit_data(id, text, "StyleFabricDetails");
-                }else{
-                    location.reload();
-                }
+                var id = $(this).attr("data-id1");
+                var text = $(this).text();
+                edit_data(id, text, "StyleFabricDetails");
             });
 
             $(document).on('blur', '.StyleWash', function() {
-                if (confirm('Do you want to edit this?')) {
-                    var id = $(this).attr("data-id1");
-                    var text = $(this).text();
-                    edit_data(id, text, "StyleWash");
-                }else{
-                    location.reload();
-                }
+                var id = $(this).attr("data-id1");
+                var text = $(this).text();
+                edit_data(id, text, "StyleWash");
             });
 
         });

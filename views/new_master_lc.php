@@ -80,7 +80,7 @@ include_once "includes/header.php";
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label>Currency</label>
-                        <input type="text" class="form-control form-control-sm" name="currency" placeholder="Currency" required>
+                        <input type="text" class="form-control form-control-sm" id="currency" name="currency" placeholder="Currency" required>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label>Amount</label>
