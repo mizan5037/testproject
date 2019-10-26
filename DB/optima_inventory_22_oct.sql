@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2019 at 02:05 PM
+-- Generation Time: Oct 26, 2019 at 11:28 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -50,6 +50,7 @@ CREATE TABLE `accessories` (
 
 CREATE TABLE `b2blc` (
   `B2BLCID` int(11) NOT NULL,
+  `B2BLCNumber` varchar(200) NOT NULL,
   `MasterLCID` int(11) NOT NULL,
   `SupplierName` varchar(200) NOT NULL,
   `ContactPerson` varchar(200) NOT NULL,
@@ -68,6 +69,7 @@ CREATE TABLE `b2blc` (
 --
 
 CREATE TABLE `b2b_item` (
+  `ID` int(11) NOT NULL,
   `ItemID` int(11) NOT NULL,
   `StyleID` int(11) NOT NULL,
   `POID` int(11) NOT NULL,
@@ -231,13 +233,13 @@ CREATE TABLE `fab_receive` (
 CREATE TABLE `fab_receive_other` (
   `id` int(11) NOT NULL,
   `BuyerID` int(11) NOT NULL,
-  `ContrastPocket` int(11) NOT NULL,
-  `Color` int(11) NOT NULL,
+  `ContrastPocket` varchar(200) NOT NULL,
+  `Color` varchar(200) NOT NULL,
   `ReceivedFab` int(11) NOT NULL,
   `ReceivedRoll` int(11) NOT NULL,
   `Shortage` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `timestamp` int(11) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Status` tinyint(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -431,7 +433,8 @@ INSERT INTO `itemrequirment` (`ItemRequirmentID`, `ItemRequirmentStyleID`, `Item
 (21, 0, 7, 'SSL', 575, 1, '2019-10-22 10:48:53', 1),
 (22, 0, 7, 'SSL', 575, 1, '2019-10-22 10:49:05', 1),
 (23, 8, 7, 'SSL', 575, 1, '2019-10-22 10:49:54', 1),
-(24, 9, 6, 'dfgd', 456, 1, '2019-10-22 11:36:12', 1);
+(24, 9, 6, 'dfgd', 456, 1, '2019-10-22 11:36:12', 1),
+(25, 9, 6, 'ZSzasdf', 34, 1, '2019-10-24 09:33:21', 1);
 
 -- --------------------------------------------------------
 
@@ -529,7 +532,7 @@ CREATE TABLE `masterlc` (
 --
 
 INSERT INTO `masterlc` (`MasterLCID`, `MasterLCNumber`, `MasterLCIssueDate`, `MasterLCExpiryDate`, `MasterLCIssuingCompany`, `MasterLCBuyer`, `MasterLCSenderBank`, `MasterLCReceiverBank`, `MasterLCCurrency`, `MasterLCAmount`, `MasterLCPartialShipment`, `MasterLCTranshipment`, `MasterLCPortOfLoading`, `MasterLCPortOfDischarge`, `Description`, `AddedBy`, `Timestamp`, `Status`) VALUES
-(1, 'zxczc', '2019-10-24', '2019-10-24', 'zxczxc', 3, 'zxczxc', 'zxc', '$', 4534, 1, 0, 'xzdfdf', 'sdfsdf', '<h1>xdfsdfsdf</h1><p>sdfsdf</p><p><strong>sfdsdf</strong></p><p><strong><u>sdfsdf</u></strong></p><p><strong><u>sdfsd</u></strong></p><p><strong><u>sdfsdzf</u><em><u>zfzsdf</u></em></strong></p><p><strong><em><u>zsdzsd</u></em></strong></p>', 1, '2019-10-24 06:16:01', 1);
+(1, 'zxczc123', '2019-10-24', '2019-10-24', 'zxczxc', 3, 'zxczxc', 'zxc', '$', 4534, 0, 1, 'xzdfdf', 'sdfsdf', '<h1>xdfsdfsdf</h1><p>sdfsdf</p><p><strong>sfdsdf</strong></p><h1><strong><u>sdfsdf</u></strong></h1><p><strong><u>sdfsd</u></strong></p><p><strong><u>sdfsdzf</u><em><u>zfzsdf</u></em></strong></p><p><strong><em><u>zsdzsd</u></em></strong></p>', 1, '2019-10-24 11:01:31', 1);
 
 -- --------------------------------------------------------
 
@@ -602,6 +605,17 @@ CREATE TABLE `pi` (
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `pi`
+--
+
+INSERT INTO `pi` (`PIID`, `RefNo`, `IssueDate`, `SupplierName`, `AddedBy`, `timestamp`, `Status`) VALUES
+(1, 'etwt453453', '2019-10-25', 'werwer45634', 1, '2019-10-24 12:12:01', 1),
+(2, 'drtgdtr', '2019-10-26', 'dtdft', 1, '2019-10-26 04:14:57', 1),
+(3, 'dtgdg234', '2019-10-26', '2342ser', 1, '2019-10-26 04:20:29', 1),
+(4, 'dfgfg1234', '2019-10-26', 'dfgdfg', 1, '2019-10-26 04:21:19', 1),
+(5, '123456', '2019-10-26', '123456', 1, '2019-10-26 04:25:41', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -621,6 +635,26 @@ CREATE TABLE `pi_description` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pi_description`
+--
+
+INSERT INTO `pi_description` (`PIDescriptionID`, `PIID`, `POID`, `ItemID`, `Description`, `Qty`, `PricePerUnit`, `TotalPrice`, `AddedBy`, `timestamp`, `Status`) VALUES
+(1, 1, 1, 8, 'wert4645', 5, 6, 30, 1, '2019-10-24 12:20:33', 0),
+(2, 1, 1, 8, 'wert4645', 5, 6, 30, 1, '2019-10-24 12:20:33', 0),
+(3, 1, 1, 8, 'wert4645', 5, 6, 30, 0, '2019-10-24 12:20:33', 0),
+(4, 1, 1, 9, 'wert4645', 54, 64, 30, 0, '2019-10-24 12:24:10', 1),
+(5, 1, 1, 9, 'wert4645retydfgd35', 55, 66, 30, 0, '2019-10-24 12:25:15', 1),
+(6, 2, 1, 7, 't', 4, 4, 5, 1, '2019-10-26 04:15:38', 0),
+(7, 2, 1, 6, 'drtrtr<br />\r\nertert<br />\r\nert', 453, 453, 205209, 0, '2019-10-26 04:15:49', 1),
+(8, 3, 1, 6, '', 234, 4, 0, 1, '2019-10-26 04:20:29', 1),
+(9, 3, 1, 7, '', 4, 0, 0, 1, '2019-10-26 04:20:29', 1),
+(10, 4, 1, 6, 'setserts\r\nfd\r\nsdf\r\n\r\ndfsdf', 45, 46, 0, 1, '2019-10-26 04:21:19', 1),
+(11, 4, 1, 1, 'dftydrtyd\r\nry\r\ntd\r\nrt\r\ndr', 456, 0, 0, 1, '2019-10-26 04:21:19', 1),
+(12, 5, 1, 1, 'test', 5, 5, 25, 1, '2019-10-26 04:25:41', 1),
+(13, 5, 1, 6, 'test', 5, 5, 25, 1, '2019-10-26 04:25:41', 1),
+(14, 5, 1, 8, 'tyututyu\r\nt\r\nyu\r\ntyu', 575, 757, 435275, 0, '2019-10-26 04:58:25', 1);
 
 -- --------------------------------------------------------
 
@@ -842,7 +876,10 @@ INSERT INTO `trimsaccess` (`TrimsAccessID`, `TrimsAccessPOID`, `TrimsAccessStyle
 (22, 0, 7, 'dfgd', 'fgdfg', 1, '2019-10-22 06:19:25', 1),
 (23, 0, 8, 'asd', 'asd', 1, '2019-10-22 07:11:10', 1),
 (24, 0, 8, 'Test1', 'Test1', 1, '2019-10-22 11:01:57', 1),
-(27, 0, 9, 'Test', 'Test', 1, '2019-10-22 12:32:37', 1);
+(27, 0, 9, 'Test', 'Test', 1, '2019-10-22 12:32:37', 1),
+(28, 0, 9, 'ert', 'ert', 1, '2019-10-24 09:27:42', 1),
+(29, 0, 9, 'ert', 'ert', 1, '2019-10-24 09:27:42', 1),
+(36, 0, 9, 'sdf', 'sdfsd', 1, '2019-10-24 09:33:07', 1);
 
 -- --------------------------------------------------------
 
@@ -913,8 +950,7 @@ ALTER TABLE `b2blc`
 -- Indexes for table `b2b_item`
 --
 ALTER TABLE `b2b_item`
-  ADD PRIMARY KEY (`ItemID`),
-  ADD KEY `ItemID` (`ItemID`,`StyleID`,`POID`),
+  ADD PRIMARY KEY (`ID`),
   ADD KEY `B2BLCID` (`B2BLCID`),
   ADD KEY `StyleID` (`StyleID`),
   ADD KEY `POID` (`POID`),
@@ -1219,7 +1255,7 @@ ALTER TABLE `b2blc`
 -- AUTO_INCREMENT for table `b2b_item`
 --
 ALTER TABLE `b2b_item`
-  MODIFY `ItemID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `buyer`
@@ -1309,7 +1345,7 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `itemrequirment`
 --
 ALTER TABLE `itemrequirment`
-  MODIFY `ItemRequirmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `ItemRequirmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `item_issue_access`
@@ -1339,7 +1375,7 @@ ALTER TABLE `masterlc`
 -- AUTO_INCREMENT for table `masterlc_description`
 --
 ALTER TABLE `masterlc_description`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `order_description`
@@ -1351,13 +1387,13 @@ ALTER TABLE `order_description`
 -- AUTO_INCREMENT for table `pi`
 --
 ALTER TABLE `pi`
-  MODIFY `PIID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PIID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pi_description`
 --
 ALTER TABLE `pi_description`
-  MODIFY `PIDescriptionID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PIDescriptionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `po`
@@ -1405,7 +1441,7 @@ ALTER TABLE `style`
 -- AUTO_INCREMENT for table `trimsaccess`
 --
 ALTER TABLE `trimsaccess`
-  MODIFY `TrimsAccessID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `TrimsAccessID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `users`
