@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST['refno'])  && isset($_POST['date']) && isset($_POST['supplier']) && isset($_POST['po']) && isset($_POST['item']) && isset($_POST['description']) && isset($_POST['qty']) && isset($_POST['ppu']) && isset($_POST['totalprice']) ) {
+if (isset($_POST['refno'])  && isset($_POST['date']) && isset($_POST['supplier']) && isset($_POST['po']) && isset($_POST['item']) && isset($_POST['description']) && isset($_POST['qty']) && isset($_POST['ppu'])) {
 	$conn = db_connection();
 
 	$reference_no = $_POST['refno'];
@@ -26,18 +26,16 @@ if (isset($_POST['refno'])  && isset($_POST['date']) && isset($_POST['supplier']
 
 	$po_number   = $_POST['po'];
     $item        = $_POST['item'];
-    echo $po_number;
-    echo $item;
-    $description = nl2br($_POST['description']);
+    $description = $_POST['description'];
     $qty         = $_POST['qty'];
     $price_per_unit   = $_POST['ppu'];
-    $totalprice  = $_POST['totalprice'];
-	
 	for ($i = 0; $i < sizeof($item); $i++) {
 
+		$totalprice  = $qty[$i] * $price_per_unit[$i];
+	
 		$sql = "INSERT INTO pi_description (PIID,POID,ItemID,Description,Qty,PricePerUnit,TotalPrice,AddedBy)
 
-		values('$last_id','$po_number[$i]','$item[$i]','$description[$i]','$qty[$i]','$price_per_unit[$i]','$totalprice[$i]','$user_id') ";
+		values('$last_id','$po_number[$i]','$item[$i]','$description[$i]','$qty[$i]','$price_per_unit[$i]','$totalprice','$user_id') ";
 
 
 
@@ -47,10 +45,6 @@ if (isset($_POST['refno'])  && isset($_POST['date']) && isset($_POST['supplier']
 			notice('error', $sql . "<br>" . mysqli_error($conn));
 		}
 	}
-
-
-
-
 
 	nowgo('/index.php?page=all_pi');
 }

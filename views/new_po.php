@@ -247,11 +247,11 @@ function customPagefooter()
                     }
                     ?>
                 cols1 += '</select></td>';
-                cols1 += '<td><input type="text" placeholder="Color" class="mb-2 form-control-sm form-control" name="color' + counter1 + '" required/></td>';
-                cols1 += '<td><input type="text" placeholder="CLR No" class="mb-2 form-control-sm form-control" name="clrno' + counter1 + '" required/></td>';
-                cols1 += '<td><input type="number" placeholder="DZS" class="mb-2 form-control-sm form-control" name="dzs' + counter1 + '"/></td>';
-                cols1 += '<td><input type="number" placeholder="P/Pack" class="mb-2 form-control-sm form-control" name="ppack' + counter1 + '"/></td>';
-                cols1 += '<td><input type="number" placeholder="Units" class="mb-2 form-control-sm form-control" name="units' + counter1 + '"/></td>';
+                cols1 += '<td><input type="text" placeholder="Color" class="mb-2 form-control-sm form-control" name="color[]" required/></td>';
+                cols1 += '<td><input type="text" placeholder="CLR No" class="mb-2 form-control-sm form-control" name="clrno[]" required/></td>';
+                cols1 += '<td><input type="number" placeholder="DZS" class="mb-2 form-control-sm form-control" name="dzs[]"/></td>';
+                cols1 += '<td><input type="number" placeholder="P/Pack" class="mb-2 form-control-sm form-control" name="ppack[]"/></td>';
+                cols1 += '<td><input type="number" placeholder="Units" class="mb-2 form-control-sm form-control" name="units[]"/></td>';
 
                 cols1 += '<td><input type="button" class="ibtnDel1 btn btn-sm btn-warning"  value="Delete"></td>';
                 newRow1.append(cols1);

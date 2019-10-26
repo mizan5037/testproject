@@ -7,7 +7,7 @@ function customPageHeader()
     <!--Arbitrary HTML Tags-->
 <?php }
 $conn = db_connection();
-if (isset($_GET['id'])) {
+if (isset($_GET['id']) && $_GET['id'] != '') {
     $id = $_GET['id'];
 
     $sql = "SELECT * FROM pi where PIID='$id' and Status=1";
@@ -65,7 +65,6 @@ include_once "includes/header.php";
                                 <th width="10%">Qty</th>
                                 <th width="10%">Price Per Unit</th>
                                 <th width="10%">Total Price</th>
-                                <th width="15%"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -88,7 +87,7 @@ include_once "includes/header.php";
                                                     if ($row['POID'] == $result['POID']) {
                                                         $selected = 'selected';
                                                     }
-                                                    echo '<option  selected=".$selected."  value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
+                                                    echo '<option  selected="'.$selected.'"  value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
                                                 }
                                                 ?>
                                         </select>
@@ -104,25 +103,25 @@ include_once "includes/header.php";
                                                     if ($row['ItemID'] == $result['ItemID']) {
                                                         $selected = 'selected';
                                                     }
-                                                    echo '<option  selected=".$selected."  value="' . $result['ItemID'] . '">' . $result['ItemName'] . '</option>';
+                                                    echo '<option  selected="'.$selected.'"  value="' . $result['ItemID'] . '">' . $result['ItemName'] . '</option>';
                                                 }
                                                 ?>
                                         </select>
 
                                     </td>
                                     <td>
-                                        <textarea placeholder="Description" name="description" type="text"  class="mb-2 form-control-sm form-control"><?= $row['Description']?></textarea>
+                                        <textarea placeholder="Description" name="description[]" type="text"  class="mb-2 form-control-sm form-control"><?= $row['Description']?></textarea>
                                     </td>
                                     <td>
-                                        <input placeholder="Qty" id="qty" value="<?= $row['Qty']?>" name="qty" type="text" class="mb-2 form-control-sm form-control">
+                                        <input placeholder="Qty" id="qty" value="<?= $row['Qty']?>" name="qty[]" type="text" class="mb-2 form-control-sm form-control">
                                     </td>
                                     <td>
-                                        <input placeholder="Price Per Unit" id="ppu" name="ppu" value="<?= $row['PricePerUnit']?>" type="text" class="mb-2 form-control-sm form-control">
+                                        <input placeholder="Price Per Unit" id="ppu" name="ppu[]" value="<?= $row['PricePerUnit']?>" type="text" class="mb-2 form-control-sm form-control">
                                     </td>
                                     <td>
-                                        <input placeholder="Total Price" id="totalprice" name="totalprice" value="<?= $row['TotalPrice']?>" type="text" class="mb-2 form-control-sm form-control">
+                                        <input placeholder="Total Price" id="totalprice" name="totalprice[]" value="<?= $row['TotalPrice']?>" type="text" class="mb-2 form-control-sm form-control">
+                                        <input name="pidesid[]" value="<?= $row['PIDescriptionID']?>" type="hidden">
                                     </td>
-                                    <td><a class="deleteRow"></a></td>
                                 </tr>
                             <?php } ?>
 

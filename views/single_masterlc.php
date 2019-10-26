@@ -1,20 +1,38 @@
 <?php
 
-$PageTitle = "Style Details | Optima Inventory";
+$PageTitle = "Master LC Details | Optima Inventory";
 function customPageHeader()
 {
     ?>
     <!-- Extra tags here -->
 <?php }
 
+
+
 function modal()
 {
+    $conn = db_connection();
+
+    $sqlpo = "SELECT POID, PONumber FROM po WHERE status = 1";
+    $resultpos = mysqli_query($conn, $sqlpo);
+    $poArr = array();
+    while ($resultpo = mysqli_fetch_assoc($resultpos)) {
+        $poArr[] = $resultpo;
+    }
+
+    $sqlstyle = "SELECT StyleID, StyleNumber FROM style WHERE status = 1";
+    $resultstyles = mysqli_query($conn, $sqlstyle);
+    $styleArr = array();
+    while ($resultstyle = mysqli_fetch_assoc($resultstyles)) {
+        $styleArr[] = $resultstyle;
+    }
+
     ?>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <form method="post">
-                <div class="modal-content">
+                <div class="modal-content" style="width:190%; margin-left:-225px">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Item Requirments</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -22,36 +40,37 @@ function modal()
                         </button>
                     </div>
                     <div class="modal-body">
-                        <table class="mb-0 table table-bordered order-list" id="myTable" width="100%">
+                        <table class="mb-0 table table-bordered order-list table-hover table-sm" id="myTable">
                             <thead>
                                 <tr>
-                                    <th width="3%">#</th>
-                                    <th width="30%">Size</th>
-                                    <th width="30%">Item</th>
-                                    <th width="20%">Qty</th>
+                                    <th width="5%">#</th>
+                                    <th width="25%">P.O. No</th>
+                                    <th width="25%">Style</th>
+                                    <th width="10%">Qty</th>
+                                    <th width="15%">Unit Name</th>
+                                    <th width="10%">Unit Price</th>
+                                    <th width="10%" title="Latest Shipment Date">L.S.D</th>
                                 </tr>
                             </thead>
-                            <?php
-                                $conn = db_connection();
-                                $sql = "SELECT ItemID, ItemName FROM item WHERE status = 1";
-                                $results = mysqli_query($conn, $sql);
-                                $mlcArr = array();
-                                while ($result = mysqli_fetch_assoc($results)) {
-                                    $mlcArr[] = $result;
-                                }
-                                ?>
                             <tbody>
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>
-                                        <input placeholder="Size" type="text" name="size[]" class="mb-2 form-control-sm form-control" required>
-                                    </td>
-                                    <td>
-                                        <select name="item[]" class="item mb-2 form-control-sm form-control" required>
+                                        <select class="form-control form-control-sm" name="pono[]" required>
                                             <option></option>
                                             <?php
-                                                foreach ($mlcArr as $key) {
-                                                    echo '<option value="' . $key['ItemID'] . '">' . $key['ItemName'] . '</option>';
+                                                foreach ($poArr as $key) {
+                                                    echo '<option value="' . $key['POID'] . '">' . $key['PONumber'] . '</option>';
+                                                }
+                                                ?>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control form-control-sm" name="style[]" required>
+                                            <option></option>
+                                            <?php
+                                                foreach ($styleArr as $key) {
+                                                    echo '<option value="' . $key['StyleID'] . '">' . $key['StyleNumber'] . '</option>';
                                                 }
                                                 ?>
                                         </select>
@@ -59,37 +78,69 @@ function modal()
                                     <td>
                                         <input placeholder="Qty" type="number" name="qty[]" class="mb-2 form-control-sm form-control" required>
                                     </td>
+                                    <td>
+                                        <input placeholder="U/Name" type="text" name="unitname[]" class="mb-2 form-control-sm form-control" required>
+                                    </td>
+                                    <td>
+                                        <input placeholder="U/Price" type="number" name="price[]" class="mb-2 form-control-sm form-control" required>
+                                    </td>
+                                    <td>
+                                        <input type="date" name="lsdate[]" class="mb-2 form-control-sm form-control" required>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">2</th>
                                     <td>
-                                        <input placeholder="Size" type="text" name="size[]" class="mb-2 form-control-sm form-control">
-                                    </td>
-                                    <td>
-                                        <select name="item[]" class="item mb-2 form-control-sm form-control">
+                                        <select class="form-control form-control-sm" name="pono[]">
                                             <option></option>
                                             <?php
-                                                foreach ($mlcArr as $key) {
-                                                    echo '<option value="' . $key['ItemID'] . '">' . $key['ItemName'] . '</option>';
+                                                foreach ($poArr as $key) {
+                                                    echo '<option value="' . $key['POID'] . '">' . $key['PONumber'] . '</option>';
+                                                }
+                                                ?>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control form-control-sm" name="style[]">
+                                            <option></option>
+                                            <?php
+                                                foreach ($styleArr as $key) {
+                                                    echo '<option value="' . $key['StyleID'] . '">' . $key['StyleNumber'] . '</option>';
                                                 }
                                                 ?>
                                         </select>
                                     </td>
                                     <td>
                                         <input placeholder="Qty" type="number" name="qty[]" class="mb-2 form-control-sm form-control">
+                                    </td>
+                                    <td>
+                                        <input placeholder="U/Name" type="text" name="unitname[]" class="mb-2 form-control-sm form-control">
+                                    </td>
+                                    <td>
+                                        <input placeholder="U/Price" type="number" name="price[]" class="mb-2 form-control-sm form-control">
+                                    </td>
+                                    <td>
+                                        <input type="date" name="lsdate[]" class="mb-2 form-control-sm form-control">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">3</th>
                                     <td>
-                                        <input placeholder="Size" type="text" name="size[]" class="mb-2 form-control-sm form-control">
-                                    </td>
-                                    <td>
-                                        <select name="item[]" class="item mb-2 form-control-sm form-control">
+                                        <select class="form-control form-control-sm" name="pono[]">
                                             <option></option>
                                             <?php
-                                                foreach ($mlcArr as $key) {
-                                                    echo '<option value="' . $key['ItemID'] . '">' . $key['ItemName'] . '</option>';
+                                                foreach ($poArr as $key) {
+                                                    echo '<option value="' . $key['POID'] . '">' . $key['PONumber'] . '</option>';
+                                                }
+                                                ?>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control form-control-sm" name="style[]">
+                                            <option></option>
+                                            <?php
+                                                foreach ($styleArr as $key) {
+                                                    echo '<option value="' . $key['StyleID'] . '">' . $key['StyleNumber'] . '</option>';
                                                 }
                                                 ?>
                                         </select>
@@ -97,24 +148,14 @@ function modal()
                                     <td>
                                         <input placeholder="Qty" type="number" name="qty[]" class="mb-2 form-control-sm form-control">
                                     </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
                                     <td>
-                                        <input placeholder="Size" type="text" name="size[]" class="mb-2 form-control-sm form-control">
+                                        <input placeholder="U/Name" type="text" name="unitname[]" class="mb-2 form-control-sm form-control">
                                     </td>
                                     <td>
-                                        <select name="item[]" class="item mb-2 form-control-sm form-control">
-                                            <option></option>
-                                            <?php
-                                                foreach ($mlcArr as $key) {
-                                                    echo '<option value="' . $key['ItemID'] . '">' . $key['ItemName'] . '</option>';
-                                                }
-                                                ?>
-                                        </select>
+                                        <input placeholder="U/Price" type="number" name="price[]" class="mb-2 form-control-sm form-control">
                                     </td>
                                     <td>
-                                        <input placeholder="Qty" type="number" name="qty[]" class="mb-2 form-control-sm form-control">
+                                        <input type="date" name="lsdate[]" class="mb-2 form-control-sm form-control">
                                     </td>
                                 </tr>
                             </tbody>
@@ -152,6 +193,13 @@ include_once "includes/header.php";
                     </div>
                 </div>
             </div>
+            <div class="page-title-actions">
+                <div class="d-inline-block dropdown">
+                    <a href="<?= $path ?>/index.php?page=edit_master_lc&id=<?= $id ?>" aria-expanded="false" class="btn-shadow btn btn-info">
+                        Edit
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -182,7 +230,11 @@ include_once "includes/header.php";
                         </tr>
                         <tr>
                             <td>Buyer:</td>
-                            <td><b><?= $mlc['MasterLCBuyer'] ?></b></td>
+                            <?php
+                            $sqlb = "SELECT BuyerName FROM buyer WHERE BuyerID=" . $mlc['MasterLCBuyer'];
+                            $result = mysqli_fetch_assoc(mysqli_query($conn, $sqlb));
+                            ?>
+                            <td> <a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=single_buyer&buyer_id=<?= $mlc['MasterLCBuyer'] ?>" target="_blank"><b><?= $result['BuyerName'] ?></b></a> </td>
                         </tr>
                         <tr>
                             <td>LC Issued By:</td>
@@ -202,11 +254,11 @@ include_once "includes/header.php";
                         </tr>
                         <tr>
                             <td>Partial Shipment:</td>
-                            <td><b><?= $mlc['MasterLCPartialShipment'] ?></b></td>
+                            <td><b><?= $mlc['MasterLCPartialShipment'] ? 'Allowed' : 'Not Allowed' ?></b></td>
                         </tr>
                         <tr>
                             <td>Transshipment:</td>
-                            <td><b><?= $mlc['MasterLCTranshipment'] ?></b></td>
+                            <td><b><?= $mlc['MasterLCTranshipment'] ? 'Allowed' : 'Not Allowed' ?></b></td>
                         </tr>
                         <tr>
                             <td>Port Of Loading:</td>
@@ -239,7 +291,7 @@ include_once "includes/header.php";
                 </div>
                 <div class="col-md-6 text-right">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal1">
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
                         Add New Order
                     </button>
                 </div>
@@ -282,7 +334,7 @@ include_once "includes/header.php";
                                         </a>
                                     </b>
                                 </td>
-                                <td><b><?= $row['Qty'] . $row['Unit'] ?></b></td>
+                                <td><b><?= $row['Qty'] . ' ' . $row['Unit'] ?></b></td>
                                 <td><b><?= $row['Price'] ?></b></td>
                                 <td><b><?= $row['LSDate'] ?></b></td>
                                 <td>
@@ -294,7 +346,6 @@ include_once "includes/header.php";
                         <?php } ?>
                     </table>
                 </div>
-
             </div>
         </div>
     </div>
