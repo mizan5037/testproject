@@ -1,11 +1,12 @@
 <?php
-
+$conn = db_connection();
 $PageTitle = "New B2B LC | Optima Inventory";
 function customPageHeader()
 {
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
+include_once "controller/new_b2b_lc.php";
 include_once "includes/header.php";
 
 ?>
@@ -28,35 +29,44 @@ include_once "includes/header.php";
     </div>
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation" method="post" novalidate>
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
-                        <label for="validationTooltip01">Master LC Number</label>
-                        <input type="text" class="form-control  form-control-sm" placeholder="Master LC Number" required>
+                        <label>Master LC Number</label>
+                        <select name="masterlcid" class="item mb-2 form-control-sm form-control" required>
+                            <option></option>
+                            <?php
+                            $sql = "SELECT MasterLCID, MasterLCNumber FROM masterlc WHERE status = 1";
+                            $results = mysqli_query($conn, $sql);
+                            while ($result = mysqli_fetch_assoc($results)) {
+                                echo '<option value="' . $result['MasterLCID'] . '">' . $result['MasterLCNumber'] . '</option>';
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationTooltip02">B2B LC Number</label>
-                        <input type="test" class="form-control form-control-sm" placeholder="B2B LC Number" required>
+                        <label>B2B LC Number</label>
+                        <input type="test" name="b2blcnumber" class="form-control form-control-sm" placeholder="B2B LC Number" required>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label>Supplier Name</label>
-                        <input type="text" class="form-control form-control-sm" placeholder="Supplier Name" required>
+                        <input type="text" name="suppliername" class="form-control form-control-sm" placeholder="Supplier Name" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label>Supplier Contact Person</label>
-                        <input type="text" class="form-control form-control-sm" placeholder="Supplier Contact Person" required>
+                        <input type="text" name="contactperson" class="form-control form-control-sm" placeholder="Supplier Contact Person" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label>Supplier Contact Number</label>
-                        <input type="text" class="form-control form-control-sm" placeholder="Supplier Contact Number" required>
+                        <input type="text" name="contactnumber" class="form-control form-control-sm" placeholder="Supplier Contact Number" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label>Supplier Address</label>
-                        <input type="text" class="form-control form-control-sm" placeholder="Supplier Address" required>
+                        <textarea name="address" class="form-control form-control-sm" placeholder="Supplier Address" required></textarea>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label>Issue Date</label>
-                        <input type="date" class="form-control form-control-sm" placeholder="Supplier" required>
+                        <input type="date" name="issuedate" class="form-control form-control-sm" placeholder="Supplier" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -77,22 +87,22 @@ include_once "includes/header.php";
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <input placeholder="Item" type="text" class="mb-2 form-control-sm form-control" required>
+                                    <input placeholder="Item" name="item[]" type="text" class="mb-2 form-control-sm form-control" required>
                                 </td>
                                 <td>
-                                    <input placeholder="Style" type="text" class="mb-2 form-control-sm form-control" required>
+                                    <input placeholder="Style" name="style[]" type="text" class="mb-2 form-control-sm form-control" required>
                                 </td>
                                 <td>
-                                    <input placeholder="PO" type="text" class="mb-2 form-control-sm form-control" required>
+                                    <input placeholder="PO" name="po[]" type="text" class="mb-2 form-control-sm form-control" required>
                                 </td>
                                 <td>
-                                    <input placeholder="Qty" type="text" class="mb-2 form-control-sm form-control" required>
+                                    <input placeholder="Qty" name="qty[]" type="number" class="mb-2 form-control-sm form-control" required>
                                 </td>
                                 <td>
-                                    <input placeholder="Price Per Unit" type="text" class="mb-2 form-control-sm form-control" required>
+                                    <input placeholder="Price Per Unit" name="ppu[]" type="number" class="mb-2 form-control-sm form-control" required>
                                 </td>
                                 <td>
-                                    <input placeholder="Total Price" type="text" class="mb-2 form-control-sm form-control" required>
+                                    <input placeholder="Total Price" name="tp[]" type="number" class="mb-2 form-control-sm form-control" required>
                                 </td>
                                 <td><a class="deleteRow"></a></td>
                             </tr>
@@ -137,12 +147,12 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><input placeholder="Item" type="text" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Style" type="text" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="PO" type="text" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Qty" type="text" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Price Per Unit" type="text" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Total Price" type="text" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Item" name="item[]" type="text" class="mb-2 form-control-sm form-control" required></td>';
+                cols += '<td><input placeholder="Style" name="style[]" type="text" class="mb-2 form-control-sm form-control" required></td>';
+                cols += '<td><input placeholder="PO" name="po[]" type="text" class="mb-2 form-control-sm form-control" required></td>';
+                cols += '<td><input placeholder="Qty" name="qty[]" type="number" class="mb-2 form-control-sm form-control" required></td>';
+                cols += '<td><input placeholder="Price Per Unit" name="ppu[]" type="number" class="mb-2 form-control-sm form-control" required></td>';
+                cols += '<td><input placeholder="Total Price" name="tp[]" type="number" class="mb-2 form-control-sm form-control" required></td>';
 
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-sm btn-danger "  value="Delete"></td>';

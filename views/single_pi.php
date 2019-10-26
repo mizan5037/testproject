@@ -325,7 +325,7 @@ include_once "includes/header.php";
                                     <td><?= $count ?></td>
                                     <td> <a class="btn btn-sm btn-outline-success" target="_blank" href="<?=$path?>/index.php?page=po_single&poid=<?=$row['POID']?>"> <?= $po_number['PONumber'] ?></a></td>
                                     <td> <a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=all_item" target="_blank"><?= $item_name['ItemName'] ?></a> </td>
-                                    <td><?= $row['Description'] ?></td>
+                                    <td><?= nl2br($row['Description']) ?></td>
                                     <td><?= $row['Qty'] ?></td>
                                     <td><?= $row['PricePerUnit'] ?></td>
                                     <td><?= $row['TotalPrice'] ?></td>

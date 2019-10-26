@@ -55,7 +55,6 @@ include_once "includes/header.php";
                                 <th width="30%">Description</th>
                                 <th width="10%">Qty</th>
                                 <th width="10%">Price Per Unit</th>
-                                <th width="10%">Total Price</th>
                                 <th width="15%"></th>
                             </tr>
                         </thead>
@@ -76,11 +75,9 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-
                                     <select name="item[]" class="item mb-2 form-control-sm form-control" required>
                                         <option></option>
                                         <?php
-                                        $conn = db_connection();
                                         $sql = "SELECT * FROM item WHERE status = 1";
                                         $results = mysqli_query($conn, $sql);
                                         while ($result = mysqli_fetch_assoc($results)) {
@@ -88,19 +85,15 @@ include_once "includes/header.php";
                                         }
                                         ?>
                                     </select>
-
                                 </td>
                                 <td>
-                                    <textarea placeholder="Description" name="description"  type="text" class="mb-2 form-control-sm form-control"></textarea>
+                                    <textarea placeholder="Description" name="description[]"  type="text" class="mb-2 form-control-sm form-control"></textarea>
                                 </td>
                                 <td>
-                                    <input placeholder="Qty" id="qty" name="qty" type="number" class="mb-2 form-control-sm form-control" >
+                                    <input placeholder="Qty" id="qty" name="qty[]" type="number" class="mb-2 form-control-sm form-control" >
                                 </td>
                                 <td>
-                                    <input  id="ppu" name="ppu" type="number" class="mb-2 form-control-sm form-control">
-                                </td>
-                                <td>
-                                    <input  id="totalprice" name="totalprice" type="text" class="mb-2 form-control-sm form-control">
+                                    <input placeholder="PPU" id="ppu" name="ppu[]" type="number" class="mb-2 form-control-sm form-control">
                                 </td>
                                 <td><a class="deleteRow"></a></td>
                             </tr>
@@ -169,10 +162,9 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
-                cols += '<td><textarea placeholder="Description" name="description' + counter + '" type="text" class="mb-2 form-control-sm form-control"></textarea></td>';
-                cols += '<td><input name="qty' + counter + '" type="number" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input  name="ppu' + counter + '" type="number" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Total Price" name="totalprice' + counter + '" type="text" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><textarea placeholder="Description" name="description[]" type="text" class="mb-2 form-control-sm form-control"></textarea></td>';
+                cols += '<td><input name="qty[]" type="number" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><input  name="ppu[]" type="number" class="mb-2 form-control-sm form-control"></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-danger"  value="Delete"></td>';
                 newRow.append(cols);
