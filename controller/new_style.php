@@ -43,8 +43,8 @@ if (isset($_POST['stylenumber']) && $_POST['styledescription'] != '' && isset($_
             // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["img"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . $path . $uploadpath . $imageFilename)) {
-                echo "The file " . basename($_FILES["img"]["name"]) . " has been uploaded.<br>";
-                echo $imageFilename;
+                // echo "The file " . basename($_FILES["img"]["name"]) . " has been uploaded.<br>";
+                // echo $imageFilename;
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }

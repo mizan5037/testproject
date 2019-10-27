@@ -17,10 +17,7 @@ if (isset($_POST['from'])  && isset($_POST['date']) && isset($_POST['po_number']
 
 	echo $po_number . "<br>";
 
-
-
 	$poid = $id;
-
 
 	$sql = "UPDATE po SET 
                             PONumber            = '$po_number', 

@@ -18,7 +18,7 @@ if ( isset($_POST['buyer']) && $_POST['type'] && isset($_POST['color']) && isset
 		values('$buyer[$i]','$type[$i]','$color[$i]','$receivefab[$i]','$receiveroll[$i]','$sortexs[$i]','$user_id')";
 
 		if (mysqli_query($conn, $sql)) {
-			notice('success', 'Fabric Received (Contrast,Pocketing) Added Successfully');
+			notice('success', 'Fabric Received (Contrast,Pocketing) Successfully');
 		} else {
 			notice('error', $sql . "<br>" . mysqli_error($conn));
 		}

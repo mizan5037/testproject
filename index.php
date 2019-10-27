@@ -8,6 +8,8 @@ require_once 'lib/functions.php';
 
 isLoggedIn();
 
+nowlog('Page Visit');
+
 if (isset($_GET['page']) && $_GET['page'] !== "") {
 	if (!file_exists('views/' . $_GET['page'] . '.php')) {
 		include 'views/404.php';

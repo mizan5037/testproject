@@ -8,27 +8,33 @@ require_once 'lib/functions.php';
 //echo "works";
 
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
     $conn = db_connection();
-    $sql = "SELECT * FROM users WHERE Username = '" . $_POST['user'] . "'" ;
+    $sql = "SELECT * FROM users WHERE Username = '" . $_POST['user'] . "'";
     $result = mysqli_query($conn, $sql);
     $result = mysqli_fetch_assoc($result);
     //echo $sql;
     //print_r($result);
-    if($_POST['pass'] == $result['Pass']){
+    $attempt = 'Failed';
+    if ($_POST['pass'] == $result['Pass']) {
+        $attempt = 'Success';
         set_ses('isLogged', true);
         set_ses('logInTime', time());
         set_ses('user', $result['Username']);
         set_ses('user_id', $result['UserID']);
         $token = md5(uniqid(rand(), true));
         set_ses('token', $token);
-        if(isset($_GET['page'])){
+        loginlog('User: ' . $_POST['user'] . PHP_EOL . 'Attempt: ' . $attempt);
+        nowlog('Login');
+        if (isset($_GET['page'])) {
             nowgo('/index.php?page=' . $_GET['page']);
-        }else{
+        } else {
             nowgo('/index.php');
         }
     }
+
+    loginlog('User: ' . $_POST['user'] . PHP_EOL . 'Attempt: ' . $attempt . PHP_EOL . 'Tried Pass: ' . $_POST['pass']);
 }
 
 ?>
@@ -80,7 +86,9 @@ if(isset($_POST['submit'])){
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Login</h5>
                                     <br>
-                                    <form class="needs-validation" novalidate action="login.php<?php if(isset($_GET['page'])){ echo '?page=' . $_GET['page']; } ?>" method="post">
+                                    <form class="needs-validation" novalidate action="login.php<?php if (isset($_GET['page'])) {
+                                                                                                    echo '?page=' . $_GET['page'];
+                                                                                                } ?>" method="post">
                                         <div class="form-row">
                                             <div class="col-md-12 mb-3">
                                                 <input type="text" class="form-control" id="validationTooltip01" name="user" placeholder="Username" required>
