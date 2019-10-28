@@ -39,9 +39,12 @@ include_once "includes/header.php";
                                 <th>PO</th>
                                 <th>Style</th>
                                 <th>Color</th>
-                                <th>Received Fabric</th>
+                                <th>Shade</th>
+                                <th>Shrinkage</th>
+                                <th>Width</th>
+                                <th>Received Yds</th>
                                 <th>Received Roll</th>
-                                <th>Shortage/Excess</th>
+                                <th>Shortage/Excess Yds</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -49,7 +52,7 @@ include_once "includes/header.php";
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <select name="po[]" class="po mb-2 form-control-sm form-control" required>
+                                    <select name="po[]" class="po form-control-sm" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
@@ -62,7 +65,7 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="style[]" class="style mb-2 form-control-sm form-control" required>
+                                    <select name="style[]" class="style form-control-sm" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
@@ -75,23 +78,41 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                    <input placeholder="Color"  type="text" name="color[]" class="mb-2 form-control-sm form-control">
+                                    <input placeholder="Color"  type="text" name="color[]" class=" form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="Received Fabric" type="number" name="receivefab[]" class="mb-2 form-control-sm form-control">
+                                    <select name="shade[]" class="form-control-sm">
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                        <option value="E">E</option>
+                                        <option value="F">F</option>
+                                        <option value="G">G</option>
+                                        <option value="H">H</option>
+                                    </select>
                                 </td>
                                 <td>
-                                    <input placeholder="Received Roll" type="number" name="receiveroll[]" class="mb-2 form-control-sm form-control">
+                                    <input placeholder="Shrinkage" type="text" name="shrinkage[]" class="form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="Shortage/Excess" type="number" name="sortexs[]" class="mb-2 form-control-sm form-control">
+                                    <input placeholder="Width" type="number" name="width[]" class="form-control-sm form-control">
+                                </td>
+                                <td>
+                                    <input placeholder="Received Yds" type="number" name="receivefab[]" class="form-control-sm form-control">
+                                </td>
+                                <td>
+                                    <input placeholder="Received Roll" type="number" name="receiveroll[]" class="form-control-sm form-control">
+                                </td>
+                                <td>
+                                    <input placeholder="Shortage/Excess Yds" type="number" name="sortexs[]" class="form-control-sm form-control">
                                 </td>
                                 <td></td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="8" style="text-align:center">
+                                <td colspan="11" style="text-align:center">
                                     <input type="button" id="addrow" class="btn btn-sm btn-success" value="Add Row" />
                                 </td>
                             </tr>
@@ -131,7 +152,7 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th>' + counter + '</th>';
-                cols += '<td><select name="po[]" class="po mb-2 form-control-sm form-control" required><option></option>';
+                cols += '<td><select name="po[]" class="po form-control-sm" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM po WHERE status = 1";
@@ -141,7 +162,7 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
-                cols += '<td><select name="style[]" class="style mb-2 form-control-sm form-control" required><option></option>';
+                cols += '<td><select name="style[]" class="style form-control-sm" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM style WHERE status = 1";
@@ -151,10 +172,13 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
-                cols += '<td><input placeholder="Color" type="text" name="color[]" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Received Fabric" type="number" name="receivefab[]" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Received Roll" type="number" name="receiveroll[]" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Shortage/Excess" type="number" name="sortexs[]" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Color" type="text" name="color[]" class="form-control-sm form-control"></td>';
+                cols += '<td><select name="shade[]" class="form-control-sm"> <option value="A">A</option> <option value="B">B</option> <option value="C">C</option> <option value="D">D</option> <option value="E">E</option> <option value="F">F</option> <option value="G">G</option> <option value="H">H</option> </select></td>';
+                cols += '<td><input placeholder="Shrinkage" type="text" name="shrinkage[]" class="form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Width" type="number" name="width[]" class="form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Received Fabric Yds" type="number" name="receivefab[]" class="form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Received Roll" type="number" name="receiveroll[]" class="form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Shortage/Excess" type="number" name="sortexs[]" class="form-control-sm form-control"></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-danger"  value="Delete"></td>';
                 newRow.append(cols);

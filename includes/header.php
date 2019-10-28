@@ -312,10 +312,10 @@
                                             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                         </a>
                                         <ul>
-                                            <li <?php active('fabric_stack'); ?>>
-                                                <a href="<?= $path ?>/index.php?page=fabric_stack">
+                                            <li <?php active('fabric_stock'); ?>>
+                                                <a href="<?= $path ?>/index.php?page=fabric_stock">
                                                     <i class="metismenu-icon">
-                                                    </i>Fabric Stack
+                                                    </i>Fabric Stock
                                                 </a>
                                             </li>
                                             <li>

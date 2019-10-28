@@ -6,6 +6,9 @@ if ( isset($_POST['buyer']) && $_POST['type'] && isset($_POST['color']) && isset
     $buyer = $_POST['buyer'];
 	$type = $_POST['type'];
 	$color = $_POST['color'];
+	$shade = $_POST['shade'];
+	$shrinkage = $_POST['shrinkage'];
+	$width = $_POST['width'];
 	$receivefab = $_POST['receivefab'];
 	$receiveroll = $_POST['receiveroll'];
     $sortexs = $_POST['sortexs'];
@@ -14,8 +17,8 @@ if ( isset($_POST['buyer']) && $_POST['type'] && isset($_POST['color']) && isset
 
 	for ($i = 0; $i < sizeof($buyer); $i++) {
 
-		$sql = "INSERT INTO fab_receive_other (BuyerID,ContrastPocket,Color,ReceivedFab,ReceivedRoll,Shortage,AddedBy)
-		values('$buyer[$i]','$type[$i]','$color[$i]','$receivefab[$i]','$receiveroll[$i]','$sortexs[$i]','$user_id')";
+		$sql = "INSERT INTO fab_receive_other (BuyerID, ContrastPocket, Color, Shade, Shrinkage, Width, ReceivedFab, ReceivedRoll, Shortage, AddedBy)
+		values('$buyer[$i]','$type[$i]','$color[$i]','$shade[$i]','$shrinkage[$i]','$width[$i]','$receivefab[$i]','$receiveroll[$i]','$sortexs[$i]','$user_id')";
 
 		if (mysqli_query($conn, $sql)) {
 			notice('success', 'Fabric Received (Contrast,Pocketing) Successfully');

@@ -110,3 +110,28 @@ if (isset($_POST['trim_name']) && isset($_POST['trim_description'])) {
 $sql = "SELECT * FROM style where StyleID='$id'";
 
 $item = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+
+
+function getDivision($ssid)
+{
+    global $conn;
+    $sql = "SELECT order_description.StyleID, po.Division FROM po LEFT JOIN order_description ON  po.POID = order_description.POID WHERE order_description.StyleID = '$ssid'";
+    $result = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+    if ($result) {
+        return $result['Division'];
+    } else {
+        return false;
+    }
+}
+
+function getPrice($ssid)
+{
+    global $conn;
+    $sql = "SELECT masterlc_description.Price, masterlc_description.StyleID, masterlc.MasterLCCurrency FROM masterlc_description LEFT JOIN masterlc ON masterlc_description.MasterLCID = masterlc.MasterLCID WHERE masterlc_description.StyleID = '$ssid'";
+    $result = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+    if ($result) {
+        return $result['MasterLCCurrency'] . " " . $result['Price'];
+    } else {
+        return false;
+    }
+}

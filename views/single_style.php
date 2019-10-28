@@ -358,11 +358,11 @@ include_once "includes/header.php";
                         </tr>
                         <tr>
                             <td>DIV No:</td>
-                            <td><b><?php echo $item['StyleDivitionNo'] ? $item['StyleDivitionNo'] : "No LC Found"; ?></b></td>
+                            <td><b><?= getDivision(!$item['StyleID']) ? 'No Related PO Found' : getDivision($item['StyleID']) ?></b></td>
                         </tr>
                         <tr>
                             <td>Price:</td>
-                            <td><b><?php echo ($item['StylePrice']) ? $item['StyleCurency'] . $item['StylePrice'] : "No LC Found"; ?></b></td>
+                            <td><b><?= getPrice(!$item['StyleID']) ? 'No Related LC Found' : getPrice($item['StyleID']) ?></b></td>
                         </tr>
                         <tr>
                             <td>Fabric Details:</td>

@@ -37,11 +37,14 @@ include_once "includes/header.php";
                             <tr>
                                 <th>#</th>
                                 <th>Buyer</th>
-                                <th>Contrast/Pocketing</th>
+                                <th>Contrast / Pocketing</th>
                                 <th>Color</th>
+                                <th>Shade</th>
+                                <th>Shrinkage</th>
+                                <th>Width</th>
                                 <th>Received Fabric</th>
                                 <th>Received Roll</th>
-                                <th>Shortage/Excess</th>
+                                <th>Shortage / Excess</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -49,7 +52,7 @@ include_once "includes/header.php";
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <select name="buyer[]" class="buyer mb-2 form-control-sm form-control" required>
+                                    <select name="buyer[]" class="buyer mb-2 form-control-sm" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
@@ -62,14 +65,32 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="type[]" id="" class="mb-2 form-control-sm form-control">
-                                        <option value="">Select</option>
+                                    <select name="type[]" id="" class="mb-2 form-control-sm">
+                                        <option></option>
                                         <option value="contrast">Contrast</option>
                                         <option value="pocketing">Pocketing</option>
                                     </select>
                                 </td>
                                 <td>
                                     <input placeholder="Color" type="text" name="color[]" class="mb-2 form-control-sm form-control">
+                                </td>
+                                <td>
+                                    <select name="shade[]" class="form-control-sm">
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                        <option value="E">E</option>
+                                        <option value="F">F</option>
+                                        <option value="G">G</option>
+                                        <option value="H">H</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input placeholder="Shrinkage" type="text" name="shrinkage[]" class="form-control-sm form-control">
+                                </td>
+                                <td>
+                                    <input placeholder="Width" type="number" name="width[]" class="form-control-sm form-control">
                                 </td>
                                 <td>
                                     <input placeholder="Received Fabric" type="number" name="receivefab[]" class="mb-2 form-control-sm form-control">
@@ -85,7 +106,7 @@ include_once "includes/header.php";
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="8" style="text-align:center">
+                                <td colspan="11" style="text-align:center">
                                     <input type="button" id="addrow" class="btn btn-sm btn-success" value="Add Row" />
                                 </td>
                             </tr>
@@ -125,7 +146,7 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th>' + counter + '</th>';
-                cols += '<td><select name="buyer[]" class="buyer mb-2 form-control-sm form-control" required><option></option>';
+                cols += '<td><select name="buyer[]" class="buyer mb-2 form-control-sm" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM buyer WHERE status = 1";
@@ -135,8 +156,11 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
-                cols += '<td><select name="type[]" id=""  class="mb-2 form-control-sm form-control"><option value="">Select</option><option value="contrast">Contrast</option><option value="pocketing">Pocketing</option></select></td>';
+                cols += '<td><select name="type[]" id=""  class="mb-2 form-control-sm"><option></option><option value="contrast">Contrast</option><option value="pocketing">Pocketing</option></select></td>';
                 cols += '<td><input placeholder="Color" type="text" name="color[]" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><select name="shade[]" class="form-control-sm"> <option value="A">A</option> <option value="B">B</option> <option value="C">C</option> <option value="D">D</option> <option value="E">E</option> <option value="F">F</option> <option value="G">G</option> <option value="H">H</option> </select></td>';
+                cols += '<td><input placeholder="Shrinkage" type="text" name="shrinkage[]" class="form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Width" type="number" name="width[]" class="form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Received Fabric" type="number" name="receivefab[]" class="mb-2 form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Received Roll" type="number" name="receiveroll[]" class="mb-2 form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Shortage/Excess" type="number" name="sortexs[]" class="mb-2 form-control-sm form-control"></td>';
