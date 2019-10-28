@@ -32,51 +32,55 @@ include_once "includes/header.php";
             <form class="needs-validation" method="POST" novalidate>
                 <div class="form-row">
                 <div class="col-md-3 mb-3">
-                        <label for="validationTooltip01">From</label>
-                        <input type="text" name="from" class="form-control" id="validationTooltip01" placeholder="From" required>
+                        <label >From</label>
+                        <input type="text" name="from" class="form-control"  placeholder="From" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip01">Date</label>
-                        <input type="date" name="date" class="form-control" id="validationTooltip01"  required>
+                        <label >Date</label>
+                        <input type="date" name="date" class="form-control"   required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip03">PO Number</label>
-                        <input type="text" name="po_number" class="form-control" id="validationTooltip03" placeholder="PO Number" required>
+                        <label>PO Number</label>
+                        <input type="text" name="po_number" class="form-control"  placeholder="PO Number" required>
                         <div class="invalid-tooltip">
                             Please provide a PO Number.
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip03">Currency</label>
-                        <input type="text" name="currency" class="form-control" id="validationTooltip03" placeholder="Currency" required>
+                        <label>Currency</label>
+                        <input type="text" name="currency" class="form-control"  placeholder="Currency" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip01">CMP</label>
-                        <input type="number" name="cmp" class="form-control" id="validationTooltip01" placeholder="CMP" required>
+                        <label >CMP</label>
+                        <input type="number" name="cmp" class="form-control"  placeholder="CMP" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip03">Wash Cost</label>
-                        <input type="number" name="wash_cost" class="form-control" id="validationTooltip03" placeholder="Wash Cost" required>
+                        <label>Wash Cost</label>
+                        <input type="number" name="wash_cost" class="form-control"  placeholder="Wash Cost" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip03">Hanger Cost</label>
-                        <input type="number" name="hanger_cost" class="form-control" id="validationTooltip03" placeholder="Hanger Cost" required>
+                        <label>Hanger Cost</label>
+                        <input type="number" name="hanger_cost" class="form-control"  placeholder="Hanger Cost" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip03">CMP+W+Hanger</label>
-                        <input type="number" name="cmp_w_wanger" class="form-control" id="validationTooltip03" placeholder="CMP+W+Hanger" required>
+                        <label>CMP+W+Hanger</label>
+                        <input type="number" name="cmp_w_wanger" class="form-control"  placeholder="CMP+W+Hanger" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip01">Final Destination</label>
-                        <input type="Text" name="final_destination" class="form-control" id="validationTooltip01" placeholder="Final Destination" required>
+                        <label >Final Destination</label>
+                        <input type="Text" name="final_destination" class="form-control"  placeholder="Final Destination" required>
                     </div>
-                    <div class="col-md-9 mb-3">
-                        <label for="validationTooltip03">Special Instruction</label>
-                        <textarea type="number" name="special_instruction" class="form-control" id="validationTooltip03" placeholder="Special Instruction" required></textarea>
+                    <div class="col-md-6 mb-3">
+                        <label>Special Instruction</label>
+                        <textarea type="number" name="special_instruction" class="form-control"  placeholder="Special Instruction" required></textarea>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label>Division</label>
+                        <input type="Text" name="division" class="form-control"  placeholder="Division" required>
                     </div>
                 </div>
                 <div class="form-row">

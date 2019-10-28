@@ -195,7 +195,7 @@ include_once "includes/header.php";
             </div>
             <div class="page-title-actions">
                 <div class="d-inline-block dropdown">
-                    <a href="<?= $path ?>/index.php?page=edit_master_lc&id=<?= $id ?>" aria-expanded="false" class="btn-shadow btn btn-info">
+                    <a href="<?= $path ?>/index.php?page=edit_b2b_lc&id=<?= $id ?>" aria-expanded="false" class="btn-shadow btn btn-info">
                         Edit
                     </a>
                 </div>
@@ -314,7 +314,7 @@ include_once "includes/header.php";
                                 <td><b><?= $row['PricePerUnit'] ?></b></td>
                                 <td><b><?= $row['TotalPrice'] ?></b></td>
                                 <td>
-                                    <a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=single_masterlc&id=<?= $id ?>&delete=<?php echo $row['ID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
+                                    <a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=single_b2b_lc&id=<?= $id ?>&delete=<?php echo $row['ID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
                                         <i class="fas fa-trash-alt" style="color: white;"></i>
                                     </a>
                                 </td>

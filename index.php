@@ -8,7 +8,7 @@ require_once 'lib/functions.php';
 
 isLoggedIn();
 
-nowlog('Page Visit');
+nowlog((!isset($_GET['page']) ? 'Home' : $_GET['page']) .' Page View');
 
 if (isset($_GET['page']) && $_GET['page'] !== "") {
 	if (!file_exists('views/' . $_GET['page'] . '.php')) {

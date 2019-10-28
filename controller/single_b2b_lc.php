@@ -81,58 +81,35 @@ if (isset($_POST['pono']) && isset($_POST['style']) && isset($_POST['qty']) && i
 
 
 if (
-    isset($_POST['mlcnumber']) &&
-    isset($_POST['mlcissuedate']) &&
-    isset($_POST['mlcexpirydate']) &&
-    isset($_POST['sender_bank']) &&
-    isset($_POST['receiver_bank']) &&
-    isset($_POST['buyer']) &&
-    isset($_POST['lcissuedby']) &&
-    isset($_POST['currency']) &&
-    isset($_POST['amount']) &&
-    isset($_POST['partialshipment']) &&
-    isset($_POST['transshipment']) &&
-    isset($_POST['portofloading']) &&
-    isset($_POST['portofdischarge']) &&
-    isset($_POST['description'])
+    isset($_POST['blcnumber']) &&
+    isset($_POST['blcissuedate']) &&
+    isset($_POST['masterlc']) &&
+    isset($_POST['supplier']) &&
+    isset($_POST['person']) &&
+    isset($_POST['number']) &&
+    isset($_POST['address'])
 ) {
-    $mlcnumber = $_POST['mlcnumber'];
-    $mlcissuedate  = $_POST['mlcissuedate'];
-    $mlcexpirydate  = $_POST['mlcexpirydate'];
-    $lcissuedby  = $_POST['lcissuedby'];
-    $buyer  = $_POST['buyer'];
-    $sender_bank  = $_POST['sender_bank'];
-    $receiver_bank  = $_POST['receiver_bank'];
-    $currency  = $_POST['currency'];
-    $amount  = $_POST['amount'];
-    $partialshipment  = $_POST['partialshipment'];
-    $transshipment  = $_POST['transshipment'];
-    $portofloading  = $_POST['portofloading'];
-    $portofdischarge  = $_POST['portofdischarge'];
-    $description  = $_POST['description'];
-    $user_id = get_ses('user_id');
+    $blcnumber = $_POST['blcnumber'];
+    $blcissuedate  = $_POST['blcissuedate'];
+    $masterlc  = $_POST['masterlc'];
+    $supplier  = $_POST['supplier'];
+    $person  = $_POST['person'];
+    $number  = $_POST['number'];
+    $address  = $_POST['address'];
 
-    $sql = "UPDATE masterlc SET 
-    MasterLCNumber = '$mlcnumber',
-    MasterLCIssueDate = '$mlcissuedate', 
-    MasterLCExpiryDate = '$mlcexpirydate', 
-    MasterLCIssuingCompany = '$lcissuedby', 
-    MasterLCBuyer = '$buyer', 
-    MasterLCSenderBank = '$sender_bank', 
-    MasterLCReceiverBank = '$receiver_bank', 
-    MasterLCCurrency = '$currency', 
-    MasterLCAmount = '$amount', 
-    MasterLCPartialShipment = '$partialshipment', 
-    MasterLCTranshipment = '$transshipment', 
-    MasterLCPortOfLoading = '$portofloading', 
-    MasterLCPortOfDischarge = '$portofdischarge', 
-    Description = '$description', 
-    AddedBy = '$user_id'
-    WHERE MasterLCID = '$id'";
+    $sql = "UPDATE b2blc SET 
+    B2BLCNumber = '$blcnumber',
+    MasterLCID = '$masterlc', 
+    SupplierName = '$supplier', 
+    ContactPerson = '$person', 
+    ContactNumber = '$number', 
+    SupplierAddress = '$address', 
+    Issuedate = '$blcissuedate'
+    WHERE B2BLCID = '$id'";
 
     if (mysqli_query($conn, $sql)) {
-        notice('success', 'Master LC Updated Successfully.');
-        nowgo('/index.php?page=single_masterlc&id=' . '$id');
+        notice('success', 'B2B LC Updated Successfully.');
+        nowgo('/index.php?page=single_b2b_lc&id=' . $id);
     } else {
         notice('error', $sql . "<br>" . mysqli_error($conn));
     }
@@ -141,11 +118,11 @@ if (
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
     $sid = $_GET['id'];
-    $sql = "DELETE FROM masterlc_description  WHERE ID=" . $id;
+    $sql = "DELETE FROM b2b_item  WHERE ID=" . $id;
 
     if (mysqli_query($conn, $sql)) {
-        notice('success', 'Deleted Successfully');
-        nowgo('/index.php?page=single_masterlc&id=' . $sid);
+        notice('success', 'B2B Order Deleted Successfully');
+        nowgo('/index.php?page=single_b2b_lc&id=' . $sid);
     } else {
         notice('error', $sql . "<br>" . mysqli_error($conn));
     }

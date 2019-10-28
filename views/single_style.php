@@ -504,7 +504,7 @@ function customPagefooter()
         }
 
         // Get the <span> element that closes the modal
-        var span = document.getElementById("close");
+        var span = document.getElementById("myModal");
 
         // When the user clicks on <span> (x), close the modal
         span.onclick = function() {

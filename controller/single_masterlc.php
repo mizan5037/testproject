@@ -117,7 +117,7 @@ if (
 
     if (mysqli_query($conn, $sql)) {
         notice('success', 'Master LC Updated Successfully.');
-        nowgo('/index.php?page=single_masterlc&id=' . '$id');
+        nowgo('/index.php?page=single_masterlc&id=' . $id);
     } else {
         notice('error', $sql . "<br>" . mysqli_error($conn));
     }
