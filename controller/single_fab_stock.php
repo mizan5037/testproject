@@ -8,9 +8,16 @@ if(isset($_GET['fab_rec_id']) && $_GET['fab_rec_id'] != ''){
     $style = $_GET['style'];
     $sql = "SELECT fr.* FROM fab_receive fr LEFT JOIN masterlc_description md ON fr.POID = md.POID LEFT JOIN masterlc m ON md.MasterLCID = m.MasterLCID WHERE m.MasterLCBuyer = '$buyer_id' AND fr.Color = '$color' AND fr.StyleID = '$style'";
     $hasstyle = mysqli_query($conn, $sql);
-}elseif(isset($_GET['fab_rec_id_other']) && $_GET['fab_rec_id_other'] != ''){
 
-    echo 'this is single stock fabric Other receive!!';
+    $sqlissue = "";
+    $hasstyleissue = "";
+}elseif(isset($_GET['fab_rec_id_other']) && $_GET['fab_rec_id_other'] != ''){
+    $buyer_id = $_GET['fab_rec_id_other'];
+    $conpoc = $_GET['conpoc'];
+    $color = $_GET['color'];
+
+    $sql = "SELECT * FROM fab_receive_other WHERE BuyerID = '$buyer_id' AND ContrastPocket = '$conpoc' AND Color = '$color'";
+    $hascon = mysqli_query($conn, $sql);
 }else{
     nowgo('/index.php?page=fabric_stock');
 }

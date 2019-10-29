@@ -53,11 +53,84 @@ include_once "includes/header.php";
                     &nbsp; &nbsp; &nbsp;
                     Color: <?= getname('color', 'color', 'id', $color) ?>
                 </h5>
-                Content here
+                <table class="table table-bordered table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th colspan="8">Fabric Received</th>
+                        </tr>
+                        <tr>
+                            <th>#</th>
+                            <th>Shade</th>
+                            <th>Width</th>
+                            <th>Shrinkage</th>
+                            <th>Received Yds</th>
+                            <th>Received Roll</th>
+                            <th>Shortage</th>
+                            <th>Receive Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            $count = 1;
+                            while ($row = mysqli_fetch_assoc($hasstyle)) {
+                                ?>
+                            <tr>
+                                <td><?= $count++ ?></td>
+                                <td><?= $row['Shade'] ?></td>
+                                <td><?= $row['Width'] ?></td>
+                                <td><?= $row['Shrinkage'] ?></td>
+                                <td><?= $row['ReceivedFab'] ?></td>
+                                <td><?= $row['ReceivedRoll'] ?></td>
+                                <td><?= $row['Shortage'] ?></td>
+                                <td><?= date('j-M-Y', strtotime($row['timestamp'])) ?></td>
+                            </tr>
+                        <?php
+                            }
+                            ?>
+
+                    </tbody>
+                </table>
+                <table class="table table-bordered table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th colspan="8">Fabric Issued</th>
+                        </tr>
+                        <tr>
+                            <th>#</th>
+                            <th>Particulars</th>
+                            <th>QTZ (DZ)</th>
+                            <th>Consuption (Yds)</th>
+                            <th>RQD QTY (Yds)</th>
+                            <th>ISSUE QTY (Yds)</th>
+                            <th>Remark</th>
+                            <th>Issue Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            $count = 1;
+                            while ($row = mysqli_fetch_assoc($hasstyleissue)) {
+                                ?>
+                            <tr>
+                                <td><?= $count++ ?></td>
+                                <td><?= $row['Shade'] ?></td>
+                                <td><?= $row['Width'] ?></td>
+                                <td><?= $row['Shrinkage'] ?></td>
+                                <td><?= $row['ReceivedFab'] ?></td>
+                                <td><?= $row['ReceivedRoll'] ?></td>
+                                <td><?= $row['Shortage'] ?></td>
+                                <td><?= date('j-M-Y', strtotime($row['timestamp'])) ?></td>
+                            </tr>
+                        <?php
+                            }
+                            ?>
+
+                    </tbody>
+                </table>
             </div>
         </div>
     <?php }
-    if (isset($hasstyle)) {
+    if (isset($hascon)) {
         ?>
         <div class="main-card mb-3 card">
             <div class="card-body">
@@ -67,14 +140,45 @@ include_once "includes/header.php";
                         <?= getname('buyer', 'BuyerName', 'BuyerID', $buyer_id) ?>
                     </a>
                     &nbsp; &nbsp; &nbsp;
-                    Style:
-                    <a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=single_style&id=<?= $style ?>" target="_blank">
-                        <?= getname('style', 'StyleNumber', 'StyleID', $style) ?>
-                    </a>
+                    Type:
+                    <?= $conpoc ?>
                     &nbsp; &nbsp; &nbsp;
                     Color: <?= getname('color', 'color', 'id', $color) ?>
                 </h5>
-                Content here
+                <table class="table table-bordered table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Shade</th>
+                            <th>Width</th>
+                            <th>Shrinkage</th>
+                            <th>Received Yds</th>
+                            <th>Received Roll</th>
+                            <th>Shortage</th>
+                            <th>Receive Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            $count = 1;
+                            while ($row = mysqli_fetch_assoc($hascon)) {
+                                ?>
+                            <tr>
+                                <td><?= $count++ ?></td>
+                                <td><?= $row['Shade'] ?></td>
+                                <td><?= $row['Width'] ?></td>
+                                <td><?= $row['Shrinkage'] ?></td>
+                                <td><?= $row['ReceivedFab'] ?></td>
+                                <td><?= $row['ReceivedRoll'] ?></td>
+                                <td><?= $row['Shortage'] ?></td>
+                                <td><?= date('j-M-Y', strtotime($row['timestamp'])) ?></td>
+                            </tr>
+                        <?php
+                            }
+                            ?>
+
+                    </tbody>
+                </table>
             </div>
         </div>
     <?php } ?>

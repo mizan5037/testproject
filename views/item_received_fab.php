@@ -106,7 +106,7 @@ include_once "includes/header.php";
                                     <input placeholder="Shrinkage" type="text" name="shrinkage[]" class="form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="Width" type="number" name="width[]" class="form-control-sm form-control">
+                                    <input placeholder="Width" type="number" name="width[]" class="form-control-sm form-control" step="0.01">
                                 </td>
                                 <td>
                                     <input placeholder="Received Yds" type="number" name="receivefab[]" class="form-control-sm form-control">
@@ -192,7 +192,7 @@ function customPagefooter()
                                         ?> </select></td>';
                 cols += '<td><select name="shade[]" class="form-control-sm"> <option value="A">A</option> <option value="B">B</option> <option value="C">C</option> <option value="D">D</option> <option value="E">E</option> <option value="F">F</option> <option value="G">G</option> <option value="H">H</option> </select></td>';
                 cols += '<td><input placeholder="Shrinkage" type="text" name="shrinkage[]" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Width" type="number" name="width[]" class="form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Width" type="number" name="width[]" class="form-control-sm form-control" step="0.01"></td>';
                 cols += '<td><input placeholder="Received Fabric Yds" type="number" name="receivefab[]" class="form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Received Roll" type="number" name="receiveroll[]" class="form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Shortage/Excess" type="number" name="sortexs[]" class="form-control-sm form-control"></td>';

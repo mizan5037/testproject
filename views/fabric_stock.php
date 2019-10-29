@@ -59,7 +59,7 @@ include_once "includes/header.php";
                             <td> <a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=single_buyer&buyer_id=<?= $rowother['BuyerID'] ?>" target="_blank"><?= $rowother['BuyerName'] ?></a> </td>
                             <td style="text-transform:capitalize"><?= $rowother['ContrastPocket'] ?></td>
                             <td><?= $rowother['color'] ?></td>
-                            <td> <a href="<?=$path?>/index.php?page=single_fab_stock&fab_rec_id_other=<?= $rowother['id'] ?>" class="btn btn-sm btn-primary">Details</a> </td>
+                            <td> <a href="<?=$path?>/index.php?page=single_fab_stock&fab_rec_id_other=<?= $rowother['BuyerID'] ?>&conpoc=<?= $rowother['ContrastPocket'] ?>&color=<?= $rowother['Color'] ?>" class="btn btn-sm btn-primary">Details</a> </td>
                         </tr>
                     <?php
                     }

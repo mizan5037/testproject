@@ -1778,3 +1778,247 @@ Path: http://localhost/inventory2/index.php?page=stationary
 Date & Time: October 29, 2019, 5:16 pm
 Attempt: stationary Page View
 -------------------------
+Path: http://localhost/inventory2/index.php?page=item_issue_stationary
+Date & Time: October 29, 2019, 5:21 pm
+Attempt: item_issue_stationary Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fabric_stock
+Date & Time: October 29, 2019, 5:21 pm
+Attempt: fabric_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 5:21 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 5:22 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fabric_stock
+Date & Time: October 29, 2019, 5:23 pm
+Attempt: fabric_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id_other=2
+Date & Time: October 29, 2019, 5:23 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fabric_stock
+Date & Time: October 29, 2019, 5:25 pm
+Attempt: fabric_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fabric_stock
+Date & Time: October 29, 2019, 5:25 pm
+Attempt: fabric_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id_other=1
+Date & Time: October 29, 2019, 5:25 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fabric_stock
+Date & Time: October 29, 2019, 5:25 pm
+Attempt: fabric_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 5:26 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 5:32 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 5:33 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 5:33 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 5:33 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fabric_stock
+Date & Time: October 29, 2019, 5:52 pm
+Attempt: fabric_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=2&style=1
+Date & Time: October 29, 2019, 5:52 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=2&style=1
+Date & Time: October 29, 2019, 5:53 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fabric_stock
+Date & Time: October 29, 2019, 5:53 pm
+Attempt: fabric_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 5:53 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fabric_stock
+Date & Time: October 29, 2019, 5:54 pm
+Attempt: fabric_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fabric_stock
+Date & Time: October 29, 2019, 5:56 pm
+Attempt: fabric_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fabric_stock
+Date & Time: October 29, 2019, 5:57 pm
+Attempt: fabric_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id_other=1&conpoc=contrast&color=1
+Date & Time: October 29, 2019, 5:57 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id_other=1&conpoc=contrast&color=1
+Date & Time: October 29, 2019, 5:59 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id_other=1&conpoc=contrast&color=1
+Date & Time: October 29, 2019, 6:07 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id_other=1&conpoc=contrast&color=1
+Date & Time: October 29, 2019, 6:09 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id_other=1&conpoc=contrast&color=1
+Date & Time: October 29, 2019, 6:09 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id_other=1&conpoc=contrast&color=1
+Date & Time: October 29, 2019, 6:09 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id_other=1&conpoc=contrast&color=1
+Date & Time: October 29, 2019, 6:10 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fabric_stock
+Date & Time: October 29, 2019, 6:10 pm
+Attempt: fabric_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 6:10 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=item_received_fab_other
+Date & Time: October 29, 2019, 6:10 pm
+Attempt: item_received_fab_other Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=new_po
+Date & Time: October 29, 2019, 6:11 pm
+Attempt: new_po Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=item_received_fab_other
+Date & Time: October 29, 2019, 6:12 pm
+Attempt: item_received_fab_other Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=item_received_fab_other
+Date & Time: October 29, 2019, 6:13 pm
+Attempt: item_received_fab_other Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=item_received_fab_other
+Date & Time: October 29, 2019, 6:13 pm
+Attempt: Fabric Received (Contrast,Pocketing) Successfully
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fabric_stock
+Date & Time: October 29, 2019, 6:13 pm
+Attempt: fabric_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id_other=1&conpoc=contrast&color=1
+Date & Time: October 29, 2019, 6:13 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fab_issue
+Date & Time: October 29, 2019, 6:13 pm
+Attempt: fab_issue Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fabric_stock
+Date & Time: October 29, 2019, 6:16 pm
+Attempt: fabric_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 6:17 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fabric_stock
+Date & Time: October 29, 2019, 6:17 pm
+Attempt: fabric_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id_other=1&conpoc=contrast&color=1
+Date & Time: October 29, 2019, 6:17 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fabric_stock
+Date & Time: October 29, 2019, 6:17 pm
+Attempt: fabric_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 6:17 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fab_issue
+Date & Time: October 29, 2019, 6:17 pm
+Attempt: fab_issue Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fab_issue
+Date & Time: October 29, 2019, 6:20 pm
+Attempt: fab_issue Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fab_issue
+Date & Time: October 29, 2019, 6:20 pm
+Attempt: New Fabric Issue added Successfully
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fab_issue
+Date & Time: October 29, 2019, 6:20 pm
+Attempt: New Fabric Issue added Successfully
+-------------------------
+Path: http://localhost/inventory2/index.php?page=fabric_stock
+Date & Time: October 29, 2019, 6:22 pm
+Attempt: fabric_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 6:22 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 6:24 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 6:24 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 6:27 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 6:32 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 6:32 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 6:32 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 6:33 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 6:33 pm
+Attempt: single_fab_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=1&color=1&style=1
+Date & Time: October 29, 2019, 6:33 pm
+Attempt: single_fab_stock Page View
+-------------------------
