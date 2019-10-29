@@ -6,6 +6,7 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
+include_once "controller/add_new_stationary.php";
 include_once "includes/header.php";
 
 ?>
@@ -28,11 +29,11 @@ include_once "includes/header.php";
     </div>
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation" method="POST"novalidate>
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltip01">Name</label>
-                        <input type="text" class="form-control" id="validationTooltip01" placeholder="Name" required>
+                        <input type="text" class="form-control" id="validationTooltip01" placeholder="Name" name="item_name" required>
                         <div class="valid-tooltip">
                             Looks good!
                         </div>
@@ -42,7 +43,7 @@ include_once "includes/header.php";
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltip02">Specification</label>
-                        <input type="text" class="form-control" id="validationTooltip02" placeholder="Specification" required>
+                        <input type="text" class="form-control" id="validationTooltip02" placeholder="Specification" name="specification" required>
                         <div class="valid-tooltip">
                             Looks good!
                         </div>
@@ -53,7 +54,7 @@ include_once "includes/header.php";
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltipUsername">Measurement Unit</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Measurement Unit" required>
+                            <input type="number" class="form-control" id="validationTooltipUsername" name="unit" placeholder="Measurement Unit" required>
                             <div class="valid-tooltip">
                                 Looks good!
                             </div>

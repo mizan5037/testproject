@@ -6,6 +6,7 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
+include_once "controller/add_item_received_stationary.php";
 include_once "includes/header.php";
 
 ?>
@@ -29,7 +30,7 @@ include_once "includes/header.php";
     <div class="main-card mb-3 card">
         <div class="card-body">
             <!-- <h5 class="card-title">PO</h5> -->
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation" method="POST" novalidate>
                 <div class="form-row">
                     <table class="mb-0 table table-bordered order-list" id="myTable">
                         <thead>
@@ -47,19 +48,29 @@ include_once "includes/header.php";
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <input placeholder="Item Name" type="text" name="suppliername" class="mb-2 form-control-sm form-control">
+                                        <select name="item[]" class="item mb-2 form-control-sm form-control" required>
+                                            <option></option>
+                                            <?php
+                                            $conn = db_connection();
+                                            $sql = "SELECT * FROM stationary_item WHERE status = 1";
+                                            $results = mysqli_query($conn, $sql);
+                                            while ($result = mysqli_fetch_assoc($results)) {
+                                                echo '<option value="' . $result['ID'] . '">' . $result['Name'] . '</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                    </td>
+                                <td>
+                                    <input placeholder="Supplier Name" type="text" name="suppliername[]" class="mb-2 form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="Supplier Name" type="text" name="suppliername" class="mb-2 form-control-sm form-control">
+                                    <input placeholder="Challan No" type="text" name="chalan[]" class="mb-2 form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="Challan No" type="text" name="color" class="mb-2 form-control-sm form-control">
+                                    <input placeholder="Received Qty" type="number" name="qty[]" class="mb-2 form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="Received Qty" type="text" name="receiveqty" class="mb-2 form-control-sm form-control">
-                                </td>
-                                <td>
-                                    <input placeholder="Shortage/Excess" type="text" name="sortexs" class="mb-2 form-control-sm form-control">
+                                    <input placeholder="Shortage/Excess" type="number" name="sortexs[]" class="mb-2 form-control-sm form-control">
                                 </td>
                                 <td></td>
                             </tr>
@@ -102,11 +113,20 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th>' + counter + '</th>';
-                cols += '<td><input placeholder="Item Name"  name="style' + counter + '" type="text" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Supplier Name"  name="style' + counter + '" type="text" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Challan No" type="text" name="color' + counter + '" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Received Qty" type="text" name="receivefab' + counter + '" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Shortage/Excess" type="text" name="sortexs' + counter + '" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><select name="item[]" class="item mb-2 form-control-sm form-control" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM stationary_item WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['ID'] . '">' . $result['Name'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
+                cols += '<td><input placeholder="Supplier Name"  name="suppliername[]" type="text" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Challan No" type="text" name="chalan[]" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Received Qty" type="text" name="qty[]" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Shortage/Excess" type="text" name="sortexs[]" class="mb-2 form-control-sm form-control"></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-danger"  value="Delete"></td>';
                 newRow.append(cols);

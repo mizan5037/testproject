@@ -6,6 +6,7 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
+include_once "controller/add_item_issue_stationary.php";
 include_once "includes/header.php";
 
 ?>
@@ -30,15 +31,15 @@ include_once "includes/header.php";
         <div class="card-body">
             <!-- <h5 class="card-title">Card Title</h5> -->
             <div class="container">
-                <form action="" class="needs-validation" novalidate>
+                <form action="" class="needs-validation" method="POST" novalidate>
                     <div class="form-row">
                         <div class="col-md-6">
                             <label for="validationTooltip02">Unit Name</label>
-                            <input type="text" class="form-control" id="validationTooltip02" placeholder="Unit Name" required>
+                            <input type="text" class="form-control" name="unit_name" id="validationTooltip02" placeholder="Unit Name" required>
                         </div>
                         <div class="col-md-6">
                             <label for="validationTooltip02">Issue By</label>
-                            <input type="text" class="form-control" id="validationTooltip02" placeholder="Issue By" required>
+                            <input type="text" class="form-control" name="issue" id="validationTooltip02" placeholder="Issue By" required>
                         </div>
                     </div>
                     <br>
@@ -57,13 +58,23 @@ include_once "includes/header.php";
                                 <tr>
                                     <th>1</th>
                                     <td>
-                                        <input class="mb-2 form-control-sm form-control" type="text" placeholder="Item" name="item" />
+                                        <select name="item" class="item[] mb-2 form-control-sm form-control" required>
+                                            <option></option>
+                                            <?php
+                                            $conn = db_connection();
+                                            $sql = "SELECT * FROM stationary_item WHERE status = 1";
+                                            $results = mysqli_query($conn, $sql);
+                                            while ($result = mysqli_fetch_assoc($results)) {
+                                                echo '<option value="' . $result['ID'] . '">' . $result['Name'] . '</option>';
+                                            }
+                                            ?>
+                                        </select>
                                     </td>
                                     <td>
-                                        <input class="mb-2 form-control-sm form-control" type="number" placeholder="QTY" name="qty" />
+                                        <input class="mb-2 form-control-sm form-control" type="number" placeholder="QTY" name="qty[]" />
                                     </td>
                                     <td>
-                                        <input class="mb-2 form-control-sm form-control" type="text" placeholder="Remark" name="remark" />
+                                        <input class="mb-2 form-control-sm form-control" type="text" placeholder="Remark" name="remark[]" />
                                     </td>
                                     <td><a class="deleteRow"></a>
 
@@ -76,7 +87,7 @@ include_once "includes/header.php";
                                         <input type="button" class="btn btn-success" id="addrow" value="Add Row" />
                                     </td>
                                 </tr>
-                                
+
                             </tfoot>
                         </table>
                     </div>
@@ -112,9 +123,18 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th>' + counter + '</th>';
-                cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="Item" name="item"/></td>';
-                cols += '<td><input class="mb-2 form-control-sm form-control" type="number" placeholder="QTY" name="qty" /></td>';
-                cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="Remark" name="remark"/></td>';
+                cols += '<td><select name="item[]" class="item mb-2 form-control-sm form-control" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM stationary_item WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['ID'] . '">' . $result['Name'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
+                cols += '<td><input class="mb-2 form-control-sm form-control" type="number" placeholder="QTY" name="qty[]" /></td>';
+                cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="Remark" name="remark[]"/></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-danger"  value="Delete"></td>';
                 newRow.append(cols);
