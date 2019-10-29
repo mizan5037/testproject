@@ -29,39 +29,19 @@ include_once "includes/header.php";
     </div>
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <form class="needs-validation" method="POST"novalidate>
+            <form class="needs-validation" method="POST" novalidate>
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltip01">Name</label>
                         <input type="text" class="form-control" id="validationTooltip01" placeholder="Name" name="item_name" required>
-                        <div class="valid-tooltip">
-                            Looks good!
-                        </div>
-                        <div class="invalid-tooltip">
-                            Please Enter Item Name.
-                        </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltip02">Specification</label>
                         <input type="text" class="form-control" id="validationTooltip02" placeholder="Specification" name="specification" required>
-                        <div class="valid-tooltip">
-                            Looks good!
-                        </div>
-                        <div class="invalid-tooltip">
-                            Please Enter Specification.
-                        </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltipUsername">Measurement Unit</label>
-                        <div class="input-group">
-                            <input type="number" class="form-control" id="validationTooltipUsername" name="unit" placeholder="Measurement Unit" required>
-                            <div class="valid-tooltip">
-                                Looks good!
-                            </div>
-                            <div class="invalid-tooltip">
-                                Please Enter Measurement Unit.
-                            </div>
-                        </div>
+                        <input type="text" class="form-control" id="validationTooltipUsername" name="unit" placeholder="Measurement Unit" required>
                     </div>
                 </div>
                 <button class="btn btn-primary" type="submit">Save</button>

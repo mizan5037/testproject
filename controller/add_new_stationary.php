@@ -13,6 +13,7 @@ if (isset($_POST['item_name']) && $_POST['specification'] != '' && isset($_POST[
 
     if (mysqli_query($conn, $sql)) {
         notice('success', 'New Stationary Item added Successfully');
+        nowgo('/index.php?page=stationary');
     } else {
         notice('error', $sql . "<br>" . mysqli_error($conn));
     }
