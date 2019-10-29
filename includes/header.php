@@ -134,6 +134,12 @@
                                             </i>New Inquire
                                         </a>
                                     </li>
+                                    <li <?php active('color_fab'); ?>>
+                                        <a href="<?= $path ?>/index.php?page=color_fab">
+                                            <i class="metismenu-icon">
+                                            </i>Color & Size
+                                        </a>
+                                    </li>
                                     <!-- Item -->
                                     <li>
                                         <a href="#">
@@ -325,12 +331,6 @@
                                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                                 </a>
                                                 <ul>
-                                                    <li <?php active('color_fab'); ?>>
-                                                        <a href="<?= $path ?>/index.php?page=color_fab">
-                                                            <i class="metismenu-icon">
-                                                            </i>Fabric Color
-                                                        </a>
-                                                    </li>
                                                     <li <?php active('item_received_fab'); ?>>
                                                         <a href="<?= $path ?>/index.php?page=item_received_fab">
                                                             <i class="metismenu-icon">

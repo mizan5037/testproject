@@ -27,9 +27,9 @@ include_once "includes/header.php";
                     <i class="pe-7s-note icon-gradient bg-mean-fruit">
                     </i>
                 </div>
-                <div>Fabric Color
+                <div>Color & Size
                     <div class="page-title-subheading">
-                        Fabric Color Description
+                        Color & Size Description
                     </div>
                 </div>
             </div>
@@ -55,11 +55,34 @@ include_once "includes/header.php";
                         </div>
                     </div>
                 </div>
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">All Colors</h5>
+                        Content here
+                    </div>
+                </div>
             </div>
             <div class="col-md-6">
                 <div class="main-card mb-3 card">
                     <div class="card-body">
-                        <h5 class="card-title">All Colors</h5>
+                        <h5 class="card-title">Add New Size</h5>
+                        <div class="container">
+                            <form method="post">
+                                <div class="form-row">
+                                    <div class="col-md-8 mb-3">
+                                        <input type="text" name="size" class="form-control" placeholder="Size Name" required>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <input type="submit" name="submit" class="form-control btn btn-success" value="Save" required>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">All Sizes</h5>
                         Content here
                     </div>
                 </div>

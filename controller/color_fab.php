@@ -14,4 +14,8 @@ if(isset($_POST['color']) && $_POST['color'] != ''){
     }
 }
 
-$sql = "SELECT id, color";
+$sqlc = "SELECT id, color FROM color";
+$colorresult = mysqli_query($conn, $sqlc);
+
+$sqls = "SELECT id, color FROM size";
+$sizeresult = mysqli_query($conn, $sqls);
