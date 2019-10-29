@@ -192,11 +192,11 @@ include_once "includes/header.php";
                                     </tr>
                                     <tr>
                                         <td>DIV No: </td>
-                                        <td><b><?= getDivision(!$result['StyleID']) ? 'No Related PO Found' : getDivision($result['StyleID']) ?></b></td>
+                                        <td><b><?= !getDivision($result['StyleID']) ? 'No Related PO Found' : getDivision($result['StyleID']) ?></b></td>
                                     </tr>
                                     <tr>
                                         <td>Price: </td>
-                                        <td><b><?= getPrice(!$result['StyleID']) ? 'No Related LC Found' : getPrice($result['StyleID']) ?></b> </td>
+                                        <td><b><?= !getPrice($result['StyleID']) ? 'No Related LC Found' : getPrice($result['StyleID']) ?></b> </td>
                                     </tr>
                                 </table>
                             </div>

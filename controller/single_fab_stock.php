@@ -1,11 +1,28 @@
 <?php
+$conn = db_connection();
+
+//if style is set
 if(isset($_GET['fab_rec_id']) && $_GET['fab_rec_id'] != ''){
-    echo 'this is single stock fabric receive!!';
     $buyer_id = $_GET['fab_rec_id'];
     $color = $_GET['color'];
-    $sql = "SELECT DISTINCT f.FabReceiveID, b.BuyerName, b.BuyerID, f.Color, f.Shade, f.Shrinkage, f.Width, f.ReceivedFab, f.ReceivedRoll, s.StyleID, s.StyleNumber from buyer b LEFT JOIN masterlc m ON b.BuyerID = m.MasterLCBuyer LEFT JOIN masterlc_description md ON m.MasterLCID = md.MasterLCID LEFT JOIN fab_receive f ON md.POID = f.POID LEFT JOIN style s ON f.StyleID = s.StyleID WHERE b.BuyerID = '$buyer_id' AND f.Color = '$color' AND s.StyleID = 9";
+    $style = $_GET['style'];
+    $sql = "SELECT fr.* FROM fab_receive fr LEFT JOIN masterlc_description md ON fr.POID = md.POID LEFT JOIN masterlc m ON md.MasterLCID = m.MasterLCID WHERE m.MasterLCBuyer = '$buyer_id' AND fr.Color = '$color' AND fr.StyleID = '$style'";
+    $hasstyle = mysqli_query($conn, $sql);
 }elseif(isset($_GET['fab_rec_id_other']) && $_GET['fab_rec_id_other'] != ''){
+
     echo 'this is single stock fabric Other receive!!';
 }else{
     nowgo('/index.php?page=fabric_stock');
+}
+
+function getname($table, $column, $idColumn, $id){
+    global $conn;
+    $sql = "SELECT $column FROM $table WHERE $idColumn = $id";
+    $query = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+
+    if($query){
+        return $query[$column];
+    }else{
+        return 'No Related Data Found!';
+    }
 }

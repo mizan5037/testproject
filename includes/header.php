@@ -134,8 +134,8 @@
                                             </i>New Inquire
                                         </a>
                                     </li>
-                                    <li <?php active('color_fab'); ?>>
-                                        <a href="<?= $path ?>/index.php?page=color_fab">
+                                    <li <?php active('color_size'); ?>>
+                                        <a href="<?= $path ?>/index.php?page=color_size">
                                             <i class="metismenu-icon">
                                             </i>Color & Size
                                         </a>

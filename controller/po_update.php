@@ -107,7 +107,7 @@ if (isset($_GET['orde'])) {
 	$id = $_GET['poid'];
 	$sql = "UPDATE order_description SET Status=0 where OrderdescriptionID='$orderid'";
 	if (mysqli_query($conn, $sql)) {
-		notice('danger', 'Style Deleted From PO Successfully');
+		notice('success', 'Style Deleted From PO Successfully');
 		nowgo('/index.php?page=po_single&poid=' . $id);
 	} else {
 		notice('error', $sql . "<br>" . mysqli_error($conn));
@@ -119,7 +119,7 @@ if (isset($_GET['preid'])) {
 	$id = $_GET['poid'];
 	$sql = "DELETE FROM prepack  where PrePackID='$preid'";
 	if (mysqli_query($conn, $sql)) {
-		notice('danger', ' PrePack Deleted Successfully');
+		notice('success', ' PrePack Deleted Successfully');
 		nowgo('/index.php?page=po_single&poid=' . $id);
 	} else {
 		notice('error', $sql . "<br>" . mysqli_error($conn));

@@ -14,7 +14,7 @@ function modal()
 <?php }
 
 // keep the header always last.
-include_once "controller/color_fab.php";
+include_once "controller/color_size.php";
 include_once "includes/header.php";
 
 ?>
@@ -58,7 +58,30 @@ include_once "includes/header.php";
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h5 class="card-title">All Colors</h5>
-                        Content here
+                        <table class="table table-sm table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $count = 1;
+                                while ($row = mysqli_fetch_assoc($colorresult)) {
+                                    ?>
+                                    <tr>
+                                        <td><?= $count++ ?></td>
+                                        <td><?= $row['color'] ?></td>
+                                        <td><a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=color_size&color_delete=<?= $row['id'] ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
+                                                <i class="fas fa-trash-alt" style="color: white;"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -83,7 +106,30 @@ include_once "includes/header.php";
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h5 class="card-title">All Sizes</h5>
-                        Content here
+                        <table class="table table-sm table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $count = 1;
+                                while ($row = mysqli_fetch_assoc($sizeresult)) {
+                                    ?>
+                                    <tr>
+                                        <td><?= $count++ ?></td>
+                                        <td><?= $row['size'] ?></td>
+                                        <td><a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=color_size&color_delete=<?= $row['id'] ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
+                                                <i class="fas fa-trash-alt" style="color: white;"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

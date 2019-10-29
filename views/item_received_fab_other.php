@@ -72,7 +72,17 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                    <input placeholder="Color" type="text" name="color[]" class="mb-2 form-control-sm form-control">
+                                    <select name="color[]" class="buyer mb-2 form-control-sm" required>
+                                        <option></option>
+                                        <?php
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM color WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </td>
                                 <td>
                                     <select name="shade[]" class="form-control-sm">
@@ -157,7 +167,14 @@ function customPagefooter()
                     ?>
                 cols += '</select></td>';
                 cols += '<td><select name="type[]" id=""  class="mb-2 form-control-sm"><option></option><option value="contrast">Contrast</option><option value="pocketing">Pocketing</option></select></td>';
-                cols += '<td><input placeholder="Color" type="text" name="color[]" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><select name="color[]" class="buyer mb-2 form-control-sm" required> <option></option> <?php
+                                                                                                                        $conn = db_connection();
+                                                                                                                        $sql = "SELECT * FROM color WHERE status = 1";
+                                                                                                                        $results = mysqli_query($conn, $sql);
+                                                                                                                        while ($result = mysqli_fetch_assoc($results)) {
+                                                                                                                            echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                                                                                                        }
+                                                                                                                        ?></select></td>';
                 cols += '<td><select name="shade[]" class="form-control-sm"> <option value="A">A</option> <option value="B">B</option> <option value="C">C</option> <option value="D">D</option> <option value="E">E</option> <option value="F">F</option> <option value="G">G</option> <option value="H">H</option> </select></td>';
                 cols += '<td><input placeholder="Shrinkage" type="text" name="shrinkage[]" class="form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Width" type="number" name="width[]" class="form-control-sm form-control"></td>';

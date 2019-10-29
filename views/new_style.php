@@ -6,7 +6,7 @@ function customPageHeader()
     global $path;
     ?>
     <!--Arbitrary HTML Tags-->
-    
+
 <?php }
 include_once "controller/new_style.php";
 include_once "includes/header.php";
@@ -32,7 +32,7 @@ include_once "includes/header.php";
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">New Style</h5>
-            <form class="needs-validation" method="post"  enctype="multipart/form-data" novalidate>
+            <form class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
                 <div class="form-row">
 
                     <div class="col-md-6 mb-3">
@@ -131,7 +131,17 @@ include_once "includes/header.php";
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>
-                                        <input placeholder="Size" type="text" name="size[]" class="mb-2 form-control-sm form-control" required>
+                                        <select name="size[]" class="item mb-2 form-control-sm form-control" required>
+                                            <option></option>
+                                            <?php
+                                            $conn = db_connection();
+                                            $sql = "SELECT * FROM size WHERE status = 1";
+                                            $results = mysqli_query($conn, $sql);
+                                            while ($result = mysqli_fetch_assoc($results)) {
+                                                echo '<option value="' . $result['id'] . '">' . $result['size'] . '</option>';
+                                            }
+                                            ?>
+                                        </select>
                                     </td>
                                     <td>
                                         <select name="item[]" class="item mb-2 form-control-sm form-control" required>
@@ -185,9 +195,8 @@ function customPagefooter()
 {
     global $path;
     ?>
-    
+
     <script>
-        
         // Image Load
         function readURL(input) {
             if (input.files && input.files[0]) {
@@ -217,7 +226,16 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><input type="text" placeholder="Size" class="mb-2 form-control-sm form-control" name="size[]" required/></td>';
+                cols += '<td><select name="size[]" class="item mb-2 form-control-sm form-control" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM size WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['id'] . '">' . $result['size'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
                 cols += '<td><select name="item[]" class="item mb-2 form-control-sm form-control" required><option></option>';
                 <?php
                     $conn = db_connection();
