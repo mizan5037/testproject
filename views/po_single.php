@@ -335,22 +335,20 @@ include_once "includes/header.php";
                         </thead>
                         <tbody>
                             <?php
-                            $sql = "SELECT o.*,s.StyleImage,s.StyleNumber, s.StyleID FROM order_description o LEFT JOIN style s on s.StyleID = O.StyleID where o.POID ='$poid' AND o.Status=1";
-
-                            $order = mysqli_query($conn, $sql);
+                            $sqlo = "SELECT o.*,s.StyleImage,s.StyleNumber, s.StyleID FROM order_description o LEFT JOIN style s on s.StyleID = o.StyleID where o.POID ='$poid' AND o.Status=1";
+                            $order = mysqli_query($conn, $sqlo);
                             $count = 1;
-                            while ($row = mysqli_fetch_assoc($order)) {
-
+                            while ($rowo = mysqli_fetch_assoc($order)) {
                                 ?>
                                 <tr>
                                     <td><?= $count ?></td>
-                                    <td> <a class="btn btn-sm btn-outline-success" href="<?= $path . '/index.php?page=single_style&id=' . $row['StyleID'] ?>" target="_blank" rel="noopener noreferrer"><?= $row['StyleNumber'] ?></a></td>
-                                    <td><img class="img-fluid img-thumbnail rounded" alt="Style No: <?= $row['StyleNumber'] ?>" onclick="view('<?= $row['StyleImage'] ?>');" id="<?= $row['StyleImage'] ?>" src="<?= $path . $uploadpath . $row['StyleImage'] ?>" style="max-height:50px;"></td>
-                                    <td><?= $row['Color'] ?></td>
-                                    <td><?= $row['ClrNo'] ?></td>
-                                    <td><?= $row['PPack'] ?></td>
-                                    <td><?= $row['Units'] ?></td>
-                                    <td><a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=po_single&poid=<?= $poid ?>&orde=<?php echo $row['OrderdescriptionID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
+                                    <td> <a class="btn btn-sm btn-outline-success" href="<?= $path . '/index.php?page=single_style&id=' . $rowo['StyleID'] ?>" target="_blank" rel="noopener noreferrer"><?= $rowo['StyleNumber'] ?></a></td>
+                                    <td><img class="img-fluid img-thumbnail rounded" alt="Style No: <?= $rowo['StyleNumber'] ?>" onclick="view('<?= $rowo['StyleImage'] ?>');" id="<?= $rowo['StyleImage'] ?>" src="<?= $path . $uploadpath . $rowo['StyleImage'] ?>" style="max-height:50px;"></td>
+                                    <td><?= $rowo['Color'] ?></td>
+                                    <td><?= $rowo['ClrNo'] ?></td>
+                                    <td><?= $rowo['PPack'] ?></td>
+                                    <td><?= $rowo['Units'] ?></td>
+                                    <td><a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=po_single&poid=<?= $poid ?>&orde=<?php echo $rowo['OrderdescriptionID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
                                             <i class="fas fa-trash-alt" style="color: white;"></i>
                                         </a>
                                     </td>

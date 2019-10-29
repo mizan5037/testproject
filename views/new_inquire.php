@@ -171,10 +171,13 @@ include_once "includes/header.php";
                 ?>
                 <div class="main-card mb-3 card">
                     <div class="card-body">
-                        <h5 class="card-title">Style No: <?= $result['StyleNumber'] ?></h5>
                         <div class="row">
                             <div class="col-md-6">
                                 <table class="table table-bordered">
+                                    <tr>
+                                        <td width="25%">Style No:</td>
+                                        <td> <b><?= $result['StyleNumber'] ?></b> </td>
+                                    </tr>
                                     <tr>
                                         <td width="25%">Wash:</td>
                                         <td> <b><?= $result['StyleWash'] ?></b> </td>
@@ -189,11 +192,11 @@ include_once "includes/header.php";
                                     </tr>
                                     <tr>
                                         <td>DIV No: </td>
-                                        <td><b><?= getDivision($result['StyleID']) ?></b></td>
+                                        <td><b><?= getDivision(!$result['StyleID']) ? 'No Related PO Found' : getDivision($result['StyleID']) ?></b></td>
                                     </tr>
                                     <tr>
                                         <td>Price: </td>
-                                        <td><b><?= getPrice($result['StyleWash']) ?></b> </td>
+                                        <td><b><?= getPrice(!$result['StyleID']) ? 'No Related LC Found' : getPrice($result['StyleID']) ?></b> </td>
                                     </tr>
                                 </table>
                             </div>
