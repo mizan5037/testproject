@@ -6,6 +6,7 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
+include_once "controller/add_item_issue_access.php";
 include_once "includes/header.php";
 
 ?>
@@ -30,19 +31,41 @@ include_once "includes/header.php";
         <div class="card-body">
             <!-- <h5 class="card-title">Card Title</h5> -->
             <div class="container">
-                <form action="" class="needs-validation" novalidate>
+                <form action="" class="needs-validation" method="POST" novalidate>
                     <div class="form-row">
                         <div class="col-md-4">
                             <label for="validationTooltip02">Cutting No</label>
-                            <input type="text" class="form-control" id="validationTooltip02" placeholder="Cutting No" required>
+                            <input type="text" class="mb-2 form-control-sm form-control" id="validationTooltip02" name="cutting_no"laceholder="Cutting No" required>
                         </div>
                         <div class="col-md-4">
                             <label for="validationTooltip02">Style No</label>
-                            <input type="text" class="form-control" id="validationTooltip02" placeholder="Style No" required>
+
+                            <select name="style" class="style mb-2 form-control-sm form-control" required>
+                                <option></option>
+                                <?php
+                                $conn = db_connection();
+                                $sql = "SELECT * FROM style WHERE status = 1";
+                                $results = mysqli_query($conn, $sql);
+                                while ($result = mysqli_fetch_assoc($results)) {
+                                    echo '<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                }
+                                ?>
+                            </select>
+
                         </div>
                         <div class="col-md-4">
                             <label for="validationTooltip02">P.O. No</label>
-                            <input type="text" class="form-control" id="validationTooltip02" placeholder="P.O. No" required>
+                            <select name="po" class="po mb-2 form-control-sm form-control" required>
+                                <option></option>
+                                <?php
+                                $conn = db_connection();
+                                $sql = "SELECT * FROM po WHERE status = 1";
+                                $results = mysqli_query($conn, $sql);
+                                while ($result = mysqli_fetch_assoc($results)) {
+                                    echo '<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
+                                }
+                                ?>
+                            </select>
                         </div>
                     </div>
                     <br>
@@ -62,16 +85,46 @@ include_once "includes/header.php";
                                 <tr>
                                     <th>1</th>
                                     <td>
-                                        <input class="mb-2 form-control-sm form-control" type="text" placeholder="Item" name="item" />
+                                        <select name="item[]" class="item mb-2 form-control-sm form-control" required>
+                                            <option></option>
+                                            <?php
+                                            $conn = db_connection();
+                                            $sql = "SELECT * FROM item WHERE status = 1";
+                                            $results = mysqli_query($conn, $sql);
+                                            while ($result = mysqli_fetch_assoc($results)) {
+                                                echo '<option value="' . $result['ItemID'] . '">' . $result['ItemName'] . '</option>';
+                                            }
+                                            ?>
+                                        </select>
                                     </td>
                                     <td>
-                                        <input class="mb-2 form-control-sm form-control" type="text" placeholder="Color" name="color" />
-                                    </td>
+                                    <select name="color[]" class="color mb-2 form-control-sm form-control" required>
+                                        <option></option>
+                                        <?php
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM color WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="size[]" class="size mb-2 form-control-sm form-control" required>
+                                        <option></option>
+                                        <?php
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM size WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['id'] . '">' . $result['size'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
                                     <td>
-                                        <input class="mb-2 form-control-sm form-control" type="text" placeholder="Size" name="size" />
-                                    </td>
-                                    <td>
-                                        <input class="mb-2 form-control-sm form-control" type="number" placeholder="QTY" name="qty" />
+                                        <input class="mb-2 form-control-sm form-control" type="number" placeholder="QTY" name="qty[]" />
                                     </td>
                                     <td><a class="deleteRow"></a>
 
@@ -125,10 +178,37 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th>' + counter + '</th>';
-                cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="Item" name="item"/></td>';
-                cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="Color" name="color"/></td>';
-                cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="Size" name="size"/></td>';
-                cols += '<td><input class="mb-2 form-control-sm form-control" type="number" placeholder="QTY" name="qty" /></td>';
+                cols += '<td><select name="item[]" class="item mb-2 form-control-sm form-control" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM item WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['ItemID'] . '">' . $result['ItemName'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
+                cols += '<td><select name="color[]" class="color mb-2 form-control-sm form-control" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM color WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['id'] . '">' . $result['color'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
+                cols += '<td><select name="size[]" class="size mb-2 form-control-sm form-control" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM size WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['id'] . '">' . $result['size'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
+                cols += '<td><input class="mb-2 form-control-sm form-control" type="number" placeholder="QTY" name="qty[]" /></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-danger"  value="Delete"></td>';
                 newRow.append(cols);

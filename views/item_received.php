@@ -30,7 +30,7 @@ include_once "includes/header.php";
     <div class="main-card mb-3 card">
         <div class="card-body">
             <!-- <h5 class="card-title">PO</h5> -->
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation" method="POST" novalidate>
                 <div class="form-row">
                     <table class="mb-0 table table-bordered order-list" id="myTable">
                         <thead>
@@ -76,7 +76,17 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                    <input placeholder="Color" type="text" name="color" class="mb-2 form-control-sm form-control">
+                                    <select name="color[]" class="color mb-2 form-control-sm form-control" required>
+                                        <option></option>
+                                        <?php
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM color WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </td>
                                 <td>
                                     <select name="po[]" class="po mb-2 form-control-sm form-control" required>
@@ -92,13 +102,23 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                    <input placeholder="Size" type="text" name="receivefab" class="mb-2 form-control-sm form-control">
+                                    <select name="size[]" class="size mb-2 form-control-sm form-control" required>
+                                        <option></option>
+                                        <?php
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM size WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['id'] . '">' . $result['size'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </td>
                                 <td>
-                                    <input placeholder="Received" type="text" name="receiveroll" class="mb-2 form-control-sm form-control">
+                                    <input placeholder="Received" type="number" name="receiveroll[]" class="mb-2 form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="Shortage/Excess" type="text" name="sortexs" class="mb-2 form-control-sm form-control">
+                                    <input placeholder="Shortage/Excess" type="number" name="sortexs[]" class="mb-2 form-control-sm form-control">
                                 </td>
                                 <td></td>
                             </tr>
@@ -165,7 +185,16 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
-                cols += '<td><input placeholder="Color" type="text" name="color' + counter + '" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><select name="color[]" class="color mb-2 form-control-sm form-control" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM color WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['id'] . '">' . $result['color'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
                 cols += '<td><select name="po[]" class="po mb-2 form-control-sm form-control" required><option></option>';
                 <?php
                     $conn = db_connection();
@@ -176,9 +205,18 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
-                cols += '<td><input placeholder="Size" type="text" name="receivefab" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Received" type="text" name="receiveroll' + counter + '" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Shortage/Excess" type="text" name="sortexs' + counter + '" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><select name="size[]" class="size mb-2 form-control-sm form-control" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM size WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['id'] . '">' . $result['size'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
+                cols += '<td><input placeholder="Received" type="number" name="receiveroll[]" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Shortage/Excess" type="number" name="sortexs[]" class="mb-2 form-control-sm form-control"></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-danger"  value="Delete"></td>';
                 newRow.append(cols);
