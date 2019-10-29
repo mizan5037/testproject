@@ -151,7 +151,7 @@
                                             <li <?php active('all_item'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=all_item">
                                                     <i class="metismenu-icon">
-                                                    </i>All Items 
+                                                    </i>All Items
                                                 </a>
                                             </li>
                                         </ul>
@@ -173,7 +173,7 @@
                                             <li <?php active('all_style'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=all_style">
                                                     <i class="metismenu-icon">
-                                                    </i>All Style 
+                                                    </i>All Style
                                                 </a>
                                             </li>
                                         </ul>
@@ -195,7 +195,7 @@
                                             <li <?php active('all_po'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=all_po">
                                                     <i class="metismenu-icon"></i>
-                                                    All PO 
+                                                    All PO
                                                 </a>
                                             </li>
                                         </ul>
@@ -217,7 +217,7 @@
                                             <li <?php active('all_buyer'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=all_buyer">
                                                     <i class="metismenu-icon">
-                                                    </i>All Buyer 
+                                                    </i>All Buyer
                                                 </a>
                                             </li>
                                         </ul>
@@ -239,7 +239,7 @@
                                             <li <?php active('all_master_lc'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=all_master_lc">
                                                     <i class="metismenu-icon"></i>
-                                                    All Master LC 
+                                                    All Master LC
                                                 </a>
                                             </li>
                                         </ul>
@@ -269,7 +269,7 @@
                                             <li <?php active('all_b2b_lc'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=all_b2b_lc">
                                                     <i class="metismenu-icon"></i>
-                                                    All B2B LC 
+                                                    All B2B LC
                                                 </a>
                                             </li>
                                         </ul>
@@ -291,7 +291,7 @@
                                             <li <?php active('all_pi'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=all_pi">
                                                     <i class="metismenu-icon"></i>
-                                                    All PI 
+                                                    All PI
                                                 </a>
                                             </li>
                                         </ul>
@@ -325,6 +325,12 @@
                                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                                 </a>
                                                 <ul>
+                                                    <li <?php active('color_fab'); ?>>
+                                                        <a href="<?= $path ?>/index.php?page=color_fab">
+                                                            <i class="metismenu-icon">
+                                                            </i>Fabric Color
+                                                        </a>
+                                                    </li>
                                                     <li <?php active('item_received_fab'); ?>>
                                                         <a href="<?= $path ?>/index.php?page=item_received_fab">
                                                             <i class="metismenu-icon">

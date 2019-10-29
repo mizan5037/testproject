@@ -48,7 +48,7 @@ include_once "includes/header.php";
                             <td> <a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=single_buyer&buyer_id=<?= $row['BuyerID'] ?>" target="_blank"><?= $row['BuyerName'] ?></a> </td>
                             <td> <a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" target="_blank"><?= $row['StyleNumber'] ?></a> </td>
                             <td><?= $row['Color'] ?></td>
-                            <td> <a href="<?=$path?>/index.php?page=single_fab_stock&fab_rec_id=<?= $row['FabReceiveID'] ?>" class="btn btn-sm btn-primary">Details</a> </td>
+                            <td> <a href="<?=$path?>/index.php?page=single_fab_stock&fab_rec_id=<?= $row['BuyerID'] ?>&color=<?= $row['Color'] ?>&style=<?= $row['StyleID'] ?>" class="btn btn-sm btn-primary">Details</a> </td>
                         </tr>
                     <?php
                     }

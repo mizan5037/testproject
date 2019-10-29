@@ -10,7 +10,7 @@ function isLoggedIn()
         }
 
         //echo "Not logged In";
-        return false;
+        die();
     }
 }
 

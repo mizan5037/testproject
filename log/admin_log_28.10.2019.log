@@ -1022,3 +1022,31 @@ Path: http://localhost/inventory2/index.php?page=single_fab_stock&fab_rec_id=5
 Date & Time: October 28, 2019, 6:24 pm
 Attempt: single_fab_stock Page View
 -------------------------
+Path: http://localhost/inventory2/index.php?page=fabric_stock
+Date & Time: October 28, 2019, 6:35 pm
+Attempt: fabric_stock Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=all_style
+Date & Time: October 28, 2019, 6:35 pm
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=all_po
+Date & Time: October 28, 2019, 6:35 pm
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=po_single&poid=1
+Date & Time: October 28, 2019, 6:35 pm
+Attempt: po_single Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=po_single&poid=1
+Date & Time: October 28, 2019, 6:38 pm
+Attempt: po_single Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=po_single&poid=1
+Date & Time: October 28, 2019, 6:38 pm
+Attempt: po_single Page View
+-------------------------
+Path: http://localhost/inventory2/index.php?page=po_single&poid=1
+Date & Time: October 28, 2019, 6:40 pm
+Attempt: po_single Page View
+-------------------------

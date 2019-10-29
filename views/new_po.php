@@ -31,56 +31,56 @@ include_once "includes/header.php";
         <div class="card-body">
             <form class="needs-validation" method="POST" novalidate>
                 <div class="form-row">
-                <div class="col-md-3 mb-3">
-                        <label >From</label>
-                        <input type="text" name="from" class="form-control"  placeholder="From" required>
+                    <div class="col-md-3 mb-3">
+                        <label>From</label>
+                        <input type="text" name="from" class="form-control" placeholder="From" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label >Date</label>
-                        <input type="date" name="date" class="form-control"   required>
+                        <label>Date</label>
+                        <input type="date" name="date" class="form-control" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label>PO Number</label>
-                        <input type="text" name="po_number" class="form-control"  placeholder="PO Number" required>
+                        <input type="text" name="po_number" class="form-control" placeholder="PO Number" required>
                         <div class="invalid-tooltip">
                             Please provide a PO Number.
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label>Currency</label>
-                        <input type="text" name="currency" class="form-control"  placeholder="Currency" required>
+                        <input type="text" name="currency" class="form-control" placeholder="Currency" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
-                        <label >CMP</label>
-                        <input type="number" name="cmp" class="form-control"  placeholder="CMP" required>
+                        <label>CMP</label>
+                        <input type="number" name="cmp" class="form-control" placeholder="CMP" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label>Wash Cost</label>
-                        <input type="number" name="wash_cost" class="form-control"  placeholder="Wash Cost" required>
+                        <input type="number" name="wash_cost" class="form-control" placeholder="Wash Cost" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label>Hanger Cost</label>
-                        <input type="number" name="hanger_cost" class="form-control"  placeholder="Hanger Cost" required>
+                        <input type="number" name="hanger_cost" class="form-control" placeholder="Hanger Cost" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label>CMP+W+Hanger</label>
-                        <input type="number" name="cmp_w_wanger" class="form-control"  placeholder="CMP+W+Hanger" required>
+                        <input type="number" name="cmp_w_wanger" class="form-control" placeholder="CMP+W+Hanger" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
-                        <label >Final Destination</label>
-                        <input type="Text" name="final_destination" class="form-control"  placeholder="Final Destination" required>
+                        <label>Final Destination</label>
+                        <input type="Text" name="final_destination" class="form-control" placeholder="Final Destination" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Special Instruction</label>
-                        <textarea type="number" name="special_instruction" class="form-control"  placeholder="Special Instruction" required></textarea>
+                        <textarea type="number" name="special_instruction" class="form-control" placeholder="Special Instruction" required></textarea>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label>Division</label>
-                        <input type="Text" name="division" class="form-control"  placeholder="Division" required>
+                        <input type="Text" name="division" class="form-control" placeholder="Division" required>
                     </div>
                 </div>
                 <div class="form-row">
