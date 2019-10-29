@@ -6,6 +6,7 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
+include_once "controller/add_item_received.php";
 include_once "includes/header.php";
 
 ?>
@@ -49,16 +50,46 @@ include_once "includes/header.php";
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <input placeholder="Item" type="text" name="item" class="mb-2 form-control-sm form-control">
+                                    <select name="item[]" class="item mb-2 form-control-sm form-control" required>
+                                        <option></option>
+                                        <?php
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM item WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['ItemID'] . '">' . $result['ItemName'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </td>
                                 <td>
-                                    <input placeholder="Style" type="text" name="style" class="mb-2 form-control-sm form-control">
+                                    <select name="style[]" class="style mb-2 form-control-sm form-control" required>
+                                        <option></option>
+                                        <?php
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM style WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </td>
                                 <td>
                                     <input placeholder="Color" type="text" name="color" class="mb-2 form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="PO" type="text" name="receivefab" class="mb-2 form-control-sm form-control">
+                                    <select name="po[]" class="po mb-2 form-control-sm form-control" required>
+                                        <option></option>
+                                        <?php
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM po WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </td>
                                 <td>
                                     <input placeholder="Size" type="text" name="receivefab" class="mb-2 form-control-sm form-control">
@@ -114,10 +145,37 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th>' + counter + '</th>';
-                cols += '<td><input placeholder="Item"  name="item' + counter + '" type="text" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Style"  name="style' + counter + '" type="text" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><select name="item[]" class="item mb-2 form-control-sm form-control" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM item WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['ItemID'] . '">' . $result['ItemName'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
+                cols += '<td><select name="style[]" class="style mb-2 form-control-sm form-control" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM style WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
                 cols += '<td><input placeholder="Color" type="text" name="color' + counter + '" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="PO" type="text" name="receivefab' + counter + '" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><select name="po[]" class="po mb-2 form-control-sm form-control" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM po WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
                 cols += '<td><input placeholder="Size" type="text" name="receivefab" class="mb-2 form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Received" type="text" name="receiveroll' + counter + '" class="mb-2 form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Shortage/Excess" type="text" name="sortexs' + counter + '" class="mb-2 form-control-sm form-control"></td>';
