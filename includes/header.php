@@ -134,8 +134,8 @@
                                             </i>New Inquire
                                         </a>
                                     </li>
-                                    <li <?php active('color_fab'); ?>>
-                                        <a href="<?= $path ?>/index.php?page=color_fab">
+                                    <li <?php active('color_size'); ?>>
+                                        <a href="<?= $path ?>/index.php?page=color_size">
                                             <i class="metismenu-icon">
                                             </i>Color & Size
                                         </a>
@@ -361,7 +361,7 @@
                                                     <li <?php active('fab_issue_other'); ?>>
                                                         <a href="<?= $path ?>/index.php?page=fab_issue_other">
                                                             <i class="metismenu-icon">
-                                                            </i>Fabric Receive (Other)
+                                                            </i>Fabric Issue (Other)
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -403,6 +403,12 @@
                                         </a>
 
                                         <ul>
+                                            <li <?php active('item_stock'); ?>>
+                                                <a href="<?= $path ?>/index.php?page=item_stock">
+                                                    <i class="metismenu-icon">
+                                                    </i>Item Stock
+                                                </a>
+                                            </li>
                                             <li <?php active('item_received'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=item_received">
                                                     <i class="metismenu-icon">
@@ -455,7 +461,7 @@
                                             <li <?php active('new_stationary'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=new_stationary">
                                                     <i class="metismenu-icon">
-                                                    </i>New Item
+                                                    </i>All Items
                                                 </a>
                                             </li>
                                             <li <?php active('item_issue_stationary'); ?>>

@@ -32,14 +32,13 @@ if ( isset($_POST['buyer']) && $_POST['style'] && isset($_POST['po']) && isset($
 	$remark  = $_POST['remark'];
     $user_id = get_ses('user_id');
 
-    for ($i = 0; $i < sizeof($particulars); $i++) {
+    for ($i = 0; $i < sizeof($color); $i++) {
 
-		$sql = "INSERT INTO fab_issue_description (FabIssueID,Particulars,Color,Qtz,Consumption,RqdQty,IssueQty,Remark,AddedBy)
+		$sql = "INSERT INTO fab_issue_description (FabIssueID,Particulars,Color,Qtz,Consumption,RqdQty,IssueQty,Roll,AddedBy)
 		values('$last_id','$particulars[$i]','$color[$i]','$qtz[$i]','$consuption[$i]','$rqd[$i]','$issue[$i]','$remark[$i]','$user_id')";
 
 		if (mysqli_query($conn, $sql)) {
             notice('success', 'New Fabric Issue added Successfully');
-		    $last_id = mysqli_insert_id($conn);
             
 		} else {
 			notice('error', $sql . "<br>" . mysqli_error($conn));
@@ -48,5 +47,3 @@ if ( isset($_POST['buyer']) && $_POST['style'] && isset($_POST['po']) && isset($
  
     
 }
-
-?>

@@ -327,7 +327,7 @@ include_once "includes/header.php";
                             <th>#</th>
                             <th>Style Number</th>
                             <th>Photo</th>
-                            <th>Clr No</th>
+                            <th>Color</th>
                             <th>DZS</th>
                             <th>P/PACK</th>
                             <th>Units</th>
@@ -335,17 +335,17 @@ include_once "includes/header.php";
                         </thead>
                         <tbody>
                             <?php
-                            $sqlo = "SELECT o.*,s.StyleImage,s.StyleNumber, s.StyleID FROM order_description o LEFT JOIN style s on s.StyleID = o.StyleID where o.POID ='$poid' AND o.Status=1";
+                            $sqlo = "SELECT o.OrderdescriptionID, o.Dzs, o.PPack, o.Units, c.color,s.StyleImage,s.StyleNumber, s.StyleID FROM order_description o LEFT JOIN style s on s.StyleID = o.StyleID LEFT JOIN color c ON o.Color = c.id where o.POID ='$poid' AND o.Status=1";
                             $order = mysqli_query($conn, $sqlo);
                             $count = 1;
                             while ($rowo = mysqli_fetch_assoc($order)) {
                                 ?>
                                 <tr>
                                     <td><?= $count ?></td>
-                                    <td> <a class="btn btn-sm btn-outline-success" href="<?= $path . '/index.php?page=single_style&id=' . $rowo['StyleID'] ?>" target="_blank" rel="noopener noreferrer"><?= $rowo['StyleNumber'] ?></a></td>
+                                    <td> <a class="btn btn-sm btn-outline-success" href="<?= $path . '/index.php?page=single_style&id=' . $rowo['StyleID'] ?>" target="_blank"><?= $rowo['StyleNumber'] ?></a></td>
                                     <td><img class="img-fluid img-thumbnail rounded" alt="Style No: <?= $rowo['StyleNumber'] ?>" onclick="view('<?= $rowo['StyleImage'] ?>');" id="<?= $rowo['StyleImage'] ?>" src="<?= $path . $uploadpath . $rowo['StyleImage'] ?>" style="max-height:50px;"></td>
-                                    <td><?= $rowo['Color'] ?></td>
-                                    <td><?= $rowo['ClrNo'] ?></td>
+                                    <td><?= $rowo['color'] ?></td>
+                                    <td><?= $rowo['Dzs'] ?></td>
                                     <td><?= $rowo['PPack'] ?></td>
                                     <td><?= $rowo['Units'] ?></td>
                                     <td><a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=po_single&poid=<?= $poid ?>&orde=<?php echo $rowo['OrderdescriptionID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
@@ -389,7 +389,7 @@ include_once "includes/header.php";
                         </thead>
                         <tbody>
                             <?php
-                            $sql = "SELECT * FROM prepack where status=1 AND POID ='$poid'";
+                            $sql = "SELECT p.PrePackID, p.PrePackCode, p.PrepackQty, s.size FROM prepack p LEFT JOIN size s ON p.PrePackSize = s.id where p.status=1 AND p.POID = '$poid'";
 
                             $prepack = mysqli_query($conn, $sql);
                             $count = 1;
@@ -399,7 +399,7 @@ include_once "includes/header.php";
                                 <tr>
                                     <td><?= $count ?></td>
                                     <td><?= $row['PrePackCode'] ?></td>
-                                    <td><?= $row['PrePackSize'] ?></td>
+                                    <td><?= $row['size'] ?></td>
                                     <td><?= $row['PrepackQty'] ?></td>
                                     <td><a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=po_single&poid=<?= $poid ?>&preid=<?php echo $row['PrePackID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
                                             <i class="fas fa-trash-alt" style="color: white;"></i>

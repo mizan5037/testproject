@@ -1,6 +1,25 @@
 <?php
 
-if (isset($_POST['from'])  && isset($_POST['date']) && isset($_POST['po_number']) && isset($_POST['currency']) && isset($_POST['cmp']) && isset($_POST['wash_cost']) && isset($_POST['hanger_cost']) && isset($_POST['cmp_w_wanger']) && isset($_POST['final_destination']) &&  isset($_POST['style']) && $_POST['style'] != '' && isset($_POST['color']) && isset($_POST['clr_no']) && isset($_POST['dzs']) && isset($_POST['ppack']) && isset($_POST['units'])  && isset($_POST['size'])  && isset($_POST['ppk']) && isset($_POST['qty']) ) {
+
+if (
+	isset($_POST['from'])  &&
+	isset($_POST['date']) &&
+	isset($_POST['po_number']) &&
+	isset($_POST['currency']) &&
+	isset($_POST['cmp']) &&
+	isset($_POST['wash_cost']) &&
+	isset($_POST['hanger_cost']) &&
+	isset($_POST['cmp_w_wanger']) &&
+	isset($_POST['style']) &&
+	isset($_POST['color']) &&
+	isset($_POST['clr_no']) &&
+	isset($_POST['dzs']) &&
+	isset($_POST['ppack']) &&
+	isset($_POST['units'])  &&
+	isset($_POST['size'])  &&
+	isset($_POST['ppk']) &&
+	isset($_POST['qty'])
+) {
 	$conn = db_connection();
 
 	$from = $_POST['from'];
@@ -13,27 +32,27 @@ if (isset($_POST['from'])  && isset($_POST['date']) && isset($_POST['po_number']
 	$cmp_w_wanger = $_POST['cmp_w_wanger'];
 	$final_destination = $_POST['final_destination'];
 	$special_instruction = $_POST['special_instruction'];
+	$division = $_POST['division'];
 	$user_id = get_ses('user_id');
 
 
 
-	$sql = "INSERT INTO po (PONumber,POFrom,PODate,POCMPWH,POCurrency,POSpecialInstruction,POFinalDestination,POCMP,POWASH,POHANGER,AddedBy)
+	$sql = "INSERT INTO po (PONumber,POFrom,PODate,POCMPWH,POCurrency,POSpecialInstruction,POFinalDestination,POCMP,POWASH,POHANGER,Division,AddedBy)
 
-	values('$po_number','$from','$date','$cmp_w_wanger' ,'$currency','$special_instruction','$final_destination','$cmp','$wash_cost','$hanger_cost','$user_id')";
+	values('$po_number','$from','$date','$cmp_w_wanger' ,'$currency','$special_instruction','$final_destination','$cmp','$wash_cost','$hanger_cost','$division','$user_id')";
 
 	if (mysqli_query($conn, $sql)) {
 		notice('success', 'New PO added Successfully');
 		$last_id = mysqli_insert_id($conn);
-
 	} else {
 		notice('error', $sql . "<br>" . mysqli_error($conn));
 	}
-	
-  //prepack table
+
+	//prepack table
 	$size = $_POST['size'];
 	$ppk = $_POST['ppk'];
 	$qty = $_POST['qty'];
-	
+
 
 
 	for ($i = 0; $i < sizeof($size); $i++) {
@@ -59,7 +78,7 @@ if (isset($_POST['from'])  && isset($_POST['date']) && isset($_POST['po_number']
 	$dzs = $_POST['dzs'];
 	$ppack = $_POST['ppack'];
 	$units = $_POST['units'];
-	
+
 
 
 	for ($i = 0; $i < sizeof($style); $i++) {
@@ -79,5 +98,3 @@ if (isset($_POST['from'])  && isset($_POST['date']) && isset($_POST['po_number']
 
 	nowgo('/index.php?page=all_po');
 }
-
-

@@ -358,11 +358,11 @@ include_once "includes/header.php";
                         </tr>
                         <tr>
                             <td>DIV No:</td>
-                            <td><b><?= getDivision(!$item['StyleID']) ? 'No Related PO Found' : getDivision($item['StyleID']) ?></b></td>
+                            <td><b><?= getDivision($item['StyleID']) ?></b></td>
                         </tr>
                         <tr>
                             <td>Price:</td>
-                            <td><b><?= getPrice(!$item['StyleID']) ? 'No Related LC Found' : getPrice($item['StyleID']) ?></b></td>
+                            <td><b><?= getPrice($item['StyleID']) ?></b></td>
                         </tr>
                         <tr>
                             <td>Fabric Details:</td>
@@ -448,20 +448,18 @@ include_once "includes/header.php";
                         </thead>
                         <tbody>
                             <?php
-                            $sql = "SELECT ItemRequirmentID, ItemRequirmentItemID, ItemRequirmentSize, ItemRequirmentQty FROM itemrequirment WHERE status = 1 AND ItemRequirmentStyleID ='$id'";
+                            $sql = "SELECT s.size, i.ItemName, i.ItemDescription, ir.ItemRequirmentQty, i.ItemMeasurementUnit FROM itemrequirment ir LEFT JOIN item i ON ir.ItemRequirmentItemID = i.ItemID LEFT JOIN size s ON ir.ItemRequirmentSize = s.id WHERE ir.status = 1 AND ir.ItemRequirmentStyleID ='$id'";
 
                             $item = mysqli_query($conn, $sql);
                             $count = 1;
-                            while ($row = mysqli_fetch_assoc($item)) {
-                                $itemsql = "SELECT ItemName, ItemMeasurementUnit, ItemDescription FROM item WHERE ItemID = " . $row['ItemRequirmentItemID'];
-                                $itemrow = mysqli_fetch_assoc(mysqli_query($conn, $itemsql));
+                            while ($row = mysqli_fetch_assoc($item)) {;
                                 ?>
                                 <tr>
                                     <td><?= $count ?></td>
-                                    <td><?= $itemrow['ItemName'] ?></td>
-                                    <td><?= $itemrow['ItemDescription'] ?></td>
-                                    <td><?= $row['ItemRequirmentSize'] ?></td>
-                                    <td><?= $row['ItemRequirmentQty'] . " " . $itemrow['ItemMeasurementUnit'] ?></td>
+                                    <td><?= $row['ItemName'] ?></td>
+                                    <td><?= $row['ItemDescription'] ?></td>
+                                    <td><?= $row['size'] ?></td>
+                                    <td><?= $row['ItemRequirmentQty'] . " " . $row['ItemMeasurementUnit'] ?></td>
                                     <td><a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=single_style&id=<?= $id ?>&delete=<?php echo $row['ItemRequirmentID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
                                             <i class="fas fa-trash-alt" style="color: white;"></i>
                                         </a>

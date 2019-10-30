@@ -58,7 +58,7 @@ include_once "includes/header.php";
                                 <tr>
                                     <th>1</th>
                                     <td>
-                                        <select name="item" class="item[] mb-2 form-control-sm form-control" required>
+                                        <select name="item[]" class="mb-2 form-control-sm form-control" required>
                                             <option></option>
                                             <?php
                                             $conn = db_connection();

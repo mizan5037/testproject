@@ -99,7 +99,17 @@ include_once "includes/header.php";
                                         <input class="mb-2 form-control-sm form-control" type="text" placeholder="Particulars" name="particulars[]" />
                                     </td>
                                     <td>
-                                        <input class="mb-2 form-control-sm form-control" type="text" placeholder="Color" name="color[]" />
+                                        <select name="color[]" class="style mb-2 form-control-sm form-control" required>
+                                            <option></option>
+                                            <?php
+                                            $conn = db_connection();
+                                            $sql = "SELECT * FROM color WHERE status = 1";
+                                            $results = mysqli_query($conn, $sql);
+                                            while ($result = mysqli_fetch_assoc($results)) {
+                                                echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                            }
+                                            ?>
+                                        </select>
                                     </td>
                                     <td>
                                         <input class="mb-2 form-control-sm form-control" type="number" placeholder="QTZ (DZ)" name="qtz[]" />

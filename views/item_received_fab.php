@@ -78,7 +78,17 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                    <input placeholder="Color"  type="text" name="color[]" class=" form-control-sm form-control">
+                                    <select name="color[]" class="style form-control-sm" required>
+                                        <option></option>
+                                        <?php
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM color WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </td>
                                 <td>
                                     <select name="shade[]" class="form-control-sm">
@@ -96,7 +106,7 @@ include_once "includes/header.php";
                                     <input placeholder="Shrinkage" type="text" name="shrinkage[]" class="form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="Width" type="number" name="width[]" class="form-control-sm form-control">
+                                    <input placeholder="Width" type="number" name="width[]" class="form-control-sm form-control" step="0.01">
                                 </td>
                                 <td>
                                     <input placeholder="Received Yds" type="number" name="receivefab[]" class="form-control-sm form-control">
@@ -172,10 +182,17 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
-                cols += '<td><input placeholder="Color" type="text" name="color[]" class="form-control-sm form-control"></td>';
+                cols += '<td><select name="color[]" class="style form-control-sm" required> <option></option> <?php
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM color WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                        }
+                                        ?> </select></td>';
                 cols += '<td><select name="shade[]" class="form-control-sm"> <option value="A">A</option> <option value="B">B</option> <option value="C">C</option> <option value="D">D</option> <option value="E">E</option> <option value="F">F</option> <option value="G">G</option> <option value="H">H</option> </select></td>';
                 cols += '<td><input placeholder="Shrinkage" type="text" name="shrinkage[]" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Width" type="number" name="width[]" class="form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Width" type="number" name="width[]" class="form-control-sm form-control" step="0.01"></td>';
                 cols += '<td><input placeholder="Received Fabric Yds" type="number" name="receivefab[]" class="form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Received Roll" type="number" name="receiveroll[]" class="form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Shortage/Excess" type="number" name="sortexs[]" class="form-control-sm form-control"></td>';

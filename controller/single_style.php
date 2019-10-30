@@ -115,12 +115,12 @@ $item = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 function getDivision($ssid)
 {
     global $conn;
-    $sql = "SELECT order_description.StyleID, po.Division FROM po LEFT JOIN order_description ON  po.POID = order_description.POID WHERE order_description.StyleID = '$ssid'";
+    $sql = "SELECT po.Division FROM po LEFT JOIN order_description ON  po.POID = order_description.POID WHERE order_description.StyleID = '$ssid'";
     $result = mysqli_fetch_assoc(mysqli_query($conn, $sql));
     if ($result) {
         return $result['Division'];
     } else {
-        return false;
+        return 'No Related PO Found';
     }
 }
 
@@ -132,6 +132,6 @@ function getPrice($ssid)
     if ($result) {
         return $result['MasterLCCurrency'] . " " . $result['Price'];
     } else {
-        return false;
+        return 'No Related LC Found';
     }
 }

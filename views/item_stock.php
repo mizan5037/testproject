@@ -6,7 +6,7 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
-include_once "controller/fabric_stock.php";
+include_once "controller/item_stock.php";
 include_once "includes/header.php";
 
 ?>
@@ -19,7 +19,7 @@ include_once "includes/header.php";
                     <i class="pe-7s-note icon-gradient bg-mean-fruit">
                     </i>
                 </div>
-                <div>Fabric Stock
+                <div>Item Stock
                     <div class="page-title-subheading">
                         Fabric Stock Details
                     </div>
@@ -34,6 +34,7 @@ include_once "includes/header.php";
                 <thead>
                     <th>#</th>
                     <th>Buyer</th>
+                    <th>PO</th>
                     <th>Style</th>
                     <th>Color</th>
                     <th>Action</th>
@@ -45,21 +46,11 @@ include_once "includes/header.php";
                         ?>
                         <tr>
                             <td><?= $count++ ?></td>
-                            <td> <a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=single_buyer&buyer_id=<?= $row['BuyerID'] ?>" target="_blank"><?= $row['BuyerName'] ?></a> </td>
-                            <td> <a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" target="_blank"><?= $row['StyleNumber'] ?></a> </td>
+                            <td> <a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=single_buyer&buyer_id=<?= $row['BuyerID'] ?>" target="_blank"><?= $row['BuyerName'] ?></a> </td>
+                            <td> <a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=po_single&poid=<?= $row['POID'] ?>" target="_blank"><?= $row['PONumber'] ?></a> </td>
+                            <td> <a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" target="_blank"><?= $row['StyleNumber'] ?></a> </td>
                             <td><?= $row['color'] ?></td>
-                            <td> <a href="<?=$path?>/index.php?page=single_fab_stock&fab_rec_id=<?= $row['BuyerID'] ?>&color=<?= $row['Color'] ?>&style=<?= $row['StyleID'] ?>" class="btn btn-sm btn-primary">Details</a> </td>
-                        </tr>
-                    <?php
-                    }
-                    while ($rowother = mysqli_fetch_assoc($queryother)) {
-                        ?>
-                        <tr>
-                            <td><?= $count++ ?></td>
-                            <td> <a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=single_buyer&buyer_id=<?= $rowother['BuyerID'] ?>" target="_blank"><?= $rowother['BuyerName'] ?></a> </td>
-                            <td style="text-transform:capitalize"><?= $rowother['ContrastPocket'] ?></td>
-                            <td><?= $rowother['color'] ?></td>
-                            <td> <a href="<?=$path?>/index.php?page=single_fab_stock&fab_rec_id_other=<?= $rowother['BuyerID'] ?>&conpoc=<?= $rowother['ContrastPocket'] ?>&color=<?= $rowother['Color'] ?>" class="btn btn-sm btn-primary">Details</a> </td>
+                            <td> <a href="<?= $path ?>/index.php?page=single_fab_stock&item_rec_id=<?= $row['BuyerID'] ?>&color=<?= $row['ColorID'] ?>&style=<?= $row['StyleID'] ?>&po=<?= $row['POID'] ?>" class="btn btn-sm btn-primary">Details</a> </td>
                         </tr>
                     <?php
                     }
