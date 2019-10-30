@@ -6,6 +6,7 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
+include_once "controller/add_lay_form.php";
 include_once "includes/header.php";
 
 ?>
@@ -26,48 +27,89 @@ include_once "includes/header.php";
             </div>
         </div>
     </div>
+
     <div class="main-card mb-3 card">
         <div class="card-body">
             <!-- <h5 class="card-title">PO</h5> -->
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation" method="POST" novalidate>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip01">Buyer Name</label>
-                        <input type="text" class="form-control" id="validationTooltip01" placeholder="Buyer Name" required>
+                        <select name="buyer" class="buyer  form-control" required>
+                            <option></option>
+                            <?php
+                            $conn = db_connection();
+                            $sql = "SELECT * FROM buyer WHERE status = 1";
+                            $results = mysqli_query($conn, $sql);
+                            while ($result = mysqli_fetch_assoc($results)) {
+                                echo '<option value="' . $result['BuyerID'] . '">' . $result['BuyerName'] . '</option>';
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip02">Style No</label>
-                        <input type="text" class="form-control" id="validationTooltip02" placeholder="Style No" required>
+                        <select name="style" class="style  form-control" required>
+                            <option></option>
+                            <?php
+                            $conn = db_connection();
+                            $sql = "SELECT * FROM style WHERE status = 1";
+                            $results = mysqli_query($conn, $sql);
+                            while ($result = mysqli_fetch_assoc($results)) {
+                                echo '<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltipUsername">P.O. No</label>
-                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="P.O. No" required>
+                        <select name="po" class="po  form-control" required>
+                            <option></option>
+                            <?php
+                            $conn = db_connection();
+                            $sql = "SELECT * FROM po WHERE status = 1";
+                            $results = mysqli_query($conn, $sql);
+                            while ($result = mysqli_fetch_assoc($results)) {
+                                echo '<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltipUsername">Cutting No</label>
-                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Cutting No" required>
+                        <input type="text" class="form-control" name="cutting_no" id="validationTooltipUsername" placeholder="Cutting No" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip01">Unit</label>
-                        <input type="text" class="form-control" id="validationTooltip01" placeholder="Unit" required>
+                        <input type="text" class="form-control" name="unit" id="validationTooltip01" placeholder="Unit" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip02">Date</label>
-                        <input type="date" class="form-control" id="validationTooltip02" placeholder="Date" required>
+                        <input type="date" class="form-control" name="date" id="validationTooltip02" placeholder="Date" required>
                     </div>
                     <div class="col-md-2 mb-3">
                         <label for="validationTooltipUsername">Item</label>
-                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Item" required>
+                        <select name="item" class="item  form-control" required>
+                            <option></option>
+                            <?php
+                            $conn = db_connection();
+                            $sql = "SELECT * FROM item WHERE status = 1";
+                            $results = mysqli_query($conn, $sql);
+                            while ($result = mysqli_fetch_assoc($results)) {
+                                echo '<option value="' . $result['ItemID'] . '">' . $result['ItemName'] . '</option>';
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div class="col-md-2 mb-3">
                         <label for="validationTooltipUsername">M/W</label>
-                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Cutting No" required>
+                        <input type="text" class="form-control" id="validationTooltipUsername" name="mw" placeholder="M/W" required>
                     </div>
                     <div class="col-md-2 mb-3">
                         <label for="validationTooltipUsername">Marker Length</label>
-                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Cutting No" required>
+                        <input type="text" name="marker_length" class="form-control" id="validationTooltipUsername" placeholder="Marker Length" required>
                     </div>
                 </div>
                 <style>
@@ -84,14 +126,15 @@ include_once "includes/header.php";
                         max-width: 60px;
                     }
 
-                    #myTable input, textarea {
+                    #myTable input,
+                    textarea {
                         border: none;
                         padding: 2px;
                         width: 100%;
                     }
 
-                    #addrow{
-                        width: 80px!important;
+                    #addrow {
+                        width: 80px !important;
                         margin: 10px;
                     }
                 </style>
@@ -118,34 +161,44 @@ include_once "includes/header.php";
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>
-                                        <input placeholder="Color" type="text" name="color">
+                                        <select name="color[]" class="color  form-control" required>
+                                            <option></option>
+                                            <?php
+                                            $conn = db_connection();
+                                            $sql = "SELECT * FROM color WHERE status = 1";
+                                            $results = mysqli_query($conn, $sql);
+                                            while ($result = mysqli_fetch_assoc($results)) {
+                                                echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                            }
+                                            ?>
+                                        </select>
                                     </td>
                                     <td>
-                                        <input placeholder="Lot No" type="text" name="lotno">
+                                        <input placeholder="Lot No" type="text" name="lotno[]">
                                     </td>
                                     <td>
-                                        <input placeholder="Sl. No" type="text" name="slno">
+                                        <input placeholder="Sl. No" type="text" name="slno[]">
                                     </td>
                                     <td>
-                                        <input placeholder="Roll No" name="rollno" type="text">
+                                        <input placeholder="Roll No" name="rollno[]" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="TTL Fabrics/yds" name="ttlfab" type="text">
+                                        <input placeholder="TTL Fabrics/yds" name="ttlfab[]" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Lay" name="lay" type="text">
+                                        <input placeholder="Lay" name="lay[]" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Used Fabrics/yds" name="usedfab" type="text">
+                                        <input placeholder="Used Fabrics/yds" name="usedfab[]" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Remaining" name="ramaining" type="text">
+                                        <input placeholder="Remaining" name="ramaining[]" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Exxess/Short" name="exsshort" type="text">
+                                        <input placeholder="Exxess/Short" name="exsshort[]" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Sticker" name="sticker" type="text">
+                                        <input placeholder="Sticker" name="sticker[]" type="text">
                                     </td>
                                     <td><a class="deleteRow"></a></td>
                                 </tr>
@@ -155,10 +208,11 @@ include_once "includes/header.php";
                                 <tr>
                                     <td colspan="13" class="text-center"><input type="button" class="btn btn-sm btn-success" id="addrow" value="Add Row" /><br></td>
                                 </tr>
-                                <tr><td></td>
+                                <tr>
+                                    <td></td>
                                     <th>Special Action: </th>
                                     <td colspan="12">
-                                        <textarea name="" placeholder="Type Here . . ." id="" rows="3"></textarea>
+                                        <textarea name="specialaction" placeholder="Type Here . . ." id="" rows="3"></textarea>
                                     </td>
                                 </tr>
                             </tfoot>
@@ -200,16 +254,25 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th>' + counter + '</th>';
-                cols += '<td><input placeholder="Color" type="text" name="color"></td>';
-                cols += '<td><input placeholder="Lot No" type="text" name="lotno"></td>';
-                cols += '<td><input placeholder="Sl. No" type="text" name="slno"></td>';
-                cols += '<td><input placeholder="Roll No" name="rollno" type="text"></td>';
-                cols += '<td><input placeholder="TTL Fabrics/yds" name="ttlfab" type="text"></td>';
-                cols += '<td><input placeholder="Lay" name="lay" type="text"></td>';
-                cols += '<td><input placeholder="Used Fabrics/yds" name="usedfab" type="text"></td>';
-                cols += '<td><input placeholder="Remaining" name="ramaining" type="text"></td>';
-                cols += '<td><input placeholder="Exxess/Short" name="exsshort" type="text"></td>';
-                cols += '<td><input placeholder="Sticker" name="sticker" type="text"></td>';
+                cols += '<td><select name="color[]" class="color mb-2 form-control-sm form-control" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM color WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['id'] . '">' . $result['color'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
+                cols += '<td><input placeholder="Lot No" type="text" name="lotno[]"></td>';
+                cols += '<td><input placeholder="Sl. No" type="text" name="slno[]"></td>';
+                cols += '<td><input placeholder="Roll No" name="rollno[]" type="text"></td>';
+                cols += '<td><input placeholder="TTL Fabrics/yds" name="ttlfab[]" type="text"></td>';
+                cols += '<td><input placeholder="Lay" name="lay[]" type="text"></td>';
+                cols += '<td><input placeholder="Used Fabrics/yds" name="usedfab[]" type="text"></td>';
+                cols += '<td><input placeholder="Remaining" name="ramaining[]" type="text"></td>';
+                cols += '<td><input placeholder="Exxess/Short" name="exsshort[]" type="text"></td>';
+                cols += '<td><input placeholder="Sticker" name="sticker[]" type="text"></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-danger"  value="Delete"></td>';
                 newRow.append(cols);
