@@ -403,6 +403,12 @@
                                         </a>
 
                                         <ul>
+                                            <li <?php active('item_stock'); ?>>
+                                                <a href="<?= $path ?>/index.php?page=item_stock">
+                                                    <i class="metismenu-icon">
+                                                    </i>Item Stock
+                                                </a>
+                                            </li>
                                             <li <?php active('item_received'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=item_received">
                                                     <i class="metismenu-icon">

@@ -16,7 +16,7 @@ if ( isset($_POST['item']) && $_POST['style'] && isset($_POST['color']) && isset
 	for ($i = 0; $i < sizeof($item); $i++) {
 
 		$sql = "INSERT INTO item_receive_access (ItemID,ColorID,StyleID,POID,Size,Received,Shortage,AddedBy)
-		values('$item[$i]','$style[$i]','$color[$i]','$po[$i]','$size[$i]','$receiveroll[$i]','$sortexs[$i]','$user_id')";
+		values('$item[$i]','$color[$i]','$style[$i]','$po[$i]','$size[$i]','$receiveroll[$i]','$sortexs[$i]','$user_id')";
 
 		if (mysqli_query($conn, $sql)) {
 			notice('success', 'New Item Received Successfully');
