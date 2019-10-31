@@ -5,12 +5,11 @@ function isLoggedIn()
     if (!isset($_SESSION["isLogged"]) || $_SESSION["isLogged"] != true) {
         if (isset($_GET['page'])) {
             header('location: login.php?page=' . $_GET['page']);
+            die();
         } else {
             header('location: login.php');
+            die();
         }
-
-        //echo "Not logged In";
-        die();
     }
 }
 

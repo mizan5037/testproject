@@ -283,7 +283,7 @@ function customPagefooter()
                                                                                                                                             echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
                                                                                                                                         }
                                                                                                                                         ?>  </select></td>';
-                cols1 += '<td><input type="text" placeholder="CLR No" class="mb-2 form-control-sm form-control" name="clrno[]" required/></td>';
+                cols1 += '<td><input type="text" placeholder="CLR No" class="mb-2 form-control-sm form-control" name="clrno[]"/></td>';
                 cols1 += '<td><input type="number" placeholder="DZS" class="mb-2 form-control-sm form-control" name="dzs[]"/></td>';
                 cols1 += '<td><input type="number" placeholder="P/Pack" class="mb-2 form-control-sm form-control" name="ppack[]"/></td>';
                 cols1 += '<td><input type="number" placeholder="Units" class="mb-2 form-control-sm form-control" name="units[]"/></td>';

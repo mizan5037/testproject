@@ -1,17 +1,17 @@
 <?php
- $conn = db_connection();
-if ( isset($_POST['item']) && $_POST['style'] && isset($_POST['color']) && isset($_POST['po']) && isset($_POST['size']) && isset($_POST['receiveroll']) && isset($_POST['sortexs'])) {
+$conn = db_connection();
+if (isset($_POST['item']) && $_POST['style'] && isset($_POST['color']) && isset($_POST['po']) && isset($_POST['size']) && isset($_POST['receiveroll']) && isset($_POST['sortexs'])) {
 
-   
-    $item = $_POST['item'];
+
+	$item = $_POST['item'];
 	$style = $_POST['style'];
 	$color = $_POST['color'];
 	$po = $_POST['po'];
 	$size = $_POST['size'];
 	$receiveroll = $_POST['receiveroll'];
-    $sortexs = $_POST['sortexs'];
-    $user_id = get_ses('user_id');
-    
+	$sortexs = $_POST['sortexs'];
+	$user_id = get_ses('user_id');
+
 
 	for ($i = 0; $i < sizeof($item); $i++) {
 
@@ -24,8 +24,5 @@ if ( isset($_POST['item']) && $_POST['style'] && isset($_POST['color']) && isset
 			notice('error', $sql . "<br>" . mysqli_error($conn));
 		}
 	}
- 
-    
+	nowgo('/index.php?page=item_stock');
 }
-
-?>
