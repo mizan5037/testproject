@@ -7,6 +7,7 @@ function customPageHeader()
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
 
 <?php }
+include_once "controller/add_fab_relaxation.php";
 include_once "includes/header.php";
 
 ?>
@@ -30,19 +31,49 @@ include_once "includes/header.php";
     <div class="main-card mb-3 card">
         <div class="card-body">
             <!-- <h5 class="card-title">PO</h5> -->
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation" method="POST" novalidate>
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltip01">Buyer Name</label>
-                        <input type="text" class="form-control" id="validationTooltip01" placeholder="Buyer Name" required>
+                        <select name="buyer" class="buyer  form-control" required>
+                            <option></option>
+                            <?php
+                            $conn = db_connection();
+                            $sql = "SELECT * FROM buyer WHERE status = 1";
+                            $results = mysqli_query($conn, $sql);
+                            while ($result = mysqli_fetch_assoc($results)) {
+                                echo '<option value="' . $result['BuyerID'] . '">' . $result['BuyerName'] . '</option>';
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltip02">Style No</label>
-                        <input type="text" class="form-control" id="validationTooltip02" placeholder="Style No" required>
+                        <select name="style" class="style  form-control" required>
+                            <option></option>
+                            <?php
+                            $conn = db_connection();
+                            $sql = "SELECT * FROM style WHERE status = 1";
+                            $results = mysqli_query($conn, $sql);
+                            while ($result = mysqli_fetch_assoc($results)) {
+                                echo '<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltipUsername">Color</label>
-                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Color" required>
+                        <select name="color" class="color  form-control" required>
+                            <option></option>
+                            <?php
+                            $conn = db_connection();
+                            $sql = "SELECT * FROM color WHERE status = 1";
+                            $results = mysqli_query($conn, $sql);
+                            while ($result = mysqli_fetch_assoc($results)) {
+                                echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                            }
+                            ?>
+                        </select>
                     </div>
                 </div>
                 <style>
@@ -99,49 +130,49 @@ include_once "includes/header.php";
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>
-                                        <input placeholder="date" class="datepicker" type="text" name="date" data-date-format="dd-mm-yyyy">
+                                        <input   type="date" name="date[]" >
                                     </td>
                                     <td>
-                                        <input placeholder="Shade" type="text" name="shade">
+                                        <input placeholder="Shade" type="text" name="shade[]">
                                     </td>
                                     <td>
-                                        <input placeholder="Shrinkage%" type="text" name="shrinkage">
+                                        <input placeholder="Shrinkage%" type="text" name="shrinkage[]">
                                     </td>
                                     <td>
-                                        <input placeholder="Roll No" name="rollno" type="text">
+                                        <input placeholder="Roll No" name="rollno[]" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Yds" name="yds" type="text">
+                                        <input placeholder="Yds" name="yds[]" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Shade" type="text" name="shade2">
+                                        <input placeholder="Shade" type="text" name="shade2[]">
                                     </td>
                                     <td>
-                                        <input placeholder="Shrinkage%" type="text" name="shrinkage2">
+                                        <input placeholder="Shrinkage%" type="text" name="shrinkage2[]">
                                     </td>
                                     <td>
-                                        <input placeholder="Roll No" name="rollno2" type="text">
+                                        <input placeholder="Roll No" name="rollno2[]" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Yds" name="yds2" type="text">
+                                        <input placeholder="Yds" name="yds2[]" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Total Yds" name="ttlyds" type="text">
+                                        <input placeholder="Total Yds" name="ttlyds[]" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="FOT" name="fot" type="text">
+                                        <input placeholder="FOT" name="fot[]" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="FLD" name="fld" class="datepicker" type="text" data-date-format="dd-mm-yyyy">
+                                        <input placeholder="FLD" name="fld[]" type="date">
                                     </td>
                                     <td>
-                                        <input placeholder="FLT" name="flt" type="text">
+                                        <input placeholder="FLT" name="flt[]" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="TTL HRS" name="ttlhrs" type="text">
+                                        <input placeholder="TTL HRS" name="ttlhrs[]" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Remark" name="remark" type="text">
+                                        <input placeholder="Remark" name="remark[]" type="text">
                                     </td>
                                     <td><a class="deleteRow"></a></td>
                                 </tr>
@@ -194,21 +225,21 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th>' + counter + '</th>';
-                cols += '<td><input placeholder="date"  class="datepicker" type="text" name="date' + counter + '" data-date-format="dd-mm-yyyy"></td>';
-                cols += '<td><input placeholder="Shade" type="text" name="shade' + counter + '"></td>';
-                cols += '<td><input placeholder="Shrinkage%" type="text" name="shrinkage' + counter + '"></td>';
-                cols += '<td><input placeholder="Roll No" name="rollno' + counter + '" type="text"></td>';
-                cols += '<td><input placeholder="Yds" name="yds' + counter + '" type="text"></td>';
-                cols += '<td><input placeholder="Shade" type="text" name="shade2' + counter + '"></td>';
-                cols += '<td><input placeholder="Shrinkage%" type="text" name="shrinkage2' + counter + '"></td>';
-                cols += '<td><input placeholder="Roll No" name="rollno2' + counter + '" type="text"></td>';
-                cols += '<td><input placeholder="Yds" name="yds2' + counter + '" type="text"></td>';
-                cols += '<td><input placeholder="Total Yds" name="ttlyds' + counter + '" type="text"></td>';
-                cols += '<td><input placeholder="FOT" name="fot' + counter + '" type="text"></td>';
-                cols += '<td><input placeholder="FLD" name="fld' + counter + '" class="datepicker" type="text" data-date-format="dd-mm-yyyy"></td>';
-                cols += '<td><input placeholder="FLT" name="flt' + counter + '" type="text"></td>';
-                cols += '<td><input placeholder="TTL HRS" name="ttlhrs' + counter + '" type="text"></td>';
-                cols += '<td><input placeholder="Remark" name="remark' + counter + '" type="text"></td>';
+                cols += '<td><input    type="text" name="date[]"></td>';
+                cols += '<td><input placeholder="Shade" type="text" name="shade[]"></td>';
+                cols += '<td><input placeholder="Shrinkage%" type="text" name="shrinkage[]"></td>';
+                cols += '<td><input placeholder="Roll No" name="rollno[]" type="text"></td>';
+                cols += '<td><input placeholder="Yds" name="yds[]" type="text"></td>';
+                cols += '<td><input placeholder="Shade" type="text" name="shade2[]"></td>';
+                cols += '<td><input placeholder="Shrinkage%" type="text" name="shrinkage2[]"></td>';
+                cols += '<td><input placeholder="Roll No" name="rollno2[]" type="text"></td>';
+                cols += '<td><input placeholder="Yds" name="yds2[]" type="text"></td>';
+                cols += '<td><input placeholder="Total Yds" name="ttlyds[]" type="text"></td>';
+                cols += '<td><input placeholder="FOT" name="fot[]" type="text"></td>';
+                cols += '<td><input placeholder="FLD" name="fld[]"  type="date"></td>';
+                cols += '<td><input placeholder="FLT" name="flt[]" type="text"></td>';
+                cols += '<td><input placeholder="TTL HRS" name="ttlhrs[]" type="text"></td>';
+                cols += '<td><input placeholder="Remark" name="remark[]" type="text"></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-danger"  value="Delete"></td>';
                 newRow.append(cols);
