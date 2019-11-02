@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2019 at 10:46 AM
+-- Generation Time: Nov 02, 2019 at 10:49 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -689,7 +689,7 @@ CREATE TABLE `shipment_form` (
   `Sample` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
   `Status` tinyint(4) NOT NULL DEFAULT 1,
-  `timestamp` int(11) NOT NULL
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
