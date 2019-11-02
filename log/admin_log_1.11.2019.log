@@ -1,0 +1,170 @@
+Path: http://localhost/inventory/index.php?page=hourly_form_finishing
+Date & Time: November 1, 2019, 9:48 am
+Attempt: hourly_form_finishing Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form_finishing
+Date & Time: November 1, 2019, 10:05 am
+Attempt: hourly_form_finishing Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form_finishing
+Date & Time: November 1, 2019, 10:08 am
+Attempt: hourly_form_finishing Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form_finishing
+Date & Time: November 1, 2019, 10:09 am
+Attempt: hourly_form_finishing Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form_finishing
+Date & Time: November 1, 2019, 10:10 am
+Attempt: hourly_form_finishing Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form_finishing
+Date & Time: November 1, 2019, 10:11 am
+Attempt: hourly_form_finishing Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form_finishing
+Date & Time: November 1, 2019, 10:12 am
+Attempt: hourly_form_finishing Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form_finishing
+Date & Time: November 1, 2019, 10:12 am
+Attempt: hourly_form_finishing Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form_finishing
+Date & Time: November 1, 2019, 10:12 am
+Attempt: New Hourly Production added Successfully
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form_finishing
+Date & Time: November 1, 2019, 10:13 am
+Attempt: hourly_form_finishing Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form_finishing
+Date & Time: November 1, 2019, 10:13 am
+Attempt: New Hourly Production added Successfully
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form_finishing
+Date & Time: November 1, 2019, 10:13 am
+Attempt: New Hourly Production added Successfully
+-------------------------
+Path: http://localhost/inventory/login.php
+Date & Time: November 1, 2019, 1:31 pm
+Attempt: Login
+-------------------------
+Path: http://localhost/inventory/index.php
+Date & Time: November 1, 2019, 1:31 pm
+Attempt: Home Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form_finishing
+Date & Time: November 1, 2019, 1:32 pm
+Attempt: hourly_form_finishing Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form_finishing
+Date & Time: November 1, 2019, 1:32 pm
+Attempt: hourly_form_finishing Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form_finishing
+Date & Time: November 1, 2019, 1:32 pm
+Attempt: New Hourly Production added Successfully
+-------------------------
+Path: http://localhost/inventory/index.php?page=carton_form
+Date & Time: November 1, 2019, 1:32 pm
+Attempt: carton_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=carton_form
+Date & Time: November 1, 2019, 1:47 pm
+Attempt: carton_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=carton_form
+Date & Time: November 1, 2019, 1:48 pm
+Attempt: carton_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=carton_form
+Date & Time: November 1, 2019, 1:48 pm
+Attempt: New Carton Added Successfully
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 1, 2019, 1:48 pm
+Attempt: shipment_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=carton_form
+Date & Time: November 1, 2019, 1:49 pm
+Attempt: carton_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 1, 2019, 1:57 pm
+Attempt: shipment_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 1, 2019, 2:03 pm
+Attempt: shipment_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 1, 2019, 2:08 pm
+Attempt: shipment_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 1, 2019, 2:24 pm
+Attempt: shipment_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 1, 2019, 2:24 pm
+Attempt: INSERT INTO carton_form (date,POID,StyleID,Color,Shipment,Sample,AddedBy)
+
+        values('2019-11-01','1','3','10','10','1') <br>Column count doesn't match value count at row 1
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 1, 2019, 2:24 pm
+Attempt: INSERT INTO carton_form (date,POID,StyleID,Color,Shipment,Sample,AddedBy)
+
+        values('2019-11-01','1','3','10','10','1') <br>Column count doesn't match value count at row 1
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 1, 2019, 2:25 pm
+Attempt: shipment_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 1, 2019, 2:28 pm
+Attempt: shipment_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 1, 2019, 2:29 pm
+Attempt: shipment_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 1, 2019, 2:29 pm
+Attempt: INSERT INTO shipment_form (date,POID,StyleID,Color,Shipment,Sample,AddedBy)
+
+        values('2019-11-01','1','3','10','10','1') <br>Column count doesn't match value count at row 1
+-------------------------
+Path: http://localhost/inventory/login.php
+Date & Time: November 1, 2019, 3:44 pm
+Attempt: Login
+-------------------------
+Path: http://localhost/inventory/index.php
+Date & Time: November 1, 2019, 3:44 pm
+Attempt: Home Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 1, 2019, 3:44 pm
+Attempt: shipment_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 1, 2019, 3:45 pm
+Attempt: shipment_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 1, 2019, 3:48 pm
+Attempt: shipment_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 1, 2019, 3:48 pm
+Attempt: shipment_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 1, 2019, 3:48 pm
+Attempt: New Shipment Added Successfully
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 1, 2019, 3:48 pm
+Attempt: New Shipment Added Successfully
+-------------------------

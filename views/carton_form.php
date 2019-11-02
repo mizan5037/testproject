@@ -6,6 +6,7 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
+include_once "controller/add_carton_form.php";
 include_once "includes/header.php";
 
 ?>
@@ -29,11 +30,11 @@ include_once "includes/header.php";
     <div class="main-card mb-3 card">
         <div class="card-body">
             <!-- <h5 class="card-title">PO</h5> -->
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation" method="POST" novalidate>
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltip01">Date</label>
-                        <input type="date" class="form-control" id="validationTooltip01" placeholder="Style" required>
+                        <input type="date" name="date" class="form-control" id="validationTooltip01" placeholder="Style" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -52,16 +53,46 @@ include_once "includes/header.php";
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <input placeholder="PO" type="text" name="style" class="mb-2 form-control-sm form-control">
+                                    <select name="po[]" class="po  form-control" required>
+                                        <option></option>
+                                        <?php
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM po WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </td>
                                 <td>
-                                    <input placeholder="Style" type="text" name="style" class="mb-2 form-control-sm form-control">
+                                    <select name="style[]" class="style  form-control" required>
+                                        <option></option>
+                                        <?php
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM style WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </td>
                                 <td>
-                                    <input placeholder="Color" type="text" name="color" class="mb-2 form-control-sm form-control">
+                                    <select name="color[]" class="color  form-control" required>
+                                        <option></option>
+                                        <?php
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM color WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </td>
                                 <td>
-                                    <input placeholder="Ctn Pcs" type="text" name="receivefab" class="mb-2 form-control-sm form-control">
+                                    <input placeholder="Ctn Pcs" type="text" name="receivefab[]" class="mb-2 form-control-sm form-control">
                                 </td>
                                 <td></td>
                             </tr>
@@ -108,10 +139,37 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th>' + counter + '</th>';
-                cols += '<td><input placeholder="PO"  name="style' + counter + '" type="text" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Style"  name="style' + counter + '" type="text" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Color" type="text" name="color' + counter + '" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Ctn Pcs" type="text" name="receivefab' + counter + '" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><select name="po[]" class="po mb-2 form-control-sm form-control" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM po WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
+                cols += '<td><select name="style[]" class="style mb-2 form-control-sm form-control" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM style WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
+                c cols += '<td><select name="color[]" class="color mb-2 form-control-sm form-control" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM color WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['id'] . '">' . $result['color'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
+                cols += '<td><input placeholder="Ctn Pcs" type="text" name="receivefab[]" class="mb-2 form-control-sm form-control"></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-danger"  value="Delete"></td>';
                 newRow.append(cols);
@@ -129,16 +187,10 @@ function customPagefooter()
             $("table.order-list").on("click", ".ibtnDel", function(event) {
                 $(this).closest("tr").remove();
                 calculateGrandTotal();
-
                 counter -= 1
                 $('#addrow').attr('disabled', false).prop('value', "Add Row");
             });
-
-
         });
-
-
-
         function calculateRow(row) {
             var price = +row.find('input[name^="price"]').val();
 

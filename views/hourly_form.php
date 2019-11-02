@@ -6,6 +6,7 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
+include_once "controller/add_hourly_form.php";
 include_once "includes/header.php";
 
 ?>
@@ -28,7 +29,7 @@ include_once "includes/header.php";
     </div>
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation" method="POST"novalidate>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="validationTooltip01">Date</label>
@@ -81,7 +82,7 @@ include_once "includes/header.php";
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <input placeholder="Line" type="text" name="line" class="form-control-sm  form-control">
+                                    <input placeholder="Line" type="text" name="line[]" class="form-control-sm  form-control">
                                 </td>
                                 <td>
                                     <select name="po[]" class="po  form-control" required>
@@ -110,14 +111,14 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="size[]" class="size  form-control" required>
+                                    <select name="color[]" class="color  form-control" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
-                                        $sql = "SELECT * FROM size WHERE status = 1";
+                                        $sql = "SELECT * FROM color WHERE status = 1";
                                         $results = mysqli_query($conn, $sql);
                                         while ($result = mysqli_fetch_assoc($results)) {
-                                            echo '<option value="' . $result['id'] . '">' . $result['size'] . '</option>';
+                                            echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
                                         }
                                         ?>
                                     </select>
@@ -195,7 +196,7 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><input placeholder="Line" type="text" class="form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Line" name="line[]" type="text" class="form-control-sm form-control"></td>';
                 cols += '<td><select name="po[]" class="po mb-2 form-control-sm form-control" required><option></option>';
                 <?php
                     $conn = db_connection();

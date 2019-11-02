@@ -6,6 +6,7 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
+include_once "controller/add_hourly_form_finishing.php";
 include_once "includes/header.php";
 
 ?>
@@ -28,26 +29,27 @@ include_once "includes/header.php";
     </div>
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation" method="POST" novalidate>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="validationTooltip01">Date</label>
-                        <input type="date" class="form-control" id="validationTooltip01" placeholder="Date" required>
+                        <input type="date" name="date" class="form-control" id="validationTooltip01" placeholder="Date" required>
                     </div>
                 </div>
                 <style>
-                #mytable > tbody > tr > td{
-                    padding: 0px;
-                    margin: 0px;
-                    margin-bottom: 0px!important;
-                }
-                #mytable > tbody > tr > td > input{
-                    width: 100%;
-                }
+                    #mytable>tbody>tr>td {
+                        padding: 0px;
+                        margin: 0px;
+                        margin-bottom: 0px !important;
+                    }
 
-                #mytable > tbody > tr > td > input[type=text]{
-                    width: 100px;
-                }
+                    #mytable>tbody>tr>td>input {
+                        width: 100%;
+                    }
+
+                    #mytable>tbody>tr>td>input[type=text] {
+                        width: 100px;
+                    }
                 </style>
                 <div class="form-row">
                     <table class="mb-0 table table-bordered table-hover order-list" id="mytable">
@@ -76,49 +78,79 @@ include_once "includes/header.php";
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <input placeholder="Floor" type="text" class="form-control-sm form-control">
+                                    <input placeholder="Floor" name="floorno[]" type="text" class="form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="PO" type="text" class="form-control-sm form-control">
+                                    <select name="po[]" class="po  form-control" required>
+                                        <option></option>
+                                        <?php
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM po WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </td>
                                 <td>
-                                    <input placeholder="Style" type="text" class="form-control-sm form-control">
+                                    <select name="style[]" class="style  form-control" required>
+                                        <option></option>
+                                        <?php
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM style WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </td>
                                 <td>
-                                    <input placeholder="Color" type="text" class="form-control-sm form-control">
+                                    <select name="color[]" class="color  form-control" required>
+                                        <option></option>
+                                        <?php
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM color WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
                                 </td>
                                 <td>
-                                    <input placeholder="9" type="number" class="form-control-sm form-control">
+                                    <input placeholder="9" name="nine[]" type="number" class="form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="10" type="number" class="form-control-sm form-control">
+                                    <input placeholder="10" name="ten[]" type="number" class="form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="11" type="number" class="form-control-sm form-control">
+                                    <input placeholder="11" name="eleven[]" type="number" class="form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="12" type="number" class="form-control-sm form-control">
+                                    <input placeholder="12" name="twelve[]" type="number" class="form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="1" type="number" class="form-control-sm form-control">
+                                    <input placeholder="1" name="one[]" type="number" class="form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="3" type="number" class="form-control-sm form-control">
+                                    <input placeholder="3" name="three[]" type="number" class="form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="4" type="number" class="form-control-sm form-control">
+                                    <input placeholder="4" name="four[]" type="number" class="form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="5" type="number" class="form-control-sm form-control">
+                                    <input placeholder="5" name="five[]" type="number" class="form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="6" type="number" class="form-control-sm form-control">
+                                    <input placeholder="6" name="six[]" type="number" class="form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="7" type="number" class="form-control-sm form-control">
+                                    <input placeholder="7" name="seven[]" type="number" class="form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="8" type="number" class="form-control-sm form-control">
+                                    <input placeholder="8" name="eight[]" type="number" class="form-control-sm form-control">
                                 </td>
                                 <td><a class="deleteRow"></a></td>
                             </tr>
@@ -160,21 +192,48 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><input placeholder="Floor" type="text" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="PO" type="text" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Style" type="text" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="Color" type="text" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="9" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="10" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="11" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="12" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="1" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="3" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="4" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="5" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="6" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="7" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="8" type="number" class="form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Floor" name="floorno[]" type="text" class="form-control-sm form-control"></td>';
+                cols += '<td><select name="po[]" class="po mb-2 form-control-sm form-control" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM po WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
+                cols += '<td><select name="style[]" class="style mb-2 form-control-sm form-control" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM style WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
+                cols += '<td><select name="color[]" class="color mb-2 form-control-sm form-control" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM color WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['id'] . '">' . $result['color'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
+                cols += '<td><input placeholder="9" name="nine[]" type="number" class="form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="10" name="ten[]" type="number" class="form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="11" name="eleven[]" type="number" class="form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="12" name="twelve[]" type="number" class="form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="1" name="one[]" type="number" class="form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="3" name="three[]" type="number" class="form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="4" name="four[]" type="number" class="form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="5" name="five[]" type="number" class="form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="6" name="six[]" type="number" class="form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="7" name="seven[]" type="number" class="form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="8" name="eight[]" type="number" class="form-control-sm form-control"></td>';
                 cols += '<td><input type="button" class="ibtnDel btn btn-sm btn-danger "  value="Delete"></td>';
                 newRow.append(cols);
                 $("table.order-list").append(newRow);

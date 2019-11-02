@@ -167,10 +167,8 @@ function customPagefooter()
             $("#addrow").on("click", function() {
 
                 counter = $('#myTable tr').length - 1;
-
                 var newRow = $("<tr>");
                 var cols = "";
-
                 cols += '<th>' + counter + '</th>';
                 cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="Particulars" name="particulars[]" /></td>';
                 cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="Color" name="color[]"/></td>';
@@ -203,9 +201,6 @@ function customPagefooter()
 
 
         });
-
-
-
         function calculateRow(row) {
             var price = +row.find('input[name^="price"]').val();
 

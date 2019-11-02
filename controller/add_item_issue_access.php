@@ -2,7 +2,7 @@
  $conn = db_connection();
 if ( isset($_POST['cutting_no']) && $_POST['style'] && isset($_POST['po'])  && isset($_POST['item']) && isset($_POST['color'])  && isset($_POST['size']) && isset($_POST['qty']) ) {
 
-    $cutting_no = $_POST['cuttting_no'];
+    $cutting_no = $_POST['cutting_no'];
     $po = $_POST['po'];
 	$style = $_POST['style'];
     $item = $_POST['item'];
@@ -19,6 +19,7 @@ if ( isset($_POST['cutting_no']) && $_POST['style'] && isset($_POST['po'])  && i
 
 		if (mysqli_query($conn, $sql)) {
 			notice('success', 'New Item Issued Successfully');
+			nowgo('/index.php?page=item_stock');
 		} else {
 			notice('error', $sql . "<br>" . mysqli_error($conn));
 		}
