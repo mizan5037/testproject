@@ -1,6 +1,6 @@
 <?php
 
-$PageTitle = "All Style | Optima Inventory";
+$PageTitle = "All Cartons | Optima Inventory";
 function customPageHeader()
 {
     ?>
@@ -17,6 +17,7 @@ $conn = db_connection();
 //         notice('error', $sql . "<br>" . mysqli_error($conn));
 //     }
 // }
+include_once "controller/update_carton_form.php";
 include_once "includes/header.php";
 
 ?>
@@ -29,7 +30,7 @@ include_once "includes/header.php";
                     <i class="pe-7s-news-paper icon-gradient bg-mean-fruit">
                     </i>
                 </div>
-                <div>ALL Shipment
+                <div>ALL Carton
                     <div class="page-title-subheading">
                         All the Shipment created Upto Now.
                     </div>
@@ -44,18 +45,17 @@ include_once "includes/header.php";
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Shipment Date</th>
+                        <th> Date</th>
                         <th>PO NUMBER</th>
                         <th>Style Number</th>
                         <th>Color</th>
                         <th>Shipment</th>
-                        <th>Sample</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT * FROM shipment_form f LEFT JOIN po p on p.POID=f.POID LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN color c ON c.id=f.Color";
+                    $sql = "SELECT * FROM carton_form f LEFT JOIN po p on p.POID=f.POID LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN color c ON c.id=f.Color where f.Status=1";
                     $shipment = mysqli_query($conn, $sql);
 
                     $count = 1;
@@ -66,22 +66,21 @@ include_once "includes/header.php";
                         <tr>
                             <th scope="row"><?= $count ?></th>
                             <td><?= $row['date'] ?></td>
-                            <td><?= $row['PONumber'] ?></td>
-                            <td><?= $row['StyleNumber'] ?></td>
+                            <td><a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" target="_blank"><?= $row['PONumber'] ?></a></td>
+                            <td><a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" target="_blank"><?= $row['StyleNumber'] ?></td>
                             <td><?= $row['color'] ?></td>
-                            <td><?= $row['Shipment'] ?></td>
-                            <td><?= $row['Sample'] ?></td>
+                            <td><?= $row['Qty'] ?></td>
                             <td>
-                                <a href="<?= $path ?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                <i class="fas fa-trash-alt" style="color: white;"></i>
+                                <a href="<?= $path ?>/index.php?page=edit_carton&id=<?= $row['CartonFromID'] ?>" class=" mb-2 mr-2 btn-transition btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-edit"></i>
                                 </a>
-                                /
-                                <a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=all_style&delete=<?php echo $row['StyleID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
+                                <a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=all_carton&delete=<?php echo $row['CartonFromID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
                                     <i class="fas fa-trash-alt" style="color: white;"></i>
                                 </a>
                             </td>
                         </tr>
-                    <?php $count++; }  ?>
+                    <?php $count++;
+                    }  ?>
                 </tbody>
             </table>
         </div>

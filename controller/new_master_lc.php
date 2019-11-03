@@ -81,7 +81,7 @@ if (
 
         if (mysqli_query($conn, $sql)) {
             notice('success', 'Master LC Added Successfully.');
-            nowgo('http://localhost/inventory2/index.php?page=all_master_lc');
+            nowgo('/index.php?page=all_master_lc');
         } else {
             notice('error', $sql . "<br>" . mysqli_error($conn));
             die();
