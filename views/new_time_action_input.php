@@ -39,6 +39,8 @@ include_once "includes/header.php";
     <div class="main-card mb-3 card">
         <div class="card-body">
             <!-- <h5 class="card-title">Card Title</h5> -->
+            <form class="" method="post">
+
             <div class="row" style="overflow-x: auto;">
                 <table id="datetable" class="table-bordered table-hover table-sm">
                     <thead>
@@ -54,7 +56,6 @@ include_once "includes/header.php";
 
                     <?php
                     $conn = db_connection();
-
                       $sql = "SELECT * FROM `po_event` ORDER BY event_id ASC";
                       $event_list = mysqli_query($conn, $sql);
                     ?>
@@ -63,10 +64,8 @@ include_once "includes/header.php";
                             <td>
                               <select>
                                 <?php foreach ($event_list as $event){ ?>
-
-
                                   <option value="<?= $event['event_id']; ?>"><?=  $event['event_name']; ?></option>
-
+                                  <input type="hidden" name="event_id" id="" value="<?= $event['event_id']; ?>">
                                 <?php } ?>
                               </select>
                             </td>
@@ -95,6 +94,8 @@ include_once "includes/header.php";
                     </div>
                 </div>
             </div>
+
+          </form>
         </div>
     </div>
 </div>

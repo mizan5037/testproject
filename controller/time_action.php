@@ -1,9 +1,10 @@
 <?php
 
 if (isset($_POST['from'])) {
+	
+
 	$conn = db_connection();
-	$sql = "INSERT INTO po (PONumber,POFrom,PODate,POCMPWH,POCurrency,POSpecialInstruction,POFinalDestination,POCMP,POWASH,POHANGER,Division,AddedBy)
-	values('$po_number','$from','$date','$cmp_w_wanger' ,'$currency','$special_instruction','$final_destination','$cmp','$wash_cost','$hanger_cost','$division','$user_id')";
+	$sql = "INSERT INTO `po_action_calender`(`POID`, `event_id`, `projected_date`, `implement_date`, `1st_revised_implement_date`, `2nd_revised_implement_date`, `3rd_revised_implement_date`, `4th_revised_implement_date`, `remarks`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10])";
 	if (mysqli_query($conn, $sql)){
 		notice('success', 'New PO added Successfully');
 		$last_id = mysqli_insert_id($conn);
