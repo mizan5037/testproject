@@ -1,12 +1,21 @@
 <?php
 
-$PageTitle = "Hourly Finishing Form | Optima Inventory";
+$PageTitle = "Wash Form | Optima Inventory";
 function customPageHeader()
 {
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
-include_once "controller/add_hourly_form_finishing.php";
+$conn = db_connection();
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+
+    $sql = "SELECT * FROM wash_form where WashFormID='$id'";
+    $single_wash = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+} else {
+    nowgo('/index.php?page=all_po');
+}
+include_once "controller/update_wash_form.php";
 include_once "includes/header.php";
 
 ?>
@@ -19,9 +28,9 @@ include_once "includes/header.php";
                     <i class="pe-7s-note icon-gradient bg-mean-fruit">
                     </i>
                 </div>
-                <div>Hourly Finishing Form
+                <div>Wash Form
                     <div class="page-title-subheading">
-                        Please use this form to add a new Item.
+                        Please use this form to Register Items
                     </div>
                 </div>
             </div>
@@ -29,48 +38,24 @@ include_once "includes/header.php";
     </div>
     <div class="main-card mb-3 card">
         <div class="card-body">
+            <!-- <h5 class="card-title">PO</h5> -->
             <form class="needs-validation" method="POST" novalidate>
                 <div class="form-row">
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-4 mb-3">
                         <label for="validationTooltip01">Date</label>
-                        <input type="date" name="date" class="form-control" id="validationTooltip01" placeholder="Date" required>
+                        <input type="date" name="date" value="<?= $single_wash['Date']?>" class="form-control" id="validationTooltip01" placeholder="Style" required>
                     </div>
                 </div>
-                <style>
-                    #mytable>tbody>tr>td {
-                        padding: 0px;
-                        margin: 0px;
-                        margin-bottom: 0px !important;
-                    }
-
-                    #mytable>tbody>tr>td>input {
-                        width: 100%;
-                    }
-
-                    #mytable>tbody>tr>td>input[type=text] {
-                        width: 100px;
-                    }
-                </style>
                 <div class="form-row">
-                    <table class="mb-0 table table-bordered table-hover order-list" id="mytable">
+                    <table class="mb-0 table table-bordered order-list" id="myTable">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Floor</th>
                                 <th>PO</th>
                                 <th>Style</th>
                                 <th>Color</th>
-                                <th>9</th>
-                                <th>10</th>
-                                <th>11</th>
-                                <th>12</th>
-                                <th>1</th>
-                                <th>3</th>
-                                <th>4</th>
-                                <th>5</th>
-                                <th>6</th>
-                                <th>7</th>
-                                <th>8</th>
+                                <th>Send</th>
+                                <th>Received</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -78,95 +63,71 @@ include_once "includes/header.php";
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <input placeholder="Floor" name="floorno[]" type="text" class="form-control-sm form-control">
-                                </td>
-                                <td>
-                                    <select name="po[]" class="po form-control required>
+                                    <select name="po" class="po  form-control" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
                                         $sql = "SELECT * FROM po WHERE status = 1";
                                         $results = mysqli_query($conn, $sql);
                                         while ($result = mysqli_fetch_assoc($results)) {
-                                            echo '<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
+                                            if ($result['POID']==$singple_shipment['POID']) {
+                                                $selected = 'selected';
+                                            }
+                                            echo '<option selected="$selected" value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
                                         }
                                         ?>
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="style[]" class="style  form-control" required>
+                                    <select name="style" class="style  form-control" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
                                         $sql = "SELECT * FROM style WHERE status = 1";
                                         $results = mysqli_query($conn, $sql);
                                         while ($result = mysqli_fetch_assoc($results)) {
-                                            echo '<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                            if ($result['StyleID']==$single_wash['StyleID']) {
+                                                $selected = 'selected';
+                                            }
+                                            echo '<option selected="$selected" value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
                                         }
                                         ?>
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="color[]" class="color  form-control" required>
+                                    <select name="color" class="color  form-control" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
                                         $sql = "SELECT * FROM color WHERE status = 1";
                                         $results = mysqli_query($conn, $sql);
                                         while ($result = mysqli_fetch_assoc($results)) {
-                                            echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                            if ($result['StyleID']==$single_wash['StyleID']) {
+                                                $selected = 'selected';
+                                            }
+                                            echo '<option selected="$selected" value="' . $result['id'] . '">' . $result['color'] . '</option>';
                                         }
                                         ?>
                                     </select>
                                 </td>
                                 <td>
-                                    <input placeholder="9" name="nine[]" type="number" class="nine form-control-sm form-control">
+                                    <input placeholder="Send" value="<?= $single_wash['Send']?>"  type="number" name="receivefab" class="mb-2 form-control-sm form-control">
                                 </td>
                                 <td>
-                                    <input placeholder="10" name="ten[]" type="number" class="ten form-control-sm form-control">
+                                    <input placeholder="Received" value="<?= $single_wash['Receive']?>" type="number" name="receiveroll" class="mb-2 form-control-sm form-control">
                                 </td>
-                                <td>
-                                    <input placeholder="11" name="eleven[]" type="number" class="eleven form-control-sm form-control">
-                                </td>
-                                <td>
-                                    <input placeholder="12" name="twelve[]" type="number" class="twelve form-control-sm form-control">
-                                </td>
-                                <td>
-                                    <input placeholder="1" name="one[]" type="number" class="one form-control-sm form-control">
-                                </td>
-                                <td>
-                                    <input placeholder="3" name="three[]" type="number" class="three form-control-sm form-control">
-                                </td>
-                                <td>
-                                    <input placeholder="4" name="four[]" type="number" class="four form-control-sm form-control">
-                                </td>
-                                <td>
-                                    <input placeholder="5" name="five[]" type="number" class="five form-control-sm form-control">
-                                </td>
-                                <td>
-                                    <input placeholder="6" name="six[]" type="number" class="six form-control-sm form-control">
-                                </td>
-                                <td>
-                                    <input placeholder="7" name="seven[]" type="number" class="seven form-control-sm form-control">
-                                </td>
-                                <td>
-                                    <input placeholder="8" name="eight[]" type="number" class="eight form-control-sm form-control">
-                                </td>
-                                <td><a class="deleteRow"></a></td>
+                                <td></td>
                             </tr>
-
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="17" class="text-center"><input type="button" class="btn btn-sm btn-success" id="addrow" value="Add Row" /><br></td>
-                            </tr>
-                        </tfoot>
+                       
                     </table>
                 </div>
-                <br>
-                <div class="row">
-                    <div class="col-md-12 text-right">
-                        <button class="btn btn-primary" type="submit">Save</button>
+                <br><br>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button class="btn btn-primary" type="submit">Save</button>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -182,17 +143,18 @@ function customPagefooter()
 {
     ?>
     <script>
-        // Add new row code
-
         $(document).ready(function() {
-            var counter = 2;
+            var counter = 0;
+            var limit = 100;
 
             $("#addrow").on("click", function() {
+
+                counter = $('#myTable tr').length - 1;
+
                 var newRow = $("<tr>");
                 var cols = "";
 
-                cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><input placeholder="Floor" name="floorno[]" type="text" class="form-control-sm form-control"></td>';
+                cols += '<th>' + counter + '</th>';
                 cols += '<td><select name="po[]" class="po mb-2 form-control-sm form-control" required><option></option>';
                 <?php
                     $conn = db_connection();
@@ -223,34 +185,49 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
-                cols += '<td><input placeholder="9" name="nine[]" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="10" name="ten[]" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="11" name="eleven[]" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="12" name="twelve[]" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="1" name="one[]" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="3" name="three[]" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="4" name="four[]" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="5" name="five[]" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="6" name="six[]" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="7" name="seven[]" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input placeholder="8" name="eight[]" type="number" class="form-control-sm form-control"></td>';
-                cols += '<td><input type="button" class="ibtnDel btn btn-sm btn-danger "  value="Delete"></td>';
+                cols += '<td><input placeholder="Send" type="number" name="receivefab[]" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Received" type="number" name="receiveroll[]" class="mb-2 form-control-sm form-control"></td>';
+
+                cols += '<td><input type="button" class="ibtnDel btn btn-danger"  value="Delete"></td>';
                 newRow.append(cols);
+                if (counter >= limit) $('#addrow').attr('disabled', true).prop('value', "You've reached the limit");
                 $("table.order-list").append(newRow);
                 counter++;
             });
 
+            $("table.order-list").on("change", 'input[name^="price"]', function(event) {
+                calculateRow($(this).closest("tr"));
+                calculateGrandTotal();
+            });
 
 
             $("table.order-list").on("click", ".ibtnDel", function(event) {
                 $(this).closest("tr").remove();
+                calculateGrandTotal();
+
                 counter -= 1
+                $('#addrow').attr('disabled', false).prop('value', "Add Row");
             });
 
 
         });
 
 
+
+        function calculateRow(row) {
+            var price = +row.find('input[name^="price"]').val();
+
+        }
+
+        function calculateGrandTotal() {
+            var grandTotal = 0;
+            $("table.order-list").find('input[name^="price"]').each(function() {
+                grandTotal += +$(this).val();
+            });
+            $("#grandtotal").text(grandTotal.toFixed(2));
+        }
+    </script>
+    <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function() {
             'use strict';
