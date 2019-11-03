@@ -1,6 +1,6 @@
 <?php
 
-$PageTitle = "All Style | Optima Inventory";
+$PageTitle = "All Shipment | Optima Inventory";
 function customPageHeader()
 {
     ?>
@@ -17,6 +17,7 @@ $conn = db_connection();
 //         notice('error', $sql . "<br>" . mysqli_error($conn));
 //     }
 // }
+include_once "controller/update_shipment_form.php";
 include_once "includes/header.php";
 
 ?>
@@ -66,17 +67,17 @@ include_once "includes/header.php";
                         <tr>
                             <th scope="row"><?= $count ?></th>
                             <td><?= $row['date'] ?></td>
-                            <td><?= $row['PONumber'] ?></td>
-                            <td><?= $row['StyleNumber'] ?></td>
+                            <td><a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" target="_blank"><?= $row['PONumber'] ?></a></td>
+                            <td><a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" target="_blank"><?= $row['StyleNumber'] ?></a></td>
                             <td><?= $row['color'] ?></td>
                             <td><?= $row['Shipment'] ?></td>
                             <td><?= $row['Sample'] ?></td>
                             <td>
-                                <a href="<?= $path ?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                <i class="fas fa-trash-alt" style="color: white;"></i>
+                                <a href="<?= $path ?>/index.php?page=edit_shipment&id=<?= $row['ShipmentFormID'] ?>" class=" btn btn-sm btn-outline-primary">
+                                <i class="fas fa-edit" ></i>
                                 </a>
-                                /
-                                <a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=all_style&delete=<?php echo $row['StyleID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
+                                
+                                <a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=all_shipment&delete=<?php echo $row['ShipmentFormID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
                                     <i class="fas fa-trash-alt" style="color: white;"></i>
                                 </a>
                             </td>
