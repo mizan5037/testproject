@@ -553,6 +553,12 @@
                                             </i>Wash
                                         </a>
                                     </li>
+                                    <li <?php active('all_wash'); ?>>
+                                        <a href="<?= $path ?>/index.php?page=all_wash">
+                                            <i class="metismenu-icon">
+                                            </i>All Wash
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li>
