@@ -3,14 +3,14 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2019 at 06:10 PM
+-- Generation Time: Nov 02, 2019 at 10:49 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET time_zone = "+06:00";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -114,6 +114,7 @@ CREATE TABLE `buyer` (
 
 CREATE TABLE `carton_form` (
   `CartonFromID` int(11) NOT NULL,
+  `date` date NOT NULL,
   `POID` int(11) NOT NULL,
   `StyleID` int(11) NOT NULL,
   `Color` varchar(200) NOT NULL,
@@ -342,6 +343,7 @@ CREATE TABLE `fab_relaxation_description` (
 
 CREATE TABLE `hourly_finishing_form` (
   `HourlyFinishingID` int(11) NOT NULL,
+  `date` date NOT NULL,
   `Floor` int(11) NOT NULL,
   `POID` int(11) NOT NULL,
   `StyleID` int(11) NOT NULL,
@@ -370,7 +372,7 @@ CREATE TABLE `hourly_finishing_form` (
 
 CREATE TABLE `hourly_production` (
   `HourlyProductionID` int(11) NOT NULL,
-  `Date` varchar(100) NOT NULL,
+  `Date` date NOT NULL,
   `FloorNO` varchar(200) NOT NULL,
   `AddedBy` int(11) NOT NULL,
   `Status` tinyint(4) NOT NULL DEFAULT 1,
@@ -389,7 +391,7 @@ CREATE TABLE `hourly_production_details` (
   `LineNo` varchar(20) NOT NULL,
   `POID` int(11) NOT NULL,
   `StyleID` int(11) NOT NULL,
-  `Color` varchar(200) NOT NULL,
+  `Color` int(11) NOT NULL,
   `nine` int(11) NOT NULL,
   `ten` int(11) NOT NULL,
   `eleven` int(11) NOT NULL,
@@ -679,14 +681,15 @@ CREATE TABLE `prepack` (
 
 CREATE TABLE `shipment_form` (
   `ShipmentFormID` int(11) NOT NULL,
+  `date` date NOT NULL,
   `POID` int(11) NOT NULL,
   `StyleID` int(11) NOT NULL,
-  `Color` varchar(200) NOT NULL,
+  `Color` int(11) NOT NULL,
   `Shipment` int(11) NOT NULL,
   `Sample` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
   `Status` tinyint(4) NOT NULL DEFAULT 1,
-  `timestamp` int(11) NOT NULL
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -826,10 +829,10 @@ INSERT INTO `users` (`UserID`, `Name`, `Username`, `Designation`, `Pass`, `Added
 
 CREATE TABLE `wash_form` (
   `WashFormID` int(11) NOT NULL,
-  `Date` varchar(100) NOT NULL,
+  `Date` date NOT NULL,
   `POID` int(11) NOT NULL,
   `StyleID` int(11) NOT NULL,
-  `Color` varchar(100) NOT NULL,
+  `Color` int(11) NOT NULL,
   `Send` int(11) NOT NULL,
   `Receive` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
