@@ -1,0 +1,1004 @@
+Path: http://localhost/testproject/login.php
+Date & Time: November 3, 2019, 5:02 am
+Attempt: Login
+-------------------------
+Path: http://localhost/testproject/index.php
+Date & Time: November 3, 2019, 5:02 am
+Attempt: Home Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=shipment_form
+Date & Time: November 3, 2019, 5:02 am
+Attempt: shipment_form Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_shipment
+Date & Time: November 3, 2019, 5:02 am
+Attempt: all_shipment Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=carton_form
+Date & Time: November 3, 2019, 5:02 am
+Attempt: carton_form Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_po
+Date & Time: November 3, 2019, 5:02 am
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:02 am
+Attempt: new_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=color_size
+Date & Time: November 3, 2019, 5:02 am
+Attempt: color_size Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_inquire
+Date & Time: November 3, 2019, 5:02 am
+Attempt: new_inquire Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:03 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_po
+Date & Time: November 3, 2019, 5:06 am
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:06 am
+Attempt: new_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=color_size
+Date & Time: November 3, 2019, 5:07 am
+Attempt: color_size Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=color_size
+Date & Time: November 3, 2019, 5:07 am
+Attempt: color_size Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=color_size
+Date & Time: November 3, 2019, 5:07 am
+Attempt: New Color Added Successfully
+-------------------------
+Path: http://localhost/testproject/index.php?page=color_size
+Date & Time: November 3, 2019, 5:07 am
+Attempt: color_size Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=color_size
+Date & Time: November 3, 2019, 5:07 am
+Attempt: color_size Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=color_size
+Date & Time: November 3, 2019, 5:07 am
+Attempt: New Size Added Successfully
+-------------------------
+Path: http://localhost/testproject/index.php?page=color_size
+Date & Time: November 3, 2019, 5:07 am
+Attempt: color_size Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_po
+Date & Time: November 3, 2019, 5:07 am
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:08 am
+Attempt: new_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_inquire
+Date & Time: November 3, 2019, 5:18 am
+Attempt: new_inquire Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=color_size
+Date & Time: November 3, 2019, 5:18 am
+Attempt: color_size Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_item
+Date & Time: November 3, 2019, 5:19 am
+Attempt: new_item Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_item
+Date & Time: November 3, 2019, 5:19 am
+Attempt: new_item Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_item
+Date & Time: November 3, 2019, 5:19 am
+Attempt: New Item added Successfully
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_item
+Date & Time: November 3, 2019, 5:19 am
+Attempt: all_item Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_po
+Date & Time: November 3, 2019, 5:19 am
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:19 am
+Attempt: new_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_po
+Date & Time: November 3, 2019, 5:19 am
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=color_size
+Date & Time: November 3, 2019, 5:19 am
+Attempt: color_size Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_item
+Date & Time: November 3, 2019, 5:19 am
+Attempt: all_item Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:19 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:19 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:20 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:20 am
+Attempt: INSERT INTO style (StyleNumber,StyleDescription,StyleWash,StyleProto,StyleImage,StyleFabricDetails,AddedBy)
+
+		   	values('5454','1111','ter','retrre','','terere','1')<br>Field 'StylePrice' doesn't have a default value
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:20 am
+Attempt: INSERT INTO trimsaccess (TrimsAccessStyleID,TrimsAccessName,TrimsAccessDescription,AddedBy)
+
+		   		values('','errtt','ertr','1')<br>Incorrect integer value: '' for column 'TrimsAccessStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:20 am
+Attempt: INSERT INTO itemrequirment (ItemRequirmentStyleID,ItemRequirmentItemID,ItemRequirmentSize,ItemRequirmentQty,AddedBy)
+
+		   		values('','1','1','100','1')<br>Incorrect integer value: '' for column 'ItemRequirmentStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:20 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:20 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:20 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:20 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:20 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:20 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:20 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:21 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:21 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_item
+Date & Time: November 3, 2019, 5:21 am
+Attempt: all_item Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=color_size
+Date & Time: November 3, 2019, 5:21 am
+Attempt: color_size Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:21 am
+Attempt: new_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:21 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:21 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:21 am
+Attempt: INSERT INTO style (StyleNumber,StyleDescription,StyleWash,StyleProto,StyleImage,StyleFabricDetails,AddedBy)
+
+		   	values('5454','1111','ter','retrre','','terere','1')<br>Field 'StylePrice' doesn't have a default value
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:21 am
+Attempt: INSERT INTO trimsaccess (TrimsAccessStyleID,TrimsAccessName,TrimsAccessDescription,AddedBy)
+
+		   		values('','errtt','ertr','1')<br>Incorrect integer value: '' for column 'TrimsAccessStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:21 am
+Attempt: INSERT INTO itemrequirment (ItemRequirmentStyleID,ItemRequirmentItemID,ItemRequirmentSize,ItemRequirmentQty,AddedBy)
+
+		   		values('','1','1','44','1')<br>Incorrect integer value: '' for column 'ItemRequirmentStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:21 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_item
+Date & Time: November 3, 2019, 5:21 am
+Attempt: all_item Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:21 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:23 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:23 am
+Attempt: INSERT INTO style (StyleNumber,StyleDescription,StyleWash,StyleProto,StyleImage,StyleFabricDetails,AddedBy)
+
+		   	values('5454','1111','ter','retrre','','terere','1')<br>Field 'StylePrice' doesn't have a default value
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:23 am
+Attempt: INSERT INTO trimsaccess (TrimsAccessStyleID,TrimsAccessName,TrimsAccessDescription,AddedBy)
+
+		   		values('','errtt','ertr','1')<br>Incorrect integer value: '' for column 'TrimsAccessStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:23 am
+Attempt: INSERT INTO itemrequirment (ItemRequirmentStyleID,ItemRequirmentItemID,ItemRequirmentSize,ItemRequirmentQty,AddedBy)
+
+		   		values('','1','1','22','1')<br>Incorrect integer value: '' for column 'ItemRequirmentStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:23 am
+Attempt: INSERT INTO itemrequirment (ItemRequirmentStyleID,ItemRequirmentItemID,ItemRequirmentSize,ItemRequirmentQty,AddedBy)
+
+		   		values('','1','1','11','1')<br>Incorrect integer value: '' for column 'ItemRequirmentStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:23 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:26 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:26 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:26 am
+Attempt: INSERT INTO style (StyleNumber,StyleDescription,StyleWash,StyleProto,StyleImage,StyleFabricDetails,AddedBy)
+
+		   	values('5454','1111','ter','retrre','896724338_2019_Nov_03_1572758816_1.jpg','terere','1')<br>Field 'StylePrice' doesn't have a default value
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:26 am
+Attempt: INSERT INTO trimsaccess (TrimsAccessStyleID,TrimsAccessName,TrimsAccessDescription,AddedBy)
+
+		   		values('','errtt','ertr','1')<br>Incorrect integer value: '' for column 'TrimsAccessStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:26 am
+Attempt: INSERT INTO itemrequirment (ItemRequirmentStyleID,ItemRequirmentItemID,ItemRequirmentSize,ItemRequirmentQty,AddedBy)
+
+		   		values('','1','1','2','1')<br>Incorrect integer value: '' for column 'ItemRequirmentStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:26 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:28 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:28 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:28 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:29 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:29 am
+Attempt: INSERT INTO style (StyleNumber,StyleDescription,StyleWash,StyleProto,StyleImage,StyleFabricDetails,AddedBy)
+
+		   	values('5454','1111','ter','retrre','','terere','1')<br>Field 'StylePrice' doesn't have a default value
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:31 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:31 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:31 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:31 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:32 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:32 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:32 am
+Attempt: INSERT INTO style (StyleNumber,StyleDescription,StyleWash,StyleProto,StyleImage,StyleFabricDetails,AddedBy)
+
+		   	values('5454','1111','ter','retrre','','terere','1')<br>Field 'StylePrice' doesn't have a default value
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:34 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:34 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:35 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:35 am
+Attempt: INSERT INTO style (StyleNumber,StyleDescription,StyleWash,StyleProto,StyleImage,StyleFabricDetails,AddedBy)
+
+		   	values('5454','1111','ter','retrre','','terere','1')<br>Field 'StylePrice' doesn't have a default value
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:35 am
+Attempt: INSERT INTO trimsaccess (TrimsAccessStyleID,TrimsAccessName,TrimsAccessDescription,AddedBy)
+
+		   		values('','errtt','ertr','1')<br>Incorrect integer value: '' for column 'TrimsAccessStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:35 am
+Attempt: INSERT INTO itemrequirment (ItemRequirmentStyleID,ItemRequirmentItemID,ItemRequirmentSize,ItemRequirmentQty,AddedBy)
+
+		   		values('','1','1','4000','1')<br>Incorrect integer value: '' for column 'ItemRequirmentStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:35 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:36 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:36 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:36 am
+Attempt: New Style Added Failed.
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:36 am
+Attempt: INSERT INTO style (StyleNumber,StyleDescription,StyleWash,StyleProto,StyleImage,StyleFabricDetails,AddedBy)
+
+		   	values('5454','1111','ter','retrre','867183052_2019_Nov_03_1572759419_1.jpg','terere','1')<br>Field 'StylePrice' doesn't have a default value
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:36 am
+Attempt: INSERT INTO trimsaccess (TrimsAccessStyleID,TrimsAccessName,TrimsAccessDescription,AddedBy)
+
+		   		values('','errtt','ertr','1')<br>Incorrect integer value: '' for column 'TrimsAccessStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:36 am
+Attempt: INSERT INTO itemrequirment (ItemRequirmentStyleID,ItemRequirmentItemID,ItemRequirmentSize,ItemRequirmentQty,AddedBy)
+
+		   		values('','1','1','78','1')<br>Incorrect integer value: '' for column 'ItemRequirmentStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:36 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:39 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:39 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:39 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:39 am
+Attempt: New Style Added Failed.
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:39 am
+Attempt: INSERT INTO style (StyleNumber,StyleDescription,StyleWash,StyleProto,StyleImage,StyleFabricDetails,AddedBy)
+
+		   	values('5454','1111','ter','retrre','222104312_2019_Nov_03_1572759566_1.jpg','terere','1')<br>Field 'StylePrice' doesn't have a default value
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:39 am
+Attempt: INSERT INTO trimsaccess (TrimsAccessStyleID,TrimsAccessName,TrimsAccessDescription,AddedBy)
+
+		   		values('','errtt','ertr','1')<br>Incorrect integer value: '' for column 'TrimsAccessStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:39 am
+Attempt: INSERT INTO itemrequirment (ItemRequirmentStyleID,ItemRequirmentItemID,ItemRequirmentSize,ItemRequirmentQty,AddedBy)
+
+		   		values('','1','1','44','1')<br>Incorrect integer value: '' for column 'ItemRequirmentStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:39 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:40 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:41 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:41 am
+Attempt: New Style Added Failed.
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:41 am
+Attempt: INSERT INTO style (StyleNumber,StyleDescription,StyleWash,StyleProto,StyleImage,StyleFabricDetails,AddedBy)
+
+		   	values('5454','1111','ter','retrre','900591966_2019_Nov_03_1572759661_1.jpg','terere','1')<br>Field 'StylePrice' doesn't have a default value
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:41 am
+Attempt: INSERT INTO trimsaccess (TrimsAccessStyleID,TrimsAccessName,TrimsAccessDescription,AddedBy)
+
+		   		values('','errtt','ertr','1')<br>Incorrect integer value: '' for column 'TrimsAccessStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:41 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:41 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:41 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:41 am
+Attempt: New Style Added Failed.
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:41 am
+Attempt: INSERT INTO style (StyleNumber,StyleDescription,StyleWash,StyleProto,StyleImage,StyleFabricDetails,AddedBy)
+
+		   	values('5454','1111','ter','retrre','362630939_2019_Nov_03_1572759707_1.jpg','terere','1')<br>Field 'StylePrice' doesn't have a default value
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:41 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:43 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:43 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:43 am
+Attempt: New Style Added Failed.
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:43 am
+Attempt: INSERT INTO style (StyleNumber,StyleDescription,StyleWash,StyleProto,StyleImage,StyleFabricDetails,AddedBy)
+
+		   	values('5454','1111','ter','retrre','689712474_2019_Nov_03_1572759803_1.jpg','terere','1')<br>Field 'StyleCurency' doesn't have a default value
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:43 am
+Attempt: INSERT INTO trimsaccess (TrimsAccessStyleID,TrimsAccessName,TrimsAccessDescription,AddedBy)
+
+		   		values('','errtt','ertr','1')<br>Incorrect integer value: '' for column 'TrimsAccessStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:43 am
+Attempt: INSERT INTO itemrequirment (ItemRequirmentStyleID,ItemRequirmentItemID,ItemRequirmentSize,ItemRequirmentQty,AddedBy)
+
+		   		values('','1','1','44','1')<br>Incorrect integer value: '' for column 'ItemRequirmentStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:43 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:43 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:43 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:43 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:43 am
+Attempt: New Style Added Failed.
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:43 am
+Attempt: INSERT INTO style (StyleNumber,StyleDescription,StyleWash,StyleProto,StyleImage,StyleFabricDetails,AddedBy)
+
+		   	values('5454','1111','ter','retrre','632460713_2019_Nov_03_1572759836_1.jpg','terere','1')<br>Field 'StyleCurency' doesn't have a default value
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:43 am
+Attempt: INSERT INTO trimsaccess (TrimsAccessStyleID,TrimsAccessName,TrimsAccessDescription,AddedBy)
+
+		   		values('','errtt','ertr','1')<br>Incorrect integer value: '' for column 'TrimsAccessStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:43 am
+Attempt: INSERT INTO itemrequirment (ItemRequirmentStyleID,ItemRequirmentItemID,ItemRequirmentSize,ItemRequirmentQty,AddedBy)
+
+		   		values('','1','1','45','1')<br>Incorrect integer value: '' for column 'ItemRequirmentStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:43 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:44 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:44 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:44 am
+Attempt: New Style Added Failed.
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:44 am
+Attempt: INSERT INTO style (StyleNumber,StyleDescription,StyleWash,StyleProto,StyleImage,StyleFabricDetails,AddedBy)
+
+		   	values('5454','1111','ter','retrre','744660006_2019_Nov_03_1572759866_1.jpg','terere','1')<br>Field 'StyleCurency' doesn't have a default value
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:44 am
+Attempt: INSERT INTO trimsaccess (TrimsAccessStyleID,TrimsAccessName,TrimsAccessDescription,AddedBy)
+
+		   		values('','errtt','ertr','1')<br>Incorrect integer value: '' for column 'TrimsAccessStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:44 am
+Attempt: INSERT INTO itemrequirment (ItemRequirmentStyleID,ItemRequirmentItemID,ItemRequirmentSize,ItemRequirmentQty,AddedBy)
+
+		   		values('','1','1','45','1')<br>Incorrect integer value: '' for column 'ItemRequirmentStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:44 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:44 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:44 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:44 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:44 am
+Attempt: New Style Added Failed.
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:44 am
+Attempt: INSERT INTO style (StyleNumber,StyleDescription,StyleWash,StyleProto,StyleImage,StyleFabricDetails,AddedBy)
+
+		   	values('5454','1111','ter','retrre','','terere','1')<br>Field 'StyleCurency' doesn't have a default value
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:44 am
+Attempt: INSERT INTO trimsaccess (TrimsAccessStyleID,TrimsAccessName,TrimsAccessDescription,AddedBy)
+
+		   		values('','errtt','ertr','1')<br>Incorrect integer value: '' for column 'TrimsAccessStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:44 am
+Attempt: INSERT INTO itemrequirment (ItemRequirmentStyleID,ItemRequirmentItemID,ItemRequirmentSize,ItemRequirmentQty,AddedBy)
+
+		   		values('','1','1','45','1')<br>Incorrect integer value: '' for column 'ItemRequirmentStyleID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:44 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:45 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:45 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:45 am
+Attempt: New Style Added Failed.
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:45 am
+Attempt: INSERT INTO style (StyleNumber,StyleDescription,StyleWash,StyleProto,StyleImage,StyleFabricDetails,AddedBy)
+
+		   	values('5454','1111','ter','retrre','','terere','1')<br>Field 'StyleCurency' doesn't have a default value
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:45 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:46 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:46 am
+Attempt: new_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:48 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:48 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:48 am
+Attempt: New Style Added Successfully.
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:48 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=single_style&id=1
+Date & Time: November 3, 2019, 5:48 am
+Attempt: single_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:49 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:49 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:49 am
+Attempt: New Style Added Successfully.
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:49 am
+Attempt: INSERT INTO trimsaccess (TrimsAccessStyleID,TrimsAccessName,TrimsAccessDescription,AddedBy)
+
+		   		values('2','errtt','ertr','1')<br>Field 'TrimsAccessPOID' doesn't have a default value
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_style
+Date & Time: November 3, 2019, 5:49 am
+Attempt: New Style Added Successfully.
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:49 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=single_style&id=1
+Date & Time: November 3, 2019, 5:49 am
+Attempt: single_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_style
+Date & Time: November 3, 2019, 5:49 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=single_style&id=2
+Date & Time: November 3, 2019, 5:49 am
+Attempt: single_style Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:49 am
+Attempt: new_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:50 am
+Attempt: new_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:50 am
+Attempt: New PO added Successfully
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:50 am
+Attempt: INSERT INTO prepack (POID,PrePackCode,PrePackSize,PrepackQty,AddedBy)
+
+		values('1','2222','1','','1') <br>Incorrect integer value: '' for column 'PrepackQty' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:50 am
+Attempt: INSERT INTO order_description (POID,StyleID,Color,ClrNo,Dzs,PPack,Units,AddedBy)
+
+		values('1','2','1','','','','','1')<br>Incorrect integer value: '' for column 'Dzs' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_po
+Date & Time: November 3, 2019, 5:50 am
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=po_single&poid=1
+Date & Time: November 3, 2019, 5:51 am
+Attempt: po_single Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:51 am
+Attempt: new_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:52 am
+Attempt: new_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:52 am
+Attempt: New PO added Successfully
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:52 am
+Attempt: New PO added Successfully
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:52 am
+Attempt: New PO added Successfully
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_po
+Date & Time: November 3, 2019, 5:52 am
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:52 am
+Attempt: new_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_po
+Date & Time: November 3, 2019, 5:52 am
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action
+Date & Time: November 3, 2019, 5:52 am
+Attempt: new_time_action Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_po
+Date & Time: November 3, 2019, 5:53 am
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:53 am
+Attempt: new_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:53 am
+Attempt: new_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:53 am
+Attempt: INSERT INTO po (PONumber,POFrom,PODate,POCMPWH,POCurrency,POSpecialInstruction,POFinalDestination,POCMP,POWASH,POHANGER,Division,AddedBy)
+
+	values('fff','dddd','2019-11-01','' ,'dds','','','','','','','1')<br>Data truncated for column 'POCMPWH' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:53 am
+Attempt: INSERT INTO prepack (POID,PrePackCode,PrePackSize,PrepackQty,AddedBy)
+
+		values('','11','1','','1') <br>Incorrect integer value: '' for column 'POID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_po
+Date & Time: November 3, 2019, 5:53 am
+Attempt: INSERT INTO order_description (POID,StyleID,Color,ClrNo,Dzs,PPack,Units,AddedBy)
+
+		values('','1','1','','','','','1')<br>Incorrect integer value: '' for column 'POID' at row 1
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_po
+Date & Time: November 3, 2019, 5:53 am
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action
+Date & Time: November 3, 2019, 6:01 am
+Attempt: new_time_action Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action
+Date & Time: November 3, 2019, 6:06 am
+Attempt: new_time_action Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_po
+Date & Time: November 3, 2019, 6:06 am
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action
+Date & Time: November 3, 2019, 6:06 am
+Attempt: new_time_action Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_po
+Date & Time: November 3, 2019, 6:07 am
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action
+Date & Time: November 3, 2019, 6:08 am
+Attempt: new_time_action Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_po
+Date & Time: November 3, 2019, 6:52 am
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action
+Date & Time: November 3, 2019, 6:58 am
+Attempt: new_time_action Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action
+Date & Time: November 3, 2019, 6:58 am
+Attempt: new_time_action Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action
+Date & Time: November 3, 2019, 6:58 am
+Attempt: new_time_action Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action
+Date & Time: November 3, 2019, 6:59 am
+Attempt: new_time_action Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action
+Date & Time: November 3, 2019, 6:59 am
+Attempt: new_time_action Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action
+Date & Time: November 3, 2019, 7:00 am
+Attempt: new_time_action Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action
+Date & Time: November 3, 2019, 7:01 am
+Attempt: new_time_action Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action
+Date & Time: November 3, 2019, 7:01 am
+Attempt: new_time_action Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action
+Date & Time: November 3, 2019, 7:02 am
+Attempt: new_time_action Page View
+-------------------------
+Path: http://testproject.test/login.php
+Date & Time: November 3, 2019, 7:11 am
+Attempt: Login
+-------------------------
+Path: http://localhost/testproject/index.php
+Date & Time: November 3, 2019, 7:12 am
+Attempt: Home Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_po
+Date & Time: November 3, 2019, 7:41 am
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action?POID=1
+Date & Time: November 3, 2019, 7:41 am
+Attempt: new_time_action?POID=1 Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action
+Date & Time: November 3, 2019, 7:41 am
+Attempt: new_time_action Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action?POID=1
+Date & Time: November 3, 2019, 7:45 am
+Attempt: new_time_action?POID=1 Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_po
+Date & Time: November 3, 2019, 7:45 am
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=all_po
+Date & Time: November 3, 2019, 7:46 am
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action&POID=1
+Date & Time: November 3, 2019, 7:46 am
+Attempt: new_time_action Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action_input
+Date & Time: November 3, 2019, 8:01 am
+Attempt: new_time_action_input Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action_input
+Date & Time: November 3, 2019, 8:02 am
+Attempt: new_time_action_input Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action_input
+Date & Time: November 3, 2019, 8:02 am
+Attempt: new_time_action_input Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action_input
+Date & Time: November 3, 2019, 8:02 am
+Attempt: new_time_action_input Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action_input
+Date & Time: November 3, 2019, 8:02 am
+Attempt: new_time_action_input Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action_input
+Date & Time: November 3, 2019, 8:03 am
+Attempt: new_time_action_input Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action_input
+Date & Time: November 3, 2019, 8:05 am
+Attempt: new_time_action_input Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action_input
+Date & Time: November 3, 2019, 8:06 am
+Attempt: new_time_action_input Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action_input
+Date & Time: November 3, 2019, 8:07 am
+Attempt: new_time_action_input Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action_input
+Date & Time: November 3, 2019, 8:08 am
+Attempt: new_time_action_input Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action_input
+Date & Time: November 3, 2019, 8:09 am
+Attempt: new_time_action_input Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action_input
+Date & Time: November 3, 2019, 8:09 am
+Attempt: new_time_action_input Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action_input
+Date & Time: November 3, 2019, 8:10 am
+Attempt: new_time_action_input Page View
+-------------------------
+Path: http://localhost/testproject/index.php?page=new_time_action_input
+Date & Time: November 3, 2019, 8:11 am
+Attempt: new_time_action_input Page View
+-------------------------
