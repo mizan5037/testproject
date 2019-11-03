@@ -67,7 +67,7 @@ include_once "includes/header.php";
                             <th scope="row"><?= $count ?></th>
                             <td><?= $row['date'] ?></td>
                             <td><a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" target="_blank"><?= $row['PONumber'] ?></a></td>
-                            <td><a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" target="_blank"><?= $row['StyleNumber'] ?></a></td>
+                            <td><a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" target="_blank"><?= $row['StyleNumber'] ?></td>
                             <td><?= $row['color'] ?></td>
                             <td><?= $row['Qty'] ?></td>
                             <td>
