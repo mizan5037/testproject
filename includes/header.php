@@ -583,6 +583,12 @@
                                             </i>Carton
                                         </a>
                                     </li>
+                                    <li <?php active('all_carton'); ?>>
+                                        <a href="<?= $path ?>/index.php?page=all_carton">
+                                            <i class="metismenu-icon">
+                                            </i>All Carton
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="#">
                                             <i class="metismenu-icon">
@@ -602,6 +608,12 @@
                                         <a href="<?= $path ?>/index.php?page=shipment_form">
                                             <i class="metismenu-icon">
                                             </i>Shipment Form
+                                        </a>
+                                    </li>
+                                    <li <?php active('all_shipment'); ?>>
+                                        <a href="<?= $path ?>/index.php?page=all_shipment">
+                                            <i class="metismenu-icon">
+                                            </i>ALL Shipment
                                         </a>
                                     </li>
                                 </ul>
