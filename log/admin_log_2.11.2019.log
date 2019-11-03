@@ -1,0 +1,292 @@
+Path: http://localhost/inventory/login.php
+Date & Time: November 2, 2019, 5:09 am
+Attempt: Login
+-------------------------
+Path: http://localhost/inventory/index.php
+Date & Time: November 2, 2019, 5:09 am
+Attempt: Home Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 2, 2019, 5:10 am
+Attempt: shipment_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=wash_form
+Date & Time: November 2, 2019, 5:11 am
+Attempt: wash_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form
+Date & Time: November 2, 2019, 5:11 am
+Attempt: hourly_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=wash_form
+Date & Time: November 2, 2019, 5:13 am
+Attempt: wash_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form
+Date & Time: November 2, 2019, 5:13 am
+Attempt: hourly_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form_finishing
+Date & Time: November 2, 2019, 5:14 am
+Attempt: hourly_form_finishing Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form
+Date & Time: November 2, 2019, 5:14 am
+Attempt: hourly_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=wash_form
+Date & Time: November 2, 2019, 5:14 am
+Attempt: wash_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form_finishing
+Date & Time: November 2, 2019, 5:16 am
+Attempt: hourly_form_finishing Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=wash_form
+Date & Time: November 2, 2019, 5:16 am
+Attempt: wash_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form
+Date & Time: November 2, 2019, 5:16 am
+Attempt: hourly_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=wash_form
+Date & Time: November 2, 2019, 5:16 am
+Attempt: wash_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=carton_form
+Date & Time: November 2, 2019, 5:17 am
+Attempt: carton_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 2, 2019, 5:18 am
+Attempt: shipment_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 2, 2019, 5:20 am
+Attempt: shipment_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 2, 2019, 5:20 am
+Attempt: New Shipment Added Successfully
+-------------------------
+Path: http://localhost/inventory/index.php?page=lay_form
+Date & Time: November 2, 2019, 5:22 am
+Attempt: lay_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=fab_relaxation
+Date & Time: November 2, 2019, 5:22 am
+Attempt: fab_relaxation Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=cutting_form
+Date & Time: November 2, 2019, 5:22 am
+Attempt: cutting_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=hourly_form
+Date & Time: November 2, 2019, 5:22 am
+Attempt: hourly_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=wash_form
+Date & Time: November 2, 2019, 5:22 am
+Attempt: wash_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 2, 2019, 5:22 am
+Attempt: shipment_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=carton_form
+Date & Time: November 2, 2019, 5:23 am
+Attempt: carton_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=carton_form
+Date & Time: November 2, 2019, 5:23 am
+Attempt: carton_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 2, 2019, 5:23 am
+Attempt: shipment_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=new_pi
+Date & Time: November 2, 2019, 5:25 am
+Attempt: new_pi Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=all_style
+Date & Time: November 2, 2019, 5:25 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 2, 2019, 5:26 am
+Attempt: shipment_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=fabric_stock
+Date & Time: November 2, 2019, 5:31 am
+Attempt: fabric_stock Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=color_size
+Date & Time: November 2, 2019, 5:35 am
+Attempt: color_size Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=color_size
+Date & Time: November 2, 2019, 5:37 am
+Attempt: color_size Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=color_size&color_delete=1
+Date & Time: November 2, 2019, 5:37 am
+Attempt: color_size Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=color_size&color_delete=1
+Date & Time: November 2, 2019, 5:37 am
+Attempt: Color Deleted Successfully
+-------------------------
+Path: http://localhost/inventory/index.php?page=color_size
+Date & Time: November 2, 2019, 5:37 am
+Attempt: color_size Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=color_size
+Date & Time: November 2, 2019, 5:37 am
+Attempt: color_size Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=color_size
+Date & Time: November 2, 2019, 5:37 am
+Attempt: New Color Added Successfully
+-------------------------
+Path: http://localhost/inventory/index.php?page=color_size
+Date & Time: November 2, 2019, 5:37 am
+Attempt: color_size Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=color_size
+Date & Time: November 2, 2019, 6:00 am
+Attempt: color_size Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=all_shipment
+Date & Time: November 2, 2019, 6:00 am
+Attempt: all_shipment Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=all_shipment
+Date & Time: November 2, 2019, 6:01 am
+Attempt: all_shipment Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=all_shipment
+Date & Time: November 2, 2019, 6:01 am
+Attempt: all_shipment Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=all_shipment
+Date & Time: November 2, 2019, 6:02 am
+Attempt: all_shipment Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=all_shipment
+Date & Time: November 2, 2019, 6:03 am
+Attempt: all_shipment Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=carton_form
+Date & Time: November 2, 2019, 6:05 am
+Attempt: carton_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=all_shipment
+Date & Time: November 2, 2019, 6:05 am
+Attempt: all_shipment Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=carton_form
+Date & Time: November 2, 2019, 6:06 am
+Attempt: carton_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=carton_form
+Date & Time: November 2, 2019, 6:07 am
+Attempt: carton_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=all_carton
+Date & Time: November 2, 2019, 6:07 am
+Attempt: all_carton Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=carton_form
+Date & Time: November 2, 2019, 6:07 am
+Attempt: carton_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=carton_form
+Date & Time: November 2, 2019, 6:09 am
+Attempt: carton_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=carton_form
+Date & Time: November 2, 2019, 6:09 am
+Attempt: New Carton Added Successfully
+-------------------------
+Path: http://localhost/inventory/index.php?page=carton_form
+Date & Time: November 2, 2019, 6:11 am
+Attempt: carton_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=carton_form
+Date & Time: November 2, 2019, 6:11 am
+Attempt: New Carton Added Successfully
+-------------------------
+Path: http://localhost/inventory/index.php?page=all_shipment
+Date & Time: November 2, 2019, 6:13 am
+Attempt: all_shipment Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=all_style
+Date & Time: November 2, 2019, 6:16 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=all_po
+Date & Time: November 2, 2019, 6:16 am
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=new_style
+Date & Time: November 2, 2019, 6:16 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=color_size
+Date & Time: November 2, 2019, 6:16 am
+Attempt: color_size Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=new_inquire
+Date & Time: November 2, 2019, 6:16 am
+Attempt: new_inquire Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=all_po
+Date & Time: November 2, 2019, 6:16 am
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=new_po
+Date & Time: November 2, 2019, 6:16 am
+Attempt: new_po Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=all_pi
+Date & Time: November 2, 2019, 6:16 am
+Attempt: all_pi Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=new_b2b_lc
+Date & Time: November 2, 2019, 6:16 am
+Attempt: new_b2b_lc Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=new_style
+Date & Time: November 2, 2019, 6:16 am
+Attempt: new_style Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=all_style
+Date & Time: November 2, 2019, 6:16 am
+Attempt: all_style Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=color_size
+Date & Time: November 2, 2019, 6:16 am
+Attempt: color_size Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=all_po
+Date & Time: November 2, 2019, 6:17 am
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=all_pi
+Date & Time: November 2, 2019, 6:17 am
+Attempt: all_pi Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=fabric_stock
+Date & Time: November 2, 2019, 6:17 am
+Attempt: fabric_stock Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=all_shipment
+Date & Time: November 2, 2019, 6:19 am
+Attempt: all_shipment Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=shipment_form
+Date & Time: November 2, 2019, 6:19 am
+Attempt: shipment_form Page View
+-------------------------
