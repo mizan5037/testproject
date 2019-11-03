@@ -39,6 +39,12 @@ include_once "includes/header.php";
     <div class="main-card mb-3 card">
         <div class="card-body">
             <!-- <h5 class="card-title">Card Title</h5> -->
+
+
+            <?php
+              $POID = isset($_GET['POID']);
+              $time_actions = "SELECT * FROM `po_time_action` WHERE `POID` =$POID";
+             ?>
             <div class="row" style="overflow-x: auto;">
                 <table id="datetable" class="table-bordered table-hover table-sm">
                     <thead>
@@ -60,7 +66,7 @@ include_once "includes/header.php";
                             <td><input type="date" name="" id=""></td>
                             <td><input type="date" name="" id=""></td>
                             <td><input type="date" name="" id=""></td>
-                            <td><input type="text" name="" id=""></td>
+                            <td><input type="text" name="" id=""></td>              
                         </tr>
                         <tr>
                             <td>PO Sheet Received From Buyer</td>

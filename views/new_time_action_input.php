@@ -55,17 +55,23 @@ include_once "includes/header.php";
                     </thead>
 
                     <?php
-                    $conn = db_connection();
+                      $conn = db_connection();
                       $sql = "SELECT * FROM `po_event` ORDER BY event_id ASC";
                       $event_list = mysqli_query($conn, $sql);
+
                     ?>
                     <tbody>
                         <tr>
+                          <?php
+                          $POID= '';
+                          $POID = isset($_GET['POID']);
+                          ?>
+                          <input type="hidden" name="POID" value="<?= $POID;?>">
                             <td>
-                              <select>
+                              <select name="event_id">
+                                <option value="">Choose Your Event</option>
                                 <?php foreach ($event_list as $event){ ?>
                                   <option value="<?= $event['event_id']; ?>"><?=  $event['event_name']; ?></option>
-                                  <input type="hidden" name="event_id" id="" value="<?= $event['event_id']; ?>">
                                 <?php } ?>
                               </select>
                             </td>
@@ -89,16 +95,22 @@ include_once "includes/header.php";
                     <br><br>
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <button class="btn btn-primary" type="submit">Save</button>
+                            <button class="btn btn-primary" name="submit" type="submit">Save</button>
                         </div>
                     </div>
                 </div>
             </div>
 
           </form>
+
+
+
         </div>
     </div>
 </div>
+
+
+
 <?php
 function customPagefooter()
 {

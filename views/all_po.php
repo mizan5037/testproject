@@ -80,7 +80,7 @@ include_once "includes/header.php";
                             <a href="<?= $path ?>/index.php?page=po_single&poid=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
                                 Details
                             </a>
-                            <a href="<?= $path ?>/index.php?page=new_time_action&POID=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
+                            <a href="<?= $path ?>/index.php?page=new_time_action_input&POID=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
                                 Time/Action Calender
                             </a>
                             <a href="<?= $path ?>/index.php?page=all_po&delete_po=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-danger">
