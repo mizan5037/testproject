@@ -3,9 +3,9 @@ require_once '../config.php';
 require_once '../lib/session.php';
 require_once '../lib/database.php';
 //linking Functions
-require_once 'lib/functions.php';
+require_once '../lib/functions.php';
 
-$token = $_POST["token"];
+$token = $_POST["token"]; 
 
 if (get_ses('token') === $token) {
 

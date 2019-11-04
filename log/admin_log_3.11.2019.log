@@ -1,206 +1,180 @@
-Path: http://localhost/inventory/index.php?page=new_time_action
-Date & Time: November 3, 2019, 9:09 am
-Attempt: new_time_action Page View
--------------------------
-Path: http://localhost/inventory/index.php?page=hourly_form_finishing
-Date & Time: November 3, 2019, 10:01 am
-Attempt: hourly_form_finishing Page View
--------------------------
-Path: http://localhost/inventory/index.php?page=hourly_form_finishing
-Date & Time: November 3, 2019, 10:08 am
-Attempt: hourly_form_finishing Page View
--------------------------
-Path: http://localhost/inventory/index.php?page=hourly_form_finishing
-Date & Time: November 3, 2019, 10:08 am
-Attempt: New Hourly Production added Successfully
--------------------------
-Path: http://localhost/inventory/index.php?page=hourly_form_finishing
-Date & Time: November 3, 2019, 10:13 am
-Attempt: hourly_form_finishing Page View
--------------------------
-Path: http://localhost/inventory/index.php?page=hourly_form_finishing
-Date & Time: November 3, 2019, 10:13 am
-Attempt: New Hourly Production added Successfully
--------------------------
-Path: http://localhost/inventory/index.php?page=hourly_form_finishing
-Date & Time: November 3, 2019, 10:44 am
-Attempt: hourly_form_finishing Page View
--------------------------
-Path: http://localhost/inventory/index.php?page=hourly_form_finishing
-Date & Time: November 3, 2019, 10:44 am
-Attempt: hourly_form_finishing Page View
--------------------------
-Path: http://localhost/inventory/index.php?page=hourly_form
-Date & Time: November 3, 2019, 10:44 am
-Attempt: hourly_form Page View
--------------------------
-Path: http://localhost/inventory/index.php?page=wash_form
-Date & Time: November 3, 2019, 10:44 am
-Attempt: wash_form Page View
--------------------------
-Path: http://localhost/inventory/index.php?page=hourly_form
-Date & Time: November 3, 2019, 10:44 am
-Attempt: hourly_form Page View
--------------------------
-Path: http://localhost/inventory/index.php?page=wash_form
-Date & Time: November 3, 2019, 10:44 am
-Attempt: wash_form Page View
--------------------------
-Path: http://localhost/inventory/index.php?page=wash_form
-Date & Time: November 3, 2019, 10:46 am
-Attempt: wash_form Page View
--------------------------
-Path: http://localhost/inventory/index.php?page=all_shipment
-Date & Time: November 3, 2019, 10:46 am
-Attempt: all_shipment Page View
--------------------------
-Path: http://localhost/inventory/index.php?page=wash_form
-Date & Time: November 3, 2019, 10:47 am
-Attempt: wash_form Page View
--------------------------
 Path: http://localhost/inventory/index.php?page=all_wash
-Date & Time: November 3, 2019, 10:47 am
+Date & Time: November 3, 2019, 11:57 am
 Attempt: all_wash Page View
 -------------------------
 Path: http://localhost/inventory/index.php?page=all_wash
-Date & Time: November 3, 2019, 10:48 am
+Date & Time: November 3, 2019, 11:57 am
 Attempt: all_wash Page View
 -------------------------
 Path: http://localhost/inventory/index.php?page=hourly_form
-Date & Time: November 3, 2019, 10:48 am
+Date & Time: November 3, 2019, 11:57 am
 Attempt: hourly_form Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=all_wash
-Date & Time: November 3, 2019, 10:48 am
-Attempt: all_wash Page View
+Path: http://localhost/inventory/index.php?page=cutting_form
+Date & Time: November 3, 2019, 11:57 am
+Attempt: cutting_form Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=wash_form
-Date & Time: November 3, 2019, 10:48 am
-Attempt: wash_form Page View
+Path: http://localhost/inventory/index.php?page=fab_relaxation
+Date & Time: November 3, 2019, 11:57 am
+Attempt: fab_relaxation Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=wash_form
-Date & Time: November 3, 2019, 10:51 am
-Attempt: wash_form Page View
+Path: http://localhost/inventory/index.php?page=lay_form
+Date & Time: November 3, 2019, 11:57 am
+Attempt: lay_form Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=wash_form
-Date & Time: November 3, 2019, 10:51 am
-Attempt: New Wash added Successfully
+Path: http://localhost/inventory/index.php?page=fab_issue
+Date & Time: November 3, 2019, 11:58 am
+Attempt: fab_issue Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=wash_form
-Date & Time: November 3, 2019, 10:51 am
-Attempt: New Wash added Successfully
+Path: http://localhost/inventory/index.php?page=fabric_stock
+Date & Time: November 3, 2019, 11:58 am
+Attempt: fabric_stock Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=all_wash
-Date & Time: November 3, 2019, 10:53 am
-Attempt: all_wash Page View
+Path: http://localhost/inventory/index.php?page=hourly_form_finishing
+Date & Time: November 3, 2019, 12:59 pm
+Attempt: hourly_form_finishing Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=all_wash
-Date & Time: November 3, 2019, 10:54 am
-Attempt: all_wash Page View
+Path: http://localhost/inventory/index.php?page=all_buyer
+Date & Time: November 3, 2019, 1:02 pm
+Attempt: all_buyer Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=all_wash
-Date & Time: November 3, 2019, 11:03 am
-Attempt: all_wash Page View
+Path: http://localhost/inventory/index.php?page=single_buyer&buyer_id=2
+Date & Time: November 3, 2019, 1:02 pm
+Attempt: single_buyer Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=edit_wash&id=1
-Date & Time: November 3, 2019, 11:03 am
-Attempt: edit_wash Page View
+Path: http://localhost/inventory/index.php?page=single_buyer&buyer_id=2
+Date & Time: November 3, 2019, 1:03 pm
+Attempt: single_buyer Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=all_wash
-Date & Time: November 3, 2019, 11:03 am
-Attempt: all_wash Page View
+Path: http://localhost/inventory/index.php?page=single_buyer&buyer_id=2
+Date & Time: November 3, 2019, 1:04 pm
+Attempt: single_buyer Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=all_wash
-Date & Time: November 3, 2019, 11:03 am
-Attempt: all_wash Page View
+Path: http://localhost/inventory/index.php?page=single_buyer&buyer_id=2
+Date & Time: November 3, 2019, 1:04 pm
+Attempt: single_buyer Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=edit_wash&id=2
-Date & Time: November 3, 2019, 11:03 am
-Attempt: edit_wash Page View
+Path: http://localhost/inventory/index.php?page=hourly_form
+Date & Time: November 3, 2019, 1:04 pm
+Attempt: hourly_form Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=all_wash
-Date & Time: November 3, 2019, 11:03 am
-Attempt: all_wash Page View
--------------------------
-Path: http://localhost/inventory/index.php?page=all_wash
-Date & Time: November 3, 2019, 11:03 am
-Attempt: all_wash Page View
+Path: http://localhost/inventory/index.php?page=lay_form
+Date & Time: November 3, 2019, 1:05 pm
+Attempt: lay_form Page View
 -------------------------
 Path: http://localhost/inventory/index.php?page=all_wash
-Date & Time: November 3, 2019, 11:04 am
+Date & Time: November 3, 2019, 1:05 pm
 Attempt: all_wash Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=wash_edit&id=1
-Date & Time: November 3, 2019, 11:04 am
-Attempt: wash_edit Page View
+Path: http://localhost/inventory/index.php?page=lay_form
+Date & Time: November 3, 2019, 1:05 pm
+Attempt: lay_form Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=wash_edit&id=1
-Date & Time: November 3, 2019, 11:04 am
-Attempt: wash_edit Page View
+Path: http://localhost/inventory/index.php?page=fab_relaxation
+Date & Time: November 3, 2019, 1:06 pm
+Attempt: fab_relaxation Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=wash_edit&id=1
-Date & Time: November 3, 2019, 11:04 am
-Attempt: UPDATE wase_form SET 
-                        Date='2019-11-01',
-                        POID='2',
-                        StyleID='9',
-                        Color = '2',
-                        Send='300',
-                        Receive='200' where WashFormID=1<br>Table 'inventory.wase_form' doesn't exist
+Path: http://localhost/inventory/index.php?page=lay_form
+Date & Time: November 3, 2019, 1:06 pm
+Attempt: lay_form Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=wash_edit&id=1
-Date & Time: November 3, 2019, 11:05 am
-Attempt: wash_edit Page View
+Path: http://localhost/inventory/index.php?page=cutting_form
+Date & Time: November 3, 2019, 1:07 pm
+Attempt: cutting_form Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=wash_edit&id=1
-Date & Time: November 3, 2019, 11:05 am
-Attempt: wash_edit Page View
+Path: http://localhost/inventory/index.php?page=lay_form
+Date & Time: November 3, 2019, 1:07 pm
+Attempt: lay_form Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=wash_edit&id=1
-Date & Time: November 3, 2019, 11:05 am
-Attempt:  Wash Updated Successfully
+Path: http://localhost/inventory/index.php?page=fab_relaxation
+Date & Time: November 3, 2019, 1:10 pm
+Attempt: fab_relaxation Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=wash_edit&id=1
-Date & Time: November 3, 2019, 11:05 am
-Attempt: wash_edit Page View
+Path: http://localhost/inventory/index.php?page=cutting_form
+Date & Time: November 3, 2019, 1:10 pm
+Attempt: cutting_form Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=wash_edit&id=1
-Date & Time: November 3, 2019, 11:05 am
-Attempt:  Wash Updated Successfully
+Path: http://localhost/inventory/index.php?page=fabric_stock
+Date & Time: November 3, 2019, 1:10 pm
+Attempt: fabric_stock Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=wash_edit&id=1
-Date & Time: November 3, 2019, 11:05 am
-Attempt: wash_edit Page View
+Path: http://localhost/inventory/index.php?page=item_received_fab
+Date & Time: November 3, 2019, 1:10 pm
+Attempt: item_received_fab Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=all_wash
-Date & Time: November 3, 2019, 11:05 am
-Attempt: all_wash Page View
+Path: http://localhost/inventory/index.php?page=item_received_fab_other
+Date & Time: November 3, 2019, 1:10 pm
+Attempt: item_received_fab_other Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=all_wash&delete=1
-Date & Time: November 3, 2019, 11:05 am
-Attempt: all_wash Page View
+Path: http://localhost/inventory/index.php?page=fabric_stock
+Date & Time: November 3, 2019, 1:10 pm
+Attempt: fabric_stock Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=all_wash&delete=1
-Date & Time: November 3, 2019, 11:05 am
-Attempt: Shipment Product Deleted From PO Successfully
+Path: http://localhost/inventory/index.php?page=item_received_fab
+Date & Time: November 3, 2019, 1:10 pm
+Attempt: item_received_fab Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=item_received_fab_other
+Date & Time: November 3, 2019, 1:10 pm
+Attempt: item_received_fab_other Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=item_received_fab
+Date & Time: November 3, 2019, 1:10 pm
+Attempt: item_received_fab Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=cutting_form
+Date & Time: November 3, 2019, 1:12 pm
+Attempt: cutting_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=fab_relaxation
+Date & Time: November 3, 2019, 1:12 pm
+Attempt: fab_relaxation Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=cutting_form
+Date & Time: November 3, 2019, 1:12 pm
+Attempt: cutting_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=fab_relaxation
+Date & Time: November 3, 2019, 1:12 pm
+Attempt: fab_relaxation Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=cutting_form
+Date & Time: November 3, 2019, 1:12 pm
+Attempt: cutting_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=cutting_form
+Date & Time: November 3, 2019, 1:12 pm
+Attempt: cutting_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=lay_form
+Date & Time: November 3, 2019, 1:13 pm
+Attempt: lay_form Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=all_po
+Date & Time: November 3, 2019, 1:16 pm
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=po_single&poid=1
+Date & Time: November 3, 2019, 1:16 pm
+Attempt: po_single Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=all_po
+Date & Time: November 3, 2019, 1:16 pm
+Attempt: all_po Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=po_single&poid=2
+Date & Time: November 3, 2019, 1:16 pm
+Attempt: po_single Page View
+-------------------------
+Path: http://localhost/inventory/index.php?page=all_po
+Date & Time: November 3, 2019, 1:16 pm
+Attempt: all_po Page View
 -------------------------
 Path: http://localhost/inventory/index.php?page=all_shipment
-Date & Time: November 3, 2019, 11:05 am
+Date & Time: November 3, 2019, 1:16 pm
 Attempt: all_shipment Page View
 -------------------------
-Path: http://localhost/inventory/index.php?page=all_shipment
-Date & Time: November 3, 2019, 11:31 am
-Attempt: all_shipment Page View
--------------------------
-Path: http://localhost/inventory/index.php?page=all_carton
-Date & Time: November 3, 2019, 11:31 am
-Attempt: all_carton Page View
--------------------------
-Path: http://localhost/inventory/index.php?page=wash_form
-Date & Time: November 3, 2019, 11:31 am
-Attempt: wash_form Page View
--------------------------
-Path: http://localhost/inventory/index.php?page=all_wash
-Date & Time: November 3, 2019, 11:31 am
-Attempt: all_wash Page View
+Path: http://localhost/inventory/index.php?page=lay_form
+Date & Time: November 3, 2019, 1:19 pm
+Attempt: lay_form Page View
 -------------------------

@@ -375,7 +375,13 @@ include_once "includes/header.php";
                     </table>
                 </div>
                 <div class="col-md-6">
-                    <img style="max-height:265px;" onclick="view('myImg');" id="myImg" src="<?= $path . $uploadpath . $item['StyleImage'] ?>" class="img-fluid img-thumbnail rounded" alt="Style No: <?= $item['StyleNumber'] ?>">
+                    <?php if (!file_exists($path . $uploadpath . $item['StyleImage'])) { ?>
+                        <img style="max-height:265px;" onclick="view('myImg');" id="myImg" src="<?= $path . $uploadpath . $item['StyleImage'] ?>" class="img-fluid img-thumbnail rounded" alt="Style No: <?= $item['StyleNumber'] ?>">
+                    <?php } else {
+                        ?>
+                        <img style="max-height:265px;" src="<?= $path ?>/assets/images/noimg.png" class="img-fluid img-thumbnail rounded" alt="No Image">
+                    <?php
+                    } ?>
                 </div>
             </div>
         </div>

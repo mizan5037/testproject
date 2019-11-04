@@ -67,6 +67,7 @@ if (isset($_POST['stylenumber']) && $_POST['styledescription'] != '' && isset($_
         $last_id = mysqli_insert_id($conn);
         notice('success', 'New Style Added Successfully.');
     } else {
+        notice('error', 'New Style Added Failed.');
         notice('error', $sql . "<br>" . mysqli_error($conn));
     }
 

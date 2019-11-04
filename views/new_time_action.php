@@ -5,6 +5,7 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
+include_once "controller/time_action.php";
 include_once "includes/header.php";
 ?>
 <div class="app-main__inner">
