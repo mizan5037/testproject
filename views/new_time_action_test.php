@@ -61,25 +61,29 @@ include_once "includes/header.php";
                     </thead>
                     <tbody>
                       <?php
-                        $events_time_actions = "SELECT p.*,e.* FROM po_event e LEFT JOIN po_time_action p ON p.event_id = e.event_id order by 'event_id'";
+                        $events_time_actions = "SELECT * from po_event";
                         $events_time_actions = mysqli_query($conn, $events_time_actions);
-                        foreach ($events_time_actions as $key => $events_time_action) {
+                        while ($result=mysqli_fetch_assoc($events_time_actions)) {
+                            $id = $result['event_id'];
+                            $sql = "SELECT p.*,e.event_name FROM po_time_action p LEFT JOIN po_event e ON e.event_id=p.event_id where e.event_id=".$id;
+                            $single_event = mysqli_query($conn, $sql);
+                              while ($row=mysqli_fetch_assoc($single_event)) {
+                                ?>
+                                <tr>
+                                    <td><?php echo $row['event_name']; ?></td>
+                                    <td><input type="date" name="" id="" value="<?php echo $row['projected_date']; ?>" disabled></td>
+                                    <td><input type="date" name="" id="" value="<?php echo $row['implement_date']; ?>" disabled></td>
+                                    <td><input type="date" name="" id="" value="<?php echo $row['1st_revised_implement_date']; ?>" disabled></td>
+                                    <td><input type="date" name="" id="" value="<?php echo $row['2nd_revised_implement_date']; ?>" disabled></td>
+                                    <td><input type="date" name="" id="" value="<?php echo $row['3rd_revised_implement_date']; ?>" disabled></td>
+                                    <td><input type="date" name="" id="" value="<?php echo $row['4th_revised_implement_date']; ?>" disabled></td>
+                                    <td><input type="text" name="" id="" value="<?php echo $row['remarks']; ?>" disabled></td>
+                                    <td> <a href="<?= $path ?>/index.php?page=new_time_action_edit&event_id=<?php echo $row['event_id']; ?>&POID=<?php echo $POID; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
+                                        Edit
+                                    </a></td>
+                                </tr>
 
-                      ?>
-                        <tr>
-                            <td><?php echo $key.'.'.$events_time_action['event_name'] ?></td>
-                            <td><input type="date" name="" id="" value="<?php echo $events_time_action['projected_date']; ?>" disabled></td>
-                            <td><input type="date" name="" id="" value="<?php echo $events_time_action['implement_date']; ?>" disabled></td>
-                            <td><input type="date" name="" id="" value="<?php echo $events_time_action['1st_revised_implement_date']; ?>" disabled></td>
-                            <td><input type="date" name="" id="" value="<?php echo $events_time_action['2nd_revised_implement_date']; ?>" disabled></td>
-                            <td><input type="date" name="" id="" value="<?php echo $events_time_action['3rd_revised_implement_date']; ?>" disabled></td>
-                            <td><input type="date" name="" id="" value="<?php echo $events_time_action['4th_revised_implement_date']; ?>" disabled></td>
-                            <td><input type="text" name="" id="" value="<?php echo $events_time_action['remarks']; ?>" disabled></td>
-                            <td> <a href="<?= $path ?>/index.php?page=new_time_action_edit&event_id=<?php echo $events_time_action['event_id']; ?>&POID=<?php echo $POID; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                Edit
-                            </a></td>
-                        </tr>
-                      <?php } ?>
+                              <?php }}?>
 
                         <tr>
                           <?php
