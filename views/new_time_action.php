@@ -61,7 +61,7 @@ include_once "includes/header.php";
                     </thead>
                     <tbody>
                       <?php
-                        $events_time_actions = "SELECT p.*,e.* FROM po_event e LEFT JOIN po_time_action p ON p.event_id = e.event_id order by 'event_id'";
+                        $events_time_actions = "SELECT p.*,e.* FROM po_event e LEFT JOIN po_time_action p ON p.event_id = e.event_id order by e.event_id ASC";
                         $events_time_actions = mysqli_query($conn, $events_time_actions);
                         foreach ($events_time_actions as $key => $events_time_action) {
 

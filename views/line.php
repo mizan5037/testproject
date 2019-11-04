@@ -64,7 +64,9 @@ include_once "includes/header.php";
             <h5 class="card-title">New Line</h5>
             <form action="" method="post">
                 <div class="form-row">
-                    <div class="col-md-2"><h3>Line Name:</h3></div>
+                    <div class="col-md-2">
+                        <h3>Line Name:</h3>
+                    </div>
                     <div class="col-md-8"><input type="text" name="line" class="form-control"></div>
                     <div class="col-md-2"><input type="submit" class="btn btn-sm btn-success form-control" value="Save"></div>
                 </div>

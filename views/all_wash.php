@@ -72,7 +72,7 @@ include_once "includes/header.php";
                             <td><?= $row['Send'] ?></td>
                             <td><?= $row['Receive'] ?></td>
                             <td>
-                                <a href="<?= $path ?>/index.php?page=wash_edit&id=<?= $row['WashFormID'] ?>" class=" btn btn-sm btn-outline-primary">
+                                <a href="<?= $path ?>/index.php?page=wash_edit&id=<?= $row['WashFormID'] ?>" class=" mb-2 mr-2 btn-transition btn btn-sm btn-outline-primary">
                                 <i class="fas fa-edit" ></i>
                                 </a>
                                 

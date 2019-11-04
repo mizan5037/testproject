@@ -540,12 +540,30 @@
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
                                 <ul>
-                                    <li <?php active('lay_form'); ?>>
-                                        <a href="<?= $path ?>/index.php?page=lay_form">
-                                            <i class="metismenu-icon">
-                                            </i>Lay Form
+
+
+                                    <li>
+                                        <a href="#">
+                                            <i class="metismenu-icon"></i>
+                                            Lay
+                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                         </a>
+                                        <ul>
+                                            <li <?php active('lay_form'); ?>>
+                                                <a href="<?= $path ?>/index.php?page=lay_form">
+                                                    <i class="metismenu-icon">
+                                                    </i>Lay Form
+                                                </a>
+                                            </li>
+                                            <li <?php active('all_lay'); ?>>
+                                                <a href="<?= $path ?>/index.php?page=all_lay">
+                                                    <i class="metismenu-icon"></i>
+                                                    All Lay
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </li>
+
                                     <li <?php active('fab_relaxation'); ?>>
                                         <a href="<?= $path ?>/index.php?page=fab_relaxation">
                                             <i class="metismenu-icon">
