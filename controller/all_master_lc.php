@@ -18,8 +18,6 @@ function searchForBuyer($id, $array)
     return null;
 }
 
-// echo searchForBuyer(5, $buyerArr);
-// die();
 
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
