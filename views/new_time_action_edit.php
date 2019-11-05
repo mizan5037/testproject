@@ -1,5 +1,13 @@
 <?php
   $PageTitle = "Time And Action Calender | Optima Inventory";
+  $conn = db_connection();
+  if (isset($_GET['POID']) && isset($_GET['event_id']) && $_GET['POID']!='' && $_GET['event_id']) {
+    $POID = $_GET['POID'];
+    $event_id = $_GET['event_id'];
+  }
+  else {
+    nowgo('/index.php?page=all_po');
+  }
   function customPageHeader()
   {
 ?>
@@ -53,15 +61,11 @@
                         <th>Remarks</th>
                     </thead>
                     <?php
-                      $conn = db_connection();
+
                     ?>
                     <tbody>
                         <tr>
                           <?php
-                          $POID= '';
-                          $POID = $_GET['POID'];
-                          $event_id= '';
-                          $event_id = $_GET['event_id'];
                           $sql = "SELECT * FROM `po_event` WHERE `event_id`='$event_id' ";
                           $event_list = mysqli_query($conn, $sql);
                           $event_list = mysqli_fetch_array($event_list);

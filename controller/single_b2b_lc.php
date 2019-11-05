@@ -83,6 +83,7 @@ if (isset($_POST['pono']) && isset($_POST['style']) && isset($_POST['qty']) && i
 if (
     isset($_POST['blcnumber']) &&
     isset($_POST['blcissuedate']) &&
+    isset($_POST['blcmaturitydate']) &&
     isset($_POST['masterlc']) &&
     isset($_POST['supplier']) &&
     isset($_POST['person']) &&
@@ -91,20 +92,22 @@ if (
 ) {
     $blcnumber = $_POST['blcnumber'];
     $blcissuedate  = $_POST['blcissuedate'];
+    $blcmaturitydate  = $_POST['blcmaturitydate'];
     $masterlc  = $_POST['masterlc'];
     $supplier  = $_POST['supplier'];
     $person  = $_POST['person'];
     $number  = $_POST['number'];
     $address  = $_POST['address'];
 
-    $sql = "UPDATE b2blc SET 
+    $sql = "UPDATE b2blc SET
     B2BLCNumber = '$blcnumber',
-    MasterLCID = '$masterlc', 
-    SupplierName = '$supplier', 
-    ContactPerson = '$person', 
-    ContactNumber = '$number', 
-    SupplierAddress = '$address', 
-    Issuedate = '$blcissuedate'
+    MasterLCID = '$masterlc',
+    SupplierName = '$supplier',
+    ContactPerson = '$person',
+    ContactNumber = '$number',
+    SupplierAddress = '$address',
+    Issuedate = '$blcissuedate',
+    Maturitydate = '$blcmaturitydate'
     WHERE B2BLCID = '$id'";
 
     if (mysqli_query($conn, $sql)) {
