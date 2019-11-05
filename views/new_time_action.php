@@ -76,7 +76,7 @@ include_once "includes/header.php";
                             <td><input type="date" name="" id="" value="<?php echo $events_time_action['4th_revised_implement_date']; ?>" disabled></td>
                             <td><input type="text" name="" id="" value="<?php echo $events_time_action['remarks']; ?>" disabled></td>
                             <td> <a href="<?= $path ?>/index.php?page=new_time_action_edit&event_id=<?php echo $events_time_action['event_id']; ?>&POID=<?php echo $POID; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                Edit
+                                <i class="fas fa-edit"></i>
                             </a></td>
                         </tr>
                       <?php } ?>

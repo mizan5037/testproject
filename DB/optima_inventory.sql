@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 03, 2019 at 09:28 AM
+-- Generation Time: Nov 05, 2019 at 04:34 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.19
 
@@ -651,6 +651,7 @@ CREATE TABLE `po` (
   `POWASH` float NOT NULL,
   `POHANGER` float NOT NULL,
   `Division` varchar(200) NOT NULL,
+  `special_note` text,
   `AddedBy` int(11) NOT NULL,
   `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `Status` tinyint(4) NOT NULL DEFAULT '1'
@@ -709,8 +710,7 @@ INSERT INTO `po_event` (`event_id`, `event_name`) VALUES
 (35, 'Finish Start Date'),
 (36, 'Pack Complete	'),
 (37, 'Bulk Garments Final Inspection /Ex Factory'),
-(38, 'Bulk Garments Hand Over to Forwarder'),
-(39, 'Special Note:');
+(38, 'Bulk Garments Hand Over to Forwarder');
 
 -- --------------------------------------------------------
 
@@ -720,15 +720,15 @@ INSERT INTO `po_event` (`event_id`, `event_name`) VALUES
 
 CREATE TABLE `po_time_action` (
   `po_time_action_id` int(11) NOT NULL,
-  `projected_date` date NOT NULL,
-  `implement_date` date NOT NULL,
-  `1st_revised_implement_date` date NOT NULL,
-  `2nd_revised_implement_date` date NOT NULL,
-  `3rd_revised_implement_date` date NOT NULL,
-  `4th_revised_implement_date` date NOT NULL,
-  `remarks` text NOT NULL,
-  `POID` int(11) NOT NULL,
-  `event_id` int(11) NOT NULL
+  `projected_date` varchar(20) DEFAULT NULL,
+  `implement_date` varchar(20) DEFAULT NULL,
+  `1st_revised_implement_date` varchar(20) DEFAULT NULL,
+  `2nd_revised_implement_date` varchar(20) DEFAULT NULL,
+  `3rd_revised_implement_date` varchar(20) DEFAULT NULL,
+  `4th_revised_implement_date` varchar(20) DEFAULT NULL,
+  `remarks` varchar(200) DEFAULT NULL,
+  `POID` int(11) DEFAULT NULL,
+  `event_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1453,7 +1453,7 @@ ALTER TABLE `po`
 -- AUTO_INCREMENT for table `po_event`
 --
 ALTER TABLE `po_event`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `po_time_action`
