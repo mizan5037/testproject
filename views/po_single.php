@@ -290,6 +290,7 @@ include_once "includes/header.php";
                         <li>PO Date: <b><?= $single_po['PODate'] ?></b></li>
                         <li>Currency: <b><?= $single_po['POCurrency'] ?></b></li>
                         <li>CMP: <b><?= $single_po['POCMP'] ?></b> </li>
+                        <li>FOB: <b><?= $single_po['FOB'] ?></b> </li>
                     </ul>
                 </div>
                 <div class="col-md-4">

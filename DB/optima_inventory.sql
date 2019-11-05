@@ -2,10 +2,10 @@
 -- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Nov 05, 2019 at 09:42 AM
--- Server version: 5.7.24
--- PHP Version: 7.2.19
+-- Host: 127.0.0.1
+-- Generation Time: Nov 05, 2019 at 12:07 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -39,7 +39,7 @@ CREATE TABLE `accessories` (
   `Shortage` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
   `timestamp` int(11) NOT NULL,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -58,10 +58,18 @@ CREATE TABLE `b2blc` (
   `SupplierAddress` text NOT NULL,
   `Issuedate` date NOT NULL,
   `Maturitydate` date NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(4) NOT NULL DEFAULT '1',
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(4) NOT NULL DEFAULT 1,
   `AddedBy` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `b2blc`
+--
+
+INSERT INTO `b2blc` (`B2BLCID`, `B2BLCNumber`, `MasterLCID`, `SupplierName`, `ContactPerson`, `ContactNumber`, `SupplierAddress`, `Issuedate`, `Maturitydate`, `timestamp`, `Status`, `AddedBy`) VALUES
+(1, '54544', 1, '5454', '45545', '54545445454', '5454trtrthhtffgbv', '2019-11-06', '2019-11-23', '2019-11-05 10:15:06', 1, 1),
+(2, '2121', 1, '221', '122121443', '21212', '2121', '2019-11-08', '2019-11-25', '2019-11-05 10:08:02', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -79,9 +87,17 @@ CREATE TABLE `b2b_item` (
   `PricePerUnit` int(11) NOT NULL,
   `TotalPrice` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `b2b_item`
+--
+
+INSERT INTO `b2b_item` (`ID`, `ItemID`, `StyleID`, `POID`, `B2BLCID`, `Qty`, `PricePerUnit`, `TotalPrice`, `AddedBy`, `timestamp`, `Status`) VALUES
+(1, 1, 1, 1, 1, 455, 54, 5454, 1, '2019-11-05 09:50:04', 1),
+(2, 1, 1, 1, 2, 221121, 2112, 121212, 1, '2019-11-05 09:59:09', 1);
 
 -- --------------------------------------------------------
 
@@ -102,9 +118,9 @@ CREATE TABLE `buyer` (
   `BuyerContactPerson` varchar(200) NOT NULL,
   `ContactPersonDesignation` varchar(200) NOT NULL,
   `ContactPersonPhone` varchar(100) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `AddedBy` int(11) NOT NULL,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -128,8 +144,8 @@ CREATE TABLE `carton_form` (
   `Color` varchar(200) NOT NULL,
   `Qty` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `Status` tinyint(4) NOT NULL DEFAULT '1',
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `Status` tinyint(4) NOT NULL DEFAULT 1,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -142,8 +158,8 @@ CREATE TABLE `color` (
   `id` int(11) NOT NULL,
   `color` varchar(200) NOT NULL,
   `addedby` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `status` tinyint(1) NOT NULL DEFAULT '1'
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -165,8 +181,8 @@ CREATE TABLE `cutting_form` (
   `CuttingNo` int(11) NOT NULL,
   `POID` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `Status` tinyint(4) NOT NULL DEFAULT '1',
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `Status` tinyint(4) NOT NULL DEFAULT 1,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -184,8 +200,8 @@ CREATE TABLE `cutting_form_description` (
   `PrintEMBSent` int(11) NOT NULL,
   `PrintEmbReceive` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `Status` tinyint(4) NOT NULL DEFAULT '1',
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `Status` tinyint(4) NOT NULL DEFAULT 1,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -199,8 +215,8 @@ CREATE TABLE `fabric_issue_other` (
   `BuyerID` int(11) NOT NULL,
   `ContrastPocket` varchar(45) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(1) NOT NULL DEFAULT '1'
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -220,8 +236,8 @@ CREATE TABLE `fabric_issue_other_description` (
   `IssueQty` int(11) NOT NULL,
   `Roll` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(1) NOT NULL DEFAULT '1'
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -235,9 +251,9 @@ CREATE TABLE `fab_issue` (
   `BuyerID` int(11) NOT NULL,
   `StyleID` int(11) NOT NULL,
   `POID` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `AddedBy` int(11) NOT NULL,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -257,8 +273,8 @@ CREATE TABLE `fab_issue_description` (
   `IssueQty` int(11) NOT NULL,
   `Roll` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `Status` tinyint(4) NOT NULL DEFAULT '1',
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `Status` tinyint(4) NOT NULL DEFAULT 1,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -279,8 +295,8 @@ CREATE TABLE `fab_receive` (
   `ReceivedRoll` int(11) NOT NULL,
   `Shortage` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -301,8 +317,8 @@ CREATE TABLE `fab_receive_other` (
   `ReceivedRoll` int(11) NOT NULL,
   `Shortage` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(11) NOT NULL DEFAULT '1'
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -317,8 +333,8 @@ CREATE TABLE `fab_relaxation` (
   `StyleID` int(11) NOT NULL,
   `Color` varchar(200) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -346,8 +362,8 @@ CREATE TABLE `fab_relaxation_description` (
   `TotalHours` int(11) NOT NULL,
   `Remarks` varchar(200) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -375,8 +391,8 @@ CREATE TABLE `hourly_finishing_form` (
   `seven` int(11) NOT NULL,
   `eight` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `Status` tinyint(4) NOT NULL DEFAULT '1',
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `Status` tinyint(4) NOT NULL DEFAULT 1,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -390,8 +406,8 @@ CREATE TABLE `hourly_production` (
   `Date` date NOT NULL,
   `FloorNO` varchar(200) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `Status` tinyint(4) NOT NULL DEFAULT '1',
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `Status` tinyint(4) NOT NULL DEFAULT 1,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -419,8 +435,8 @@ CREATE TABLE `hourly_production_details` (
   `seven` int(11) NOT NULL,
   `eight` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '1',
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -435,8 +451,8 @@ CREATE TABLE `item` (
   `ItemDescription` text NOT NULL,
   `ItemMeasurementUnit` varchar(200) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `status` tinyint(4) NOT NULL DEFAULT '1'
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -459,8 +475,8 @@ CREATE TABLE `itemrequirment` (
   `ItemRequirmentSize` varchar(200) NOT NULL,
   `ItemRequirmentQty` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -487,7 +503,7 @@ CREATE TABLE `item_issue_access` (
   `Qty` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
   `timestamp` int(11) NOT NULL,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -506,8 +522,8 @@ CREATE TABLE `item_receive_access` (
   `Received` int(11) NOT NULL,
   `Shortage` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `TimeStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(1) NOT NULL DEFAULT '1'
+  `TimeStamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -528,8 +544,8 @@ CREATE TABLE `lay_form` (
   `MarkerLength` varchar(200) NOT NULL,
   `SpecialAction` text NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -552,8 +568,8 @@ CREATE TABLE `lay_form_details` (
   `Shortage` int(11) NOT NULL,
   `Sticker` varchar(200) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -565,9 +581,9 @@ CREATE TABLE `lay_form_details` (
 CREATE TABLE `line` (
   `id` int(11) NOT NULL,
   `line` varchar(20) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `status` tinyint(1) NOT NULL DEFAULT 1,
   `addedby` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -600,8 +616,8 @@ CREATE TABLE `masterlc` (
   `MasterLCPortOfDischarge` varchar(200) NOT NULL,
   `Description` text NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `Timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -627,8 +643,8 @@ CREATE TABLE `masterlc_description` (
   `Price` int(11) NOT NULL,
   `LSDate` date NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `status` tinyint(4) NOT NULL DEFAULT '1'
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -654,8 +670,8 @@ CREATE TABLE `order_description` (
   `PPack` int(11) NOT NULL,
   `Units` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -664,7 +680,8 @@ CREATE TABLE `order_description` (
 
 INSERT INTO `order_description` (`OrderdescriptionID`, `POID`, `StyleID`, `Color`, `ClrNo`, `Dzs`, `PPack`, `Units`, `AddedBy`, `timestamp`, `Status`) VALUES
 (1, 1, 1, '1', '2584', 20, 200, 100, 1, '2019-11-05 04:41:39', 1),
-(2, 2, 1, '1', '2584', 17, 22, 7845, 1, '2019-11-05 06:05:30', 1);
+(2, 2, 1, '1', '2584', 17, 22, 7845, 1, '2019-11-05 06:05:30', 1),
+(3, 3, 1, '1', '1221', 1, 14, 242, 1, '2019-11-05 10:56:40', 1);
 
 -- --------------------------------------------------------
 
@@ -678,8 +695,8 @@ CREATE TABLE `pi` (
   `IssueDate` date NOT NULL,
   `SupplierName` varchar(200) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -706,8 +723,8 @@ CREATE TABLE `pi_description` (
   `PricePerUnit` int(11) NOT NULL,
   `TotalPrice` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -725,8 +742,8 @@ INSERT INTO `pi_description` (`PIDescriptionID`, `PIID`, `POID`, `ItemID`, `Desc
 
 CREATE TABLE `po` (
   `POID` int(11) NOT NULL,
-  `MasterLCOccupied` tinyint(4) NOT NULL DEFAULT '0',
-  `BTBLCIDOccupied` tinyint(4) NOT NULL DEFAULT '0',
+  `MasterLCOccupied` tinyint(4) NOT NULL DEFAULT 0,
+  `BTBLCIDOccupied` tinyint(4) NOT NULL DEFAULT 0,
   `PONumber` varchar(200) NOT NULL,
   `POFrom` varchar(200) NOT NULL,
   `PODate` date NOT NULL,
@@ -737,20 +754,22 @@ CREATE TABLE `po` (
   `POCMP` float NOT NULL,
   `POWASH` float NOT NULL,
   `POHANGER` float NOT NULL,
+  `FOB` float NOT NULL,
   `Division` varchar(200) NOT NULL,
-  `special_note` text,
+  `special_note` text DEFAULT NULL,
   `AddedBy` int(11) NOT NULL,
-  `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `Timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `po`
 --
 
-INSERT INTO `po` (`POID`, `MasterLCOccupied`, `BTBLCIDOccupied`, `PONumber`, `POFrom`, `PODate`, `POCMPWH`, `POCurrency`, `POSpecialInstruction`, `POFinalDestination`, `POCMP`, `POWASH`, `POHANGER`, `Division`, `special_note`, `AddedBy`, `Timestamp`, `Status`) VALUES
-(1, 0, 0, '2001478', 'Mrz', '2019-11-05', 40.25, 'BDT', 'Quick Delivery', 'Final_test', 0.25, 10, 30, 'test_devision', 'fsddddddddddddd', 1, '2019-11-05 05:37:16', 1),
-(2, 0, 0, 'test1', 'test1', '2019-11-14', 0.39, 'test1', 'test1', 'test1', 0.11, 0.13, 0.15, 'test1', NULL, 1, '2019-11-05 06:05:30', 1);
+INSERT INTO `po` (`POID`, `MasterLCOccupied`, `BTBLCIDOccupied`, `PONumber`, `POFrom`, `PODate`, `POCMPWH`, `POCurrency`, `POSpecialInstruction`, `POFinalDestination`, `POCMP`, `POWASH`, `POHANGER`, `FOB`, `Division`, `special_note`, `AddedBy`, `Timestamp`, `Status`) VALUES
+(1, 0, 0, '2001478', 'Mrz', '2019-11-05', 40.25, 'BDT', 'Quick Delivery', 'Final_test', 0.25, 10, 30, 3, 'test_devision', 'fsddddddddddddd', 1, '2019-11-05 11:04:41', 1),
+(2, 0, 0, 'test1', 'test1', '2019-11-14', 0.39, 'test1', 'test1', 'test1', 0.11, 0.13, 0.15, 0, 'test1', NULL, 1, '2019-11-05 06:05:30', 1),
+(3, 0, 0, 'fff', 'hf', '2019-11-01', 497.01, 'asddsadsa', '2112', '121212', 454.01, 22, 21.02, 20.03, '2121', NULL, 1, '2019-11-05 11:07:24', 1);
 
 -- --------------------------------------------------------
 
@@ -824,7 +843,7 @@ CREATE TABLE `po_time_action` (
   `remarks` varchar(200) DEFAULT NULL,
   `POID` int(11) DEFAULT NULL,
   `event_id` int(11) DEFAULT NULL,
-  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `added_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -859,8 +878,8 @@ CREATE TABLE `prepack` (
   `PrePackSize` varchar(200) NOT NULL,
   `PrepackQty` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `Timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -869,7 +888,8 @@ CREATE TABLE `prepack` (
 
 INSERT INTO `prepack` (`PrePackID`, `POID`, `PrePackCode`, `PrePackSize`, `PrepackQty`, `AddedBy`, `Timestamp`, `Status`) VALUES
 (1, 1, '11', '1', 5454, 1, '2019-11-05 04:41:39', 1),
-(2, 2, '11', '1', 65445654, 1, '2019-11-05 06:05:30', 1);
+(2, 2, '11', '1', 65445654, 1, '2019-11-05 06:05:30', 1),
+(3, 3, '4242', '1', 244, 1, '2019-11-05 10:56:40', 1);
 
 -- --------------------------------------------------------
 
@@ -886,8 +906,8 @@ CREATE TABLE `shipment_form` (
   `Shipment` int(11) NOT NULL,
   `Sample` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `Status` tinyint(4) NOT NULL DEFAULT '1',
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `Status` tinyint(4) NOT NULL DEFAULT 1,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -900,8 +920,8 @@ CREATE TABLE `size` (
   `id` int(11) NOT NULL,
   `size` varchar(100) NOT NULL,
   `addedby` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `status` tinyint(1) NOT NULL DEFAULT '1'
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -925,8 +945,8 @@ CREATE TABLE `stationary_issue` (
   `Qty` int(11) NOT NULL,
   `Remark` varchar(200) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(1) DEFAULT '1'
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -941,8 +961,8 @@ CREATE TABLE `stationary_item` (
   `Description` text NOT NULL,
   `MeasurmentUnit` varchar(200) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -959,8 +979,8 @@ CREATE TABLE `stationary_receive` (
   `ReceivedQty` int(11) NOT NULL,
   `Shortage` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -978,8 +998,8 @@ CREATE TABLE `style` (
   `StyleProto` varchar(200) NOT NULL,
   `StyleFabricDetails` text NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `Timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1002,8 +1022,8 @@ CREATE TABLE `trimsaccess` (
   `TrimsAccessName` varchar(200) NOT NULL,
   `TrimsAccessDescription` varchar(200) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `Timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1019,8 +1039,8 @@ CREATE TABLE `users` (
   `Designation` varchar(200) NOT NULL,
   `Pass` varchar(200) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Status` tinyint(4) NOT NULL DEFAULT '1'
+  `Timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1045,8 +1065,8 @@ CREATE TABLE `wash_form` (
   `Send` int(11) NOT NULL,
   `Receive` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `Status` tinyint(4) NOT NULL DEFAULT '1',
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `Status` tinyint(4) NOT NULL DEFAULT 1,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1416,13 +1436,13 @@ ALTER TABLE `accessories`
 -- AUTO_INCREMENT for table `b2blc`
 --
 ALTER TABLE `b2blc`
-  MODIFY `B2BLCID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `B2BLCID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `b2b_item`
 --
 ALTER TABLE `b2b_item`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `buyer`
@@ -1578,7 +1598,7 @@ ALTER TABLE `masterlc_description`
 -- AUTO_INCREMENT for table `order_description`
 --
 ALTER TABLE `order_description`
-  MODIFY `OrderdescriptionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `OrderdescriptionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pi`
@@ -1596,7 +1616,7 @@ ALTER TABLE `pi_description`
 -- AUTO_INCREMENT for table `po`
 --
 ALTER TABLE `po`
-  MODIFY `POID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `POID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `po_event`
@@ -1614,7 +1634,7 @@ ALTER TABLE `po_time_action`
 -- AUTO_INCREMENT for table `prepack`
 --
 ALTER TABLE `prepack`
-  MODIFY `PrePackID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `PrePackID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `shipment_form`

@@ -63,29 +63,33 @@ include_once "includes/header.php";
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip01">CMP</label>
-                        <input type="number" name="cmp" value="<?= $single_po['POCMP'] ?>" class="form-control" id="validationTooltip01" placeholder="CMP" required>
+                        <input type="number" name="cmp" value="<?= $single_po['POCMP'] ?>" class="form-control" id="validationTooltip01" placeholder="CMP" step="0.01" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip03">Wash Cost</label>
-                        <input type="number" name="wash_cost" value="<?= $single_po['POWASH'] ?>" class="form-control" id="validationTooltip03" placeholder="Wash Cost" required>
+                        <input type="number" name="wash_cost" value="<?= $single_po['POWASH'] ?>" class="form-control" id="validationTooltip03" placeholder="Wash Cost" step="0.01" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip03">Hanger Cost</label>
-                        <input type="number" name="hanger_cost" value="<?= $single_po['POHANGER'] ?>" class="form-control" id="validationTooltip03" placeholder="Hanger Cost" required>
+                        <input type="number" name="hanger_cost" value="<?= $single_po['POHANGER'] ?>" class="form-control" id="validationTooltip03" placeholder="Hanger Cost" step="0.01" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip03">CMP+W+Hanger</label>
-                        <input type="number" name="cmp_w_wanger" value="<?= $single_po['POCMPWH'] ?>" class="form-control" id="validationTooltip03" placeholder="CMP+W+Hanger" required>
+                        <input type="number" name="cmp_w_wanger" value="<?= $single_po['POCMPWH'] ?>" class="form-control" id="validationTooltip03" placeholder="CMP+W+Hanger" step="0.01" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
+                        <label for="validationTooltip03">FOB</label>
+                        <input type="number" name="fob" value="<?= $single_po['FOB'] ?>" class="form-control" id="validationTooltip03" placeholder="FOB" step="0.01" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
                         <label for="validationTooltip01">Final Destination</label>
                         <input type="Text" name="final_destination" value="<?= $single_po['POFinalDestination'] ?>" class="form-control" id="validationTooltip01" placeholder="Final Destination" required>
                     </div>
-                    <div class="col-md-9 mb-3">
+                    <div class="col-md-6 mb-3">
                         <label for="validationTooltip03">Special Instruction</label>
-                        <textarea type="number" name="special_instruction" class="form-control" id="validationTooltip03" placeholder="Special Instruction" required><?= $single_po['POSpecialInstruction'] ?></textarea>
+                        <textarea type="number" name="special_instruction" class="form-control" id="validationTooltip03" placeholder="Special Instruction" rows="1" required><?= $single_po['POSpecialInstruction'] ?></textarea>
                     </div>
                 </div>
                 <div class="form-row">
@@ -214,7 +218,7 @@ function customPagefooter()
 {
     ?>
     <script>
-        //table top 
+        //table top
         $(document).ready(function() {
             var counter1 = 0;
             var limit1 = 100;
@@ -302,7 +306,7 @@ function customPagefooter()
         }
 
 
-        //table bottom 
+        //table bottom
         $(document).ready(function() {
             var counter = 0;
             var limit = 100;
