@@ -5,7 +5,7 @@ require_once '../lib/database.php';
 //linking Functions
 require_once '../lib/functions.php';
 
-$token = $_POST["token"]; 
+$token = $_POST["token"];
 
 if (get_ses('token') === $token) {
 
@@ -17,7 +17,7 @@ if (get_ses('token') === $token) {
 
 	$sql = "UPDATE buyer SET " . $cname . "='" . $text . "' WHERE BuyerID='" . $id . "'";
 	if (mysqli_query($conn, $sql)) {
-		nowlog('Buyer Details Updated Succefully');
+		nowlog($cname . ' Updated Succefully');
 		echo 'Data Updated';
 	} else {
 		echo $sql . "<br>" . mysqli_error($conn);

@@ -51,7 +51,7 @@ function nowlog($attempt)
         "Attempt: " . $attempt . PHP_EOL .
         "-------------------------" . PHP_EOL;
     //Save string to log, use FILE_APPEND to append.
-    $logFolder = '/log';
+    $logFolder = $_SERVER['DOCUMENT_ROOT']. $path .'/log';
     if (!file_exists($logFolder)) {
         mkdir($logFolder, 0777, true);
     }
