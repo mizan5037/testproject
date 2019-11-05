@@ -72,9 +72,8 @@
                           <input type="hidden" name="POID" value="<?= $POID;?>">
                           <input type="hidden" name="event_id" value="<?= $event_id;?>">
                             <td>
-                              <select name="event_id" disabled>
-                                  <option value="<?= $event_list['event_id']; ?>"><?=  $event_list['event_name']; ?></option>
-                              </select>
+                              <input type="hidden" name="event_id" value="<?= $event_list['event_id']; ?>">
+                              <p><?=  $event_list['event_name']; ?></p>
                             </td>
                             <td><input type="date" name="projected_date" id="" value="<?php echo $time_actions['projected_date']; ?>"></td>
                             <td><input type="date" name="implement_date" id="" value="<?php echo $time_actions['implement_date']; ?>"></td>
