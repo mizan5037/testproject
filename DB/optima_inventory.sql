@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 05, 2019 at 04:34 AM
+-- Generation Time: Nov 05, 2019 at 05:38 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.19
 
@@ -137,6 +137,13 @@ CREATE TABLE `color` (
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `color`
+--
+
+INSERT INTO `color` (`id`, `color`, `addedby`, `timestamp`, `status`) VALUES
+(1, 'White', 1, '2019-11-05 04:37:44', 1);
 
 -- --------------------------------------------------------
 
@@ -424,6 +431,13 @@ CREATE TABLE `item` (
   `status` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `item`
+--
+
+INSERT INTO `item` (`ItemID`, `ItemName`, `ItemDescription`, `ItemMeasurementUnit`, `AddedBy`, `timestamp`, `status`) VALUES
+(1, 'Shirt', 'Blue', '200', 1, '2019-11-05 04:38:10', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -440,6 +454,13 @@ CREATE TABLE `itemrequirment` (
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `Status` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `itemrequirment`
+--
+
+INSERT INTO `itemrequirment` (`ItemRequirmentID`, `ItemRequirmentStyleID`, `ItemRequirmentItemID`, `ItemRequirmentSize`, `ItemRequirmentQty`, `AddedBy`, `timestamp`, `Status`) VALUES
+(1, 1, 1, '1', 200, 1, '2019-11-05 04:39:48', 1);
 
 -- --------------------------------------------------------
 
@@ -594,6 +615,13 @@ CREATE TABLE `order_description` (
   `Status` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `order_description`
+--
+
+INSERT INTO `order_description` (`OrderdescriptionID`, `POID`, `StyleID`, `Color`, `ClrNo`, `Dzs`, `PPack`, `Units`, `AddedBy`, `timestamp`, `Status`) VALUES
+(1, 1, 1, '1', '2584', 20, 200, 100, 1, '2019-11-05 04:41:39', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -656,6 +684,13 @@ CREATE TABLE `po` (
   `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `Status` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `po`
+--
+
+INSERT INTO `po` (`POID`, `MasterLCOccupied`, `BTBLCIDOccupied`, `PONumber`, `POFrom`, `PODate`, `POCMPWH`, `POCurrency`, `POSpecialInstruction`, `POFinalDestination`, `POCMP`, `POWASH`, `POHANGER`, `Division`, `special_note`, `AddedBy`, `Timestamp`, `Status`) VALUES
+(1, 0, 0, '2001478', 'Mrz', '2019-11-05', 40.25, 'BDT', 'Quick Delivery', 'Final_test', 0.25, 10, 30, 'test_devision', 'fsddddddddddddd', 1, '2019-11-05 05:37:16', 1);
 
 -- --------------------------------------------------------
 
@@ -728,8 +763,18 @@ CREATE TABLE `po_time_action` (
   `4th_revised_implement_date` varchar(20) DEFAULT NULL,
   `remarks` varchar(200) DEFAULT NULL,
   `POID` int(11) DEFAULT NULL,
-  `event_id` int(11) DEFAULT NULL
+  `event_id` int(11) DEFAULT NULL,
+  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `added_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `po_time_action`
+--
+
+INSERT INTO `po_time_action` (`po_time_action_id`, `projected_date`, `implement_date`, `1st_revised_implement_date`, `2nd_revised_implement_date`, `3rd_revised_implement_date`, `4th_revised_implement_date`, `remarks`, `POID`, `event_id`, `time_stamp`, `added_by`) VALUES
+(1, '2019-11-14', '', '', '2019-11-13', '2019-11-20', '', '', 1, 1, '2019-11-05 05:36:49', 1),
+(2, '', '', '', '', '', '', 'dfgh', 1, 2, '2019-11-05 05:37:30', 1);
 
 -- --------------------------------------------------------
 
@@ -747,6 +792,13 @@ CREATE TABLE `prepack` (
   `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `Status` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `prepack`
+--
+
+INSERT INTO `prepack` (`PrePackID`, `POID`, `PrePackCode`, `PrePackSize`, `PrepackQty`, `AddedBy`, `Timestamp`, `Status`) VALUES
+(1, 1, '11', '1', 5454, 1, '2019-11-05 04:41:39', 1);
 
 -- --------------------------------------------------------
 
@@ -780,6 +832,13 @@ CREATE TABLE `size` (
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `size`
+--
+
+INSERT INTO `size` (`id`, `size`, `addedby`, `timestamp`, `status`) VALUES
+(1, 'Xl', 1, '2019-11-05 04:37:50', 1);
 
 -- --------------------------------------------------------
 
@@ -851,6 +910,13 @@ CREATE TABLE `style` (
   `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `Status` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `style`
+--
+
+INSERT INTO `style` (`StyleID`, `StyleNumber`, `StyleDescription`, `StyleWash`, `StyleImage`, `StyleProto`, `StyleFabricDetails`, `AddedBy`, `Timestamp`, `Status`) VALUES
+(1, '20058', 'Demo_test Data', 'Low', '189984701_2019_Nov_05_1572928788_1.jpg', 'shirt_00285', 'Pure Cotton', 1, '2019-11-05 04:39:48', 1);
 
 -- --------------------------------------------------------
 
@@ -1297,7 +1363,7 @@ ALTER TABLE `carton_form`
 -- AUTO_INCREMENT for table `color`
 --
 ALTER TABLE `color`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cutting_form`
@@ -1381,13 +1447,13 @@ ALTER TABLE `hourly_production_details`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `ItemID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ItemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `itemrequirment`
 --
 ALTER TABLE `itemrequirment`
-  MODIFY `ItemRequirmentID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ItemRequirmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `item_issue_access`
@@ -1429,7 +1495,7 @@ ALTER TABLE `masterlc_description`
 -- AUTO_INCREMENT for table `order_description`
 --
 ALTER TABLE `order_description`
-  MODIFY `OrderdescriptionID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `OrderdescriptionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pi`
@@ -1447,7 +1513,7 @@ ALTER TABLE `pi_description`
 -- AUTO_INCREMENT for table `po`
 --
 ALTER TABLE `po`
-  MODIFY `POID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `POID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `po_event`
@@ -1459,13 +1525,13 @@ ALTER TABLE `po_event`
 -- AUTO_INCREMENT for table `po_time_action`
 --
 ALTER TABLE `po_time_action`
-  MODIFY `po_time_action_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `po_time_action_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `prepack`
 --
 ALTER TABLE `prepack`
-  MODIFY `PrePackID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PrePackID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `shipment_form`
@@ -1477,7 +1543,7 @@ ALTER TABLE `shipment_form`
 -- AUTO_INCREMENT for table `size`
 --
 ALTER TABLE `size`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `stationary_issue`
@@ -1501,7 +1567,7 @@ ALTER TABLE `stationary_receive`
 -- AUTO_INCREMENT for table `style`
 --
 ALTER TABLE `style`
-  MODIFY `StyleID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `StyleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `trimsaccess`

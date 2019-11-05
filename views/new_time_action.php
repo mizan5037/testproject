@@ -39,12 +39,9 @@ include_once "includes/header.php";
     <div class="main-card mb-3 card">
         <div class="card-body">
             <!-- <h5 class="card-title">Card Title</h5> -->
-
-
             <?php
               $conn = db_connection();
               $POID = $_GET['POID'];
-
              ?>
             <div class="row" style="overflow-x: auto;">
                 <table id="datetable" class="table-bordered table-hover table-sm">
@@ -64,10 +61,9 @@ include_once "includes/header.php";
                         $events_time_actions = "SELECT p.*,e.* FROM po_event e LEFT JOIN po_time_action p ON p.event_id = e.event_id order by e.event_id ASC";
                         $events_time_actions = mysqli_query($conn, $events_time_actions);
                         foreach ($events_time_actions as $key => $events_time_action) {
-
                       ?>
                         <tr>
-                            <td><?php echo $key.'.'.$events_time_action['event_name'] ?></td>
+                            <td><?= $events_time_action['event_name'] ?></td>
                             <td><input type="date" name="" id="" value="<?php echo $events_time_action['projected_date']; ?>" disabled></td>
                             <td><input type="date" name="" id="" value="<?php echo $events_time_action['implement_date']; ?>" disabled></td>
                             <td><input type="date" name="" id="" value="<?php echo $events_time_action['1st_revised_implement_date']; ?>" disabled></td>
@@ -79,30 +75,28 @@ include_once "includes/header.php";
                                 <i class="fas fa-edit"></i>
                             </a></td>
                         </tr>
-                      <?php } ?>
-
+                        <?php } ?>
                         <tr>
-                          <?php
-                            $time_actions = "SELECT * FROM `po_time_action` WHERE `POID` = $POID and `event_id` = 39";
-                            $data = mysqli_query($conn, $time_actions);
-                            $data = mysqli_fetch_array($data);
-                          ?>
-                            <td>Special Note:</td>
-                            <td colspan="7">
-                                <textarea name="" id="" style="width:100%;" rows="6" disabled><?php echo $data; ?></textarea>
-                            </td>
+                          <form method="post">
+                            <?php
+                              $special_note = "SELECT `special_note` FROM `po` WHERE `POID`='$POID'";
+                              $special_note = mysqli_query($conn, $special_note);
+                              $special_note = mysqli_fetch_assoc($special_note);
+                            ?>
+                              <td>Special Note:</td>
+                              <td colspan="6">
+                                  <input type="hidden" name="POID_sn" value="<?=$POID ?>">
+                                  <textarea name="special_note" id="" style="width:100%;" rows="6"><?php echo $special_note['special_note']; ?></textarea>
+                              </td>
+                              <td colspan="2" class="text-center">
+                                <button type="submit" class="btn btn-secondary" name="save_note">Save Note</button>
+                              </td>
+                          </form>
                         </tr>
                     </tbody>
                 </table>
-                <div class="container">
-                    <br><br>
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <button class="btn btn-primary" type="submit">Save</button>
-                        </div>
-                    </div>
-                </div>
             </div>
+
         </div>
     </div>
 </div>
