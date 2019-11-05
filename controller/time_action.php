@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
 
 	if($event_check > 0){
 
-			$sql_update = "UPDATE `po_time_action` SET `projected_date`='$projected_date',`implement_date`='$implement_date',`1st_revised_implement_date`='$rimplement_date_1st',`2nd_revised_implement_date`='$revised_implement_date_2nd',`3rd_revised_implement_date`='$revised_implement_date_3rd',`4th_revised_implement_date`='$revised_implement_date_4th',`remarks`='$remarks',`added_by`='$user_id' WHERE `event_id` = '$event_id'";
+			$sql_update = "UPDATE `po_time_action` SET `projected_date`='$projected_date',`implement_date`='$implement_date',`1st_revised_implement_date`='$rimplement_date_1st',`2nd_revised_implement_date`='$revised_implement_date_2nd',`3rd_revised_implement_date`='$revised_implement_date_3rd',`4th_revised_implement_date`='$revised_implement_date_4th',`remarks`='$remarks',`added_by`='$user_id' WHERE `event_id` = '$event_id' AND `POID`= '$POID'";
 
 		if (mysqli_query($conn, $sql_update)){
 			notice('success', 'New Time Updated Successfully');
