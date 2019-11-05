@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2019 at 05:08 PM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Generation Time: Nov 05, 2019 at 12:07 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -57,10 +57,19 @@ CREATE TABLE `b2blc` (
   `ContactNumber` varchar(200) NOT NULL,
   `SupplierAddress` text NOT NULL,
   `Issuedate` date NOT NULL,
+  `Maturitydate` date NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Status` tinyint(4) NOT NULL DEFAULT 1,
   `AddedBy` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `b2blc`
+--
+
+INSERT INTO `b2blc` (`B2BLCID`, `B2BLCNumber`, `MasterLCID`, `SupplierName`, `ContactPerson`, `ContactNumber`, `SupplierAddress`, `Issuedate`, `Maturitydate`, `timestamp`, `Status`, `AddedBy`) VALUES
+(1, '54544', 1, '5454', '45545', '54545445454', '5454trtrthhtffgbv', '2019-11-06', '2019-11-23', '2019-11-05 10:15:06', 1, 1),
+(2, '2121', 1, '221', '122121443', '21212', '2121', '2019-11-08', '2019-11-25', '2019-11-05 10:08:02', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -81,6 +90,14 @@ CREATE TABLE `b2b_item` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `b2b_item`
+--
+
+INSERT INTO `b2b_item` (`ID`, `ItemID`, `StyleID`, `POID`, `B2BLCID`, `Qty`, `PricePerUnit`, `TotalPrice`, `AddedBy`, `timestamp`, `Status`) VALUES
+(1, 1, 1, 1, 1, 455, 54, 5454, 1, '2019-11-05 09:50:04', 1),
+(2, 1, 1, 1, 2, 221121, 2112, 121212, 1, '2019-11-05 09:59:09', 1);
 
 -- --------------------------------------------------------
 
@@ -111,7 +128,7 @@ CREATE TABLE `buyer` (
 --
 
 INSERT INTO `buyer` (`BuyerID`, `BuyerName`, `BuyerEmail`, `BuyerPhone`, `BuyerAddress1`, `BuyerAddress2`, `BuyerCity`, `BuyerCountry`, `BuyerBuyingHouseName`, `BuyerContactPerson`, `ContactPersonDesignation`, `ContactPersonPhone`, `timestamp`, `AddedBy`, `Status`) VALUES
-(1, 'fghfd', 'hdf@dfghd', 'dfhdfh', 'dfh', 'dfhdf', 'hdfh', 'dfh', 'dfh', 'dfhd', 'fhdfhdfh', 'hdfh', '2019-11-05 09:16:42', 1, 1);
+(1, 'uhdfsj', 'admin@diu.edu.bd', '6543684654', 'SDSF', 'SADFD', 'SFDF', 'SFDFD', 'SFDDS', 'SFD', 'SDFFDS', 'SFD', '2019-11-05 09:20:41', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -604,6 +621,13 @@ CREATE TABLE `masterlc` (
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `masterlc`
+--
+
+INSERT INTO `masterlc` (`MasterLCID`, `MasterLCNumber`, `MasterLCIssueDate`, `MasterLCExpiryDate`, `MasterLCIssuingCompany`, `MasterLCBuyer`, `MasterLCSenderBank`, `MasterLCReceiverBank`, `MasterLCCurrency`, `MasterLCAmount`, `MasterLCPartialShipment`, `MasterLCTranshipment`, `MasterLCPortOfLoading`, `MasterLCPortOfDischarge`, `Description`, `AddedBy`, `Timestamp`, `Status`) VALUES
+(1, '546', '2019-11-09', '2019-11-16', 'dgfggf', 1, '43drfd', 'gfffd', 'asddsadsa', 4443434, 1, 1, '54546', '4454', '<p>rettrtrt</p>', 1, '2019-11-05 09:21:29', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -623,6 +647,13 @@ CREATE TABLE `masterlc_description` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `masterlc_description`
+--
+
+INSERT INTO `masterlc_description` (`ID`, `MasterLCID`, `POID`, `StyleID`, `Qty`, `Unit`, `Price`, `LSDate`, `AddedBy`, `timestamp`, `status`) VALUES
+(1, 1, 2, 1, 546465, '455456', 465654564, '2019-11-14', 1, '2019-11-05 09:21:29', 1);
 
 -- --------------------------------------------------------
 
@@ -650,7 +681,8 @@ CREATE TABLE `order_description` (
 
 INSERT INTO `order_description` (`OrderdescriptionID`, `POID`, `StyleID`, `Color`, `ClrNo`, `Dzs`, `PPack`, `Units`, `AddedBy`, `timestamp`, `Status`) VALUES
 (1, 1, 1, '1', '2584', 20, 200, 100, 1, '2019-11-05 04:41:39', 1),
-(2, 1, 2, '1', 'dfg', 12, 12, 123, 1, '2019-11-05 10:04:51', 1);
+(2, 2, 1, '1', '2584', 17, 22, 7845, 1, '2019-11-05 06:05:30', 1),
+(3, 3, 1, '1', '1221', 1, 14, 242, 1, '2019-11-05 10:56:40', 1);
 
 -- --------------------------------------------------------
 
@@ -667,6 +699,14 @@ CREATE TABLE `pi` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pi`
+--
+
+INSERT INTO `pi` (`PIID`, `RefNo`, `IssueDate`, `SupplierName`, `AddedBy`, `timestamp`, `Status`) VALUES
+(1, 'jhjj', '2019-11-01', '4545', 1, '2019-11-05 09:23:10', 0),
+(2, 'jhjj', '2019-11-24', '4545', 1, '2019-11-05 09:23:03', 1);
 
 -- --------------------------------------------------------
 
@@ -687,6 +727,13 @@ CREATE TABLE `pi_description` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pi_description`
+--
+
+INSERT INTO `pi_description` (`PIDescriptionID`, `PIID`, `POID`, `ItemID`, `Description`, `Qty`, `PricePerUnit`, `TotalPrice`, `AddedBy`, `timestamp`, `Status`) VALUES
+(1, 2, 1, 1, 'ytytyt', 200, 2222, 444400, 1, '2019-11-05 09:23:03', 1);
 
 -- --------------------------------------------------------
 
@@ -740,6 +787,7 @@ CREATE TABLE `po` (
   `POCMP` float NOT NULL,
   `POWASH` float NOT NULL,
   `POHANGER` float NOT NULL,
+  `FOB` float NOT NULL,
   `Division` varchar(200) NOT NULL,
   `special_note` text DEFAULT NULL,
   `AddedBy` int(11) NOT NULL,
@@ -751,8 +799,10 @@ CREATE TABLE `po` (
 -- Dumping data for table `po`
 --
 
-INSERT INTO `po` (`POID`, `MasterLCOccupied`, `BTBLCIDOccupied`, `PONumber`, `POFrom`, `PODate`, `POCMPWH`, `POCurrency`, `POSpecialInstruction`, `POFinalDestination`, `POCMP`, `POWASH`, `POHANGER`, `Division`, `special_note`, `AddedBy`, `Timestamp`, `Status`) VALUES
-(1, 0, 0, '2001478', 'Mrz', '2019-11-05', 40.25, 'BDT', 'Quick Delivery', 'Final_test', 0.25, 10, 30, 'test_devision', 'fsddddddddddddd', 1, '2019-11-05 05:37:16', 1);
+INSERT INTO `po` (`POID`, `MasterLCOccupied`, `BTBLCIDOccupied`, `PONumber`, `POFrom`, `PODate`, `POCMPWH`, `POCurrency`, `POSpecialInstruction`, `POFinalDestination`, `POCMP`, `POWASH`, `POHANGER`, `FOB`, `Division`, `special_note`, `AddedBy`, `Timestamp`, `Status`) VALUES
+(1, 0, 0, '2001478', 'Mrz', '2019-11-05', 40.25, 'BDT', 'Quick Delivery', 'Final_test', 0.25, 10, 30, 3, 'test_devision', 'fsddddddddddddd', 1, '2019-11-05 11:04:41', 1),
+(2, 0, 0, 'test1', 'test1', '2019-11-14', 0.39, 'test1', 'test1', 'test1', 0.11, 0.13, 0.15, 0, 'test1', NULL, 1, '2019-11-05 06:05:30', 1),
+(3, 0, 0, 'fff', 'hf', '2019-11-01', 497.01, 'asddsadsa', '2112', '121212', 454.01, 22, 21.02, 20.03, '2121', NULL, 1, '2019-11-05 11:07:24', 1);
 
 -- --------------------------------------------------------
 
@@ -835,10 +885,18 @@ CREATE TABLE `po_time_action` (
 --
 
 INSERT INTO `po_time_action` (`po_time_action_id`, `projected_date`, `implement_date`, `1st_revised_implement_date`, `2nd_revised_implement_date`, `3rd_revised_implement_date`, `4th_revised_implement_date`, `remarks`, `POID`, `event_id`, `time_stamp`, `added_by`) VALUES
-(1, '2019-11-14', '', '', '2019-11-13', '2019-11-20', '', '', 1, 1, '2019-11-05 05:36:49', 1),
+(1, '2019-11-12', '2019-11-20', '', '', '', '', 'Confirmation', 1, 1, '2019-11-05 09:02:28', 1),
 (2, '', '', '', '', '', '', 'dfgh', 1, 2, '2019-11-05 05:37:30', 1),
-(3, '', '', '', '', '', '', 'sefsf', 1, 10, '2019-11-05 05:51:34', 1),
-(4, '', '', '2019-11-19', '', '', '', 'sdfsdf', 1, 9, '2019-11-05 05:52:03', 1);
+(3, '', '2019-11-20', '', '', '', '', 'ghgg', 2, 38, '2019-11-05 08:36:38', 1),
+(4, '2019-11-12', '2019-11-20', '', '2019-11-19', '', '', 'Confirmation 123456', 2, 1, '2019-11-05 09:16:28', 1),
+(5, '', '', '', '', '', '', 'Fabric P/I Received From Buyer	', 2, 3, '2019-11-05 07:59:24', 1),
+(6, '', '', '', '', '', '', 'etret123', 2, 4, '2019-11-05 08:35:11', 1),
+(7, '', '', '', '', '', '', 'sdfsdfsdfsdf', 1, 3, '2019-11-05 08:02:12', 1),
+(8, '', '', '2019-11-13', '', '', '', 'Received ', 2, 2, '2019-11-05 09:16:13', 1),
+(9, '', '', '', '', '', '', 'Bulk Fabric sample Received From Buyer', 2, 6, '2019-11-05 08:33:37', 1),
+(10, '', '', '', '', '', '', '123', 2, 5, '2019-11-05 08:35:39', 1),
+(11, '', '', '', '', '', '', 'dasdasdasd', 2, 8, '2019-11-05 08:42:49', 1),
+(12, '', '', '', '', '2019-11-19', '', '', 2, 37, '2019-11-05 09:17:05', 1);
 
 -- --------------------------------------------------------
 
@@ -862,7 +920,9 @@ CREATE TABLE `prepack` (
 --
 
 INSERT INTO `prepack` (`PrePackID`, `POID`, `PrePackCode`, `PrePackSize`, `PrepackQty`, `AddedBy`, `Timestamp`, `Status`) VALUES
-(1, 1, '11', '1', 5454, 1, '2019-11-05 04:41:39', 1);
+(1, 1, '11', '1', 5454, 1, '2019-11-05 04:41:39', 1),
+(2, 2, '11', '1', 65445654, 1, '2019-11-05 06:05:30', 1),
+(3, 3, '4242', '1', 244, 1, '2019-11-05 10:56:40', 1);
 
 -- --------------------------------------------------------
 
@@ -1429,13 +1489,13 @@ ALTER TABLE `accessories`
 -- AUTO_INCREMENT for table `b2blc`
 --
 ALTER TABLE `b2blc`
-  MODIFY `B2BLCID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `B2BLCID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `b2b_item`
 --
 ALTER TABLE `b2b_item`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `buyer`
@@ -1579,31 +1639,31 @@ ALTER TABLE `line`
 -- AUTO_INCREMENT for table `masterlc`
 --
 ALTER TABLE `masterlc`
-  MODIFY `MasterLCID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MasterLCID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `masterlc_description`
 --
 ALTER TABLE `masterlc_description`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `order_description`
 --
 ALTER TABLE `order_description`
-  MODIFY `OrderdescriptionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `OrderdescriptionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pi`
 --
 ALTER TABLE `pi`
-  MODIFY `PIID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PIID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pi_description`
 --
 ALTER TABLE `pi_description`
-  MODIFY `PIDescriptionID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PIDescriptionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `plan`
@@ -1621,7 +1681,7 @@ ALTER TABLE `plan_details`
 -- AUTO_INCREMENT for table `po`
 --
 ALTER TABLE `po`
-  MODIFY `POID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `POID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `po_event`
@@ -1633,13 +1693,13 @@ ALTER TABLE `po_event`
 -- AUTO_INCREMENT for table `po_time_action`
 --
 ALTER TABLE `po_time_action`
-  MODIFY `po_time_action_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `po_time_action_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `prepack`
 --
 ALTER TABLE `prepack`
-  MODIFY `PrePackID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `PrePackID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `shipment_form`

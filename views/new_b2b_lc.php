@@ -32,7 +32,7 @@ include_once "includes/header.php";
         <div class="card-body">
             <form class="needs-validation" method="post" novalidate>
                 <div class="form-row">
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label>Master LC Number</label>
                         <select name="masterlcid" class="item mb-2 form-control-sm form-control" required>
                             <option></option>
@@ -45,13 +45,17 @@ include_once "includes/header.php";
                             ?>
                         </select>
                     </div>
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label>B2B LC Number</label>
                         <input type="test" name="b2blcnumber" class="form-control form-control-sm" placeholder="B2B LC Number" required>
                     </div>
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label>Supplier Name</label>
                         <input type="text" name="suppliername" class="form-control form-control-sm" placeholder="Supplier Name" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <label>Issue Date</label>
+                      <input type="date" name="issuedate" class="form-control form-control-sm" placeholder="Supplier" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label>Supplier Contact Person</label>
@@ -66,8 +70,8 @@ include_once "includes/header.php";
                         <textarea name="address" class="form-control form-control-sm" placeholder="Supplier Address" required></textarea>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label>Issue Date</label>
-                        <input type="date" name="issuedate" class="form-control form-control-sm" placeholder="Supplier" required>
+                        <label>Maturity Date</label>
+                        <input type="date" name="maturitydate" class="form-control form-control-sm" placeholder="Supplier" required>
                     </div>
                 </div>
                 <div class="form-row">

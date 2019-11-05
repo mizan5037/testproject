@@ -1,6 +1,16 @@
 <?php
 $conn = db_connection();
-if (isset($_POST['from'])  && isset($_POST['date']) && isset($_POST['po_number']) && isset($_POST['currency']) && isset($_POST['cmp']) && isset($_POST['wash_cost']) && isset($_POST['hanger_cost']) && isset($_POST['cmp_w_wanger']) && isset($_POST['final_destination']) &&  isset($_POST['style']) && $_POST['style'] != '' && isset($_POST['color']) && isset($_POST['clr_no']) && isset($_POST['dzs']) && isset($_POST['ppack']) && isset($_POST['units'])  && isset($_POST['size'])  && isset($_POST['ppk']) && isset($_POST['qty'])) {
+if (isset($_POST['from'])  &&
+isset($_POST['date']) &&
+isset($_POST['po_number']) &&
+isset($_POST['currency']) &&
+isset($_POST['cmp']) &&
+isset($_POST['wash_cost']) &&
+isset($_POST['hanger_cost']) &&
+isset($_POST['cmp_w_wanger']) &&
+isset($_POST['fob']) &&
+isset($_POST['final_destination']) &&
+isset($_POST['style']) && $_POST['style'] != '' && isset($_POST['color']) && isset($_POST['clr_no']) && isset($_POST['dzs']) && isset($_POST['ppack']) && isset($_POST['units'])  && isset($_POST['size'])  && isset($_POST['ppk']) && isset($_POST['qty'])) {
 
 
 	$from = $_POST['from'];
@@ -11,6 +21,7 @@ if (isset($_POST['from'])  && isset($_POST['date']) && isset($_POST['po_number']
 	$wash_cost = $_POST['wash_cost'];
 	$hanger_cost = $_POST['hanger_cost'];
 	$cmp_w_wanger = $_POST['cmp_w_wanger'];
+	$fob = $_POST['fob'];
 	$final_destination = $_POST['final_destination'];
 	$special_instruction = $_POST['special_instruction'];
 	$user_id = get_ses('user_id');
@@ -19,8 +30,8 @@ if (isset($_POST['from'])  && isset($_POST['date']) && isset($_POST['po_number']
 
 	$poid = $id;
 
-	$sql = "UPDATE po SET 
-                            PONumber            = '$po_number', 
+	$sql = "UPDATE po SET
+                            PONumber            = '$po_number',
                             POFrom              = '$from',
                             PODate              = '$date',
                             POCMPWH             = '$cmp_w_wanger',
@@ -30,6 +41,7 @@ if (isset($_POST['from'])  && isset($_POST['date']) && isset($_POST['po_number']
                             POCMP               = '$cmp',
                             POWASH              = '$wash_cost',
                             POHANGER            = '$hanger_cost',
+                            FOB            			= '$fob',
                             AddedBy             = '$user_id'
                             where POID          =" . $poid;
 
@@ -48,11 +60,11 @@ if (isset($_POST['from'])  && isset($_POST['date']) && isset($_POST['po_number']
 
 	for ($i = 0; $i < sizeof($size); $i++) {
 
-		$sql = "UPDATE prepack SET 
-                                    POID         = '$poid', 
+		$sql = "UPDATE prepack SET
+                                    POID         = '$poid',
                                     PrePackCode  = '$ppk[$i]',
                                     PrePackSize  = '$size[$i]',
-                                    PrepackQty   = '$qty[$i]',                   
+                                    PrepackQty   = '$qty[$i]',
                                     AddedBy      = '$user_id',
                                     where POID   =" . $poid;
 
@@ -78,11 +90,11 @@ if (isset($_POST['from'])  && isset($_POST['date']) && isset($_POST['po_number']
 
 	for ($i = 0; $i < sizeof($style); $i++) {
 
-		$sql = "UPDATE order_description SET 
-                                    POID        = '$poid', 
+		$sql = "UPDATE order_description SET
+                                    POID        = '$poid',
                                     StyleID     = '$style[$i]',
                                     Color       = '$color[$i]',
-                                    ClrNo       = '$clr_no[$i]',                   
+                                    ClrNo       = '$clr_no[$i]',
                                     Dzs         = '$dzs[$i]',
                                     PPack       = '$ppack[$i]',
                                     Units       = '$units[$i]',

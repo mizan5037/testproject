@@ -217,9 +217,14 @@ include_once "includes/header.php";
                             <td><b><?= $blc['Issuedate'] ?></b></td>
                         </tr>
                         <tr>
+                            <td>B2B LC Maturity Date:</td>
+                            <td><b><?= $blc['Maturitydate'] ?></b></td>
+                        </tr>
+                        <tr>
                             <td>Master LC No:</td>
                             <td><b> <a class="btn btn-sm btn-outline-success" target="_blank" href="<?=$path?>/index.php?page=single_masterlc&id=<?=$blc['MasterLCID']?>"><?= searchForVal($blc['MasterLCID'], $masterlcArr, 'MasterLCID', 'MasterLCNumber') ?></a> </b></td>
                         </tr>
+
                     </table>
                 </div>
                 <div class="col-md-6">
@@ -236,14 +241,8 @@ include_once "includes/header.php";
                             <td>Contact Number:</td>
                             <td><b><?= $blc['ContactNumber'] ?></b></td>
                         </tr>
-                    </table>
-                </div>
-                <div class="col-md-12">
-                    <table class="table table-bordered">
                         <tr>
                             <td>Address:</td>
-                        </tr>
-                        <tr>
                             <td><b><?= nl2br($blc['SupplierAddress']) ?></b></td>
                         </tr>
                     </table>
