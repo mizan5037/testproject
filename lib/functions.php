@@ -43,7 +43,7 @@ function nowgo($uri)
 
 function nowlog($attempt)
 {
-
+    global $path;
     $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     //Something to write to txt log
     $log  = "Path: " . $actual_link . PHP_EOL .
@@ -51,10 +51,12 @@ function nowlog($attempt)
         "Attempt: " . $attempt . PHP_EOL .
         "-------------------------" . PHP_EOL;
     //Save string to log, use FILE_APPEND to append.
-    if (!file_exists('./log')) {
-        mkdir('./log', 0777, true);
+    $logFolder = '/log';
+    if (!file_exists($logFolder)) {
+        mkdir($logFolder, 0777, true);
     }
-    file_put_contents('./log/' . get_ses('user') . '_log_' . date("j.n.Y") . '.log', $log, FILE_APPEND);
+    
+    file_put_contents($logFolder . '/' . get_ses('user') . '_log_' . date("j.n.Y") . '.log', $log, FILE_APPEND);
 }
 
 function get_client_ip()

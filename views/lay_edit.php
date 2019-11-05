@@ -248,7 +248,7 @@ include_once "includes/header.php";
                                     <td></td>
                                     <th>Special Action: </th>
                                     <td colspan="12">
-                                        <textarea name="specialaction" placeholder="Type Here . . ." id="" rows="3"><?=nl2br($single_lay['SpecialAction'])?></textarea>
+                                        <textarea name="specialaction" placeholder="Type Here . . ." id="" rows="3"><?=strip_tags(nl2br($single_lay['SpecialAction']))?></textarea>
                                     </td>
                                 </tr>
                             </tfoot>

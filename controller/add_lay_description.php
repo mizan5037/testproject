@@ -40,3 +40,18 @@ if (isset($_POST['color']) && isset($_POST['lotno']) && isset($_POST['slno']) &&
         notice('error', $sql . "<br>" . mysqli_error($conn));
     }
 }
+if(isset($_GET['layde']) && $_GET['layde'] != '' && isset($_GET['layid'])){
+
+    $id = $_GET['layde'];
+    $layid  = $_GET['layid'];
+
+    $sql = "UPDATE lay_form_details SET Status=0 where ID=".$id;
+
+    if (mysqli_query($conn, $sql)) {
+        notice('success', 'Lay Deleted Successfully');
+        nowgo('/index.php?page=single_lay&layid='.$layid);
+    } else {
+        notice('error', $sql . "<br>" . mysqli_error($conn));
+    }
+
+}

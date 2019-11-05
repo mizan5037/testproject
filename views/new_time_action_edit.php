@@ -56,8 +56,7 @@ include_once "includes/header.php";
 
                     <?php
                       $conn = db_connection();
-                      $sql = "SELECT * FROM `po_event` ORDER BY event_id ASC";
-                      $event_list = mysqli_query($conn, $sql);
+
 
                     ?>
                     <tbody>
@@ -65,23 +64,32 @@ include_once "includes/header.php";
                           <?php
                           $POID= '';
                           $POID = $_GET['POID'];
+                          $event_id= '';
+                          $event_id = $_GET['event_id'];
+
+                          $sql = "SELECT * FROM `po_event` WHERE `event_id`='$event_id' ";
+                          $event_list = mysqli_query($conn, $sql);
+                          $event_list = mysqli_fetch_array($event_list);
+
+
+                          $time_actions = "SELECT * FROM `po_time_action` WHERE `event_id`=$event_id AND `POID` = $POID";
+                          $time_actions = mysqli_query($conn, $time_actions);
+                          $time_actions = mysqli_fetch_array($time_actions);
                           ?>
                           <input type="hidden" name="POID" value="<?= $POID;?>">
+                          <input type="hidden" name="event_id" value="<?= $event_id;?>">
                             <td>
-                              <select name="event_id" required>
-                                <option value="">Choose Your Event</option>
-                                <?php foreach ($event_list as $event){ ?>
-                                  <option value="<?= $event['event_id']; ?>"><?=  $event['event_name']; ?></option>
-                                <?php } ?>
+                              <select name="event_id" disabled>
+                                  <option value="<?= $event_list['event_id']; ?>"><?=  $event_list['event_name']; ?></option>
                               </select>
                             </td>
-                            <td><input type="date" name="projected_date" id=""></td>
-                            <td><input type="date" name="implement_date" id=""></td>
-                            <td><input type="date" name="1st_revised_implement_date" id=""></td>
-                            <td><input type="date" name="2nd_revised_implement_date" id=""></td>
-                            <td><input type="date" name="3rd_revised_implement_date" id=""></td>
-                            <td><input type="date" name="4th_revised_implement_date" id=""></td>
-                            <td><input type="text" name="remarks" id=""></td>
+                            <td><input type="date" name="projected_date" id="" value="<?php echo $time_actions['projected_date']; ?>"></td>
+                            <td><input type="date" name="implement_date" id="" value="<?php echo $time_actions['implement_date']; ?>"></td>
+                            <td><input type="date" name="1st_revised_implement_date" id="" value="<?php echo $time_actions['1st_revised_implement_date']; ?>"></td>
+                            <td><input type="date" name="2nd_revised_implement_date" id="" value="<?php echo $time_actions['2nd_revised_implement_date']; ?>"></td>
+                            <td><input type="date" name="3rd_revised_implement_date" id="" value="<?php echo $time_actions['3rd_revised_implement_date']; ?>"></td>
+                            <td><input type="date" name="4th_revised_implement_date" id="" value="<?php echo $time_actions['4th_revised_implement_date']; ?>"></td>
+                            <td><input type="text" name="remarks" id="" value="<?php echo $time_actions['remarks']; ?>"></td>
                         </tr>
                         <tr>
                             <td>Special Note:</td>
