@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2019 at 11:50 AM
+-- Generation Time: Nov 05, 2019 at 05:08 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -105,6 +105,13 @@ CREATE TABLE `buyer` (
   `AddedBy` int(11) NOT NULL,
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `buyer`
+--
+
+INSERT INTO `buyer` (`BuyerID`, `BuyerName`, `BuyerEmail`, `BuyerPhone`, `BuyerAddress1`, `BuyerAddress2`, `BuyerCity`, `BuyerCountry`, `BuyerBuyingHouseName`, `BuyerContactPerson`, `ContactPersonDesignation`, `ContactPersonPhone`, `timestamp`, `AddedBy`, `Status`) VALUES
+(1, 'fghfd', 'hdf@dfghd', 'dfhdfh', 'dfh', 'dfhdf', 'hdfh', 'dfh', 'dfh', 'dfhd', 'fhdfhdfh', 'hdfh', '2019-11-05 09:16:42', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -460,7 +467,8 @@ CREATE TABLE `itemrequirment` (
 --
 
 INSERT INTO `itemrequirment` (`ItemRequirmentID`, `ItemRequirmentStyleID`, `ItemRequirmentItemID`, `ItemRequirmentSize`, `ItemRequirmentQty`, `AddedBy`, `timestamp`, `Status`) VALUES
-(1, 1, 1, '1', 200, 1, '2019-11-05 04:39:48', 1);
+(1, 1, 1, '1', 200, 1, '2019-11-05 04:39:48', 1),
+(2, 2, 1, '1', 345, 1, '2019-11-05 09:23:35', 1);
 
 -- --------------------------------------------------------
 
@@ -567,7 +575,7 @@ CREATE TABLE `line` (
 --
 
 INSERT INTO `line` (`id`, `line`, `status`, `addedby`, `timestamp`) VALUES
-(1, '9A', 0, 1, '2019-11-05 05:34:45');
+(1, '9A', 1, 1, '2019-11-05 06:09:24');
 
 -- --------------------------------------------------------
 
@@ -641,7 +649,8 @@ CREATE TABLE `order_description` (
 --
 
 INSERT INTO `order_description` (`OrderdescriptionID`, `POID`, `StyleID`, `Color`, `ClrNo`, `Dzs`, `PPack`, `Units`, `AddedBy`, `timestamp`, `Status`) VALUES
-(1, 1, 1, '1', '2584', 20, 200, 100, 1, '2019-11-05 04:41:39', 1);
+(1, 1, 1, '1', '2584', 20, 200, 100, 1, '2019-11-05 04:41:39', 1),
+(2, 1, 2, '1', 'dfg', 12, 12, 123, 1, '2019-11-05 10:04:51', 1);
 
 -- --------------------------------------------------------
 
@@ -677,6 +686,38 @@ CREATE TABLE `pi_description` (
   `AddedBy` int(11) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Status` tinyint(4) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `plan`
+--
+
+CREATE TABLE `plan` (
+  `id` int(11) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `poid` int(11) NOT NULL,
+  `styleid` int(11) NOT NULL,
+  `addedby` int(11) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `status` tinyint(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `plan_details`
+--
+
+CREATE TABLE `plan_details` (
+  `id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `line` int(11) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `addedby` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -795,7 +836,9 @@ CREATE TABLE `po_time_action` (
 
 INSERT INTO `po_time_action` (`po_time_action_id`, `projected_date`, `implement_date`, `1st_revised_implement_date`, `2nd_revised_implement_date`, `3rd_revised_implement_date`, `4th_revised_implement_date`, `remarks`, `POID`, `event_id`, `time_stamp`, `added_by`) VALUES
 (1, '2019-11-14', '', '', '2019-11-13', '2019-11-20', '', '', 1, 1, '2019-11-05 05:36:49', 1),
-(2, '', '', '', '', '', '', 'dfgh', 1, 2, '2019-11-05 05:37:30', 1);
+(2, '', '', '', '', '', '', 'dfgh', 1, 2, '2019-11-05 05:37:30', 1),
+(3, '', '', '', '', '', '', 'sefsf', 1, 10, '2019-11-05 05:51:34', 1),
+(4, '', '', '2019-11-19', '', '', '', 'sdfsdf', 1, 9, '2019-11-05 05:52:03', 1);
 
 -- --------------------------------------------------------
 
@@ -937,7 +980,8 @@ CREATE TABLE `style` (
 --
 
 INSERT INTO `style` (`StyleID`, `StyleNumber`, `StyleDescription`, `StyleWash`, `StyleImage`, `StyleProto`, `StyleFabricDetails`, `AddedBy`, `Timestamp`, `Status`) VALUES
-(1, '20058', 'Demo_test Data', 'Low', '189984701_2019_Nov_05_1572928788_1.jpg', 'shirt_00285', 'Pure Cotton', 1, '2019-11-05 04:39:48', 1);
+(1, '20058', 'Demo_test Data', 'Low', '189984701_2019_Nov_05_1572928788_1.jpg', 'shirt_00285', 'Pure Cotton', 1, '2019-11-05 04:39:48', 1),
+(2, 'wertg', 'ertgerte', 'erterter', '', 'tert', 'rter', 1, '2019-11-05 09:23:35', 1);
 
 -- --------------------------------------------------------
 
@@ -955,6 +999,13 @@ CREATE TABLE `trimsaccess` (
   `Timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `trimsaccess`
+--
+
+INSERT INTO `trimsaccess` (`TrimsAccessID`, `TrimsAccessPOID`, `TrimsAccessStyleID`, `TrimsAccessName`, `TrimsAccessDescription`, `AddedBy`, `Timestamp`, `Status`) VALUES
+(1, 0, 2, 'tert', 'ert', 1, '2019-11-05 09:23:35', 1);
 
 -- --------------------------------------------------------
 
@@ -1254,6 +1305,18 @@ ALTER TABLE `pi_description`
   ADD KEY `AddedBy` (`AddedBy`);
 
 --
+-- Indexes for table `plan`
+--
+ALTER TABLE `plan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `plan_details`
+--
+ALTER TABLE `plan_details`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `po`
 --
 ALTER TABLE `po`
@@ -1378,7 +1441,7 @@ ALTER TABLE `b2b_item`
 -- AUTO_INCREMENT for table `buyer`
 --
 ALTER TABLE `buyer`
-  MODIFY `BuyerID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `BuyerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `carton_form`
@@ -1480,7 +1543,7 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `itemrequirment`
 --
 ALTER TABLE `itemrequirment`
-  MODIFY `ItemRequirmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ItemRequirmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `item_issue_access`
@@ -1528,7 +1591,7 @@ ALTER TABLE `masterlc_description`
 -- AUTO_INCREMENT for table `order_description`
 --
 ALTER TABLE `order_description`
-  MODIFY `OrderdescriptionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `OrderdescriptionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pi`
@@ -1541,6 +1604,18 @@ ALTER TABLE `pi`
 --
 ALTER TABLE `pi_description`
   MODIFY `PIDescriptionID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `plan`
+--
+ALTER TABLE `plan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `plan_details`
+--
+ALTER TABLE `plan_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `po`
@@ -1558,7 +1633,7 @@ ALTER TABLE `po_event`
 -- AUTO_INCREMENT for table `po_time_action`
 --
 ALTER TABLE `po_time_action`
-  MODIFY `po_time_action_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `po_time_action_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `prepack`
@@ -1600,13 +1675,13 @@ ALTER TABLE `stationary_receive`
 -- AUTO_INCREMENT for table `style`
 --
 ALTER TABLE `style`
-  MODIFY `StyleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `StyleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `trimsaccess`
 --
 ALTER TABLE `trimsaccess`
-  MODIFY `TrimsAccessID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `TrimsAccessID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
