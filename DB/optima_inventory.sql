@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2019 at 06:44 AM
+-- Generation Time: Nov 06, 2019 at 01:04 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -143,10 +143,26 @@ CREATE TABLE `carton_form` (
   `StyleID` int(11) NOT NULL,
   `Color` varchar(200) NOT NULL,
   `Qty` int(11) NOT NULL,
+  `Remark` varchar(255) NOT NULL,
   `AddedBy` int(11) NOT NULL,
   `Status` tinyint(4) NOT NULL DEFAULT 1,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `carton_form`
+--
+
+INSERT INTO `carton_form` (`CartonFromID`, `date`, `POID`, `StyleID`, `Color`, `Qty`, `Remark`, `AddedBy`, `Status`, `timestamp`) VALUES
+(1, '2019-12-15', 3, 1, '1', 4545, 'split', 1, 1, '2019-11-06 11:14:14'),
+(2, '2019-11-23', 3, 1, '1', 4545, 'to', 1, 1, '2019-11-06 11:12:31'),
+(3, '2019-11-23', 3, 1, '1', 4545, 'hi', 1, 1, '2019-11-06 11:13:14'),
+(4, '2019-11-23', 3, 1, '1', 4545, 'go', 1, 1, '2019-11-06 11:13:22'),
+(5, '1999-11-06', 3, 1, '1', 100, 'iuoiuiou', 1, 1, '2019-11-06 11:13:46'),
+(6, '2019-11-24', 2, 1, '1', 200, 'dfgf', 1, 1, '2019-11-06 08:50:36'),
+(7, '2019-11-22', 2, 1, '1', 4545, 'dd', 1, 1, '2019-11-06 10:55:09'),
+(8, '2019-11-22', 1, 1, '1', 332, 'dd', 1, 1, '2019-11-06 10:55:09'),
+(9, '2019-11-22', 3, 1, '1', 34, 'asas', 1, 1, '2019-11-06 10:55:09');
 
 -- --------------------------------------------------------
 
@@ -337,6 +353,16 @@ CREATE TABLE `fab_relaxation` (
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `fab_relaxation`
+--
+
+INSERT INTO `fab_relaxation` (`FabRelaxationID`, `BuyerID`, `StyleID`, `Color`, `AddedBy`, `timestamp`, `Status`) VALUES
+(7, 1, 1, '1', 1, '2019-11-06 06:39:58', 0),
+(8, 1, 1, '1', 1, '2019-11-06 06:52:54', 0),
+(9, 1, 1, '1', 1, '2019-11-06 06:52:57', 0),
+(10, 1, 1, '1', 1, '2019-11-06 06:53:52', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -365,6 +391,18 @@ CREATE TABLE `fab_relaxation_description` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `fab_relaxation_description`
+--
+
+INSERT INTO `fab_relaxation_description` (`ID`, `FabRelaxationID`, `Date`, `Shade`, `Shrinkage`, `RollNo`, `Yds`, `Shade2`, `Shrinkage2`, `RollNo2`, `Yds2`, `TotalYds`, `fabricOpenTime`, `FabricLayDate`, `FabricLayTime`, `TotalHours`, `Remarks`, `AddedBy`, `timestamp`, `Status`) VALUES
+(7, 7, '2019-11-12', '', '', 0, 0, '', '', 0, 0, 0, '', '0000-00-00', '', 0, '', 1, '2019-11-06 06:34:47', 1),
+(8, 8, '2019-11-12', 'hg', '', 0, 0, '', '', 0, 0, 0, '', '0000-00-00', '', 0, '', 1, '2019-11-06 06:36:44', 1),
+(9, 9, '2019-11-12', 'ssss', 'ssss', 44, 44, 'hhgh', 'hgh', 11, 22522, 4444, '444', '2019-04-08', 'uyuyu', 4455, 'yuy', 1, '2019-11-06 07:07:17', 1),
+(10, 9, '2019-11-18', '', '', 55444, 1, '', '', 0, 522, 0, '', '0000-00-00', '', 0, '', 1, '2019-11-06 06:48:51', 1),
+(11, 10, '2019-11-11', 'fdgfg', 'gfggf88', 0, 54, 'fgf444', 'fgfg', 77, 6, 46565, 'ffggf', '2019-11-11', '554546', 56456, 'fggfgf', 1, '2019-11-06 07:38:01', 1),
+(12, 10, '2019-11-11', 'fdgfg', '22', 0, 4, 'fgf', 'fgfg', 411, 44, 456, 'ffggfuuu', '2019-11-18', 'gfgf', 564546, 'fggfgf', 1, '2019-11-06 07:38:10', 1);
 
 -- --------------------------------------------------------
 
@@ -905,11 +943,21 @@ CREATE TABLE `shipment_form` (
   `StyleID` int(11) NOT NULL,
   `Color` int(11) NOT NULL,
   `Shipment` int(11) NOT NULL,
+  `Remark` varchar(255) NOT NULL,
   `Sample` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
   `Status` tinyint(4) NOT NULL DEFAULT 1,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `shipment_form`
+--
+
+INSERT INTO `shipment_form` (`ShipmentFormID`, `date`, `POID`, `StyleID`, `Color`, `Shipment`, `Remark`, `Sample`, `AddedBy`, `Status`, `timestamp`) VALUES
+(1, '2019-11-10', 3, 1, 1, 200, 'kjkj', 0, 1, 0, '2019-11-06 11:48:34'),
+(3, '2019-11-10', 1, 1, 1, 1221, '', 2112, 1, 0, '2019-11-06 11:48:27'),
+(4, '2019-11-23', 1, 1, 1, 2, '44ppp', 1000, 1, 1, '2019-11-06 12:00:31');
 
 -- --------------------------------------------------------
 
@@ -1464,7 +1512,7 @@ ALTER TABLE `buyer`
 -- AUTO_INCREMENT for table `carton_form`
 --
 ALTER TABLE `carton_form`
-  MODIFY `CartonFromID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `CartonFromID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `color`
@@ -1524,13 +1572,13 @@ ALTER TABLE `fab_receive_other`
 -- AUTO_INCREMENT for table `fab_relaxation`
 --
 ALTER TABLE `fab_relaxation`
-  MODIFY `FabRelaxationID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `FabRelaxationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `fab_relaxation_description`
 --
 ALTER TABLE `fab_relaxation_description`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `hourly_finishing_form`
@@ -1650,7 +1698,7 @@ ALTER TABLE `prepack`
 -- AUTO_INCREMENT for table `shipment_form`
 --
 ALTER TABLE `shipment_form`
-  MODIFY `ShipmentFormID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ShipmentFormID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `size`
