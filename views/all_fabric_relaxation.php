@@ -1,6 +1,6 @@
 <?php
 
-$PageTitle = "All Lay | Optima Inventory";
+$PageTitle = "All Fabric Relaxation | Optima Inventory";
 function customPageHeader()
 {
     ?>
@@ -10,11 +10,11 @@ $conn = db_connection();
 
 if (isset($_GET['delete']) && $_GET['delete'] !='') {
     $delete = $_GET['delete']; 
-    $sql = "UPDATE lay_form SET Status=0 Where LayFormID=".$delete;
+    $sql = "UPDATE fab_relaxation SET Status=0 Where FabRelaxationID=".$delete;
 
     if (mysqli_query($conn, $sql)) {
-        notice('success', 'Lay Deleted Successfully');
-        nowgo('/index.php?page=all_lay');
+        notice('success', 'Fabric Relaxation Deleted Successfully');
+        nowgo('/index.php?page=all_fabric-relaxation');
     } else {
         notice('error', $sql . "<br>" . mysqli_error($conn));
     }
@@ -31,7 +31,7 @@ include_once "includes/header.php";
                     <i class="pe-7s-news-paper icon-gradient bg-mean-fruit">
                     </i>
                 </div>
-                <div>Lay List
+                <div> Fabric Relaxation List
                     <div class="page-title-subheading">
                         All the Lay created Upto Now.
                     </div>
@@ -41,42 +41,38 @@ include_once "includes/header.php";
     </div>
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <h5 class="card-title">All Lay</h5>
+            <h5 class="card-title">All Fabric Relaxation</h5>
             <table class="mb-0 table table-striped table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Date</th>
                         <th>Buyer Name</th>
-                        <th>PO NUMBER</th>
-                        <th>Style Number</th>
-                        <th>Cutting Number</th>
+                        <th>Color</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT * FROM lay_form f LEFT JOIN buyer b on b.BuyerID=f.BuyerID LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN po p ON p.POID=f.POID WHERE f.Status = 1";
-                    $lay = mysqli_query($conn, $sql);
+                    $sql = "SELECT f.*,s.StyleNumber,b.BuyerName,c.color FROM fab_relaxation f LEFT JOIN color c ON f.Color = c.id LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN buyer b ON b.BuyerID=f.BuyerID WHERE f.Status = 1";
+                    $fabric = mysqli_query($conn, $sql);
 
                     $count = 1;
-                    while ($row = mysqli_fetch_assoc($lay)) {
+                    while ($row = mysqli_fetch_assoc($fabric)) {
 
 
                         ?>
                         <tr>
                             <th scope="row"><?= $count ?></th>
-                            <td><?= $row['Date'] ?></td>
                             <td><?= $row['BuyerName'] ?></td>
-                            <td><a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=po_single&poid=<?= $row['POID'] ?>" target="_blank"><?= $row['PONumber'] ?></a></td>
                             <td><a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" target="_blank"><?= $row['StyleNumber'] ?></a></td>
-                            <td><?= $row['CuttingNo'] ?></td>
+                            <td><?= $row['color'] ?></td>
                             <td>
-                                <a href="<?= $path ?>/index.php?page=single_lay&layid=<?php echo $row['LayFormID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
+                                <a href="<?= $path ?>/index.php?page=single_fabric_relaxation&fabricid=<?php echo $row['FabRelaxationID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
                                     Details
                                 </a>
                                
-                                <a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=all_lay&delete=<?php echo $row['LayFormID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
+                                <a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=all_fabric_relaxation&delete=<?php echo $row['FabRelaxationID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
                                     <i class="fas fa-trash-alt" style="color: white;"></i>
                                 </a>
                             </td>
@@ -101,4 +97,4 @@ function customPagefooter()
 
 <?php }
 include_once "includes/footer.php";
-?>
+?>   

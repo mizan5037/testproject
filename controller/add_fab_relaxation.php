@@ -40,7 +40,8 @@ if (isset($_POST['buyer']) && isset($_POST['style']) && isset($_POST['color'])  
     for ($i = 0; $i < sizeof($shade); $i++) {
         $sql = "INSERT INTO fab_relaxation_description (FabRelaxationID,Date,Shade,Shrinkage,RollNo,Yds,Shade2,Shrinkage2,RollNo2,Yds2,TotalYds,fabricOpenTime,FabricLayDate,FabricLayTime,TotalHours,Remarks,AddedBy)
         values('$last_id','$date[$i]','$shade[$i]','$shrinkage[$i]','$rollno[$i]', '$yds[$i]','$shade2[$i]','$shrinkage2[$i]','$rollno2[$i]','$yds2[$i]','$ttlyds[$i]','$fot[$i]','$fld[$i]','$flt[$i]','$ttlhrs[$i]','$remark[$i]','$user_id') ";
-
+        
+        
         if (mysqli_query($conn, $sql)) {
             notice('success', 'New Fabric Relaxation Added Successfully');   
         } else {

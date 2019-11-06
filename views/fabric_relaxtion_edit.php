@@ -7,7 +7,13 @@ function customPageHeader()
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
 
 <?php }
-include_once "controller/add_fab_relaxation.php";
+$conn = db_connection();
+if (isset($_GET['fabricid']) && $_GET['fabricid'] != '') {
+    $fabricid = $_GET['fabricid'];
+    $sql = "SELECT f.*,s.StyleNumber,b.BuyerName,c.color FROM fab_relaxation f LEFT JOIN color c ON f.Color = c.id LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN buyer b ON b.BuyerID=f.BuyerID WHERE f.Status = 1 and FabRelaxationID=" . $fabricid;
+    $single_fabric = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+}
+include_once "controller/update_fab_relaxation.php";
 include_once "includes/header.php";
 
 ?>
@@ -42,7 +48,12 @@ include_once "includes/header.php";
                             $sql = "SELECT * FROM buyer WHERE status = 1";
                             $results = mysqli_query($conn, $sql);
                             while ($result = mysqli_fetch_assoc($results)) {
-                                echo '<option value="' . $result['BuyerID'] . '">' . $result['BuyerName'] . '</option>';
+                                if ($result['BuyerID'] == $single_fabric['BuyerID']) {
+                                    echo '<option selected value="' . $result['BuyerID'] . '">' . $result['BuyerName'] . '</option>';
+                                    # code...
+                                } else {
+                                    echo '<option value="' . $result['BuyerID'] . '">' . $result['BuyerName'] . '</option>';
+                                }
                             }
                             ?>
                         </select>
@@ -56,7 +67,11 @@ include_once "includes/header.php";
                             $sql = "SELECT * FROM style WHERE status = 1";
                             $results = mysqli_query($conn, $sql);
                             while ($result = mysqli_fetch_assoc($results)) {
-                                echo '<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                if ($result['StyleID'] == $single_fabric['StyleID']) {
+                                    echo '<option selected value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                } else {
+                                    echo '<option  value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                }
                             }
                             ?>
                         </select>
@@ -70,7 +85,12 @@ include_once "includes/header.php";
                             $sql = "SELECT * FROM color WHERE status = 1";
                             $results = mysqli_query($conn, $sql);
                             while ($result = mysqli_fetch_assoc($results)) {
-                                echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                if ($result['id'] == $single_fabric['Color']) {
+                                    echo '<option selected value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                }else{
+                                    echo '<option  value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                    
+                                }
                             }
                             ?>
                         </select>
@@ -127,62 +147,65 @@ include_once "includes/header.php";
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php 
+                                    $sql = "SELECT * FROM fab_relaxation_description where Status=1 and FabRelaxationID=".$fabricid;
+                                    $fabric = mysqli_query($conn, $sql);
+                                     $count = 1;
+                                while ($row = mysqli_fetch_assoc($fabric)) {
+
+                                ?>
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>
-                                        <input type="date" name="date[]" >
+                                        <input type="date" value="<?= $row['Date']?>" name="date">
                                     </td>
                                     <td>
-                                        <input placeholder="Shade" type="text" name="shade[]">
+                                        <input placeholder="Shade"  value="<?= $row['Shade']?>" type="text" name="shade">
                                     </td>
                                     <td>
-                                        <input placeholder="Shrinkage%" type="text" name="shrinkage[]">
+                                        <input placeholder="Shrinkage%"  value="<?= $row['Shrinkage']?>" type="text" name="shrinkage">
                                     </td>
                                     <td>
-                                        <input placeholder="Roll No" name="rollno[]" type="text">
+                                        <input placeholder="Roll No" name="rollno"  value="<?= $row['RollNo']?>" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Yds" name="yds[]" type="text">
+                                        <input placeholder="Yds" name="yds"  value="<?= $row['Yds']?>" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Shade" type="text" name="shade2[]">
+                                        <input placeholder="Shade"  value="<?= $row['Shade2']?>" type="text" name="shade2">
                                     </td>
                                     <td>
-                                        <input placeholder="Shrinkage%" type="text" name="shrinkage2[]">
+                                        <input placeholder="Shrinkage%"  value="<?= $row['Shrinkage2']?>" type="text" name="shrinkage2">
                                     </td>
                                     <td>
-                                        <input placeholder="Roll No" name="rollno2[]" type="text">
+                                        <input placeholder="Roll No" name="rollno2"  value="<?= $row['RollNo2']?>" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Yds" name="yds2[]" type="text">
+                                        <input placeholder="Yds" name="yds2"  value="<?= $row['Yds2']?>" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Total Yds" name="ttlyds[]" type="text">
+                                        <input placeholder="Total Yds" name="ttlyds"  value="<?= $row['TotalYds']?>" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="FOT" name="fot[]" type="text">
+                                        <input placeholder="FOT" name="fot"  value="<?= $row['fabricOpenTime']?>" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="FLD" name="fld[]" type="date">
+                                        <input placeholder="FLD" name="fld"  value="<?= $row['FabricLayDate']?>" type="date">
                                     </td>
                                     <td>
-                                        <input placeholder="FLT" name="flt[]" type="text">
+                                        <input placeholder="FLT" name="flt"  value="<?= $row['FabricLayTime']?>" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="TTL HRS" name="ttlhrs[]" type="text">
+                                        <input placeholder="TTL HRS" name="ttlhrs"  value="<?= $row['TotalHours']?>" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Remark" name="remark[]" type="text">
+                                        <input placeholder="Remark" name="remark"  value="<?= $row['Remarks']?>" type="text">
                                     </td>
                                     <td><a class="deleteRow"></a></td>
                                 </tr>
-
+                                <?php } ?>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="17" class="text-center"><input type="button" class="btn btn-sm btn-success" id="addrow" value="Add Row" /><br></td>
-                                </tr>
-                            </tfoot>
+                          
                         </table>
                     </div>
                 </div>
@@ -190,7 +213,7 @@ include_once "includes/header.php";
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <button class="btn btn-primary" type="submit">Save</button>
+                            <button class="btn btn-primary" type="submit">UPDATE</button>
                         </div>
                     </div>
                 </div>
