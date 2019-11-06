@@ -159,7 +159,7 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
-                c cols += '<td><select name="color[]" class="color mb-2 form-control-sm form-control" required><option></option>';
+                cols += '<td><select name="color[]" class="color mb-2 form-control-sm form-control" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM color WHERE status = 1";

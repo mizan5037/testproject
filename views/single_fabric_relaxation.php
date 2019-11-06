@@ -122,98 +122,6 @@ if (isset($_GET['fabricid'])  && $_GET['fabricid'] != '') {
 
 $conn = db_connection();
 
-function modal()
-{
-    ?>
-    <!-- Modal -->
-    <!-- <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <form method="post">
-                <div class="modal-content" style="width:300%; margin-left:-5%">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Pre Pack Assorts</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <table class="mb-0 table table-bordered order-list2" id="myTable2" width="100%">
-                            <thead>
-                            <thead>
-                                <tr>
-                                    
-                                    <th  width="10%">Color</th>
-                                    <th  width="10%">Lot No</th>
-                                    <th  width="10%">Sl. NO</th>
-                                    <th  width="10%">Roll No</th>
-                                    <th  width="10%">TTL Fabrics/yds</th>
-                                    <th  width="10%">Lay</th>
-                                    <th  width="10%">Used Fabrics/yds</th>
-                                    <th  width="10%">Remaining</th>
-                                    <th  width="10%">Exxess/Short</th>
-                                    <th  width="10%">Sticker</th>
-                                    
-                                </tr>
-                            </thead>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                    <select name="color[]" class="color  form-control" required>
-                                            <option></option>
-                                            <?php
-                                            $conn = db_connection();
-                                            $sql = "SELECT * FROM color WHERE status = 1";
-                                            $results = mysqli_query($conn, $sql);
-                                            while ($result = mysqli_fetch_assoc($results)) {
-                                                echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input placeholder="Lot No" type="text" name="lotno[]">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Sl. No" type="text" name="slno[]">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Roll No" name="rollno[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="TTL Fabrics/yds" name="ttlfab[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Lay" name="lay[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Used Fabrics/yds" name="usedfab[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Remaining" name="ramaining[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Exxess/Short" name="exsshort[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Sticker" name="sticker[]" type="text">
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div> -->
-    <!--  image modal end -->
-
-<?php }
-
 $sql = "SELECT f.*,s.StyleNumber,b.BuyerName,c.color FROM fab_relaxation f LEFT JOIN color c ON f.Color = c.id LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN buyer b ON b.BuyerID=f.BuyerID WHERE f.Status = 1 and FabRelaxationID=".$fabricid;
 $single_fabric = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
@@ -255,7 +163,7 @@ include_once "includes/header.php";
                         <th>Buyer Name</th>
                         <th>Style No.</th>
                         <th>Color</th>
-                        
+
                     </tr>
                 </thead>
                 <tbody>
@@ -264,26 +172,15 @@ include_once "includes/header.php";
                         <td><?=$single_fabric['StyleNumber']?></td>
                         <td><?=$single_fabric['color']?></td>
                     </tr>
-                   
+
                 </tbody>
             </table>
-            
+
         </div>
     </div>
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5 class="card-title">Lay Description</h5>
-                </div>
-                <div class="col-md-6 text-right">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal1">
-                        Add Lay
-                    </button>
-                </div>
-            </div>
-            <br>
+            
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-bordered table-hover text-center">
@@ -308,11 +205,11 @@ include_once "includes/header.php";
                         </thead>
                         <tbody>
                             <?php
-                            
+
                             $sqlo = "SELECT * FROM fab_relaxation_description Where Status=1 and FabRelaxationID=".$fabricid;
                             $count = 1;
                             $order = mysqli_query($conn, $sqlo);
-                            
+
                             while ($rowo = mysqli_fetch_assoc($order)) {
                                 ?>
                                 <tr>
@@ -351,7 +248,7 @@ include_once "includes/header.php";
 
         </div>
     </div>
-    
+
 </div>
 
 

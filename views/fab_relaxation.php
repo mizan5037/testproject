@@ -130,7 +130,7 @@ include_once "includes/header.php";
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>
-                                        <input type="date" name="date[]" >
+                                        <input type="date" name="date[]"  required>
                                     </td>
                                     <td>
                                         <input placeholder="Shade" type="text" name="shade[]">
@@ -225,7 +225,7 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th>' + counter + '</th>';
-                cols += '<td><input    type="date" name="date[]"></td>';
+                cols += '<td><input    type="date" name="date[]" required></td>';
                 cols += '<td><input placeholder="Shade" type="text" name="shade[]"></td>';
                 cols += '<td><input placeholder="Shrinkage%" type="text" name="shrinkage[]"></td>';
                 cols += '<td><input placeholder="Roll No" name="rollno[]" type="text"></td>';

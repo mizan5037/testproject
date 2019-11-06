@@ -9,7 +9,7 @@ function customPageHeader()
 $conn = db_connection();
 
 if (isset($_GET['delete']) && $_GET['delete'] !='') {
-    $delete = $_GET['delete']; 
+    $delete = $_GET['delete'];
     $sql = "UPDATE fab_relaxation SET Status=0 Where FabRelaxationID=".$delete;
 
     if (mysqli_query($conn, $sql)) {
@@ -46,8 +46,8 @@ include_once "includes/header.php";
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Date</th>
                         <th>Buyer Name</th>
+                        <th>Style Number</th>
                         <th>Color</th>
                         <th>Action</th>
                     </tr>
@@ -64,14 +64,13 @@ include_once "includes/header.php";
                         ?>
                         <tr>
                             <th scope="row"><?= $count ?></th>
-                            <td><?= $row['BuyerName'] ?></td>
+                            <td><a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=single_buyer&buyer_id=<?= $row['BuyerID'] ?>" target="_blank"><?= $row['BuyerName'] ?></a></td>
                             <td><a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" target="_blank"><?= $row['StyleNumber'] ?></a></td>
                             <td><?= $row['color'] ?></td>
                             <td>
                                 <a href="<?= $path ?>/index.php?page=single_fabric_relaxation&fabricid=<?php echo $row['FabRelaxationID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
                                     Details
                                 </a>
-                               
                                 <a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=all_fabric_relaxation&delete=<?php echo $row['FabRelaxationID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
                                     <i class="fas fa-trash-alt" style="color: white;"></i>
                                 </a>
@@ -97,4 +96,4 @@ function customPagefooter()
 
 <?php }
 include_once "includes/footer.php";
-?>   
+?>

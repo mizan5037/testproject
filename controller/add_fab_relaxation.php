@@ -11,10 +11,8 @@ if (isset($_POST['buyer']) && isset($_POST['style']) && isset($_POST['color'])  
     $sql = "INSERT INTO fab_relaxation (BuyerID,StyleID,Color,AddedBy)
 
 	values('$buyer','$style','$color','$user_id')";
-    var_dump($sql);
     if (mysqli_query($conn, $sql)) {
         notice('success', 'New Fabric Relaxation Added Successfully');
-
         $last_id = mysqli_insert_id($conn);
     } else {
         notice('error', $sql . "<br>" . mysqli_error($conn));
@@ -37,16 +35,18 @@ if (isset($_POST['buyer']) && isset($_POST['style']) && isset($_POST['color'])  
     $ttlhrs = $_POST['ttlhrs'];
     $remark = $_POST['remark'];
 
-    for ($i = 0; $i < sizeof($shade); $i++) {
+    for ($i = 0; $i < sizeof($date); $i++) {
         $sql = "INSERT INTO fab_relaxation_description (FabRelaxationID,Date,Shade,Shrinkage,RollNo,Yds,Shade2,Shrinkage2,RollNo2,Yds2,TotalYds,fabricOpenTime,FabricLayDate,FabricLayTime,TotalHours,Remarks,AddedBy)
         values('$last_id','$date[$i]','$shade[$i]','$shrinkage[$i]','$rollno[$i]', '$yds[$i]','$shade2[$i]','$shrinkage2[$i]','$rollno2[$i]','$yds2[$i]','$ttlyds[$i]','$fot[$i]','$fld[$i]','$flt[$i]','$ttlhrs[$i]','$remark[$i]','$user_id') ";
-        
-        
+
+
         if (mysqli_query($conn, $sql)) {
-            notice('success', 'New Fabric Relaxation Added Successfully');   
+            notice('success', 'New Fabric Relaxation Added Successfully');
+
         } else {
             notice('error', $sql . "<br>" . mysqli_error($conn));
         }
     }
-    
+    nowgo('/index.php?page=all_fabric_relaxation');
+
 }

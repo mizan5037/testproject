@@ -37,30 +37,14 @@ if (isset($_POST['buyer']) && isset($_POST['style']) && isset($_POST['color'])  
     $flt = $_POST['flt'];
     $ttlhrs = $_POST['ttlhrs'];
     $remark = $_POST['remark'];
+    $fabDesID = $_POST['fabDesID'];
 
-
-    $sql = "UPDATE fab_relaxation_description SET 
-                                                    Date='$date',
-                                                    Shade='$shade',
-                                                    Shrinkage='$shrinkage',
-                                                    RollNo='$rollno',
-                                                    Yds='$yds',
-                                                    Shade2='$shade2',
-                                                    Shrinkage2='$shrinkage2',
-                                                    RollNo2='$rollno2',
-                                                    Yds2='$yds2',
-                                                    TotalYds='$ttlyds',
-                                                    fabricOpenTime='$fot',
-                                                    FabricLayDate='$fld',
-                                                    FabricLayTime='$flt',
-                                                    TotalHours='$ttlhrs',
-                                                    Remarks='$remark',
-                                                    AddedBy='$user_id' WHERE FabRelaxationID=".$fabricid;
-
-
+    for($i = 0 ; $i<sizeof($date); $i++){
+    $sql = "UPDATE fab_relaxation_description SET Date ='$date[$i]', Shade='$shade[$i]', Shrinkage='$shrinkage[$i]', RollNo='$rollno[$i]',  Yds='$yds[$i]', Shade2='$shade2[$i]', Shrinkage2='$shrinkage2[$i]', RollNo2='$rollno2[$i]', Yds2='$yds2[$i]', TotalYds='$ttlyds[$i]', fabricOpenTime='$fot[$i]', FabricLayDate='$fld[$i]', FabricLayTime='$flt[$i]', TotalHours='$ttlhrs[$i]', Remarks='$remark[$i]', AddedBy='$user_id' WHERE ID='$fabDesID[$i]'";
     if (mysqli_query($conn, $sql)) {
         notice('success', 'Fabric Relaxation Updated Successfully');
     } else {
         notice('error', $sql . "<br>" . mysqli_error($conn));
     }
+  }
 }

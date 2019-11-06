@@ -89,7 +89,7 @@ include_once "includes/header.php";
                                     echo '<option selected value="' . $result['id'] . '">' . $result['color'] . '</option>';
                                 }else{
                                     echo '<option  value="' . $result['id'] . '">' . $result['color'] . '</option>';
-                                    
+
                                 }
                             }
                             ?>
@@ -147,7 +147,7 @@ include_once "includes/header.php";
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
+                                <?php
                                     $sql = "SELECT * FROM fab_relaxation_description where Status=1 and FabRelaxationID=".$fabricid;
                                     $fabric = mysqli_query($conn, $sql);
                                      $count = 1;
@@ -155,57 +155,59 @@ include_once "includes/header.php";
 
                                 ?>
                                 <tr>
+
                                     <th scope="row">1</th>
                                     <td>
-                                        <input type="date" value="<?= $row['Date']?>" name="date">
+                                        <input type="hidden" name="fabDesID[]" value="<?= $row['ID']?>">
+                                        <input type="date" value="<?= $row['Date']?>" name="date[]">
                                     </td>
                                     <td>
-                                        <input placeholder="Shade"  value="<?= $row['Shade']?>" type="text" name="shade">
+                                        <input placeholder="Shade"  value="<?= $row['Shade']?>" type="text" name="shade[]">
                                     </td>
                                     <td>
-                                        <input placeholder="Shrinkage%"  value="<?= $row['Shrinkage']?>" type="text" name="shrinkage">
+                                        <input placeholder="Shrinkage%"  value="<?= $row['Shrinkage']?>" type="text" name="shrinkage[]">
                                     </td>
                                     <td>
-                                        <input placeholder="Roll No" name="rollno"  value="<?= $row['RollNo']?>" type="text">
+                                        <input placeholder="Roll No" name="rollno[]"  value="<?= $row['RollNo']?>" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Yds" name="yds"  value="<?= $row['Yds']?>" type="text">
+                                        <input placeholder="Yds" name="yds[]"  value="<?= $row['Yds']?>" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Shade"  value="<?= $row['Shade2']?>" type="text" name="shade2">
+                                        <input placeholder="Shade"  value="<?= $row['Shade2']?>" type="text" name="shade2[]">
                                     </td>
                                     <td>
-                                        <input placeholder="Shrinkage%"  value="<?= $row['Shrinkage2']?>" type="text" name="shrinkage2">
+                                        <input placeholder="Shrinkage%"  value="<?= $row['Shrinkage2']?>" type="text" name="shrinkage2[]">
                                     </td>
                                     <td>
-                                        <input placeholder="Roll No" name="rollno2"  value="<?= $row['RollNo2']?>" type="text">
+                                        <input placeholder="Roll No" name="rollno2[]"  value="<?= $row['RollNo2']?>" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Yds" name="yds2"  value="<?= $row['Yds2']?>" type="text">
+                                        <input placeholder="Yds" name="yds2[]"  value="<?= $row['Yds2']?>" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Total Yds" name="ttlyds"  value="<?= $row['TotalYds']?>" type="text">
+                                        <input placeholder="Total Yds" name="ttlyds[]"  value="<?= $row['TotalYds']?>" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="FOT" name="fot"  value="<?= $row['fabricOpenTime']?>" type="text">
+                                        <input placeholder="FOT" name="fot[]"  value="<?= $row['fabricOpenTime']?>" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="FLD" name="fld"  value="<?= $row['FabricLayDate']?>" type="date">
+                                        <input placeholder="FLD" name="fld[]"  value="<?= $row['FabricLayDate']?>" type="date">
                                     </td>
                                     <td>
-                                        <input placeholder="FLT" name="flt"  value="<?= $row['FabricLayTime']?>" type="text">
+                                        <input placeholder="FLT" name="flt[]"  value="<?= $row['FabricLayTime']?>" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="TTL HRS" name="ttlhrs"  value="<?= $row['TotalHours']?>" type="text">
+                                        <input placeholder="TTL HRS" name="ttlhrs[]"  value="<?= $row['TotalHours']?>" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Remark" name="remark"  value="<?= $row['Remarks']?>" type="text">
+                                        <input placeholder="Remark" name="remark[]"  value="<?= $row['Remarks']?>" type="text">
                                     </td>
                                     <td><a class="deleteRow"></a></td>
                                 </tr>
                                 <?php } ?>
                             </tbody>
-                          
+
                         </table>
                     </div>
                 </div>
