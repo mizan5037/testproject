@@ -586,13 +586,28 @@
                                         </ul>
                                     </li>
 
-
-                                    <li <?php active('cutting_form'); ?>>
-                                        <a href="<?= $path ?>/index.php?page=cutting_form">
-                                            <i class="metismenu-icon">
-                                            </i>Cutting Form
+                                    <li>
+                                        <a href="#">
+                                            <i class="metismenu-icon"></i>
+                                            Cutting
+                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                         </a>
+                                        <ul>
+                                            <li <?php active('cutting_form'); ?>>
+                                                <a href="<?= $path ?>/index.php?page=cutting_form">
+                                                    <i class="metismenu-icon">
+                                                    </i>Cutting Form
+                                                </a>
+                                            </li>
+                                            <li <?php active('all_cutting'); ?>>
+                                                <a href="<?= $path ?>/index.php?page=all_cutting">
+                                                    <i class="metismenu-icon"></i>
+                                                    All Cutting
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </li>
+
                                 </ul>
                             </li>
                             <li>
