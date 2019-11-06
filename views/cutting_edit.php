@@ -104,6 +104,7 @@ include_once "includes/header.php";
 
                             while ($rowo = mysqli_fetch_assoc($cutting)) {
                                 ?>
+                                <input type="hidden" name="catdeid[]" value="<?=$rowo['ID']?>">
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>

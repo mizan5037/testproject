@@ -1,7 +1,7 @@
 <?php
 
 $conn = db_connection();
-if (isset($_POST['style']) && isset($_POST['cutting_no']) && isset($_POST['po'])  && isset($_POST['color']) && isset($_POST['size']) && isset($_POST['qty']) && isset($_POST['embsend']) && isset($_POST['embreceive'])) {
+if (isset($_POST['catdeid']) && isset($_POST['style']) && isset($_POST['cutting_no']) && isset($_POST['po'])  && isset($_POST['color']) && isset($_POST['size']) && isset($_POST['qty']) && isset($_POST['embsend']) && isset($_POST['embreceive'])) {
 
     $style = $_POST['style'];
     $cutting_no = $_POST['cutting_no'];
@@ -28,6 +28,7 @@ if (isset($_POST['style']) && isset($_POST['cutting_no']) && isset($_POST['po'])
     }
 
     //fab relaxation details
+    $id = $_POST['catdeid'];
     $color = $_POST['color'];
     $size = $_POST['size'];
     $qty = $_POST['qty'];
@@ -45,7 +46,7 @@ if (isset($_POST['style']) && isset($_POST['cutting_no']) && isset($_POST['po'])
                                                     PrintEmbReceive = '$embreceive[$i]',
                                                     AddedBy = '$user_id'
 
-                                                    where CuttingFormID=".$cuttingid;
+                                                    where ID=".$id[$i];
 
         if (mysqli_query($conn, $sql)) {
             notice('success', 'Cutting Product Updated Successfully');
