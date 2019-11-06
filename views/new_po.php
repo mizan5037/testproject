@@ -68,12 +68,16 @@ include_once "includes/header.php";
                 </div>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
+                        <label>FOB</label>
+                        <input type="number" name="fob" class="form-control" placeholder="FOB"  step="0.01">
+                    </div>
+                    <div class="col-md-3 mb-3">
                         <label>Final Destination</label>
                         <input type="Text" name="final_destination" class="form-control" placeholder="Final Destination">
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label>Special Instruction</label>
-                        <textarea type="number" name="special_instruction" class="form-control" placeholder="Special Instruction"></textarea>
+                        <textarea type="number" name="special_instruction" class="form-control" placeholder="Special Instruction" rows="1"></textarea>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label>Division</label>
@@ -243,8 +247,8 @@ function customPagefooter()
 {
     ?>
     <script>
-        //table top 
-        
+        //table top
+
         function totalcost(){
             let cmp = $('#cmp').val();
             let wash = $('#wash').val();
@@ -345,7 +349,7 @@ function customPagefooter()
         }
 
 
-        //table bottom 
+        //table bottom
         $(document).ready(function() {
             var counter = 0;
             var limit = 100;

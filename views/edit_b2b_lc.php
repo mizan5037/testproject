@@ -37,15 +37,19 @@ include_once "includes/header.php";
             <!-- <h5 class="card-title">LC</h5> -->
             <form class="needs-validation" id="form" method="post" novalidate>
                 <div class="form-row">
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label>B2B LC Number:</label>
                         <input type="text" class="form-control form-control-sm" name="blcnumber" value="<?= $blc['B2BLCNumber'] ?>" required>
                     </div>
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label>B2B LC Issue Date:</label>
                         <input type="date" class="form-control form-control-sm" name="blcissuedate" value="<?= $blc['Issuedate'] ?>" required>
                     </div>
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-3 mb-3">
+                        <label>B2B LC Maturity Date:</label>
+                        <input type="date" class="form-control form-control-sm" name="blcmaturitydate" value="<?= $blc['Maturitydate'] ?>" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
                         <label>Master LC No:</label>
                         <select class="form-control form-control-sm" name="masterlc" required>
                             <option></option>

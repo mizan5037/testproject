@@ -225,7 +225,7 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th>' + counter + '</th>';
-                cols += '<td><input    type="text" name="date[]"></td>';
+                cols += '<td><input    type="date" name="date[]"></td>';
                 cols += '<td><input placeholder="Shade" type="text" name="shade[]"></td>';
                 cols += '<td><input placeholder="Shrinkage%" type="text" name="shrinkage[]"></td>';
                 cols += '<td><input placeholder="Roll No" name="rollno[]" type="text"></td>';

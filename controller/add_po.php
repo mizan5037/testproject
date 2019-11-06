@@ -10,6 +10,7 @@ if (
 	isset($_POST['wash_cost']) &&
 	isset($_POST['hanger_cost']) &&
 	isset($_POST['cmp_w_wanger']) &&
+	isset($_POST['fob']) &&
 	isset($_POST['style']) &&
 	isset($_POST['color']) &&
 	isset($_POST['clr_no']) &&
@@ -30,6 +31,7 @@ if (
 	$wash_cost = $_POST['wash_cost'];
 	$hanger_cost = $_POST['hanger_cost'];
 	$cmp_w_wanger = $_POST['cmp_w_wanger'];
+	$fob = $_POST['fob'];
 	$final_destination = $_POST['final_destination'];
 	$special_instruction = $_POST['special_instruction'];
 	$division = $_POST['division'];
@@ -37,9 +39,9 @@ if (
 
 
 
-	$sql = "INSERT INTO po (PONumber,POFrom,PODate,POCMPWH,POCurrency,POSpecialInstruction,POFinalDestination,POCMP,POWASH,POHANGER,Division,AddedBy)
+	$sql = "INSERT INTO po (PONumber,POFrom,PODate,POCMPWH,POCurrency,POSpecialInstruction,POFinalDestination,POCMP,POWASH,POHANGER,FOB,Division,AddedBy)
 
-	values('$po_number','$from','$date','$cmp_w_wanger' ,'$currency','$special_instruction','$final_destination','$cmp','$wash_cost','$hanger_cost','$division','$user_id')";
+	values('$po_number','$from','$date','$cmp_w_wanger' ,'$currency','$special_instruction','$final_destination','$cmp','$wash_cost','$hanger_cost','$fob','$division','$user_id')";
 
 	if (mysqli_query($conn, $sql)) {
 		notice('success', 'New PO added Successfully');

@@ -217,7 +217,7 @@ function modal()
 $sql = "SELECT f.*,s.StyleNumber,b.BuyerName,c.color FROM fab_relaxation f LEFT JOIN color c ON f.Color = c.id LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN buyer b ON b.BuyerID=f.BuyerID WHERE f.Status = 1 and FabRelaxationID=".$fabricid;
 $single_fabric = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
-include_once "controller/add_lay_description.php";
+include_once "controller/add_fabric_description.php";
 include_once "includes/header.php";
 
 ?>

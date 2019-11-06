@@ -14,6 +14,7 @@ function modal()
 <?php }
 
 // keep the header always last.
+include_once "controller/line.php";
 include_once "includes/header.php";
 
 ?>
@@ -49,12 +50,21 @@ include_once "includes/header.php";
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                    </tr>
+                    <?php
+                    $sql = "SELECT * FROM line ORDER BY line";
+                    $result = mysqli_query($conn, $sql);
+                    $count = 1;
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        ?>
+                        <tr>
+                            <td><?=$count++?></td>
+                            <td><?=$row['line']?></td>
+                            <td><?=$row['status'] ? 'Active' : 'Closed'?></td>
+                            <td><a href="<?=$path?>/index.php?page=line&id=<?=$row['id']?>&status=<?=$row['status']?>" class="btn btn-sm btn-<?=$row['status'] ? 'danger' : 'success'?>"><?=$row['status'] ? 'Close It' : 'Activate'?></a></td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>

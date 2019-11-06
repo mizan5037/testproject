@@ -14,7 +14,7 @@ if (isset($_GET['delete']) && $_GET['delete'] !='') {
 
     if (mysqli_query($conn, $sql)) {
         notice('success', 'Fabric Relaxation Deleted Successfully');
-        nowgo('/index.php?page=all_fabric-relaxation');
+        nowgo('/index.php?page=all_fabric_relaxation');
     } else {
         notice('error', $sql . "<br>" . mysqli_error($conn));
     }
