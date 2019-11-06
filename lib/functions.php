@@ -51,11 +51,11 @@ function nowlog($attempt)
         "Attempt: " . $attempt . PHP_EOL .
         "-------------------------" . PHP_EOL;
     //Save string to log, use FILE_APPEND to append.
-    $logFolder = $_SERVER['DOCUMENT_ROOT']. $path .'/log';
+    $logFolder = $_SERVER['DOCUMENT_ROOT'] . $path . '/log';
     if (!file_exists($logFolder)) {
         mkdir($logFolder, 0777, true);
     }
-    
+
     file_put_contents($logFolder . '/' . get_ses('user') . '_log_' . date("j.n.Y") . '.log', $log, FILE_APPEND);
 }
 
@@ -94,4 +94,57 @@ function loginlog($attempt)
         mkdir('./log', 0777, true);
     }
     file_put_contents('./log/' . 'login_log_' . date("j.n.Y") . '.log', $log, FILE_APPEND);
+}
+
+
+function paginate($table)
+{
+    $conn = db_connection();
+    if (isset($_GET['pageno'])) {
+        $pageno = $_GET['pageno'];
+    } else {
+        $pageno = 1;
+    }
+
+    $no_of_records_per_page = 10;
+    $offset = ($pageno - 1) * $no_of_records_per_page;
+
+    $total_pages_sql = "SELECT COUNT(*) FROM $table";
+    $result = mysqli_query($conn, $total_pages_sql);
+    $total_rows = mysqli_fetch_array($result)[0];
+    $total_pages = ceil($total_rows / $no_of_records_per_page);
+
+    $out['offset'] = $offset;
+    $out['total_pages'] = $total_pages;
+    $out['sql'] = "LIMIT ". $offset .", " .$no_of_records_per_page;
+    return $out;
+}
+
+
+function links($pageno, $total_pages)
+{
+    ?>
+    <ul class="pagination">
+        <li><a href="?pageno=1">First</a></li>
+        <li class="<?php if ($pageno <= 1) {
+                            echo 'disabled';
+                        } ?>">
+            <a href="<?php if ($pageno <= 1) {
+                                echo '#';
+                            } else {
+                                echo "?pageno=" . ($pageno - 1);
+                            } ?>">Prev</a>
+        </li>
+        <li class="<?php if ($pageno >= $total_pages) {
+                            echo 'disabled';
+                        } ?>">
+            <a href="<?php if ($pageno >= $total_pages) {
+                                echo '#';
+                            } else {
+                                echo "?pageno=" . ($pageno + 1);
+                            } ?>">Next</a>
+        </li>
+        <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+    </ul>
+<?php
 }
