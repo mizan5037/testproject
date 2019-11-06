@@ -8,12 +8,15 @@ if (isset($_POST['buyer']) && isset($_POST['style']) && isset($_POST['color'])  
     $color = $_POST['color'];
     $user_id = get_ses('user_id');
 
-    $sql = "INSERT INTO fab_relaxation (BuyerID,StyleID,Color,AddedBy)
+    $sql = "UPDATE fab_relaxation SET
+     BuyerID='$buyer',
+     StyleID='$style',
+     Color = '$color',
+     AddedBy = '$user_id'
+     where FabRelaxationID=".$fabricid;
 
-	values('$buyer','$style','$color','$user_id')";
     if (mysqli_query($conn, $sql)) {
-        notice('success', 'New Fabric Relaxation Added Successfully');
-        $last_id = mysqli_insert_id($conn);
+        notice('success', 'Fabric Relaxation Updated Successfully');
     } else {
         notice('error', $sql . "<br>" . mysqli_error($conn));
     }
@@ -34,19 +37,14 @@ if (isset($_POST['buyer']) && isset($_POST['style']) && isset($_POST['color'])  
     $flt = $_POST['flt'];
     $ttlhrs = $_POST['ttlhrs'];
     $remark = $_POST['remark'];
+    $fabDesID = $_POST['fabDesID'];
 
-    for ($i = 0; $i < sizeof($date); $i++) {
-        $sql = "INSERT INTO fab_relaxation_description (FabRelaxationID,Date,Shade,Shrinkage,RollNo,Yds,Shade2,Shrinkage2,RollNo2,Yds2,TotalYds,fabricOpenTime,FabricLayDate,FabricLayTime,TotalHours,Remarks,AddedBy)
-        values('$last_id','$date[$i]','$shade[$i]','$shrinkage[$i]','$rollno[$i]', '$yds[$i]','$shade2[$i]','$shrinkage2[$i]','$rollno2[$i]','$yds2[$i]','$ttlyds[$i]','$fot[$i]','$fld[$i]','$flt[$i]','$ttlhrs[$i]','$remark[$i]','$user_id') ";
-
-
-        if (mysqli_query($conn, $sql)) {
-            notice('success', 'New Fabric Relaxation Added Successfully');
-
-        } else {
-            notice('error', $sql . "<br>" . mysqli_error($conn));
-        }
+    for($i = 0 ; $i<sizeof($date); $i++){
+    $sql = "UPDATE fab_relaxation_description SET Date ='$date[$i]', Shade='$shade[$i]', Shrinkage='$shrinkage[$i]', RollNo='$rollno[$i]',  Yds='$yds[$i]', Shade2='$shade2[$i]', Shrinkage2='$shrinkage2[$i]', RollNo2='$rollno2[$i]', Yds2='$yds2[$i]', TotalYds='$ttlyds[$i]', fabricOpenTime='$fot[$i]', FabricLayDate='$fld[$i]', FabricLayTime='$flt[$i]', TotalHours='$ttlhrs[$i]', Remarks='$remark[$i]', AddedBy='$user_id' WHERE ID='$fabDesID[$i]'";
+    if (mysqli_query($conn, $sql)) {
+        notice('success', 'Fabric Relaxation Updated Successfully');
+    } else {
+        notice('error', $sql . "<br>" . mysqli_error($conn));
     }
-    nowgo('/index.php?page=all_fabric_relaxation');
-
+  }
 }

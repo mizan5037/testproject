@@ -1,6 +1,6 @@
 <?php
 
-$PageTitle = "Details PO | Optima Inventory";
+$PageTitle = " Cutting Details | Optima Inventory";
 function customPageHeader()
 {
     ?>
@@ -114,10 +114,10 @@ function customPageHeader()
     </style>
 <?php }
 
-if (isset($_GET['layid'])  && $_GET['layid'] != '') {
-    $layid = $_GET['layid'];
+if (isset($_GET['cuttingid'])  && $_GET['cuttingid'] != '') {
+    $cuttingid = $_GET['cuttingid'];
 } else {
-    nowgo('/index.php?page=all_lay');
+    nowgo('/index.php?page=all_cutting');
 }
 
 $conn = db_connection();
@@ -126,7 +126,7 @@ function modal()
 {
     ?>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <form method="post">
                 <div class="modal-content" style="width:300%; margin-left:-5%">
@@ -209,15 +209,15 @@ function modal()
                 </div>
             </form>
         </div>
-    </div>
+    </div> -->
     <!--  image modal end -->
 
 <?php }
 
-$sql = "SELECT * FROM lay_form f LEFT JOIN buyer b on b.BuyerID=f.BuyerID LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN po p ON p.POID=f.POID WHERE f.Status = 1 and LayFormID=".$layid;
-$single_lay = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+$sql = "SELECT c.*,s.StyleNumber,p.PONumber FROM cutting_form c LEFT JOIN style s on s.StyleID=c.StyleID LEFT JOIN po p ON c.POID = p.POID WHERE c.Status = 1 and CuttingFormID=".$cuttingid;
+$single_cutting = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
-include_once "controller/add_lay_description.php";
+include_once "controller/add_cutting_description.php";
 include_once "includes/header.php";
 
 ?>
@@ -230,7 +230,7 @@ include_once "includes/header.php";
                     <i class="pe-7s-note icon-gradient bg-mean-fruit">
                     </i>
                 </div>
-                <div>Lay Details
+                <div>Cutting Details
                     <div class="page-title-subheading">
                         Single
                     </div>
@@ -239,7 +239,7 @@ include_once "includes/header.php";
 
             <div class="page-title-actions">
                 <div class="d-inline-block dropdown">
-                    <a href="<?= $path ?>/index.php?page=lay_edit&layid=<?= $layid ?>" aria-expanded="false" class="btn-shadow btn btn-info">
+                    <a href="<?= $path ?>/index.php?page=cutting_edit&cuttingid=<?= $cuttingid ?>" aria-expanded="false" class="btn-shadow btn btn-info">
                         Edit
                     </a>
                 </div>
@@ -252,53 +252,34 @@ include_once "includes/header.php";
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Buyer Name</th>
-                        <th>Style No.</th>
+                        <th>Style Number</th>
+                        <th>Cutting No.</th>
                         <th>PO NO.</th>
-                        <th>Cutting NO.</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><?=$single_lay['BuyerName']?></td>
-                        <td><?=$single_lay['StyleNumber']?></td>
-                        <td><?=$single_lay['PONumber']?></td>
-                        <td><?=$single_lay['CuttingNo']?></td>
+                        <td><?=$single_cutting['StyleNumber']?></td>
+                        <td><?=$single_cutting['CuttingNo']?></td>
+                        <td><?=$single_cutting['PONumber']?></td>
                     </tr>
                    
                 </tbody>
             </table>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Unit.</th>
-                        <th>Date</th>
-                        <th>M/W</th>
-                        <th>Marker Length</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><?=$single_lay['Unit']?></td>
-                        <td><?=$single_lay['Date']?></td>
-                        <td><?=$single_lay['MarkerWidth']?></td>
-                        <td><?=$single_lay['MarkerLength']?></td>
-                    </tr>
-                   
-                </tbody>
-            </table>
+            
         </div>
     </div>
     <div class="main-card mb-3 card">
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
-                    <h5 class="card-title">Lay Description</h5>
+                    <h5 class="card-title">Cuttign Description</h5>
                 </div>
                 <div class="col-md-6 text-right">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal1">
-                        Add Lay
+                        Add Cutting Description
                     </button>
                 </div>
             </div>
@@ -309,39 +290,30 @@ include_once "includes/header.php";
                         <thead>
                             <th>#</th>
                             <th>Color</th>
-                            <th>LOTNO</th>
-                            <th>SL.NO.</th>
-                            <th>ROLL NO</th>
-                            <th>TTL Fabrics/yds</th>
-                            <th>Lay</th>
-                            <th>Used Fabrics/yds</th>
-                            <th>Remaining</th>
-                            <th>Exxess/Short</th>
-                            <th>Sticker</th>
+                            <th>Size</th>
+                            <th>Qty</th>
+                            <th>Print & EMB Send</th>
+                            <th>Print & EMB Receive	</th>
                             <th>Action</th>
                         </thead>
                         <tbody>
                             <?php
                             
-                            $sqlo = "SELECT f.*,c.color FROM lay_form_details f LEFT JOIN color c ON c.id = f.Color where f.layFormID ='$layid' AND f.Status=1";
+                            $sqlo = "SELECT d.*,c.color,s.size FROM cutting_form_description d LEFT JOIN color c ON c.id=d.Color LEFT JOIN size s on s.id=d.Size WHERE c.Status=1
+                            and CuttingFormID=".$cuttingid;
                             $count = 1;
-                            $order = mysqli_query($conn, $sqlo);
+                            $cutting = mysqli_query($conn, $sqlo);
                             
-                            while ($rowo = mysqli_fetch_assoc($order)) {
+                            while ($rowo = mysqli_fetch_assoc($cutting)) {
                                 ?>
                                 <tr>
                                     <td><?= $count ?></td>
                                     <td><?= $rowo['color'] ?></td>
-                                    <td><?= $rowo['LotNo'] ?></td>
-                                    <td><?= $rowo['SlNo'] ?></td>
-                                    <td><?= $rowo['RollNo'] ?></td>
-                                    <td><?= $rowo['TTLFabricsYds'] ?></td>
-                                    <td><?= $rowo['Lay'] ?></td>
-                                    <td><?= $rowo['UsedFabricYds'] ?></td>
-                                    <td><?= $rowo['RemainingYds'] ?></td>
-                                    <td><?= $rowo['Shortage'] ?></td>
-                                    <td><?= $rowo['Sticker'] ?></td>
-                                    <td><a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=single_lay&layid=<?= $layid ?>&layde=<?php echo $rowo['ID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
+                                    <td><?= $rowo['size'] ?></td>
+                                    <td><?= $rowo['Qty'] ?></td>
+                                    <td><?= $rowo['PrintEMBSent'] ?></td>
+                                    <td><?= $rowo['PrintEmbReceive'] ?></td>
+                                    <td><a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=single_cutting&cuttingid=<?= $cuttingid ?>&cutid=<?php echo $rowo['ID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
                                             <i class="fas fa-trash-alt" style="color: white;"></i>
                                         </a>
                                     </td>

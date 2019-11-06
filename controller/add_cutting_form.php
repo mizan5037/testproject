@@ -39,5 +39,7 @@ if (isset($_POST['style']) && isset($_POST['cutting_no']) && isset($_POST['po'])
             notice('error', $sql . "<br>" . mysqli_error($conn));
         }
     }
+    nowgo('/index.php?page=all_cutting');
+
    
 }

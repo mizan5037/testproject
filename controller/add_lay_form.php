@@ -53,4 +53,7 @@ if (isset($_POST['buyer']) && isset($_POST['style']) && isset($_POST['po'])  && 
         }
     }
 
+	nowgo('/index.php?page=all_lay');
+
+
 }

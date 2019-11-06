@@ -564,18 +564,50 @@
                                         </ul>
                                     </li>
 
-                                    <li <?php active('fab_relaxation'); ?>>
-                                        <a href="<?= $path ?>/index.php?page=fab_relaxation">
-                                            <i class="metismenu-icon">
-                                            </i>Fabric Relaxation Form
+                                    <li>
+                                        <a href="#">
+                                            <i class="metismenu-icon"></i>
+                                            Fabric Relaxation
+                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                         </a>
+                                        <ul>
+                                            <li <?php active('fab_relaxation'); ?>>
+                                                <a href="<?= $path ?>/index.php?page=fab_relaxation">
+                                                    <i class="metismenu-icon">
+                                                    </i>Fabric Relaxation Form
+                                                </a>
+                                            </li>
+                                            <li <?php active('all_fabric_relaxation'); ?>>
+                                                <a href="<?= $path ?>/index.php?page=all_fabric_relaxation">
+                                                    <i class="metismenu-icon"></i>
+                                                    All Fabric
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </li>
-                                    <li <?php active('cutting_form'); ?>>
-                                        <a href="<?= $path ?>/index.php?page=cutting_form">
-                                            <i class="metismenu-icon">
-                                            </i>Cutting Form
+
+                                    <li>
+                                        <a href="#">
+                                            <i class="metismenu-icon"></i>
+                                            Cutting
+                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                         </a>
+                                        <ul>
+                                            <li <?php active('cutting_form'); ?>>
+                                                <a href="<?= $path ?>/index.php?page=cutting_form">
+                                                    <i class="metismenu-icon">
+                                                    </i>Cutting Form
+                                                </a>
+                                            </li>
+                                            <li <?php active('all_cutting'); ?>>
+                                                <a href="<?= $path ?>/index.php?page=all_cutting">
+                                                    <i class="metismenu-icon"></i>
+                                                    All Cutting
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </li>
+
                                 </ul>
                             </li>
                             <li>

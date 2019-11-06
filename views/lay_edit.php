@@ -181,15 +181,16 @@ include_once "includes/header.php";
                             <tbody>
                                 <?php 
                                     $sql = "SELECT * FROM lay_form_details where layFormID=$layid";
-                                     $prepack = mysqli_query($conn, $sql);
+                                     $lay = mysqli_query($conn, $sql);
                                      $count = 1;
-                                while ($row = mysqli_fetch_assoc($prepack)) {
+                                while ($row = mysqli_fetch_assoc($lay)) {
 
                                 ?>
                                 <tr>
+                                    <input type="hidden" name="layid[]" value="<?=$row['ID']?>">
                                     <th scope="row"><?= $count++ ?></th>
                                     <td>
-                                        <select name="color" class="color  form-control" required>
+                                        <select name="color[]" class="color  form-control" required>
                                             <option></option>
                                             <?php
                                             $conn = db_connection();
@@ -209,31 +210,31 @@ include_once "includes/header.php";
                                         </select>
                                     </td>
                                     <td>
-                                        <input placeholder="Lot No" value="<?= $row['LotNo'] ?>" type="text" name="lotno">
+                                        <input placeholder="Lot No" value="<?= $row['LotNo'] ?>" type="text" name="lotno[]">
                                     </td>
                                     <td>
-                                        <input placeholder="Sl. No" type="text" value="<?= $row['SlNo'] ?>" name="slno">
+                                        <input placeholder="Sl. No" type="text" value="<?= $row['SlNo'] ?>" name="slno[]">
                                     </td>
                                     <td>
-                                        <input placeholder="Roll No" value="<?= $row['RollNo'] ?>" name="rollno" type="text">
+                                        <input placeholder="Roll No" value="<?= $row['RollNo'] ?>" name="rollno[]" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="TTL Fabrics/yds" value="<?= $row['TTLFabricsYds'] ?>" name="ttlfab" type="text">
+                                        <input placeholder="TTL Fabrics/yds" value="<?= $row['TTLFabricsYds'] ?>" name="ttlfab[]" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Lay" value="<?= $row['Lay'] ?>" name="lay" type="text">
+                                        <input placeholder="Lay" value="<?= $row['Lay'] ?>" name="lay[]" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Used Fabrics/yds" value="<?= $row['UsedFabricYds'] ?>" name="usedfab" type="text">
+                                        <input placeholder="Used Fabrics/yds" value="<?= $row['UsedFabricYds'] ?>" name="usedfab[]" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Remaining" value="<?= $row['RemainingYds'] ?>" name="ramaining" type="text">
+                                        <input placeholder="Remaining" value="<?= $row['RemainingYds'] ?>" name="ramaining[]" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Exxess/Short" value="<?= $row['Shortage'] ?>" name="exsshort" type="text">
+                                        <input placeholder="Exxess/Short" value="<?= $row['Shortage'] ?>" name="exsshort[]" type="text">
                                     </td>
                                     <td>
-                                        <input placeholder="Sticker" value="<?= $row['Sticker'] ?>" name="sticker" type="text">
+                                        <input placeholder="Sticker" value="<?= $row['Sticker'] ?>" name="sticker[]" type="text">
                                     </td>
                                     <td><a class="deleteRow"></a></td>
                                 </tr>
@@ -248,7 +249,7 @@ include_once "includes/header.php";
                                     <td></td>
                                     <th>Special Action: </th>
                                     <td colspan="12">
-                                        <textarea name="specialaction" placeholder="Type Here . . ." id="" rows="3"><?=nl2br($single_lay['SpecialAction'])?></textarea>
+                                        <textarea name="specialaction" placeholder="Type Here . . ." id="" rows="3"><?=strip_tags(nl2br($single_lay['SpecialAction']))?></textarea>
                                     </td>
                                 </tr>
                             </tfoot>
