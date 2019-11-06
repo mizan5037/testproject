@@ -571,7 +571,7 @@
                                             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                         </a>
                                         <ul>
-                                            <li <?php active('lay_form'); ?>>
+                                            <li <?php active('fab_relaxation'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=fab_relaxation">
                                                     <i class="metismenu-icon">
                                                     </i>Fabric Relaxation Form
