@@ -46,6 +46,7 @@ include_once "includes/header.php";
                                 <th>Style</th>
                                 <th>Color</th>
                                 <th>Ctn Pcs</th>
+                                <th>Remark</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -93,6 +94,9 @@ include_once "includes/header.php";
                                 </td>
                                 <td>
                                     <input placeholder="Ctn Pcs" type="text" name="receivefab[]" class="mb-2 form-control-sm form-control">
+                                </td>
+                                <td>
+                                  <input placeholder="Remark" type="text" name="remark[]" class="mb-2 form-control-sm form-control">
                                 </td>
                                 <td></td>
                             </tr>
@@ -170,6 +174,7 @@ function customPagefooter()
                     ?>
                 cols += '</select></td>';
                 cols += '<td><input placeholder="Ctn Pcs" type="text" name="receivefab[]" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Remark" type="text" name="remark[]" class="mb-2 form-control-sm form-control"></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-danger"  value="Delete"></td>';
                 newRow.append(cols);

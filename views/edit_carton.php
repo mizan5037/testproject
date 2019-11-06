@@ -55,6 +55,7 @@ include_once "includes/header.php";
                                 <th>Style</th>
                                 <th>Color</th>
                                 <th>Ctn Pcs</th>
+                                <th>Remark</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -112,10 +113,13 @@ include_once "includes/header.php";
                                 <td>
                                     <input placeholder="Ctn Pcs" type="text" name="receivefab" value="<?= $single_carton['Qty']?>" class="mb-2 form-control-sm form-control">
                                 </td>
+                                <td>
+                                  <input placeholder="Remark" type="text" name="remark" value="<?= $single_carton['Remark']?>" class="mb-2 form-control-sm form-control">
+                                </td>
                                 <td></td>
                             </tr>
                         </tbody>
-                        
+
                     </table>
                 </div>
                 <br><br>

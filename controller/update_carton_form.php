@@ -1,32 +1,35 @@
 <?php
 $conn = db_connection();
-if (isset($_POST['date'])  && isset($_POST['po']) && isset($_POST['style']) && isset($_POST['color']) && isset($_POST['receivefab']) ) {
+if (isset($_POST['date'])  && isset($_POST['po']) && isset($_POST['style']) && isset($_POST['color']) && isset($_POST['receivefab']) && isset($_POST['remark']) ) {
 
     $date = $_POST['date'];
     $po = $_POST['po'];
     $style = $_POST['style'];
     $color = $_POST['color'];
     $receivefab = $_POST['receivefab'];
+    $remark = $_POST['remark'];
     $user_id = get_ses('user_id');
-    
 
-   
 
-        $sql = "UPDATE carton_form SET 
+
+
+        $sql = "UPDATE carton_form SET
                         date='$date',
                         POID='$po',
                         StyleID='$style',
                         Color = '$color',
-                        Qty='$receivefab'
+                        Qty='$receivefab',
+                        Remark='$remark'
                          where CartonFromID=".$id;
-        
-        
+
+
         if (mysqli_query($conn, $sql)) {
             notice('success', ' Carton Updated Successfully');
+            nowgo('/index.php?page=all_carton');
         } else {
             notice('error', $sql . "<br>" . mysqli_error($conn));
         }
-    
+
 
 }
 if(isset($_GET['delete']) && $_GET['delete'] !=''){

@@ -50,12 +50,13 @@ include_once "includes/header.php";
                         <th>Style Number</th>
                         <th>Color</th>
                         <th>Shipment</th>
+                        <th>Remark</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT * FROM carton_form f LEFT JOIN po p on p.POID=f.POID LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN color c ON c.id=f.Color where f.Status=1";
+                    $sql = "SELECT * FROM carton_form f LEFT JOIN po p on p.POID=f.POID LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN color c ON c.id=f.Color where f.Status=1 ORDER BY f.date DESC";
                     $shipment = mysqli_query($conn, $sql);
 
                     $count = 1;
@@ -66,10 +67,11 @@ include_once "includes/header.php";
                         <tr>
                             <th scope="row"><?= $count ?></th>
                             <td><?= $row['date'] ?></td>
-                            <td><a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" target="_blank"><?= $row['PONumber'] ?></a></td>
+                            <td><a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=po_single&poid=<?= $row['POID'] ?>" target="_blank"><?= $row['PONumber'] ?></a></td>
                             <td><a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" target="_blank"><?= $row['StyleNumber'] ?></td>
                             <td><?= $row['color'] ?></td>
                             <td><?= $row['Qty'] ?></td>
+                            <td><?= $row['Remark'] ?></td>
                             <td>
                                 <a href="<?= $path ?>/index.php?page=edit_carton&id=<?= $row['CartonFromID'] ?>" class=" mb-2 mr-2 btn-transition btn btn-sm btn-outline-primary">
                                     <i class="fas fa-edit"></i>

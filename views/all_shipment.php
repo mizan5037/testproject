@@ -41,6 +41,7 @@ include_once "includes/header.php";
                         <th>Color</th>
                         <th>Shipment</th>
                         <th>Sample</th>
+                        <th>Remark</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -57,16 +58,17 @@ include_once "includes/header.php";
                         <tr>
                             <th scope="row"><?= $count ?></th>
                             <td><?= $row['date'] ?></td>
-                            <td><a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" target="_blank"><?= $row['PONumber'] ?></a></td>
+                            <td><a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=po_single&poid=<?= $row['StyleID'] ?>" target="_blank"><?= $row['PONumber'] ?></a></td>
                             <td><a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" target="_blank"><?= $row['StyleNumber'] ?></a></td>
                             <td><?= $row['color'] ?></td>
                             <td><?= $row['Shipment'] ?></td>
                             <td><?= $row['Sample'] ?></td>
+                            <td><?= $row['Remark'] ?></td>
                             <td>
                                 <a href="<?= $path ?>/index.php?page=edit_shipment&id=<?= $row['ShipmentFormID'] ?>" class=" btn btn-sm btn-outline-primary">
                                 <i class="fas fa-edit" ></i>
                                 </a>
-                                
+
                                 <a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=all_shipment&delete=<?php echo $row['ShipmentFormID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
                                     <i class="fas fa-trash-alt" style="color: white;"></i>
                                 </a>

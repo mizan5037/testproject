@@ -56,6 +56,7 @@ include_once "includes/header.php";
                                 <th>Color</th>
                                 <th>Shipment</th>
                                 <th>Sample</th>
+                                <th>Remark</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -116,10 +117,11 @@ include_once "includes/header.php";
                                 <td>
                                     <input placeholder="Sample" value="<?= $singple_shipment['Sample'] ?>" type="text" name="receiveroll" class="mb-2 form-control-sm form-control">
                                 </td>
+                                <td><input placeholder="Remark " value="<?= $singple_shipment['Remark'] ?>" type="text" name="remark" class="mb-2 form-control-sm form-control"></td>
                                 <td></td>
                             </tr>
                         </tbody>
-                        
+
                     </table>
                 </div>
                 <br><br>
@@ -147,7 +149,7 @@ function customPagefooter()
             var counter = 0;
             var limit = 100;
 
-          
+
 
             $("table.order-list").on("change", 'input[name^="price"]', function(event) {
                 calculateRow($(this).closest("tr"));
