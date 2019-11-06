@@ -571,13 +571,13 @@
                                             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                         </a>
                                         <ul>
-                                            <li <?php active('lay_form'); ?>>
+                                            <li <?php active('fab_relaxation'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=fab_relaxation">
                                                     <i class="metismenu-icon">
                                                     </i>Fabric Relaxation Form
                                                 </a>
                                             </li>
-                                            <li <?php active('all_lay'); ?>>
+                                            <li <?php active('all_fabric_relaxation'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=all_fabric_relaxation">
                                                     <i class="metismenu-icon"></i>
                                                     All Fabric
@@ -586,7 +586,7 @@
                                         </ul>
                                     </li>
 
-                                
+
                                     <li <?php active('cutting_form'); ?>>
                                         <a href="<?= $path ?>/index.php?page=cutting_form">
                                             <i class="metismenu-icon">

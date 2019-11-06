@@ -56,6 +56,7 @@ include_once "includes/header.php";
                                 <th>Color</th>
                                 <th>Send</th>
                                 <th>Received</th>
+                                <th>Remark</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -116,10 +117,12 @@ include_once "includes/header.php";
                                 <td>
                                     <input placeholder="Received" value="<?= $single_wash['Receive']?>" type="number" name="receiveroll" class="mb-2 form-control-sm form-control">
                                 </td>
-                                <td></td>
+                                <td>
+                                  <input placeholder="Remark" value="<?= $single_wash['Remark']?>" type="text" name="remark" class="mb-2 form-control-sm form-control">
+                                </td>
                             </tr>
                         </tbody>
-                       
+
                     </table>
                 </div>
                 <br><br>
