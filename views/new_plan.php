@@ -37,7 +37,7 @@ include_once "includes/header.php";
     </div>
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <form>
+            <form method="post">
                 <div class="form-row">
                     <div class="col-md-2">
                         <h4> Title: </h4>
