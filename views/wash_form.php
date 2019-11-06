@@ -47,6 +47,7 @@ include_once "includes/header.php";
                                 <th>Color</th>
                                 <th>Send</th>
                                 <th>Received</th>
+                                <th>Remark</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -98,7 +99,9 @@ include_once "includes/header.php";
                                 <td>
                                     <input placeholder="Received" type="number" name="receiveroll[]" class="mb-2 form-control-sm form-control">
                                 </td>
-                                <td></td>
+                                <td>
+                                  <input placeholder="Remark" type="text" name="remark[]" class="mb-2 form-control-sm form-control">
+                                </td>
                             </tr>
                         </tbody>
                         <tfoot>
@@ -175,7 +178,7 @@ function customPagefooter()
                 cols += '</select></td>';
                 cols += '<td><input placeholder="Send" type="number" name="receivefab[]" class="mb-2 form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Received" type="number" name="receiveroll[]" class="mb-2 form-control-sm form-control"></td>';
-
+                cols += '<td><input placeholder="Remark" type="text" name="remark[]" class="mb-2 form-control-sm form-control"></td>';
                 cols += '<td><input type="button" class="ibtnDel btn btn-danger"  value="Delete"></td>';
                 newRow.append(cols);
                 if (counter >= limit) $('#addrow').attr('disabled', true).prop('value', "You've reached the limit");

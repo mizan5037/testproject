@@ -589,7 +589,7 @@
                                     <li>
                                         <a href="#">
                                             <i class="metismenu-icon"></i>
-                                            Cutting 
+                                            Cutting
                                             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                         </a>
                                         <ul>
@@ -607,7 +607,7 @@
                                             </li>
                                         </ul>
                                     </li>
-                                   
+
                                 </ul>
                             </li>
                             <li>
