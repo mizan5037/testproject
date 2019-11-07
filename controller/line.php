@@ -1,9 +1,10 @@
 <?php
 $conn = db_connection();
-if (isset($_POST['line']) && $_POST['line'] != '') {
+if (isset($_POST['line']) && $_POST['line'] != '' && isset($_POST['floor']) && $_POST['floor'] != '') {
     $line = $_POST['line'];
+    $floor = $_POST['floor'];
     $user_id = get_ses('user_id');
-    $sql = "INSERT INTO line (line, addedby) VALUES ('$line', '$user_id')";
+    $sql = "INSERT INTO line (floor, line, addedby) VALUES ('$floor','$line', '$user_id')";
 
     if (mysqli_query($conn, $sql)) {
         notice('success', 'New Line Added Successfully');
