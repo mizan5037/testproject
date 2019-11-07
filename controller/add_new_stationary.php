@@ -33,5 +33,5 @@ if (isset($_GET['delete'])) {
 }
 
 
-$sql = "SELECT si.*, ir.ItemID FROM stationary_item si LEFT JOIN stationary_receive ir ON si.ID = ir.ItemID";
+$sql = "SELECT DISTINCT si.*, ir.ItemID FROM stationary_item si LEFT JOIN stationary_receive ir ON si.ID = ir.ItemID";
 $result = mysqli_query($conn, $sql);

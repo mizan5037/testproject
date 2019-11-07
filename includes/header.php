@@ -561,6 +561,12 @@
                                                     All Lay
                                                 </a>
                                             </li>
+                                            <li <?php active('lay'); ?>>
+                                                <a href="<?= $path ?>/index.php?report=lay">
+                                                    <i class="metismenu-icon"></i>
+                                                    Lay Report
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
 
