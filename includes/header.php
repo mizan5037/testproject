@@ -540,12 +540,23 @@
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
                                 <ul>
-                                    <li <?php active('cutting_report'); ?>>
-                                        <a href="<?= $path ?>/index.php?page=cutting_report">
-                                            <i class="metismenu-icon">
-                                            </i>Report
+                                    <li>
+                                        <a href="#">
+                                            <i class="metismenu-icon"></i>
+                                            Reports
+                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                         </a>
+                                        <ul>
+                                            <li <?php active('lay_report'); ?>>
+                                                <a target="_blank" href="<?= $path ?>/index.php?page=lay_report">
+                                                    <i class="metismenu-icon">
+                                                    </i>Lay Report
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </li>
+
+
                                     <li>
                                         <a href="#">
                                             <i class="metismenu-icon"></i>
