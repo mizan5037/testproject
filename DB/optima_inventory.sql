@@ -610,6 +610,7 @@ CREATE TABLE `lay_form_details` (
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
 -- --------------------------------------------------------
 
 --
@@ -618,6 +619,7 @@ CREATE TABLE `lay_form_details` (
 
 CREATE TABLE `line` (
   `id` int(11) NOT NULL,
+  `floor` varchar(20) NOT NULL,
   `line` varchar(20) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `addedby` int(11) NOT NULL,
@@ -628,8 +630,9 @@ CREATE TABLE `line` (
 -- Dumping data for table `line`
 --
 
-INSERT INTO `line` (`id`, `line`, `status`, `addedby`, `timestamp`) VALUES
-(1, '9A', 0, 1, '2019-11-05 05:34:45');
+INSERT INTO `line` (`id`, `floor`, `line`, `status`, `addedby`, `timestamp`) VALUES
+(1, '9th', 'A', 1, 1, '2019-11-07 05:09:39'),
+(2, '9th', 'B', 1, 1, '2019-11-07 05:11:01');
 
 -- --------------------------------------------------------
 
