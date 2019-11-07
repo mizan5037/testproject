@@ -36,14 +36,24 @@ include_once "includes/header.php";
         </div>
     </div>
     <div class="main-card mb-3 card">
-        <div class="card-body">
-            <h5 class="card-title">Card Title</h5>
-            Content here
+        <div class="card-body text-center">
+            <h4> Title: <?= $row['title'] ?></h4>
+            <h6>P.O Number: 
+                <a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=po_single&poid=<?= $row['poid'] ?>" target="_blank">
+                    <?= $row['PONumber'] ?>
+                </a> &nbsp;&nbsp;&nbsp; Style Number:
+                <a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=po_single&poid=<?= $row['styleid'] ?>" target="_blank">
+                    <?= $row['StyleNumber'] ?>
+                </a>
+            </h6>
+        </div>
+    </div>
+    <div class="main-card mb-3 card">
+        <div class="card-body text-center">
+            
         </div>
     </div>
 </div>
-
-
 
 
 <?php
