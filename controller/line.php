@@ -12,6 +12,17 @@ if (isset($_POST['line']) && $_POST['line'] != '' && isset($_POST['floor']) && $
         notice('error', $sql . "<br>" . mysqli_error($conn));
     }
     nowgo('/index.php?page=line');
+}elseif (!isset($_POST['line']) && isset($_POST['floor']) && $_POST['floor'] != '') {
+    $floor = $_POST['floor'];
+    $user_id = get_ses('user_id');
+    $sql = "INSERT INTO floor (floor_name, addedby) VALUES ('$floor', '$user_id')";
+
+    if (mysqli_query($conn, $sql)) {
+        notice('success', 'New Floor Added Successfully');
+    } else {
+        notice('error', $sql . "<br>" . mysqli_error($conn));
+    }
+    nowgo('/index.php?page=line');
 }
 
 if(isset($_GET['id']) && $_GET['id'] != '' && isset($_GET['status']) && $_GET['status'] != ''){

@@ -58,11 +58,11 @@ include_once "includes/header.php";
                     while ($row = mysqli_fetch_assoc($result)) {
                         ?>
                         <tr>
-                            <td><?=$count++?></td>
-                            <td><?=$row['floor']?></td>
-                            <td><?=$row['line']?></td>
-                            <td><?=$row['status'] ? 'Active' : 'Closed'?></td>
-                            <td><a href="<?=$path?>/index.php?page=line&id=<?=$row['id']?>&status=<?=$row['status']?>" class="btn btn-sm btn-<?=$row['status'] ? 'danger' : 'success'?>"><?=$row['status'] ? 'Close It' : 'Activate'?></a></td>
+                            <td><?= $count++ ?></td>
+                            <td><?= $row['floor'] ?></td>
+                            <td><?= $row['line'] ?></td>
+                            <td><?= $row['status'] ? 'Active' : 'Closed' ?></td>
+                            <td><a href="<?= $path ?>/index.php?page=line&id=<?= $row['id'] ?>&status=<?= $row['status'] ?>" class="btn btn-sm btn-<?= $row['status'] ? 'danger' : 'success' ?>"><?= $row['status'] ? 'Close It' : 'Activate' ?></a></td>
                         </tr>
                     <?php
                     }
@@ -77,13 +77,27 @@ include_once "includes/header.php";
             <form action="" method="post">
                 <div class="form-row">
                     <div class="col-md-2">
-                        <h3>Floor Name:</h3>
+                        <h4>Floor Name:</h4>
                     </div>
                     <div class="col-md-2"><input type="text" name="floor" class="form-control" required></div>
                     <div class="col-md-2">
-                        <h3>Line Name:</h3>
+                        <h4>Line Name:</h4>
                     </div>
                     <div class="col-md-2"><input type="text" name="line" class="form-control" required></div>
+                    <div class="col-md-2"><input type="submit" class="btn btn-sm btn-success form-control" value="Save"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="main-card mb-3 card">
+        <div class="card-body">
+            <h5 class="card-title">New Floor</h5>
+            <form action="" method="post">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <h4>Floor Name:</h4>
+                    </div>
+                    <div class="col-md-2"><input type="text" name="floor" class="form-control" required></div>
                     <div class="col-md-2"><input type="submit" class="btn btn-sm btn-success form-control" value="Save"></div>
                 </div>
             </form>
