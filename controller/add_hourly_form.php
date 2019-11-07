@@ -1,13 +1,13 @@
 <?php
 $conn = db_connection();
-if (isset($_POST['date']) && isset($_POST['floorno']) && isset($_POST['line']) && isset($_POST['po']) && isset($_POST['style']) && isset($_POST['color']) && isset($_POST['nine']) && isset($_POST['ten']) && isset($_POST['eleven']) && isset($_POST['twelve']) && isset($_POST['one']) && isset($_POST['three']) && isset($_POST['four']) && isset($_POST['five']) && isset($_POST['six']) && isset($_POST['seven']) && isset($_POST['eight']) ) {
+if (isset($_POST['date']) && isset($_POST['floorno']) && isset($_POST['line']) && isset($_POST['po']) && isset($_POST['style']) && isset($_POST['color']) && isset($_POST['hour']) && isset($_POST['quantity'])  ) {
 
     $date = $_POST['date'];
     $floorno = $_POST['floorno'];
     $user_id = get_ses('user_id');
-    
+
     $sql = "INSERT INTO hourly_production (Date,FloorNO,AddedBy)
-	values('$date','$floorno','$user_id')";
+	   values('$date','$floorno','$user_id')";
 
     if (mysqli_query($conn, $sql)) {
         notice('success', 'New Hourly Production added Successfully');
@@ -21,29 +21,29 @@ if (isset($_POST['date']) && isset($_POST['floorno']) && isset($_POST['line']) &
     $po = $_POST['po'];
     $style = $_POST['style'];
     $color = $_POST['color'];
-    $nine = $_POST['nine'];
-    $ten = $_POST['ten'];
-    $eleven = $_POST['eleven'];
-    $twelve = $_POST['twelve'];
-    $one = $_POST['one'];
-    $three = $_POST['three'];
-    $four = $_POST['four'];
-    $five = $_POST['five'];
-    $six = $_POST['six'];
-    $seven = $_POST['seven'];
-    $eight = $_POST['eight'];
+    $hour = $_POST['hour'];
+    $quantity = $_POST['quantity'];
 
+    $lineCount = "SELECT * FROM hourly_production_details WHERE LineNo = '$line'";
+    $lineCount = count(mysqli_query($conn, $lineCount));
     for ($i = 0; $i < sizeof($color); $i++) {
+        if($lineCount <= 0 ){
+          $sql = "INSERT INTO hourly_production_details (HourlyProductionID,LineNo,POID,StyleID,Color,AddedBy) WHERE LineNo = $line[$i]
+          values('$last_id','$line[$i]','$po[$i]','$style[$i]','$color[$i]','$user_id') ";
 
-        $sql = "INSERT INTO hourly_production_details (HourlyProductionID,LineNo,POID,StyleID,Color,nine,ten,eleven,twelve,one,three,four,five,six,seven,eight,AddedBy)
-
-        values('$last_id','$line[$i]','$po[$i]','$style[$i]','$color[$i]','$nine[$i]', '$ten[$i]','$eleven[$i]','$twelve[$i]','$one[$i]','$three[$i]','$four[$i]','$five[$i]','$six[$i]','$seven[$i]','$eight[$i]','$user_id') ";
-        
-        if (mysqli_query($conn, $sql)) {
-            notice('success', 'New Hourly Production added Successfully');
-        } else {
-            notice('error', $sql . "<br>" . mysqli_error($conn));
+          if (mysqli_query($conn, $sql)) {
+              notice('success', 'New Hourly Production added Successfully');
+              if($hour[$i] == '9'){
+                $sql = "UPDATE `hourly_production_details` SET `nine`='$hour[$i]' WHERE LineNo = $line[$i]";
+              }
+          } else {
+              notice('error', $sql . "<br>" . mysqli_error($conn));
+          }
         }
+        else {
+
+        }
+
     }
 
 }
