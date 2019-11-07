@@ -540,8 +540,12 @@
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
                                 <ul>
-
-
+                                    <li <?php active('cutting_report'); ?>>
+                                        <a href="<?= $path ?>/index.php?page=cutting_report">
+                                            <i class="metismenu-icon">
+                                            </i>Report
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="#">
                                             <i class="metismenu-icon"></i>
@@ -632,7 +636,7 @@
                                     <li <?php active('all_hourly_form'); ?>>
                                         <a href="<?= $path ?>/index.php?page=all_hourly_form">
                                             <i class="metismenu-icon">
-                                            </i>All Hourly 
+                                            </i>All Hourly
                                         </a>
                                     </li>
                                     <li <?php active('wash_form'); ?>>
