@@ -629,6 +629,12 @@
                                             </i>Hourly Form
                                         </a>
                                     </li>
+                                    <li <?php active('all_hourly_form'); ?>>
+                                        <a href="<?= $path ?>/index.php?page=all_hourly_form">
+                                            <i class="metismenu-icon">
+                                            </i>All Hourly 
+                                        </a>
+                                    </li>
                                     <li <?php active('wash_form'); ?>>
                                         <a href="<?= $path ?>/index.php?page=wash_form">
                                             <i class="metismenu-icon">

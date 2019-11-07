@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2019 at 01:04 PM
+-- Generation Time: Nov 07, 2019 at 10:59 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -407,6 +407,20 @@ INSERT INTO `fab_relaxation_description` (`ID`, `FabRelaxationID`, `Date`, `Shad
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `floor`
+--
+
+CREATE TABLE `floor` (
+  `floor_id` int(11) NOT NULL,
+  `floor_name` varchar(20) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `addedby` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `hourly_finishing_form`
 --
 
@@ -610,7 +624,6 @@ CREATE TABLE `lay_form_details` (
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
 -- --------------------------------------------------------
 
 --
@@ -774,6 +787,40 @@ CREATE TABLE `pi_description` (
 
 INSERT INTO `pi_description` (`PIDescriptionID`, `PIID`, `POID`, `ItemID`, `Description`, `Qty`, `PricePerUnit`, `TotalPrice`, `AddedBy`, `timestamp`, `Status`) VALUES
 (1, 2, 1, 1, 'ytytyt', 200, 2222, 444400, 1, '2019-11-05 09:23:03', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `plan`
+--
+
+CREATE TABLE `plan` (
+  `id` int(11) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `poid` int(11) NOT NULL,
+  `styleid` int(11) NOT NULL,
+  `addedby` int(11) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `status` tinyint(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `plan_details`
+--
+
+CREATE TABLE `plan_details` (
+  `id` int(11) NOT NULL,
+  `date` int(11) NOT NULL,
+  `plan_id` int(11) NOT NULL,
+  `line` int(11) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `addedby` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `floor` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -1267,6 +1314,12 @@ ALTER TABLE `fab_relaxation_description`
   ADD KEY `FabRelaxationID_2` (`FabRelaxationID`);
 
 --
+-- Indexes for table `floor`
+--
+ALTER TABLE `floor`
+  ADD PRIMARY KEY (`floor_id`);
+
+--
 -- Indexes for table `hourly_finishing_form`
 --
 ALTER TABLE `hourly_finishing_form`
@@ -1383,6 +1436,18 @@ ALTER TABLE `pi_description`
   ADD KEY `POID` (`POID`),
   ADD KEY `ItemID` (`ItemID`),
   ADD KEY `AddedBy` (`AddedBy`);
+
+--
+-- Indexes for table `plan`
+--
+ALTER TABLE `plan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `plan_details`
+--
+ALTER TABLE `plan_details`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `po`
@@ -1584,6 +1649,12 @@ ALTER TABLE `fab_relaxation_description`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `floor`
+--
+ALTER TABLE `floor`
+  MODIFY `floor_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `hourly_finishing_form`
 --
 ALTER TABLE `hourly_finishing_form`
@@ -1641,7 +1712,7 @@ ALTER TABLE `lay_form_details`
 -- AUTO_INCREMENT for table `line`
 --
 ALTER TABLE `line`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `masterlc`
@@ -1672,6 +1743,18 @@ ALTER TABLE `pi`
 --
 ALTER TABLE `pi_description`
   MODIFY `PIDescriptionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `plan`
+--
+ALTER TABLE `plan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `plan_details`
+--
+ALTER TABLE `plan_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `po`

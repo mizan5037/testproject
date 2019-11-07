@@ -16,19 +16,12 @@
 
 
 //root folder (keep the format)
-$path =  "/inventory2";
+$path =  "/inventory";
 
 //where to upload the images of style (keep the format)
 $uploadpath = "/assets/images/uploads/";
 
 
-
-//Optima Server
-
-//define("HOST","localhost");
-//define("USER","optima_inventory");
-//define("PASS","$*rMe,5[5U8{");
-//define("DBNAME","optima_inventory");
 
 
   
