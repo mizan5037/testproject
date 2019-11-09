@@ -7,12 +7,16 @@ require_once 'lib/database.php';
 require_once 'lib/functions.php';
 require_once 'lib/vendor/autoload.php';
 
+
+$date = $_POST['date'];
+
 $logo = $path . '/assets/images/risal.png';
 $conn = db_connection();
-$sql = "SELECT * FROM lay_form f LEFT JOIN buyer b on b.BuyerID=f.BuyerID LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN po p ON p.POID=f.POID WHERE f.Status = 1 and LayFormID=1";
+$sql = "SELECT * FROM lay_form f LEFT JOIN buyer b on b.BuyerID=f.BuyerID LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN po p ON p.POID=f.POID WHERE f.Status = 1 and f.Date='$date'";
+
+
 $single_lay = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
-echo $single_lay;
 $html = '
 	<!DOCTYPE html>
 	<html>
@@ -117,7 +121,8 @@ th, td {
 	</thead>
 ';
 
-$sql = "SELECT f.*,c.color FROM lay_form_details f LEFT JOIN color c ON c.id = f.Color where f.layFormID ='1' AND f.Status=1";
+$sql = "SELECT f.*,c.color FROM lay_form_details f LEFT JOIN color c ON c.id = f.Color where  f.Status=1 AND f.layFormID =".$single_lay['LayFormID'];
+
 $count = 1;
 $order = mysqli_query($conn, $sql);
 
@@ -215,7 +220,7 @@ $mpdf->SetHTMLFooter('
 		    </tr>
 
 		</table>');
-
+//echo $html;
 $mpdf->WriteHTML($html);
 
 $mpdf->Output();

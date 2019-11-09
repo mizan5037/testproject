@@ -7,7 +7,7 @@ if (isset($_POST['id']) && isset($_POST['submit'])) {
     $user_id = get_ses('user_id');
 
 
-    $sql = "UPDATE `hourly_production_details` SET `status`=0 `AddedBy`='$user_id'  WHERE `ID`='$id'";
+    $sql = "UPDATE `hourly_production_details` SET `status`=0, `AddedBy`='$user_id'  WHERE `ID`='$id'";
     if (mysqli_query($conn, $sql)) {
       notice('success', 'Deleted  Successfully');
     } else {

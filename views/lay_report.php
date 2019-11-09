@@ -44,14 +44,9 @@ include_once "includes/header.php";
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="">Date</label>
-                                        <input type="date" class="form-control form-control-sm" name="date" id="">
+                                        <input type="date" class="form-control form-control-sm" name="date" id="" required>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="">Name</label>
-                                        <select name="name" id="" class="form-control form-control-sm">
-                                            <option value="lay">Lay Report</option>
-                                        </select>
-                                    </div>
+                                    
                                     <div class="form-group">
                                         <label for="">Type</label>
                                         <select name="name" id="" class="form-control form-control-sm">

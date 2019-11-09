@@ -29,6 +29,31 @@ include_once "includes/header.php";
     </div>
     <div class="main-card mb-3 card">
         <div class="card-body text-center">
+            <form class=""  method="post">
+              <h5 class="card-title">Choose Date to View Hourly Productoion</h5>
+              <div class="container">
+                <div class="row justify-content-md-center">
+                  <div class="col-md-5">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-md-8 text-right">
+                          <input type="date" class="form-control form-control-sm" name="date" value="<?=isset($_POST['hourlyDate']) && $_POST['date']!= '' ? $_POST['date'] : '' ?>">
+                        </div>
+                        <div class="col-md-4 text-left">
+                          <button class="btn btn-primary btn-sm mb-1" name="hourlyDate">View Hourly</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </form>
+        </div>
+    </div>
+    <div class="main-card mb-3 card">
+        <div class="card-body text-center">
           <table class="mb-0 table table-striped table-hover table-bordered">
               <thead>
                   <tr>
@@ -54,40 +79,79 @@ include_once "includes/header.php";
               </thead>
               <tbody >
                   <?php
+                    if(isset($_POST['hourlyDate']) && $_POST['date']!= ''){
+                      $date = $_POST['date'];
 
-                    $sql = "SELECT hp.*,hpd.* FROM hourly_production hp LEFT JOIN hourly_production_details hpd ON hp.HourlyProductionID = hpd.HourlyProductionID WHERE hp.Status = 1 AND hpd.status = 1 ORDER BY hp.Date DESC";
+                      $sql = "SELECT hp.*,hpd.* FROM hourly_production hp LEFT JOIN hourly_production_details hpd ON hp.HourlyProductionID = hpd.HourlyProductionID WHERE hp.Status = 1 AND hpd.status = 1 AND hp.Date='$date' ORDER BY hp.Date DESC";
 
-                    $results = mysqli_query($conn, $sql);
-
-                    foreach ($results as $result) {
-                  ?>
-                  <tr>
-                    <td><?= $result['Date'] ?></td>
-                    <td><?= $result['FloorNO'] ?></td>
-                    <td><?= $result['LineNo'] ?></td>
-                    <td><?= $result['POID'] ?></td>
-                    <td><?= $result['Color'] ?></td>
-                    <td><?= $result['StyleID'] ?></td>
-                    <td><?= $result['nine'] ?></td>
-                    <td><?= $result['ten'] ?></td>
-                    <td><?= $result['eleven'] ?></td>
-                    <td><?= $result['twelve'] ?></td>
-                    <td><?= $result['one'] ?></td>
-                    <td><?= $result['three'] ?></td>
-                    <td><?= $result['four'] ?></td>
-                    <td><?= $result['five'] ?></td>
-                    <td><?= $result['six'] ?></td>
-                    <td><?= $result['seven'] ?></td>
-                    <td><?= $result['eight'] ?></td>
-                    <td>
-                      <form class="" method="post">
-                          <input type="hidden" name="id" value="<?= $result['ID'] ?>">
-                          <button class="btn btn-danger"type="submit" onclick="return confirm('Are You sure want to delete this item permanently?')" name="submit">Delete</button>
-                      </form>
-                    </td>
-
-                  </tr>
-                <?php } ?>
+                      $results = mysqli_query($conn, $sql);
+                      $total_nine=0;
+                      $total_ten=0;
+                      $total_eleven=0;
+                      $total_twelve=0;
+                      $total_one=0;
+                      $total_three=0;
+                      $total_four=0;
+                      $total_five=0;
+                      $total_six=0;
+                      $total_seven=0;
+                      $total_eight=0;
+                      foreach ($results as $result) {
+                        $total_nine += $result['nine'];
+                        $total_ten  += $result['ten'];
+                        $total_eleven += $result['eleven'];
+                        $total_eleven +=$result['eleven'];
+                        $total_twelve += $result['twelve'];
+                        $total_one += $result['one'];
+                        $total_three += $result['three'];
+                        $total_four += $result['four'];
+                        $total_five += $result['five'];
+                        $total_six += $result['six'];
+                        $total_seven += $result['seven'];
+                        $total_eight +=  $result['eight'];
+                        ?>
+                        <tr>
+                          <td><?= $result['Date']; ?></td>
+                          <td><?= $result['FloorNO']; ?></td>
+                          <td><?= $result['LineNo']; ?></td>
+                          <td><?= $result['POID']; ?></td>
+                          <td><?= $result['Color']; ?></td>
+                          <td><?= $result['StyleID']; ?></td>
+                          <td><?= $result['nine'];?></td>
+                          <td><?= $result['ten'];?></td>
+                          <td><?= $result['eleven'];?></td>
+                          <td><?= $result['twelve']; ?></td>
+                          <td><?= $result['one']; ?></td>
+                          <td><?= $result['three']; ?></td>
+                          <td><?= $result['four']; ?></td>
+                          <td><?= $result['five'];?></td>
+                          <td><?= $result['six']; ?></td>
+                          <td><?= $result['seven'];?></td>
+                          <td><?= $result['eight']; ?></td>
+                          <td>
+                            <form class="" method="post">
+                                <input type="hidden" name="id" value="<?= $result['ID'] ?>">
+                                <button class="btn btn-danger"type="submit" onclick="return confirm('Are You sure want to delete this item permanently?')" name="submit">Delete</button>
+                            </form>
+                          </td>
+                        </tr>
+                    <?php }?>
+                        <tr>
+                          <td colspan="6"><strong>Total</strong></td>
+                          <td><?=$total_nine; ?></td>
+                          <td><?=$total_ten; ?></td>
+                          <td><?=$total_eleven; ?></td>
+                          <td><?=$total_twelve; ?></td>
+                          <td><?=$total_one; ?></td>
+                          <td><?=$total_three; ?></td>
+                          <td><?=$total_four; ?></td>
+                          <td><?=$total_five; ?></td>
+                          <td><?=$total_six; ?></td>
+                          <td><?=$total_seven; ?></td>
+                          <td><?=$total_eight; ?></td>
+                          <td></td>
+                        </tr>
+                    <?php } ?>
               </tbody>
           </table>
         </div>
