@@ -77,6 +77,7 @@ include_once "includes/header.php";
                         <thead>
                             <tr>
                                 <th>Date</th>
+                                <th>Floor</th>
                                 <th>Line</th>
                                 <th>Qty</th>
                                 <th>Action</th>
@@ -88,16 +89,21 @@ include_once "includes/header.php";
                                     <input type="date" name="date[]" class="form-control form-control-sm" />
                                 </td>
                                 <td>
-                                    <select name="line[]" class=" mb-2 form-control-sm form-control" required>
+                                    <select name="floor[]" onchange="getline('floor1','#line1');" id="floor1" class=" mb-2 form-control-sm form-control" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
-                                        $sql = "SELECT * FROM line WHERE status = 1";
+                                        $sql = "SELECT * FROM floor WHERE status = 1";
                                         $results = mysqli_query($conn, $sql);
                                         while ($result = mysqli_fetch_assoc($results)) {
-                                            echo '<option value="' . $result['id'] . '">' . $result['line'] . '</option>';
+                                            echo '<option value="' . $result['floor_id'] . '">' . $result['floor_name'] . '</option>';
                                         }
                                         ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="line[]" id="line1" class=" mb-2 form-control-sm form-control" required>
+                                        <option></option>
                                     </select>
                                 </td>
                                 <td>
@@ -117,7 +123,8 @@ include_once "includes/header.php";
                             <tr>
                                 <td colspan="2"></td>
                                 <td colspan="2">Grand Total: <span id="grandtotal"></span>
-
+                                </td>
+                                <td>Left: <span id="left"></span>
                                 </td>
                             </tr>
                         </tfoot>
@@ -191,9 +198,31 @@ function customPagefooter()
                 }
 
             });
+
+
         });
 
-
+        //get Line
+        function getline(floorid, lineid) {
+            let floor = document.getElementById(floorid).value;
+            if (floor != '') {
+                $.ajax({
+                    url: "<?= $path ?>/controller/api.php",
+                    method: "POST",
+                    data: {
+                        floor: floor,
+                        form: 'get_line',
+                        token: '<?= get_ses('token') ?>'
+                    },
+                    dataType: "text",
+                    success: function(data) {
+                        $(lineid).html(data);
+                    }
+                });
+            } else {
+                $(lineid).html("<option>---</option>");
+            }
+        }
 
 
         $(document).ready(function() {
@@ -208,14 +237,15 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<td><input type="date" name="date[]" class="form-control form-control-sm" /></td>';
-                cols += '<td><select name="line[]" class=" mb-2 form-control-sm form-control" required> <option></option> <?php
-                                                                                                                                $conn = db_connection();
-                                                                                                                                $sql = "SELECT * FROM line WHERE status = 1";
-                                                                                                                                $results = mysqli_query($conn, $sql);
-                                                                                                                                while ($result = mysqli_fetch_assoc($results)) {
-                                                                                                                                    echo '<option value="' . $result['id'] . '">' . $result['line'] . '</option>';
-                                                                                                                                }
-                                                                                                                                ?> </select></td>';
+                cols += '<td><select name="floor[]" onchange="getline(\'floor' + counter + '\',\'#line' + counter + '\');" id="floor' + counter + '" class=" mb-2 form-control-sm form-control" required> <option></option> <?php
+                                                                                                                                                                                                                                $conn = db_connection();
+                                                                                                                                                                                                                                $sql = "SELECT * FROM floor WHERE status = 1";
+                                                                                                                                                                                                                                $results = mysqli_query($conn, $sql);
+                                                                                                                                                                                                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                                                                                                                                                                                                    echo '<option value="' . $result['floor_id'] . '">' . $result['floor_name'] . '</option>';
+                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                ?> </select></td>';
+                cols += '<td><select id="line' + counter + '" name="line[]" class=" mb-2 form-control-sm form-control" required> <option></option></select></td>';
                 cols += '<td><input type="number" name="qty[]" class="form-control form-control-sm" /></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-danger btn-sm"  value="Delete"></td>';
@@ -250,10 +280,13 @@ function customPagefooter()
 
         function calculateGrandTotal() {
             var grandTotal = 0;
+            var left = $('#orderQty').val();
             $("table.order-list").find('input[name^="qty"]').each(function() {
                 grandTotal += +$(this).val();
+                left -= +grandTotal;
             });
             $("#grandtotal").text(grandTotal.toFixed(0));
+            $("#left").text(left.toFixed(0));
         }
     </script>
 

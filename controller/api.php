@@ -34,3 +34,17 @@ if (get_ses('token') === $token && $_POST["form"] == 'get_qty') {
     echo $row['SUM(d.Units)'];
     
 }
+
+
+if (get_ses('token') === $token && $_POST["form"] == 'get_line') {
+
+    $floor = $_POST["floor"];
+
+    $sql = "SELECT line, id FROM line WHERE floor = '$floor'";
+    $result = mysqli_query($conn, $sql);
+    echo '<option>------</option>';
+    while($row = mysqli_fetch_assoc($result)){
+        echo '<option value="' . $row['id'] . '">' . $row['line'] . '</option>';
+    }
+    
+}
