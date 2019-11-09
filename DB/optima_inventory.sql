@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2019 at 10:59 AM
+-- Generation Time: Nov 09, 2019 at 08:09 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -418,6 +418,14 @@ CREATE TABLE `floor` (
   `addedby` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `floor`
+--
+
+INSERT INTO `floor` (`floor_id`, `floor_name`, `status`, `timestamp`, `addedby`) VALUES
+(1, '6th', 1, '2019-11-09 05:12:26', 1),
+(2, '5th', 1, '2019-11-09 05:13:37', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -644,8 +652,10 @@ CREATE TABLE `line` (
 --
 
 INSERT INTO `line` (`id`, `floor`, `line`, `status`, `addedby`, `timestamp`) VALUES
-(1, '9th', 'A', 1, 1, '2019-11-07 05:09:39'),
-(2, '9th', 'B', 1, 1, '2019-11-07 05:11:01');
+(1, '1', 'A', 1, 1, '2019-11-09 05:12:00'),
+(2, '1', 'B', 1, 1, '2019-11-09 05:11:59'),
+(3, '1', 'C', 1, 1, '2019-11-09 05:12:06'),
+(4, '2', 'A', 1, 1, '2019-11-09 05:13:59');
 
 -- --------------------------------------------------------
 
@@ -804,6 +814,13 @@ CREATE TABLE `plan` (
   `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `plan`
+--
+
+INSERT INTO `plan` (`id`, `title`, `poid`, `styleid`, `addedby`, `timestamp`, `status`) VALUES
+(1, 'First Test', 2, 1, 1, '2019-11-09 05:58:56', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -812,7 +829,7 @@ CREATE TABLE `plan` (
 
 CREATE TABLE `plan_details` (
   `id` int(11) NOT NULL,
-  `date` int(11) NOT NULL,
+  `date` date NOT NULL,
   `plan_id` int(11) NOT NULL,
   `line` int(11) NOT NULL,
   `qty` int(11) NOT NULL,
@@ -821,6 +838,16 @@ CREATE TABLE `plan_details` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `floor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `plan_details`
+--
+
+INSERT INTO `plan_details` (`id`, `date`, `plan_id`, `line`, `qty`, `addedby`, `status`, `timestamp`, `floor`) VALUES
+(1, '2019-11-09', 1, 2, 2000, 1, 1, '2019-11-09 06:19:44', 1),
+(2, '2019-11-09', 1, 1, 2000, 1, 1, '2019-11-09 06:19:51', 1),
+(3, '2019-11-09', 1, 3, 2000, 1, 0, '2019-11-09 07:05:38', 1),
+(4, '2019-11-09', 1, 4, 1845, 1, 0, '2019-11-09 06:59:59', 2);
 
 -- --------------------------------------------------------
 
@@ -1652,7 +1679,7 @@ ALTER TABLE `fab_relaxation_description`
 -- AUTO_INCREMENT for table `floor`
 --
 ALTER TABLE `floor`
-  MODIFY `floor_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `floor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `hourly_finishing_form`
@@ -1712,7 +1739,7 @@ ALTER TABLE `lay_form_details`
 -- AUTO_INCREMENT for table `line`
 --
 ALTER TABLE `line`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `masterlc`
@@ -1748,13 +1775,13 @@ ALTER TABLE `pi_description`
 -- AUTO_INCREMENT for table `plan`
 --
 ALTER TABLE `plan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `plan_details`
 --
 ALTER TABLE `plan_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `po`
