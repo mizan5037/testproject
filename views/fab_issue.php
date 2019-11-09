@@ -88,7 +88,7 @@ include_once "includes/header.php";
                                     <th>Consuption (yds)</th>
                                     <th>RQD QTY (yds)</th>
                                     <th>ISSUE QTY (yds)</th>
-                                    <th>Remark</th>
+                                    <th>Roll</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -124,7 +124,7 @@ include_once "includes/header.php";
                                         <input class="mb-2 form-control-sm form-control" type="number" placeholder="ISSUE QTY" name="issue[]" />
                                     </td>
                                     <td>
-                                        <input class="mb-2 form-control-sm form-control" type="text" placeholder="Remark" name="remark[]" />
+                                        <input class="mb-2 form-control-sm form-control" type="number" placeholder="Roll" name="remark[]" />
                                     </td>
                                     <td><a class="deleteRow"></a>
 
@@ -171,12 +171,19 @@ function customPagefooter()
                 var cols = "";
                 cols += '<th>' + counter + '</th>';
                 cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="Particulars" name="particulars[]" /></td>';
-                cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="Color" name="color[]"/></td>';
+                cols += '<td><select name="color[]" class="style mb-2 form-control-sm form-control" required><option></option><?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM color WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                    }
+                    ?></select></td>';
                 cols += '<td><input class="mb-2 form-control-sm form-control" type="number" placeholder="QTZ (DZ)" name="qtz[]"/></td>';
                 cols += '<td><input class="mb-2 form-control-sm form-control" type="number" placeholder="Consuption" name="consuption[]"/></td>';
                 cols += '<td><input class="mb-2 form-control-sm form-control" type="number" placeholder="RQD QTY" name="rqd[]"/></td>';
                 cols += '<td><input class="mb-2 form-control-sm form-control" type="number" placeholder="ISSUE QTY" name="issue[]" /></td>';
-                cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="Remark" name="remark[]"/></td>';
+                cols += '<td><input class="mb-2 form-control-sm form-control" type="number" placeholder="Roll" name="remark[]"/></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-danger"  value="Delete"></td>';
                 newRow.append(cols);

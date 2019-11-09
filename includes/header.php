@@ -378,6 +378,12 @@
                                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                                 </a>
                                                 <ul>
+                                                  <li <?php active('fab_issue_stock'); ?>>
+                                                      <a href="<?= $path ?>/index.php?page=fab_issue_stock">
+                                                          <i class="metismenu-icon">
+                                                          </i>Fabric Issue Received
+                                                      </a>
+                                                  </li>
                                                     <li <?php active('fab_issue'); ?>>
                                                         <a href="<?= $path ?>/index.php?page=fab_issue">
                                                             <i class="metismenu-icon">
