@@ -52,7 +52,7 @@ include_once "includes/header.php";
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT * FROM line l LEFT JOIN floor f ON f.floor_id = l.floor ORDER BY f.floor_name";
+                    $sql = "SELECT l.*, f.floor_name FROM line l LEFT JOIN floor f ON f.floor_id = l.floor ORDER BY f.floor_name";
                     $result = mysqli_query($conn, $sql);
                     $count = 1;
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -141,7 +141,7 @@ include_once "includes/header.php";
                             <td><?= $count++ ?></td>
                             <td><?= $row['floor_name'] ?></td>
                             <td><?= $row['status'] ? 'Active' : 'Closed' ?></td>
-                            <td><a href="<?= $path ?>/index.php?page=line&floor_id=<?= $row['id'] ?>&status=<?= $row['status'] ?>" class="btn btn-sm btn-<?= $row['status'] ? 'danger' : 'success' ?>"><?= $row['status'] ? 'Close It' : 'Activate' ?></a></td>
+                            <td><a href="<?= $path ?>/index.php?page=line&floor_id=<?= $row['floor_id'] ?>&status=<?= $row['status'] ?>" class="btn btn-sm btn-<?= $row['status'] ? 'danger' : 'success' ?>"><?= $row['status'] ? 'Close It' : 'Activate' ?></a></td>
                         </tr>
                     <?php
                     }

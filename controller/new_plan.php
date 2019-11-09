@@ -16,12 +16,13 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'Save' && isset($_POST['title
     }
 
     $date = $_POST['date'];
+    $floor = $_POST['floor'];
     $line = $_POST['line'];
     $qty = $_POST['qty'];
 
     for ($i = 0; $i < sizeof($date); $i++) {
-        $sql = "INSERT INTO plan_details (date,plan_id,line,qty,addedby)
-		values('$date[$i]','$last_id','$line[$i]','$qty[$i]','$user_id') ";
+        $sql = "INSERT INTO plan_details (date,plan_id,floor,line,qty,addedby)
+		values('$date[$i]','$last_id','$floor[$i]','$line[$i]','$qty[$i]','$user_id') ";
 
         if (mysqli_query($conn, $sql)) {
             notice('success', 'New Plan Added Successfully');
