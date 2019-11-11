@@ -350,7 +350,7 @@
                                                     </i>Fabric Store
                                                 </a>
                                             </li>
-                                         
+
                                         </ul>
                                     </li>
                                     <li>
@@ -587,6 +587,30 @@
                                                     </i>Cunsumption Report
                                                 </a>
                                             </li>
+                                            <li <?php active('store_statements'); ?>>
+                                                <a target="_blank" href="<?= $path ?>/index.php?report=store_statements">
+                                                    <i class="metismenu-icon">
+                                                    </i>Store Statement Report
+                                                </a>
+                                            </li>
+                                            <li <?php active('cutting_report'); ?>>
+                                                <a target="_blank" href="<?= $path ?>/index.php?report=cutting_report">
+                                                    <i class="metismenu-icon">
+                                                    </i>Cutting Report
+                                                </a>
+                                            </li>
+                                            <li <?php active('fab_relaxation_report'); ?>>
+                                                <a target="_blank" href="<?= $path ?>/index.php?report=fab_relaxation_report">
+                                                    <i class="metismenu-icon">
+                                                    </i>Fab Relaxation Report
+                                                </a>
+                                            </li>
+                                            <li <?php active('size_wise_report'); ?>>
+                                                <a target="_blank" href="<?= $path ?>/index.php?report=size_wise_report">
+                                                    <i class="metismenu-icon">
+                                                    </i>Size Wise Cutting Report
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
 
@@ -610,7 +634,7 @@
                                                     All Lay
                                                 </a>
                                             </li>
-                                    
+
                                             <li <?php active('daily_cutting'); ?>>
                                                 <a href="<?= $path ?>/index.php?report=daily_cutting">
                                                     <i class="metismenu-icon"></i>
