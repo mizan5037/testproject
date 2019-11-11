@@ -337,6 +337,22 @@
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
                                 <ul>
+                                <li>
+                                        <a href="#">
+                                            <i class="metismenu-icon"></i>
+                                            Reports
+                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                        </a>
+                                        <ul>
+                                            <li <?php active('fabric_store'); ?>>
+                                                <a target="_blank" href="<?= $path ?>/index.php?page=fabric_store">
+                                                    <i class="metismenu-icon">
+                                                    </i>Fabric Store
+                                                </a>
+                                            </li>
+                                         
+                                        </ul>
+                                    </li>
                                     <li>
                                         <a href="#">
                                             <i class="metismenu-icon">
