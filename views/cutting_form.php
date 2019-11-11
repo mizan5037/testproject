@@ -31,6 +31,13 @@ include_once "includes/header.php";
         <div class="card-body">
             <form class="needs-validation" method="POST" novalidate>
                 <div class="form-row">
+                    <div class="col-md-4 mb-4">
+                        <label for="validationTooltip01">Date</label>
+                        <input type="date" class="form-control form-control-sm" name="date" id="validationTooltip01" placeholder="Date" required>
+                    </div>
+                </div>
+                <div class="form-row">
+
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltip01">Style</label>
                         <select name="style" class="style  form-control" required>
@@ -74,6 +81,7 @@ include_once "includes/header.php";
                                 <th>Qty</th>
                                 <th>Print & EMB Send</th>
                                 <th>Print & EMB Receive</th>
+                                <th>Remark</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -114,6 +122,9 @@ include_once "includes/header.php";
                                 </td>
                                 <td>
                                     <input placeholder="Print & EMB Receive" type="number" name="embreceive[]" class="mb-2 form-control-sm form-control">
+                                </td>
+                                <td>
+                                    <input placeholder="Remark" type="text" name="remark[]" class="mb-2 form-control-sm form-control">
                                 </td>
                                 <td><a class="deleteRow"></a></td>
                             </tr>
@@ -178,6 +189,7 @@ function customPagefooter()
                 cols += '<td><input placeholder="Qty" type="number" name="qty[]" class="mb-2 form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Print & EMB Send" type="number" name="embsend[]" class="mb-2 form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Print & EMB Receive" name="embreceive[]" type="number" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Remark" name="remark[]" type="text" class="mb-2 form-control-sm form-control"></td>';
                 cols += '<td><input type="button" class="ibtnDel btn btn-sm btn-danger "  value="Delete"></td>';
                 newRow.append(cols);
                 $("table.order-list").append(newRow);
