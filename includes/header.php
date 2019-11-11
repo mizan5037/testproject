@@ -593,6 +593,24 @@
                                                     </i>Store Statement Report
                                                 </a>
                                             </li>
+                                            <li <?php active('cutting_report'); ?>>
+                                                <a target="_blank" href="<?= $path ?>/index.php?report=cutting_report">
+                                                    <i class="metismenu-icon">
+                                                    </i>Cutting Report
+                                                </a>
+                                            </li>
+                                            <li <?php active('fab_relaxation_report'); ?>>
+                                                <a target="_blank" href="<?= $path ?>/index.php?report=fab_relaxation_report">
+                                                    <i class="metismenu-icon">
+                                                    </i>Fab Relaxation Report
+                                                </a>
+                                            </li>
+                                            <li <?php active('size_wise_report'); ?>>
+                                                <a target="_blank" href="<?= $path ?>/index.php?report=size_wise_report">
+                                                    <i class="metismenu-icon">
+                                                    </i>Size Wise Cutting Report
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
 
