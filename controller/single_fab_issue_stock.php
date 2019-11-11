@@ -26,8 +26,9 @@ else{
 
 
 
-if (isset($_POST['id']) && isset($_POST['submit'])) {
+if (isset($_POST['id']) && isset($_POST['submit']) && isset($_POST['fab_id'])) {
     $id = $_POST['id'];
+    $fab_id = $_POST['fab_id'];
     $user_id = get_ses('user_id');
 
 
@@ -37,12 +38,13 @@ if (isset($_POST['id']) && isset($_POST['submit'])) {
     } else {
       notice('error', $sql . "<br>" . mysqli_error($conn));
     }
-    nowgo('/index.php?page=single_fab_issue_stock&fabissueid='.$id);
+    nowgo('/index.php?page=single_fab_issue_stock&fabissueid='.$fab_id);
 }
 
 
-if (isset($_POST['id1']) && isset($_POST['submit1'])) {
+if (isset($_POST['id1']) && isset($_POST['submit1']) && isset($_POST['fab_other_id'])) {
     $id = $_POST['id1'];
+    $fab_other_id = $_POST['fab_other_id'];
     $user_id = get_ses('user_id');
 
 
@@ -52,7 +54,7 @@ if (isset($_POST['id1']) && isset($_POST['submit1'])) {
     } else {
       notice('error', $sql . "<br>" . mysqli_error($conn));
     }
-    nowgo('/index.php?page=single_fab_issue_stock&fab_issue_other_id='.$id);
+    nowgo('/index.php?page=single_fab_issue_stock&fab_issue_other_id='.$fab_other_id);
 }
 
 
