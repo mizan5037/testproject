@@ -84,14 +84,13 @@ include_once "includes/header.php";
                           if (isset($fab_issue_d)) {
                             echo "<th colspan='9'>Fabric Issued</th>";
                           ?>
-                            <th><a type="button" class="btn btn-primary btn-sm" href="<?= $path ?>/index.php?page=fab_issue">Add New</a></th>
+                            <th><a type="button" class="btn btn-primary btn-sm" href="<?= $path ?>/index.php?page=fab_issue_new&&fab_issue_id=<?= $fab_issue['FabIssueID']; ?>">Add New</a></th>
                           <?php
                           }
                           if(isset($fab_issue_other_d)){
                             echo "<th colspan='9'>Fabric Issued Other</th>";
-                            print_r( $fab_issue_other_d);
                             ?>
-                              <th class=""><a type="button" class="btn btn-primary btn-sm" href="<?= $path ?>/index.php?page=fab_issue_other">Add New</a></th>
+                              <th class=""><a type="button" class="btn btn-primary btn-sm" href="<?= $path ?>/index.php?page=fab_issue_other_new&&fab_issue_other_id=<?= $fab_issue_other['ID']?>">Add New</a></th>
                             <?php
                             }
                             ?>
@@ -135,6 +134,7 @@ include_once "includes/header.php";
 
                                   <form class="" method="post">
                                       <input type="hidden" name="id" value="<?= $row['ID'] ?>">
+                                      <input type="hidden" name="fab_id" value="<?= $fab_issue['FabIssueID'] ?>">
                                       <button class="btn btn-danger"type="submit" onclick="return confirm('Are You sure want to delete this item permanently?')" name="submit"><i class="fas fa-trash-alt" style="color: white;"></i></button>
                                   </form>
                                 </td>
@@ -160,6 +160,7 @@ include_once "includes/header.php";
                                     <a href="<?=$path?>/index.php?page=update_fab_issue&fabissue_other_d_id=<?=$row['ID'] ?>&fab_issue_other_id=<?=$fab_issue_other['ID']?>" class="btn btn-sm btn-primary">Edit</a>
                                     <form class="" method="post">
                                         <input type="hidden" name="id1" value="<?= $row['ID'] ?>">
+                                        <input type="hidden" name="fab_other_id" value="<?= $fab_issue_other['ID'] ?>">
                                         <button class="btn btn-danger"type="submit" onclick="return confirm('Are You sure want to delete this item permanently?')" name="submit1"><i class="fas fa-trash-alt" style="color: white;"></i></button>
                                     </form>
                                   </td>
