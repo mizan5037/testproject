@@ -350,7 +350,7 @@
                                                     </i>Fabric Store
                                                 </a>
                                             </li>
-                                         
+
                                         </ul>
                                     </li>
                                     <li>
@@ -587,6 +587,12 @@
                                                     </i>Cunsumption Report
                                                 </a>
                                             </li>
+                                            <li <?php active('store_statements'); ?>>
+                                                <a target="_blank" href="<?= $path ?>/index.php?report=store_statements">
+                                                    <i class="metismenu-icon">
+                                                    </i>Store Statement Report
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
 
@@ -610,7 +616,7 @@
                                                     All Lay
                                                 </a>
                                             </li>
-                                    
+
                                             <li <?php active('daily_cutting'); ?>>
                                                 <a href="<?= $path ?>/index.php?report=daily_cutting">
                                                     <i class="metismenu-icon"></i>
