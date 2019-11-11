@@ -51,10 +51,8 @@ include_once "includes/header.php";
                         <?= getname('style', 'StyleNumber', 'StyleID', $fab_issue['StyleID']) ?>
                     </a>
                 </h5>
-
             </div>
         </div>
-
         <?php
       }
         if (isset($fab_issue_other)) {
