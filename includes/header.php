@@ -553,6 +553,18 @@
                                                     </i>Lay Report
                                                 </a>
                                             </li>
+                                            <li <?php active('daily_cutting'); ?>>
+                                                <a target="_blank" href="<?= $path ?>/index.php?page=daily_cutting">
+                                                    <i class="metismenu-icon">
+                                                    </i>Daily Cutting,Print & EMB
+                                                </a>
+                                            </li>
+                                            <li <?php active('cunsumption_report'); ?>>
+                                                <a target="_blank" href="<?= $path ?>/index.php?page=consumption_report">
+                                                    <i class="metismenu-icon">
+                                                    </i>Cunsumption Report
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
 
@@ -576,10 +588,11 @@
                                                     All Lay
                                                 </a>
                                             </li>
-                                            <li <?php active('lay'); ?>>
-                                                <a href="<?= $path ?>/index.php?report=lay">
+                                    
+                                            <li <?php active('daily_cutting'); ?>>
+                                                <a href="<?= $path ?>/index.php?report=daily_cutting">
                                                     <i class="metismenu-icon"></i>
-                                                    Lay Report
+                                                    Daily Cutting
                                                 </a>
                                             </li>
                                         </ul>
