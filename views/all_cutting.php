@@ -9,7 +9,7 @@ function customPageHeader()
 $conn = db_connection();
 
 if (isset($_GET['delete']) && $_GET['delete'] !='') {
-    $delete = $_GET['delete']; 
+    $delete = $_GET['delete'];
     $sql = "UPDATE cutting_form SET Status=0 Where CuttingFormID=".$delete;
 
     if (mysqli_query($conn, $sql)) {
@@ -46,8 +46,9 @@ include_once "includes/header.php";
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Style No</th>
+                        <th>Date</th>
                         <th>Cutting No.</th>
+                        <th>Style No</th>
                         <th>PO No.</th>
                         <th>Action</th>
                     </tr>
@@ -65,14 +66,15 @@ include_once "includes/header.php";
                         ?>
                         <tr>
                             <th scope="row"><?= $count ?></th>
-                            <td><a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" target="_blank"><?= $row['StyleNumber'] ?></a></td>
+                            <td><?= $row['date'] ?></td>
                             <td><?= $row['CuttingNo'] ?></td>
+                            <td><a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" target="_blank"><?= $row['StyleNumber'] ?></a></td>
                             <td><a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=po_single&poid=<?= $row['POID'] ?>" target="_blank"><?= $row['PONumber'] ?></a></td>
                             <td>
                                 <a href="<?= $path ?>/index.php?page=single_cutting&cuttingid=<?php echo $row['CuttingFormID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
                                     Details
                                 </a>
-                               
+
                                 <a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=all_cutting&delete=<?php echo $row['CuttingFormID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
                                     <i class="fas fa-trash-alt" style="color: white;"></i>
                                 </a>
@@ -98,4 +100,4 @@ function customPagefooter()
 
 <?php }
 include_once "includes/footer.php";
-?>   
+?>
