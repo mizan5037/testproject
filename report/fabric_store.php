@@ -30,10 +30,7 @@ table {
   width: 100%;
 }
 
-th, td {
-  text-align: center;
-  padding: 8px;
-}
+
 
 
 </style>
@@ -103,6 +100,7 @@ $total_today_fab_issue = 0;
 $total_issue_fab = 0;
 $total_fabric_balance = 0;
 $total_balance_roll = 0;
+$total_fab_rec = 0;
 
 $sql = "SELECT f.*, s.StyleNumber,c.color,c.id as colorid from buyer b LEFT JOIN masterlc m ON b.BuyerID = m.MasterLCBuyer LEFT JOIN masterlc_description md ON m.MasterLCID = md.MasterLCID LEFT JOIN fab_receive f ON md.POID = f.POID LEFT JOIN style s ON f.StyleID = s.StyleID LEFT JOIN color c ON f.Color = c.id WHERE NOT (s.StyleNumber <=> NULL) AND b.BuyerID='$buyer' GROUP BY f.StyleID,c.color";
 
@@ -111,13 +109,14 @@ $count = 0;
 $fabric = mysqli_query($conn, $sql);
 while ($rowo = mysqli_fetch_assoc($fabric)) {
     
+
     $poid = $rowo['POID'];
     $color = $rowo['colorid'];
     $styleid = $rowo['StyleID'];
     $sql = "SELECT sum(ReceivedRoll) totalreceiveroll FROM fab_receive where POID='$poid'  AND StyleID=".$rowo['StyleID'];
     $totalreceiveroll = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
-    $sql = "SELECT co.*,d.* FROM (SELECT * FROM fab_issue where POID='$poid' ) f LEFT JOIN fab_issue_description d on d.FabIssueID=f.FabIssueID LEFT JOIN  color co ON co.id=d.Color where d.Color='$color'" ;
+    $sql = "SELECT sum(d.Roll) Roll FROM (SELECT * FROM fab_issue where POID='$poid' ) f LEFT JOIN fab_issue_description d on d.FabIssueID=f.FabIssueID LEFT JOIN  color co ON co.id=d.Color where d.Color='$color'" ;
     $issueroll = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
     $sql2 = "SELECT d.Roll FROM (SELECT * FROM fab_issue where POID='$poid') f LEFT JOIN fab_issue_description d on d.FabIssueID=f.FabIssueID LEFT JOIN  color co ON co.id=d.Color where d.Color='$color' and Date(d.timestamp)='$date'  " ;
@@ -142,7 +141,9 @@ while ($rowo = mysqli_fetch_assoc($fabric)) {
    }
 
   
-
+   $sql = "SELECT count(*) totalcolor FROM fab_receive where POID='$poid'  AND StyleID=".$rowo['StyleID'];
+   $totalcolor = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+   
     $html .= '	
 		<tr>
 		
@@ -165,6 +166,72 @@ while ($rowo = mysqli_fetch_assoc($fabric)) {
 			</td>
             <td style=" font-size:16px; border: 1px solid #000000;">
              <b>'.$rowo['ReceivedRoll'].'</b>
+			</td>
+			
+            <td style=" font-size:16px; border: 1px solid #000000;">
+			 <b>'.$issueroll['Roll'].'</b>
+            </td>
+            <td style=" font-size:16px; border: 1px solid #000000;">
+			0
+            </td>
+            <td style=" font-size:16px; border: 1px solid #000000;">
+			 <b>'.$todayissue['Roll'].'</b>
+            </td>
+            <td style=" font-size:16px; border: 1px solid #000000;">
+			0
+            </td>
+            <td style=" font-size:16px; border: 1px solid #000000;">
+			0
+            </td>
+            <td style=" font-size:16px; border: 1px solid #000000;">
+			0
+            </td>
+            
+        </tr>
+			';
+}
+
+$total_particular_issue = 0;
+$sql = "SELECT d.*,c.color,c.id as colorid,f.ContrastPocket,f.BuyerID FROM (SELECT * FROM fabric_issue_other where BuyerID='$buyer')f LEFT JOIN fabric_issue_other_description d ON d.FabricIssueotherID=f.ID LEFT JOIN color c ON c.id=d.Color ";
+$contrast = mysqli_query($conn, $sql);
+
+
+while ($rowo = mysqli_fetch_assoc($contrast)) {
+
+    $color = $rowo['colorid'];
+    $buyerid = $rowo['BuyerID'];
+
+    $sql = "SELECT sum(d.Roll) as Roll FROM (SELECT * FROM fabric_issue_other where BuyerID='$buyerid' ) f LEFT JOIN fabric_issue_other_description d on d.FabricIssueotherID=f.ID LEFT JOIN  color co ON co.id=d.Color where d.Color='$color'" ;
+    $issueroll = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+
+    $total_particular_issue += $issueroll['Roll'];
+
+    $sql2 = "SELECT d.Roll FROM (SELECT * FROM fabric_issue_other where BuyerID='$buyerid') f LEFT JOIN fabric_issue_other_description d on d.FabricIssueotherID=f.ID LEFT JOIN  color co ON co.id=d.Color where d.Color='$color' and Date(d.timestamp)='$date'  " ;
+   
+    $todayissue = mysqli_fetch_assoc(mysqli_query($conn, $sql2));
+
+    $html .= '	
+		<tr>
+		
+			<td style=" font-size:16px; border: 1px solid #000000;">
+                 <b>'.$rowo['ContrastPocket'].'</b>
+			</td>
+			<td style=" font-size:16px; text-align:left;border: 1px solid #000000;">
+             <b>'.$rowo['color'].'</b>
+			</td>
+			<td style=" font-size:16px; text-align:left;border: 1px solid #000000;">
+		
+			</td>
+			<td style=" font-size:16px; border: 1px solid #000000;">
+		
+			<td style=" font-size:16px; border: 1px solid #000000;">
+           
+			</td>
+			<td style=" font-size:16px; border: 1px solid #000000;">
+		    <b>'.$rowo['RqdQty'].'</b>
+			</td>
+            <td style=" font-size:16px; border: 1px solid #000000;">
+             
 			</td>
 			
             <td style=" font-size:16px; border: 1px solid #000000;">
@@ -273,6 +340,6 @@ $mpdf->SetHTMLHeader('
         </tr>
 
     </table>');
-//echo $html;
-$mpdf->WriteHTML($html);
-$mpdf->Output();
+echo $html;
+// $mpdf->WriteHTML($html);
+// $mpdf->Output();

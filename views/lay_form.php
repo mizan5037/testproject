@@ -35,8 +35,8 @@ include_once "includes/header.php";
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip01">Buyer Name</label>
-                        <select name="buyer" class="buyer  form-control" required>
-                            <option></option>
+                        <select name="buyer" class="buyer  form-control js-example-basic-single" required>
+                            
                             <?php
                             $conn = db_connection();
                             $sql = "SELECT * FROM buyer WHERE status = 1";
@@ -49,8 +49,8 @@ include_once "includes/header.php";
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip02">Style No</label>
-                        <select name="style" class="style  form-control" required>
-                            <option></option>
+                        <select name="style" class="  form-control js-example-basic-single" required>
+                            
                             <?php
                             $conn = db_connection();
                             $sql = "SELECT * FROM style WHERE status = 1";
@@ -64,7 +64,7 @@ include_once "includes/header.php";
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltipUsername">P.O. No</label>
                         <select name="po" class="po  form-control" required>
-                            <option></option>
+                           
                             <?php
                             $conn = db_connection();
                             $sql = "SELECT * FROM po WHERE status = 1";
@@ -332,7 +332,21 @@ function customPagefooter()
                 });
             }, false);
         })();
+
+        
     </script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+<script type="text/javascript">
+    $('.js-example-basic-single').select2({
+          placeholder: 'Select Card Numbers'
+        });
+
+     $("select").select2();
+
+     
+</script>
+
 <?php }
 include_once "includes/footer.php";
 ?>
