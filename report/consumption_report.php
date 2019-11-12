@@ -131,26 +131,33 @@ th, td {
 		</tr>
 	</thead>
 ';
+ 
+$sql = "SELECT f.*,d.Consumption,d.RqdQty,c.color,r.ReceivedFab FROM (SELECT * FROM fab_issue WHERE POID='$po' and BuyerID='$buyer' AND StyleID='$style') f LEFT JOIN fab_issue_description d ON d.FabIssueID=f.FabIssueID LEFT JOIN fab_receive r ON r.POID=f.POID LEFT JOIN color c ON c.id=d.Color order by f.StyleID";
+
+//echo $sql;
+$consumption = mysqli_query($conn, $sql);
+
+while ($row = mysqli_fetch_assoc($consumption)) {
 
     $html .= '	
 		<tr>
 		
 			<td style="border: 1px solid #000000;">
-			
+				'.$row['color'].'
+			</td>
+			<td style="text-align:left;border: 1px solid #000000;">
+			'.$row['Consumption'].'
 			</td>
 			<td style="text-align:left;border: 1px solid #000000;">
 			
 			</td>
-			<td style="text-align:left;border: 1px solid #000000;">
-		
+			<td style="border: 1px solid #000000;">
+			'.$row['RqdQty'].'
+			<td style="border: 1px solid #000000;">
+			
 			</td>
 			<td style="border: 1px solid #000000;">
-		
-			<td style="border: 1px solid #000000;">
-           
-			</td>
-			<td style="border: 1px solid #000000;">
-		   
+			'.$row['ReceivedFab'].'
 			</td>
             <td style="border: 1px solid #000000;">
             
@@ -164,7 +171,7 @@ th, td {
             
         </tr>
 			';
-
+}
 $html .= '
 <tr>
 		
