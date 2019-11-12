@@ -125,93 +125,14 @@ $conn = db_connection();
 function modal()
 {
     ?>
-    <!-- Modal -->
-    <!-- <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <form method="post">
-                <div class="modal-content" style="width:300%; margin-left:-5%">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Pre Pack Assorts</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <table class="mb-0 table table-bordered order-list2" id="myTable2" width="100%">
-                            <thead>
-                            <thead>
-                                <tr>
-                                    
-                                    <th  width="10%">Color</th>
-                                    <th  width="10%">Lot No</th>
-                                    <th  width="10%">Sl. NO</th>
-                                    <th  width="10%">Roll No</th>
-                                    <th  width="10%">TTL Fabrics/yds</th>
-                                    <th  width="10%">Lay</th>
-                                    <th  width="10%">Used Fabrics/yds</th>
-                                    <th  width="10%">Remaining</th>
-                                    <th  width="10%">Exxess/Short</th>
-                                    <th  width="10%">Sticker</th>
-                                    
-                                </tr>
-                            </thead>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                    <select name="color[]" class="color  form-control" required>
-                                            <option></option>
-                                            <?php
-                                            $conn = db_connection();
-                                            $sql = "SELECT * FROM color WHERE status = 1";
-                                            $results = mysqli_query($conn, $sql);
-                                            while ($result = mysqli_fetch_assoc($results)) {
-                                                echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input placeholder="Lot No" type="text" name="lotno[]">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Sl. No" type="text" name="slno[]">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Roll No" name="rollno[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="TTL Fabrics/yds" name="ttlfab[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Lay" name="lay[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Used Fabrics/yds" name="usedfab[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Remaining" name="ramaining[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Exxess/Short" name="exsshort[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Sticker" name="sticker[]" type="text">
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div> -->
-    <!--  image modal end -->
-
+    <?php
+    $conn = db_connection();
+    $sql = "SELECT * FROM color WHERE status = 1";
+    $results = mysqli_query($conn, $sql);
+    while ($result = mysqli_fetch_assoc($results)) {
+        echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+    }
+    ?>
 <?php }
 
 $sql = "SELECT c.*,s.StyleNumber,p.PONumber FROM cutting_form c LEFT JOIN style s on s.StyleID=c.StyleID LEFT JOIN po p ON c.POID = p.POID WHERE c.Status = 1 and CuttingFormID=".$cuttingid;
@@ -252,22 +173,24 @@ include_once "includes/header.php";
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Style Number</th>
+                        <th>Date</th>
                         <th>Cutting No.</th>
+                        <th>Style Number</th>
                         <th>PO NO.</th>
-                        
+
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><?=$single_cutting['StyleNumber']?></td>
+                        <td><?=$single_cutting['date']?></td>
                         <td><?=$single_cutting['CuttingNo']?></td>
+                        <td><?=$single_cutting['StyleNumber']?></td>
                         <td><?=$single_cutting['PONumber']?></td>
                     </tr>
-                   
+
                 </tbody>
             </table>
-            
+
         </div>
     </div>
     <div class="main-card mb-3 card">
@@ -278,9 +201,7 @@ include_once "includes/header.php";
                 </div>
                 <div class="col-md-6 text-right">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal1">
-                        Add Cutting Description
-                    </button>
+                    <a class="btn btn-primary"href="<?= $path ?>/index.php?page=add_new_cutting_form&&cutting_id=<?= $single_cutting['CuttingFormID']; ?>">Add Cutting Description</a>                        
                 </div>
             </div>
             <br>
@@ -294,16 +215,17 @@ include_once "includes/header.php";
                             <th>Qty</th>
                             <th>Print & EMB Send</th>
                             <th>Print & EMB Receive	</th>
+                            <th>Remark</th>
                             <th>Action</th>
                         </thead>
                         <tbody>
                             <?php
-                            
+
                             $sqlo = "SELECT d.*,c.color,s.size FROM cutting_form_description d LEFT JOIN color c ON c.id=d.Color LEFT JOIN size s on s.id=d.Size WHERE c.Status=1
                             and CuttingFormID=".$cuttingid;
                             $count = 1;
                             $cutting = mysqli_query($conn, $sqlo);
-                            
+
                             while ($rowo = mysqli_fetch_assoc($cutting)) {
                                 ?>
                                 <tr>
@@ -313,6 +235,7 @@ include_once "includes/header.php";
                                     <td><?= $rowo['Qty'] ?></td>
                                     <td><?= $rowo['PrintEMBSent'] ?></td>
                                     <td><?= $rowo['PrintEmbReceive'] ?></td>
+                                    <td><?= $rowo['remark'] ?></td>
                                     <td><a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=single_cutting&cuttingid=<?= $cuttingid ?>&cutid=<?php echo $rowo['ID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
                                             <i class="fas fa-trash-alt" style="color: white;"></i>
                                         </a>
@@ -332,7 +255,7 @@ include_once "includes/header.php";
 
         </div>
     </div>
-    
+
 </div>
 
 

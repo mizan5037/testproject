@@ -40,7 +40,15 @@ include_once "includes/header.php";
         <div class="card-body">
             <form class="needs-validation" method="POST" novalidate>
                 <div class="form-row">
-                    <div class="col-md-4 mb-3">
+                  <div class="col-md-3 mb-3">
+                      <label for="validationTooltip02">Date</label>
+                      <input type="date" value="<?= $single_cutting['date'] ?>" class="form-control" id="validationTooltip02" name="date" required>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                      <label for="validationTooltip02">Cutting no</label>
+                      <input type="text" value="<?= $single_cutting['CuttingNo'] ?>" class="form-control" id="validationTooltip02" placeholder="Cutting no" name="cutting_no" required>
+                  </div>
+                    <div class="col-md-3 mb-3">
                         <label for="validationTooltip01">Style</label>
                         <select name="style" class="style  form-control" required>
                             <option></option>
@@ -59,11 +67,7 @@ include_once "includes/header.php";
                             ?>
                         </select>
                     </div>
-                    <div class="col-md-4 mb-3">
-                        <label for="validationTooltip02">Cutting no</label>
-                        <input type="text" value="<?= $single_cutting['CuttingNo'] ?>" class="form-control" id="validationTooltip02" placeholder="Cutting no" name="cutting_no" required>
-                    </div>
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label for="validationTooltipUsername">PO no</label>
                         <select name="po" class="po  form-control" required>
                             <option></option>
@@ -92,7 +96,7 @@ include_once "includes/header.php";
                                 <th>Qty</th>
                                 <th>Print & EMB Send</th>
                                 <th>Print & EMB Receive</th>
-                                <th>Action</th>
+                                <th>Remark</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -140,7 +144,7 @@ include_once "includes/header.php";
                                                     }else{
                                                         echo '<option value="' . $result['id'] . '">' . $result['size'] . '</option>';
                                                     }
-                                                    
+
                                                 }
                                                 ?>
                                         </select>
@@ -154,11 +158,13 @@ include_once "includes/header.php";
                                     <td>
                                         <input placeholder="Print & EMB Receive" type="number" value="<?=$rowo['PrintEmbReceive']?>" name="embreceive[]" class="mb-2 form-control-sm form-control">
                                     </td>
-                                    <td><a class="deleteRow"></a></td>
+                                    <td>
+                                        <input placeholder="Remark" type="text" value="<?=$rowo['remark']?>" name="remark[]" class="mb-2 form-control-sm form-control">
+                                    </td>
                                 </tr>
                             <?php } ?>
                         </tbody>
-                       
+
                     </table>
                 </div>
                 <br>
