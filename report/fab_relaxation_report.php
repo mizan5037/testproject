@@ -22,11 +22,8 @@ $conn = db_connection();
 $fab_relax = "SELECT f.*,s.StyleNumber,b.BuyerName,c.color FROM fab_relaxation f LEFT JOIN color c ON f.Color = c.id LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN buyer b ON b.BuyerID=f.BuyerID WHERE f.Status = 1 AND FabRelaxationID ='10'";
 $fab_relax = mysqli_fetch_assoc(mysqli_query($conn, $fab_relax));
 
-
 $fab_relax_details = "SELECT * FROM `fab_relaxation_description` WHERE Status = '1' AND FabRelaxationID = '10'";
 $fab_relax_details = mysqli_query($conn, $fab_relax_details);
-
-
 
 $html = '<!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -36,7 +33,7 @@ $html = '<!DOCTYPE html>
         <th align="right" colspan="2"><img src="'. $logo.'" alt="llogo" height="50px" style=""></th>
         <th colspan="10" align="center">
             <h1 style="line-height:.1; ;">RISHAL GROUP OF INDUSTRIES</h1>
-            <p style="line-height:.1;">PLOT#m-4/2, SECTION#14,MIRPUR, DHAKA-1216</p>
+            <p style="line-height:.1;">PLOT#M-4/2, SECTION#14,MIRPUR, DHAKA-1216</p>
             <p style="text-transform: uppercase; color:white; line-height:.1;"><strong style="background-color:black;">FBRIC RELAXATION REPORT</strong></p>
             <p style="text-transform: uppercase;line-height:.1;"><strong>CUTTING SECTION</strong></p>
         </th>
@@ -98,7 +95,7 @@ $html = '<!DOCTYPE html>
       </tr>
       <tr>
         <th colspan="7" align="left"><p><strong style=" border-top:1px solid black; line-height:80px; margin-left:50px;">Cutting Incharge</strong></p></th>
-        <th colspan="7" align="right" ><p><strong style=" border-top:1px solid black; line-height:80px; margin-right:50px;">Cutting Manager</strong></p></th>
+        <th colspan="8" align="right" ><p><strong style=" border-top:1px solid black; line-height:80px; ">Cutting Manager</strong></p></th>
       </tr>
     </table>
   </body>

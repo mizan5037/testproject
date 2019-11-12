@@ -23,8 +23,8 @@ $mpdf->WriteHTML(
       <tr>
         <th align="right" colspan="2"><img src="'. $logo.'" alt="llogo" height="50px" style=""></th>
         <th colspan="9" align="center">
-            <h1 style="line-height:.1; ;">Rishal group of industies</h1>
-            <p style="line-height:.1;">Plot#m-4/2, Section#14,Mirpur, Dhaka-1216</p>
+            <h1 style="line-height:.1; ;">RISHAL GROUP OF INDUSTRIES</h1>
+            <p style="line-height:.1;">PLOT#M-4/2, SECTION#14,MIRPUR, DHAKA-1216</p>
             <p style="text-transform: uppercase; color:white; line-height:.1;"><strong style="background-color:black;">SIZE WISE CUTTING REPORT</strong></p>
         </th>
         <th colspan="8"></th>
@@ -78,7 +78,6 @@ $mpdf->WriteHTML(
 
       </tr>
       <tr align="center">
-
         <td style="border: 1px solid black;">CUTTING</td>
         <td style="border: 1px solid black;">&nbsp;</td>
         <td style="border: 1px solid black;">&nbsp;</td>
