@@ -41,6 +41,7 @@ if (isset($_POST['stylenumber']) && $_POST['styledescription'] != '' && isset($_
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
             $error .= " <br>Sorry, your file was not uploaded.";
+            $imageFilename = '';
             // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["img"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . $path . $uploadpath . $imageFilename)) {
@@ -48,6 +49,7 @@ if (isset($_POST['stylenumber']) && $_POST['styledescription'] != '' && isset($_
                 // echo $imageFilename;
             } else {
                 $error .= " <br>Sorry, there was an error uploading your file.";
+                $imageFilename = '';
             }
         }
     }

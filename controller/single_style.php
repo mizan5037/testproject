@@ -135,3 +135,74 @@ function getPrice($ssid)
         return 'No Related LC Found';
     }
 }
+
+
+if (isset($_POST['style_id']) && $_POST['style_id'] != '' && $_FILES['img']['size'] !== 0) {
+
+    $error = '';
+
+    $target_file = basename($_FILES["img"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $imageFilename = rand(100000, 1000000000) . '_' . date("Y_M_d") . '_' . time() . '_' . get_ses('user_id') . '.' . $imageFileType;
+
+    // Check if image file is a actual image or fake image
+    $check = getimagesize($_FILES["img"]["tmp_name"]);
+    if ($check !== false) {
+        //echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        $error .= "File is not an image. <br>";
+        $uploadOk = 0;
+    }
+
+    // Check if file already exists
+    if (file_exists($imageFilename)) {
+        $error .= "Sorry, file already exists. <br>";
+        $uploadOk = 0;
+    }
+    // Check file size
+    if ($_FILES["img"]["size"] > 2000000) {
+        $error .= "Sorry, your file is too large. Maximum File size Allowed 2MB. <br>";
+        $uploadOk = 0;
+    }
+
+    // Allow certain file formats
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+        $error .= "Sorry, only JPG, JPEG, PNG & GIF files are allowed. <br>";
+        $uploadOk = 0;
+    }
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        $error .= "Sorry, your file was not uploaded.";
+        notice('error', $error);
+        // if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["img"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . $path . $uploadpath . $imageFilename)) {
+
+
+            // now remove image from server
+            $id = $_POST['style_id'];
+            $sql = "SELECT StyleImage FROM style WHERE StyleID = '$id'";
+            $preimage = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+
+            $remove = $_SERVER['DOCUMENT_ROOT'] . $path . $uploadpath . $preimage['StyleImage'];
+
+            if (file_exists($remove)) {
+                unlink($remove);
+            }
+
+            //now add image link to database
+            $sql = "UPDATE style SET StyleImage = '$imageFilename'  WHERE StyleID = '$id'";
+            if (mysqli_query($conn, $sql)) {
+                notice('success', 'Style image Updated Successfully.');
+            } else {
+                notice('error', $sql . "<br>" . mysqli_error($conn) . '<br>' . $error);
+            }
+        } else {
+            $error .= " <br>Sorry, there was an error uploading your file.";
+            notice('error', $error);
+        }
+    }
+    nowgo('/index.php?page=single_style&id=' . $id);
+}

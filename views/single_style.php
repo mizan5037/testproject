@@ -117,6 +117,7 @@ function customPageHeader()
 function modal()
 {
     global $item;
+    global $id;
     ?>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -318,7 +319,7 @@ function modal()
     <!-- The Modal -->
     <div class="modal fade" id="imgedit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Update Image</h5>
@@ -330,16 +331,19 @@ function modal()
                         <div class="container">
                             <div class="row text-center">
                                 <div class="col-md-12">
-                                    <img src="<?= getimg($item['StyleImage']) ?>" id="image" class="img-fluid img-thumbnail rounded" alt="No Image">
+                                    <img src="<?= getimg($item['StyleImage']) ?>" id="image" class="img-fluid img-thumbnail rounded" alt="<?= $item['StyleNumber'] ?>">
                                 </div>
                                 <div class="col-md-12"><br></div>
                                 <div class="col-md-4"><label for="img">New Style Image:</label></div>
-                                <div class="col-md-8"><input onchange="readURL(this);" type="file" name="img" class="form-control-file" id="img"></div>
+                                <div class="col-md-8">
+                                    <input onchange="readURL(this);" type="file" name="img"  class="form-control-file" id="img">
+                                    <input type="hidden" name="style_id" value="<?=$id?>">
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
