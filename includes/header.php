@@ -602,7 +602,7 @@
                                                 </a>
                                             </li>
                                             <li <?php active('fab_relaxation_report'); ?>>
-                                                <a target="_blank" href="<?= $path ?>/index.php?report=fab_relaxation_report">
+                                                <a target="_blank" href="<?= $path ?>/index.php?page=fab_relaxation_report">
                                                     <i class="metismenu-icon">
                                                     </i>Fab Relaxation Report
                                                 </a>
