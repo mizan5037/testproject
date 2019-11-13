@@ -29,6 +29,10 @@ $itemname = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
 $logo = $path . '/assets/images/risal.png';
 
+$sql= "SELECT Qty FROM masterlc_description WHERE POID='$po' AND StyleID='$style'";
+$totalorder = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+
+
 
 $html = '
 	<!DOCTYPE html>
@@ -43,6 +47,11 @@ th, td {
   text-align: center;
   padding: 8px;
 }
+td{
+	font-size:16px;
+	font-weight:bold;
+}
+
 
 
 </style>
@@ -87,7 +96,8 @@ th, td {
 	</tr>
 	<tr>
 		<td width="50%" style ="text-align:left;">
-			<b><b><label > <span></span></label> </b></b>
+
+			<b><b><label > Total Order: '.$totalorder['Qty'].' <span></span></label> </b></b>
 		</td>
 		<td width="50%" style ="text-align:right;">
 			
@@ -99,75 +109,95 @@ th, td {
 <table style="font-size: 8pt;" border="1pt">
 	<thead>
 		<tr>
-			<td width="10%" style="border: 1px solid #000000;">
+			<th width="10%" style="border: 1px solid #000000;">
 				<b>COLOUR</b>
-			</td>
-			<td width="10%" style="border: 1px solid #000000;">
+			</th>
+			<th width="10%" style="border: 1px solid #000000;">
 				<b>CONSUMTION </b>
-			</td>
-			<td width="10%" style="border: 1px solid #000000;">
-				<b>ORDER QTY</b>
-			</td>
-			<td width="8%" style="border: 1px solid #000000;">
+			</th>
+			
+			<th width="8%" style="border: 1px solid #000000;">
 				<b>FABRIC REQUIRE</b>
-			</td>
-			<td width="10%" style="border: 1px solid #000000;">
+			</th>
+			<th width="10%" style="border: 1px solid #000000;">
 				<b> TOTAL FABRIC REQUIRE</b>
-			</td>
+			</th>
 		
-			<td width="10%" style="border: 1px solid #000000;">
+			<th width="10%" style="border: 1px solid #000000;">
 				<b>FABRIC RECIVED</b>
-			</td>
-			<td width="10%" style="border: 1px solid #000000;">
+			</th>
+			<th width="10%" style="border: 1px solid #000000;">
 				<b>FABRIC EXCESS</b>
-			</td>
-			<td width="10%" style="border: 1px solid #000000;">
+			</th>
+			<th width="10%" style="border: 1px solid #000000;">
 				<b>FABRIC SHORT</b>
-			</td>
+			</th>
 			          
-            <td width="10%" style="border: 1px solid #000000;">
-				<b>REMARKS</b>
-			</td>
+           
 		</tr>
 	</thead>
 ';
  
-$sql = "SELECT f.*,d.Consumption,d.RqdQty,c.color,r.ReceivedFab FROM (SELECT * FROM fab_issue WHERE POID='$po' and BuyerID='$buyer' AND StyleID='$style') f LEFT JOIN fab_issue_description d ON d.FabIssueID=f.FabIssueID LEFT JOIN fab_receive r ON r.POID=f.POID LEFT JOIN color c ON c.id=d.Color order by f.StyleID";
+$sql = "SELECT f.*,d.Consumption,d.RqdQty,c.color,c.id as colorid, r.ReceivedFab FROM (SELECT * FROM fab_issue WHERE POID='$po' and BuyerID='$buyer' AND StyleID='$style') f LEFT JOIN fab_issue_description d ON d.FabIssueID=f.FabIssueID LEFT JOIN fab_receive r ON r.POID=f.POID LEFT JOIN color c ON c.id=d.Color order by f.StyleID";
 
 //echo $sql;
 $consumption = mysqli_query($conn, $sql);
+$fabric_short= 0;
+$fabric_excess = 0;
+$total_consumption = 0;
+$fabric_require_daily = 0;
+$total_fabric_require_r = 0;
+$total_fabric_receive = 0; 
+$total_fabric_excess = 0; 
+$total_fabric_short = 0; 
 
 while ($row = mysqli_fetch_assoc($consumption)) {
 
+	$poid = $row['POID'];
+    $color = $row['colorid'];
+
+	$sql = "SELECT sum(d.RqdQty) RqdQty FROM (SELECT * FROM fab_issue where POID='$poid' ) f LEFT JOIN fab_issue_description d on d.FabIssueID=f.FabIssueID LEFT JOIN  color co ON co.id=d.Color where d.Color='$color'" ;
+	$totalissuefab = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+	
+	if ($row['ReceivedFab']>$totalissuefab['RqdQty']) {
+		$fabric_excess = abs($row['ReceivedFab']-$totalissuefab['RqdQty']);
+	}
+	else{
+		$fabric_short = abs($totalissuefab['RqdQty']-$row['ReceivedFab']);
+	}
+	$total_consumption += $row['Consumption'];
+	$fabric_require_daily += $row['RqdQty'];
+	$total_fabric_require_r +=$totalissuefab['RqdQty'];
+	$total_fabric_receive += $row['ReceivedFab'];
+	$total_fabric_excess += $fabric_excess;
+	$total_fabric_short += $fabric_short;
+
+
+	
     $html .= '	
 		<tr>
 		
 			<td style="border: 1px solid #000000;">
-				'.$row['color'].'
+			'.$row['color'].'
 			</td>
-			<td style="text-align:left;border: 1px solid #000000;">
+			<td style="border: 1px solid #000000;">
 			'.$row['Consumption'].'
-			</td>
-			<td style="text-align:left;border: 1px solid #000000;">
-			
 			</td>
 			<td style="border: 1px solid #000000;">
 			'.$row['RqdQty'].'
 			<td style="border: 1px solid #000000;">
-			
+			'.$totalissuefab['RqdQty'].'
 			</td>
 			<td style="border: 1px solid #000000;">
 			'.$row['ReceivedFab'].'
 			</td>
             <td style="border: 1px solid #000000;">
-            
+            '.$fabric_excess.'
 			</td>
 			<td style="border: 1px solid #000000;">
-			
+			'.$fabric_short.'
             </td>
-            <td style="border: 1px solid #000000;">
-			
-            </td>
+           
             
         </tr>
 			';
@@ -178,30 +208,28 @@ $html .= '
 			<td style="border: 1px solid #000000;">
 			    <b>Total</b>
 			</td>
-			<td style="text-align:left;border: 1px solid #000000;">
-			
+			<td style="border: 1px solid #000000;">
+			 '.$total_consumption.'
 			</td>
-			<td style="text-align:left;border: 1px solid #000000;">
+			<td style="border: 1px solid #000000;">
+			'.$fabric_require_daily.'
 			
 			</td>
 			<td style="border: 1px solid #000000;">
-			
-			</td>
-			<td style="border: 1px solid #000000;">
+			'.$total_fabric_require_r.'
             
 			</td>
 			<td style="border: 1px solid #000000;">
+			'.$total_fabric_receive.'
 		    
 			</td>
             <td style="border: 1px solid #000000;">
-            
+            '.$total_fabric_excess.'
 			</td>
 			<td style="border: 1px solid #000000;">
-			
+			'.$total_fabric_short.'
             </td>
-            <td style="border: 1px solid #000000;">
-			
-            </td>
+            
             
         </tr>';
 $html .= '
