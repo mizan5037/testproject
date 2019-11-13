@@ -6,8 +6,19 @@ require_once 'lib/session.php';
 require_once 'lib/database.php';
 require_once 'lib/functions.php';
 require_once 'lib/vendor/autoload.php';
-$PageTitle = "FBRIC RELAXATION REPORT";
+$conn = db_connection();
+if(isset($_POST['buyer']) && isset($_POST['style']) &&isset($_POST['color'])){
+  $BuyerID = $_POST['buyer'];
+  $StyleID = $_POST['style'];
+  $Color = $_POST['color'];
+  $fba_relax_id = "SELECT FabRelaxationID FROM fab_relaxation WHERE BuyerID = '$BuyerID' AND StyleID = '$StyleID' AND Color = '$Color'";
 
+  $fba_relax_id = mysqli_fetch_assoc(mysqli_query($conn,$fba_relax_id));
+  $fba_relax_id = $fba_relax_id['FabRelaxationID'];
+}
+else{
+  echo "No Report Found";
+}
 
 $logo = $path . '/assets/images/risal.png';
 
@@ -17,12 +28,11 @@ $mpdf->SetTitle('FBRIC RELAXATION REPORT');
 $mpdf->setAutoTopMargin = 'stretch';
 
 $logo = $path . '/assets/images/risal.png';
-$conn = db_connection();
 // fab Relaxation
-$fab_relax = "SELECT f.*,s.StyleNumber,b.BuyerName,c.color FROM fab_relaxation f LEFT JOIN color c ON f.Color = c.id LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN buyer b ON b.BuyerID=f.BuyerID WHERE f.Status = 1 AND FabRelaxationID ='10'";
+$fab_relax = "SELECT f.*,s.StyleNumber,b.BuyerName,c.color FROM fab_relaxation f LEFT JOIN color c ON f.Color = c.id LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN buyer b ON b.BuyerID=f.BuyerID WHERE f.Status = 1 AND FabRelaxationID ='$fba_relax_id'";
 $fab_relax = mysqli_fetch_assoc(mysqli_query($conn, $fab_relax));
 
-$fab_relax_details = "SELECT * FROM `fab_relaxation_description` WHERE Status = '1' AND FabRelaxationID = '10'";
+$fab_relax_details = "SELECT * FROM `fab_relaxation_description` WHERE Status = '1' AND FabRelaxationID = '$fba_relax_id'";
 $fab_relax_details = mysqli_query($conn, $fab_relax_details);
 
 $html = '<!DOCTYPE html>
@@ -47,41 +57,41 @@ $html = '<!DOCTYPE html>
       <tr>
         <th colspan="14">&nbsp;</th>
       </tr>
-      <tr align="center">
-        <th style="border: 1px solid black;">DATE</th>
-        <th style="border: 1px solid black;">SHADE</th>
-        <th style="border: 1px solid black;">SHRINKAGE%</th>
-        <th style="border: 1px solid black;">ROLL NO.</th>
-        <th style="border: 1px solid black;">YDS</th>
-        <th style="border: 1px solid black;">SHADE</th>
-        <th style="border: 1px solid black;">SHRINKAGE%</th>
-        <th style="border: 1px solid black;">ROLL NO</th>
-        <th style="border: 1px solid black;">YDS</th>
-        <th style="border: 1px solid black;">TOTAL YDS.</th>
-        <th style="border: 1px solid black;">FABRIC OPEN TIME</th>
-        <th style="border: 1px solid black;">FABTIC LAY DATE</th>
-        <th style="border: 1px solid black;">FABTIC LAY TIME</th>
-        <th style="border: 1px solid black;">TOTAL HOURS</th>
-        <th style="border: 1px solid black;">REMARKS</th>
+      <tr align="center" style="font-size:5px;">
+        <th style="border: 1px solid black; font-size:10px;">DATE</th>
+        <th style="border: 1px solid black; font-size:10px;">SHADE</th>
+        <th style="border: 1px solid black; font-size:8px;">SHRINKAGE%</th>
+        <th style="border: 1px solid black; font-size:10px;">ROLL NO.</th>
+        <th style="border: 1px solid black; font-size:10px;">YDS</th>
+        <th style="border: 1px solid black; font-size:10px;">SHADE</th>
+        <th style="border: 1px solid black; font-size:8px;">SHRINKAGE%</th>
+        <th style="border: 1px solid black; font-size:10px;">ROLL NO</th>
+        <th style="border: 1px solid black; font-size:10px;">YDS</th>
+        <th style="border: 1px solid black; font-size:10px;">TOTAL YDS.</th>
+        <th style="border: 1px solid black; font-size:10px;">FABRIC OPEN TIME</th>
+        <th style="border: 1px solid black; font-size:10px;">FABTIC LAY DATE</th>
+        <th style="border: 1px solid black; font-size:10px;">FABTIC LAY TIME</th>
+        <th style="border: 1px solid black; font-size:10px;">TOTAL HOURS</th>
+        <th style="border: 1px solid black; font-size:10px;">REMARKS</th>
       </tr>
       ';
       foreach($fab_relax_details as $fab_relax_detail) {
         $html .= '<tr>
-          <td style="border: 1px solid black;">'.$fab_relax_detail['Date'].'</td>
-          <td style="border: 1px solid black;">'.$fab_relax_detail['Shade'].'</td>
-          <td style="border: 1px solid black;">'.$fab_relax_detail['Shrinkage'].'</td>
-          <td style="border: 1px solid black;">'.$fab_relax_detail['RollNo'].'</td>
-          <td style="border: 1px solid black;">'.$fab_relax_detail['Yds'].'</td>
-          <td style="border: 1px solid black;">'.$fab_relax_detail['Shade2'].'</td>
-          <td style="border: 1px solid black;">'.$fab_relax_detail['Shrinkage2'].'</td>
-          <td style="border: 1px solid black;">'.$fab_relax_detail['RollNo2'].'</td>
-          <td style="border: 1px solid black;">'.$fab_relax_detail['Yds2'].'</td>
-          <td style="border: 1px solid black;">'.$fab_relax_detail['TotalYds'].'</td>
-          <td style="border: 1px solid black;">'.$fab_relax_detail['fabricOpenTime'].'</td>
-          <td style="border: 1px solid black;">'.$fab_relax_detail['FabricLayDate'].'</td>
-          <td style="border: 1px solid black;">'.$fab_relax_detail['FabricLayTime'].'</td>
-          <td style="border: 1px solid black;">'.$fab_relax_detail['TotalHours'].'</td>
-          <td style="border: 1px solid black;">'.$fab_relax_detail['Remarks'].'</td>
+          <td style="border: 1px solid black;" align="center">'.$fab_relax_detail['Date'].'</td>
+          <td style="border: 1px solid black;" align="center">'.$fab_relax_detail['Shade'].'</td>
+          <td style="border: 1px solid black;" align="center">'.$fab_relax_detail['Shrinkage'].'</td>
+          <td style="border: 1px solid black;" align="center">'.$fab_relax_detail['RollNo'].'</td>
+          <td style="border: 1px solid black;" align="center">'.$fab_relax_detail['Yds'].'</td>
+          <td style="border: 1px solid black;" align="center">'.$fab_relax_detail['Shade2'].'</td>
+          <td style="border: 1px solid black;" align="center">'.$fab_relax_detail['Shrinkage2'].'</td>
+          <td style="border: 1px solid black;" align="center">'.$fab_relax_detail['RollNo2'].'</td>
+          <td style="border: 1px solid black;" align="center">'.$fab_relax_detail['Yds2'].'</td>
+          <td style="border: 1px solid black;" align="center">'.$fab_relax_detail['TotalYds'].'</td>
+          <td style="border: 1px solid black;" align="center">'.$fab_relax_detail['fabricOpenTime'].'</td>
+          <td style="border: 1px solid black;" align="center">'.$fab_relax_detail['FabricLayDate'].'</td>
+          <td style="border: 1px solid black;" align="center">'.$fab_relax_detail['FabricLayTime'].'</td>
+          <td style="border: 1px solid black;" align="center">'.$fab_relax_detail['TotalHours'].'</td>
+          <td style="border: 1px solid black;" align="center">'.$fab_relax_detail['Remarks'].'</td>
 
         </tr>
       ';}
@@ -101,6 +111,5 @@ $html = '<!DOCTYPE html>
   </body>
 </html>';
 $mpdf->WriteHTML($html);
-
 $mpdf->Output();
 ?>

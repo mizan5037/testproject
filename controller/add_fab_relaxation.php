@@ -8,14 +8,28 @@ if (isset($_POST['buyer']) && isset($_POST['style']) && isset($_POST['color'])  
     $color = $_POST['color'];
     $user_id = get_ses('user_id');
 
-    $sql = "INSERT INTO fab_relaxation (BuyerID,StyleID,Color,AddedBy)
 
-	values('$buyer','$style','$color','$user_id')";
-    if (mysqli_query($conn, $sql)) {
-        notice('success', 'New Fabric Relaxation Added Successfully');
-        $last_id = mysqli_insert_id($conn);
-    } else {
-        notice('error', $sql . "<br>" . mysqli_error($conn));
+    $check_fab_data = "SELECT DISTINCT f.FabRelaxationID,b.BuyerID,b.BuyerName,c.id,c.color,s.StyleID,s.StyleNumber
+                      FROM fab_relaxation f
+                      LEFT JOIN buyer b ON f.BuyerID = b.BuyerID
+                      LEFT JOIN color c ON f.Color=c.id
+                      LEFT JOIN style s ON f.StyleID = s.StyleID
+                      WHERE f.Status='1' AND b.Status = '1' AND c.status = '1'AND s.Status ='1'";
+
+    $check_fab_data = mysqli_fetch_assoc(mysqli_query($conn, $check_fab_data));
+
+    if($buyer == $check_fab_data['BuyerID'] && $style == $check_fab_data['StyleID'] && $color == $check_fab_data['id']){
+      $last_id = $check_fab_data['FabRelaxationID'];
+    }
+    else {
+      $sql = "INSERT INTO fab_relaxation (BuyerID,StyleID,Color,AddedBy)
+              values('$buyer','$style','$color','$user_id')";
+      if (mysqli_query($conn, $sql)) {
+          notice('success', 'New Fabric Relaxation Added Successfully');
+          $last_id = mysqli_insert_id($conn);
+      } else {
+          notice('error', $sql . "<br>" . mysqli_error($conn));
+      }
     }
 
     //fab relaxation details
@@ -36,9 +50,9 @@ if (isset($_POST['buyer']) && isset($_POST['style']) && isset($_POST['color'])  
     $remark = $_POST['remark'];
 
     for ($i = 0; $i < sizeof($date); $i++) {
+
         $sql = "INSERT INTO fab_relaxation_description (FabRelaxationID,Date,Shade,Shrinkage,RollNo,Yds,Shade2,Shrinkage2,RollNo2,Yds2,TotalYds,fabricOpenTime,FabricLayDate,FabricLayTime,TotalHours,Remarks,AddedBy)
         values('$last_id','$date[$i]','$shade[$i]','$shrinkage[$i]','$rollno[$i]', '$yds[$i]','$shade2[$i]','$shrinkage2[$i]','$rollno2[$i]','$yds2[$i]','$ttlyds[$i]','$fot[$i]','$fld[$i]','$flt[$i]','$ttlhrs[$i]','$remark[$i]','$user_id') ";
-
 
         if (mysqli_query($conn, $sql)) {
             notice('success', 'New Fabric Relaxation Added Successfully');
