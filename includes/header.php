@@ -416,33 +416,6 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="metismenu-icon">
-                                                    </i>Sort by (report)
-                                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                                </a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="metismenu-icon">
-                                                            </i>Style
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="metismenu-icon">
-                                                            </i>PO
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="metismenu-icon">
-                                                            </i>Color
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
                                         </ul>
                                     </li>
                                     <li>
@@ -471,33 +444,6 @@
                                                     </i>Item Issue
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="metismenu-icon">
-                                                    </i>Sort by (report)
-                                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                                </a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="metismenu-icon">
-                                                            </i>Style
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="metismenu-icon">
-                                                            </i>PO
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="metismenu-icon">
-                                                            </i>Color
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
                                         </ul>
                                     </li>
                                     <li>
@@ -525,33 +471,6 @@
                                                     <i class="metismenu-icon">
                                                     </i>Item Received
                                                 </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="metismenu-icon">
-                                                    </i>Sort by (report)
-                                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                                </a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="metismenu-icon">
-                                                            </i>Style
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="metismenu-icon">
-                                                            </i>PO
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="metismenu-icon">
-                                                            </i>Color
-                                                        </a>
-                                                    </li>
-                                                </ul>
                                             </li>
                                         </ul>
                                     </li>
