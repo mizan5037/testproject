@@ -6,6 +6,7 @@ require_once 'lib/session.php';
 require_once 'lib/database.php';
 require_once 'lib/functions.php';
 require_once 'lib/vendor/autoload.php';
+$conn = db_connection();
 
 $logo = $path . '/assets/images/risal.png';
 
@@ -14,9 +15,19 @@ $mpdf->setAutoTopMargin = 'stretch';
 
 $logo = $path . '/assets/images/risal.png';
 
-$mpdf->WriteHTML(
 
-'<!DOCTYPE html>
+
+$cutiting_size = "SELECT distinct s.size FROM cutting_form_description cd LEFT JOIN Size s ON s.id = cd.Size";
+$cutiting_size = mysqli_query($conn, $cutiting_size);
+
+$cutting_color = "SELECT DISTINCT c.color FROM cutting_form_description cd LEFT JOIN color c ON cd.Color = c.id WHERE cd.Status = '1' AND c.status = '1'";
+$cutting_color = mysqli_query($conn, $cutting_color);
+
+// print_r($cutiting_size);
+// $sized = sizeof($cutiting_size);
+
+
+$html = '<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <body>
     <table style="text-transform: uppercase; border: 1px solid black;border-collapse: collapse;" width="100%">
@@ -47,36 +58,22 @@ $mpdf->WriteHTML(
       <tr>
         <th colspan="19">&nbsp;</th>
       </tr>
+      <tr>
+        <th colspan="19">
+          <table>
+
+
+        <th>
+      </tr>
       <tr align="center">
         <th style="border: 1px solid black;">COLOUR</th>
         <th style="border: 1px solid black;">DESCRIPTION</th>
-        <th style="border: 1px solid black;" colspan="15">SIZE</th>
+        <th style="border: 1px solid black;"></th>
+        <th style="border: 1px solid black;">SIZE</th>
         <th style="border: 1px solid black;">TOTAL</th>
-
       </tr>
 
       <!-- First Table data strat -->
-      <tr align="center">
-        <td style="border: 1px solid black;" rowspan="2">&nbsp;</td>
-        <td style="border: 1px solid black;">ORDER QTY</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-
-      </tr>
       <tr align="center">
         <td style="border: 1px solid black;">CUTTING</td>
         <td style="border: 1px solid black;">&nbsp;</td>
@@ -97,7 +94,6 @@ $mpdf->WriteHTML(
         <td style="border: 1px solid black;">&nbsp;</td>
       </tr>
       <tr align="center">
-        <td style="border: 1px solid black;">&nbsp;</td>
         <td style="border: 1px solid black;">EXSS/SHORT CUTTING</td>
         <td style="border: 1px solid black;">&nbsp;</td>
         <td style="border: 1px solid black;">&nbsp;</td>
@@ -134,10 +130,8 @@ $mpdf->WriteHTML(
       </tr>
     </table>
   </body>
-</html>
-
-'
-);
+</html>';
+$mpdf->WriteHTML($html);
 
 $mpdf->Output();
 ?>

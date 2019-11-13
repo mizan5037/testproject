@@ -583,7 +583,7 @@
                                                     </i>Daily Cutting,Print & EMB
                                                 </a>
                                             </li>
-                                            <li <?php active('cunsumption_report'); ?>>
+                                            <li <?php active('consumption_report'); ?>>
                                                 <a target="_blank" href="<?= $path ?>/index.php?page=consumption_report">
                                                     <i class="metismenu-icon">
                                                     </i>Cunsumption Report
