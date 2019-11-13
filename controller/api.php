@@ -14,7 +14,7 @@ if (get_ses('token') === $token && $_POST["form"] == 'get_style') {
     $po = $_POST["po"];
 
 
-    $sql = "SELECT s.StyleID, s.StyleNumber FROM order_description o LEFT JOIN style s ON s.StyleID = o.StyleID WHERE o.POID = '$po'";
+    $sql = "SELECT DISTINCT s.StyleID, s.StyleNumber FROM order_description o LEFT JOIN style s ON s.StyleID = o.StyleID WHERE o.POID = '$po'";
     $result = mysqli_query($conn, $sql);
     echo '<option>------</option>';
     while($row = mysqli_fetch_assoc($result)){
