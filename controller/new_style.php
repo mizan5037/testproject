@@ -18,36 +18,36 @@ if (isset($_POST['stylenumber']) && $_POST['styledescription'] != '' && isset($_
             //echo "File is an image - " . $check["mime"] . ".";
             $uploadOk = 1;
         } else {
-            $error += "File is not an image.";
+            $error .= "File is not an image.";
             $uploadOk = 0;
         }
 
         // Check if file already exists
         if (file_exists($imageFilename)) {
-            $error += " <br>Sorry, file already exists.";
+            $error .= " <br>Sorry, file already exists.";
             $uploadOk = 0;
         }
         // Check file size
         if ($_FILES["img"]["size"] > 2000000) {
-            $error += " <br>Sorry, your file is too large. Maximum File size Allowed 2MB.";
+            $error .= " <br>Sorry, your file is too large. Maximum File size Allowed 2MB.";
             $uploadOk = 0;
         }
 
         // Allow certain file formats
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-            $error += " <br>Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $error .= " <br>Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
             $uploadOk = 0;
         }
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
-            $error += " <br>Sorry, your file was not uploaded.";
+            $error .= " <br>Sorry, your file was not uploaded.";
             // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["img"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . $path . $uploadpath . $imageFilename)) {
                 // echo "The file " . basename($_FILES["img"]["name"]) . " has been uploaded.<br>";
                 // echo $imageFilename;
             } else {
-                $error += " <br>Sorry, there was an error uploading your file.";
+                $error .= " <br>Sorry, there was an error uploading your file.";
             }
         }
     }
