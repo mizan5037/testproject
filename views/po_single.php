@@ -344,7 +344,7 @@ include_once "includes/header.php";
                                 <tr>
                                     <td><?= $count ?></td>
                                     <td> <a class="btn btn-sm btn-outline-success" href="<?= $path . '/index.php?page=single_style&id=' . $rowo['StyleID'] ?>" target="_blank"><?= $rowo['StyleNumber'] ?></a></td>
-                                    <td><img class="img-fluid img-thumbnail rounded" alt="Style No: <?= $rowo['StyleNumber'] ?>" onclick="view('<?= $rowo['StyleImage'] ?>');" id="<?= $rowo['StyleImage'] ?>" src="<?= $path . $uploadpath . $rowo['StyleImage'] ?>" style="max-height:50px;"></td>
+                                    <td><img class="img-fluid img-thumbnail rounded" alt="Style No: <?= $rowo['StyleNumber'] ?>" onclick="view('<?= $rowo['StyleImage'] ?>');" id="<?= $rowo['StyleImage'] ?>" src="<?= getimg($rowo['StyleImage']) ?>" style="max-height:50px;"></td>
                                     <td><?= $rowo['color'] ?></td>
                                     <td><?= $rowo['Dzs'] ?></td>
                                     <td><?= $rowo['PPack'] ?></td>
