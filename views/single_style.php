@@ -116,6 +116,8 @@ function customPageHeader()
 
 function modal()
 {
+    global $item;
+    global $id;
     ?>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -151,7 +153,17 @@ function modal()
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>
-                                        <input placeholder="Size" type="text" name="size[]" class="mb-2 form-control-sm form-control" required>
+                                        <select name="size[]" class="style mb-2 form-control-sm form-control" required>
+                                            <option></option>
+                                            <?php
+                                                $conn = db_connection();
+                                                $sql = "SELECT * FROM size WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    echo '<option value="' . $result['id'] . '">' . $result['size'] . '</option>';
+                                                }
+                                                ?>
+                                        </select>
                                     </td>
                                     <td>
                                         <select name="item[]" class="item mb-2 form-control-sm form-control" required>
@@ -170,7 +182,17 @@ function modal()
                                 <tr>
                                     <th scope="row">2</th>
                                     <td>
-                                        <input placeholder="Size" type="text" name="size[]" class="mb-2 form-control-sm form-control">
+                                        <select name="size[]" class="style mb-2 form-control-sm form-control" >
+                                            <option></option>
+                                            <?php
+                                                $conn = db_connection();
+                                                $sql = "SELECT * FROM size WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    echo '<option value="' . $result['id'] . '">' . $result['size'] . '</option>';
+                                                }
+                                                ?>
+                                        </select>
                                     </td>
                                     <td>
                                         <select name="item[]" class="item mb-2 form-control-sm form-control">
@@ -189,7 +211,17 @@ function modal()
                                 <tr>
                                     <th scope="row">3</th>
                                     <td>
-                                        <input placeholder="Size" type="text" name="size[]" class="mb-2 form-control-sm form-control">
+                                        <select name="size[]" class="style mb-2 form-control-sm form-control" >
+                                            <option></option>
+                                            <?php
+                                                $conn = db_connection();
+                                                $sql = "SELECT * FROM size WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    echo '<option value="' . $result['id'] . '">' . $result['size'] . '</option>';
+                                                }
+                                                ?>
+                                        </select>
                                     </td>
                                     <td>
                                         <select name="item[]" class="item mb-2 form-control-sm form-control">
@@ -208,7 +240,17 @@ function modal()
                                 <tr>
                                     <th scope="row">4</th>
                                     <td>
-                                        <input placeholder="Size" type="text" name="size[]" class="mb-2 form-control-sm form-control">
+                                        <select name="size[]" class="style mb-2 form-control-sm form-control" >
+                                            <option></option>
+                                            <?php
+                                                $conn = db_connection();
+                                                $sql = "SELECT * FROM size WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    echo '<option value="' . $result['id'] . '">' . $result['size'] . '</option>';
+                                                }
+                                                ?>
+                                        </select>
                                     </td>
                                     <td>
                                         <select name="item[]" class="item mb-2 form-control-sm form-control">
@@ -314,6 +356,43 @@ function modal()
     </div>
 
     <!--  image modal end -->
+    <!-- The Modal -->
+    <div class="modal fade" id="imgedit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form method="post" enctype="multipart/form-data">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Image</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row text-center">
+                                <div class="col-md-12">
+                                    <img src="<?= getimg($item['StyleImage']) ?>" id="image" class="img-fluid img-thumbnail rounded" alt="<?= $item['StyleNumber'] ?>">
+                                </div>
+                                <div class="col-md-12"><br></div>
+                                <div class="col-md-4"><label for="img">New Style Image:</label></div>
+                                <div class="col-md-8">
+                                    <input onchange="readURL(this);" type="file" name="img" class="form-control-file" id="img">
+                                    <input type="hidden" name="style_id" value="<?= $id ?>">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--  image modal end -->
+
 <?php }
 
 
@@ -375,13 +454,52 @@ include_once "includes/header.php";
                     </table>
                 </div>
                 <div class="col-md-6">
-                    <?php if (!file_exists($path . $uploadpath . $item['StyleImage'])) { ?>
-                        <img style="max-height:265px;" onclick="view('myImg');" id="myImg" src="<?= $path . $uploadpath . $item['StyleImage'] ?>" class="img-fluid img-thumbnail rounded" alt="Style No: <?= $item['StyleNumber'] ?>">
-                    <?php } else {
-                        ?>
-                        <img style="max-height:265px;" src="<?= $path ?>/assets/images/noimg.png" class="img-fluid img-thumbnail rounded" alt="No Image">
-                    <?php
-                    } ?>
+                    <style>
+                        .btn-label {
+                            position: relative;
+                            left: -12px;
+                            display: inline-block;
+                            font-size: 20px;
+                            padding: 0px 10px;
+                            background: rgba(0, 0, 0, 0.15);
+                            border-radius: 3px 0 0 3px;
+                        }
+
+                        .btn-labeled {
+                            padding-top: 0;
+                            padding-bottom: 0;
+                        }
+
+                        .btn {
+                            margin-bottom: 10px;
+                        }
+
+                        .img-thumbnail {
+                            max-height: 265px;
+                            position: relative;
+                        }
+
+                        .edit {
+                            position: absolute;
+                            bottom: 16px;
+                            right: 29px;
+                        }
+
+                        .name {
+                            line-height: 20px;
+                        }
+                    </style>
+                    <div>
+                        <img onclick="view('myImg');" id="myImg" src="<?= getimg($item['StyleImage']) ?>" class="img-fluid img-thumbnail rounded" alt="Style No: <?= $item['StyleNumber'] ?>">
+                        <div class="edit">
+                            <button type="button" class="btn btn-labeled btn-primary" data-toggle="modal" data-target="#imgedit">
+                                <span class="btn-label">
+                                    <i class="pe-7s-camera"></i>
+                                </span>
+                                <span class="name">Edit</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -421,7 +539,6 @@ include_once "includes/header.php";
                         <?php } ?>
                     </table>
                 </div>
-
             </div>
         </div>
     </div>
@@ -476,7 +593,6 @@ include_once "includes/header.php";
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
     </div>
@@ -492,6 +608,23 @@ function customPagefooter()
     ?>
 
     <script>
+        // Image Load
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#image')
+                        .attr('src', e.target.result)
+                        .width()
+                        .height();
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
         // Get the modal
         var modal = document.getElementById("myModal");
 

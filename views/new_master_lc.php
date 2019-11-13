@@ -84,7 +84,7 @@ include_once "includes/header.php";
                     </div>
                     <div class="col-md-4 mb-3">
                         <label>Amount</label>
-                        <input type="number" class="form-control form-control-sm" name="amount" placeholder="Amount" required>
+                        <input type="number" class="form-control form-control-sm" name="amount" placeholder="Amount" step="0.01" required>
                     </div>
                 </div>
                 <div class="form-row">

@@ -36,13 +36,14 @@ include_once "includes/header.php";
                         <th>B2B LC Number</th>
                         <th>Supplier Name</th>
                         <th>Issue Date</th>
+                        <th>Maturity  Date</th>
                         <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     $conn = db_connection();
-                    $sql = "SELECT B2BLCNumber, SupplierName, Issuedate, B2BLCID FROM b2blc WHERE Status = 1";
+                    $sql = "SELECT B2BLCNumber, Maturitydate, SupplierName, Issuedate, B2BLCID FROM b2blc WHERE Status = 1";
                     $buyer = mysqli_query($conn, $sql);
 
                     $count = 1;
@@ -55,6 +56,7 @@ include_once "includes/header.php";
                             <td><?= $key['B2BLCNumber'] ?></td>
                             <td><?= $key['SupplierName'] ?></td>
                             <td><?= $key['Issuedate'] ?></td>
+                            <td><?= $key['Maturitydate'] ?></td>
                             <td>
                                 <a href="<?=$path?>/index.php?page=single_b2b_lc&id=<?=$key['B2BLCID']?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
                                     Details

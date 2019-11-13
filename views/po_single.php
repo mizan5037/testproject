@@ -166,10 +166,20 @@ function modal()
                                         </select>
                                     </td>
                                     <td>
-                                        <input placeholder="Color" type="text" name="color[]" class="mb-2 form-control-sm form-control" required>
+                                        <select name="color[]" class="style mb-2 form-control-sm form-control" required>
+                                            <option></option>
+                                            <?php
+                                            $conn = db_connection();
+                                            $sql = "SELECT * FROM color WHERE status = 1";
+                                            $results = mysqli_query($conn, $sql);
+                                            while ($result = mysqli_fetch_assoc($results)) {
+                                                echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                            }
+                                            ?>
+                                        </select>
                                     </td>
                                     <td>
-                                        <input placeholder="CLR No" type="text" name="clr_no[]" class="mb-2 form-control-sm form-control" required>
+                                        <input placeholder="CLR No" type="text" name="clr_no[]" class="mb-2 form-control-sm form-control">
                                     </td>
                                     <td>
                                         <input placeholder="DZS" type="number" name="dzs[]" class="mb-2 form-control-sm form-control">
@@ -216,7 +226,17 @@ function modal()
                             <tbody>
                                 <tr>
                                     <td>
-                                        <input placeholder="Size" type="text" name="size[]" class="mb-2 form-control-sm form-control" required>
+                                        <select name="size[]" class="style mb-2 form-control-sm form-control" required>
+                                            <option></option>
+                                            <?php
+                                            $conn = db_connection();
+                                            $sql = "SELECT * FROM size WHERE status = 1";
+                                            $results = mysqli_query($conn, $sql);
+                                            while ($result = mysqli_fetch_assoc($results)) {
+                                                echo '<option value="' . $result['id'] . '">' . $result['size'] . '</option>';
+                                            }
+                                            ?>
+                                        </select>
                                     </td>
                                     <td>
                                         <input placeholder="PrePack Code" type="text" name="ppk[]" class="mb-2 form-control-sm form-control" required>
@@ -344,7 +364,7 @@ include_once "includes/header.php";
                                 <tr>
                                     <td><?= $count ?></td>
                                     <td> <a class="btn btn-sm btn-outline-success" href="<?= $path . '/index.php?page=single_style&id=' . $rowo['StyleID'] ?>" target="_blank"><?= $rowo['StyleNumber'] ?></a></td>
-                                    <td><img class="img-fluid img-thumbnail rounded" alt="Style No: <?= $rowo['StyleNumber'] ?>" onclick="view('<?= $rowo['StyleImage'] ?>');" id="<?= $rowo['StyleImage'] ?>" src="<?= $path . $uploadpath . $rowo['StyleImage'] ?>" style="max-height:50px;"></td>
+                                    <td><img class="img-fluid img-thumbnail rounded" alt="Style No: <?= $rowo['StyleNumber'] ?>" onclick="view('<?= $rowo['StyleImage'] ?>');" id="<?= $rowo['StyleImage'] ?>" src="<?= getimg($rowo['StyleImage']) ?>" style="max-height:50px;"></td>
                                     <td><?= $rowo['color'] ?></td>
                                     <td><?= $rowo['Dzs'] ?></td>
                                     <td><?= $rowo['PPack'] ?></td>

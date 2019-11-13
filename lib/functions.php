@@ -148,3 +148,16 @@ function links($pageno, $total_pages)
     </ul>
 <?php
 }
+
+
+function getimg($img){
+    global $uploadpath;
+    global $path;
+
+    $image = $path . $uploadpath . $img;
+	if (file_exists($_SERVER['DOCUMENT_ROOT'] . $image)) {
+        echo $image;
+    }else{
+        echo $path . $uploadpath . 'noimg.png';
+    }
+}

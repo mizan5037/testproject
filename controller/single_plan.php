@@ -6,12 +6,12 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
 }
 
 $conn = db_connection();
-$sql = "SELECT p.id, p.title, p.poid, p.styleid, o.PONumber, s.StyleNumber FROM plan p LEFT JOIN po o ON o.POID = p.poid LEFT JOIN style s ON s.StyleID = p.styleid WHERE p.status = 1 AND p.id = '$id'";
+$sql = "SELECT p.id, p.title, SUM(od.Units) as quantity, p.poid, p.styleid, o.PONumber, s.StyleNumber FROM plan p LEFT JOIN po o ON o.POID = p.poid LEFT JOIN style s ON s.StyleID = p.styleid LEFT JOIN order_description od ON od.POID = o.POID WHERE p.status = 1 AND p.id  = '$id' GROUP BY od.Color";
 
 $row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
 
-$sql = "SELECT pd.date, pd.qty, l.line, f.floor_name, pd.id FROM plan_details pd LEFT JOIN floor f ON f.floor_id = pd.floor LEFT JOIN line l ON l.id = pd.line WHERE pd.plan_id = '$id' AND pd.status=1";
+$sql = "SELECT pd.date, pd.qty, l.line, f.floor_name, pd.id FROM plan_details pd LEFT JOIN floor f ON f.floor_id = pd.floor LEFT JOIN line l ON l.id = pd.line WHERE pd.plan_id = '$id' AND pd.status= 1 ORDER BY pd.date ASC ";
 $plan_details = mysqli_query($conn, $sql);
 
 

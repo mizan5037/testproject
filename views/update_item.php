@@ -6,7 +6,7 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
-  
+
     include_once "controller/update_item.php";
     include_once "includes/header.php";
  ?>
@@ -21,7 +21,7 @@ function customPageHeader()
                 </div>
                 <div>Update Item
                     <div class="page-title-subheading">
-                        Please use this form to update Item.
+                        Please use this form to update Item...
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@ function customPageHeader()
     <div class="main-card mb-3 card">
         <div class="card-body">
             <form class="needs-validation" method="POST"  novalidate>
-                
+
                 <table id="myTable" class="mb-0 table table-bordered order-list1" >
                     <thead>
                         <tr>
@@ -47,15 +47,15 @@ function customPageHeader()
                             <td><?php echo $row['ItemID']; ?></td>
                             <td>
                                 <input type="text" name="item_name" class="form-control"  id="validationTooltip01" value="<?php echo $row['ItemName']; ?>"  placeholder="Name" required>
-                               
+
                             </td>
                             <td>
                                 <input type="text" name="item_specification" class="form-control" value="<?php echo $row['ItemDescription']; ?>" id="validationTooltip02" placeholder="Specification" required>
-                                
+
                             </td>
                               <td>
                                <input type="text" name="item_unit" value="<?php echo $row['ItemMeasurementUnit']; ?>" class="form-control" id="validationTooltipUsername" placeholder="Measurement Unit" required>
-                               
+
                             </td>
                             <td><a class="deleteRow"></a>
 
@@ -63,10 +63,10 @@ function customPageHeader()
                         </tr>
                     <?php } ?>
                     </tbody>
-                    
+
                 </table>
                 <br>
-                
+
                  <div class="text-center">
                     <button class="btn btn-primary" name="update" type="submit">Save</button>
                 </div>

@@ -93,7 +93,7 @@ include_once "includes/header.php";
                                     <input placeholder="Qty" id="qty" name="qty[]" type="number" class="mb-2 form-control-sm form-control" >
                                 </td>
                                 <td>
-                                    <input placeholder="PPU" id="ppu" name="ppu[]" type="number" class="mb-2 form-control-sm form-control">
+                                    <input placeholder="PPU" id="ppu" name="ppu[]" type="number" class="mb-2 form-control-sm form-control" step="0.01" required>
                                 </td>
                                 <td><a class="deleteRow"></a></td>
                             </tr>
