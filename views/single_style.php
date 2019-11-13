@@ -153,7 +153,17 @@ function modal()
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>
-                                        <input placeholder="Size" type="text" name="size[]" class="mb-2 form-control-sm form-control" required>
+                                        <select name="size[]" class="style mb-2 form-control-sm form-control" required>
+                                            <option></option>
+                                            <?php
+                                                $conn = db_connection();
+                                                $sql = "SELECT * FROM size WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    echo '<option value="' . $result['id'] . '">' . $result['size'] . '</option>';
+                                                }
+                                                ?>
+                                        </select>
                                     </td>
                                     <td>
                                         <select name="item[]" class="item mb-2 form-control-sm form-control" required>
@@ -172,7 +182,17 @@ function modal()
                                 <tr>
                                     <th scope="row">2</th>
                                     <td>
-                                        <input placeholder="Size" type="text" name="size[]" class="mb-2 form-control-sm form-control">
+                                        <select name="size[]" class="style mb-2 form-control-sm form-control" >
+                                            <option></option>
+                                            <?php
+                                                $conn = db_connection();
+                                                $sql = "SELECT * FROM size WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    echo '<option value="' . $result['id'] . '">' . $result['size'] . '</option>';
+                                                }
+                                                ?>
+                                        </select>
                                     </td>
                                     <td>
                                         <select name="item[]" class="item mb-2 form-control-sm form-control">
@@ -191,7 +211,17 @@ function modal()
                                 <tr>
                                     <th scope="row">3</th>
                                     <td>
-                                        <input placeholder="Size" type="text" name="size[]" class="mb-2 form-control-sm form-control">
+                                        <select name="size[]" class="style mb-2 form-control-sm form-control" >
+                                            <option></option>
+                                            <?php
+                                                $conn = db_connection();
+                                                $sql = "SELECT * FROM size WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    echo '<option value="' . $result['id'] . '">' . $result['size'] . '</option>';
+                                                }
+                                                ?>
+                                        </select>
                                     </td>
                                     <td>
                                         <select name="item[]" class="item mb-2 form-control-sm form-control">
@@ -210,7 +240,17 @@ function modal()
                                 <tr>
                                     <th scope="row">4</th>
                                     <td>
-                                        <input placeholder="Size" type="text" name="size[]" class="mb-2 form-control-sm form-control">
+                                        <select name="size[]" class="style mb-2 form-control-sm form-control" >
+                                            <option></option>
+                                            <?php
+                                                $conn = db_connection();
+                                                $sql = "SELECT * FROM size WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    echo '<option value="' . $result['id'] . '">' . $result['size'] . '</option>';
+                                                }
+                                                ?>
+                                        </select>
                                     </td>
                                     <td>
                                         <select name="item[]" class="item mb-2 form-control-sm form-control">
@@ -336,8 +376,8 @@ function modal()
                                 <div class="col-md-12"><br></div>
                                 <div class="col-md-4"><label for="img">New Style Image:</label></div>
                                 <div class="col-md-8">
-                                    <input onchange="readURL(this);" type="file" name="img"  class="form-control-file" id="img">
-                                    <input type="hidden" name="style_id" value="<?=$id?>">
+                                    <input onchange="readURL(this);" type="file" name="img" class="form-control-file" id="img">
+                                    <input type="hidden" name="style_id" value="<?= $id ?>">
                                 </div>
                             </div>
                         </div>

@@ -27,7 +27,7 @@ if ( isset($_POST['buyer']) && $_POST['type'] && isset($_POST['color']) && isset
 		}
 	}
  
-    
+    nowgo('/index.php?page=item_stock');
 }
 
 ?>
