@@ -116,6 +116,7 @@ function customPageHeader()
 
 function modal()
 {
+    global $item;
     ?>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -314,6 +315,40 @@ function modal()
     </div>
 
     <!--  image modal end -->
+    <!-- The Modal -->
+    <div class="modal fade" id="imgedit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Image</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row text-center">
+                                <div class="col-md-12">
+                                    <img src="<?= getimg($item['StyleImage']) ?>" id="image" class="img-fluid img-thumbnail rounded" alt="No Image">
+                                </div>
+                                <div class="col-md-12"><br></div>
+                                <div class="col-md-4"><label for="img">New Style Image:</label></div>
+                                <div class="col-md-8"><input onchange="readURL(this);" type="file" name="img" class="form-control-file" id="img"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--  image modal end -->
+
 <?php }
 
 
@@ -375,13 +410,52 @@ include_once "includes/header.php";
                     </table>
                 </div>
                 <div class="col-md-6">
-                    <?php if (!file_exists($path . $uploadpath . $item['StyleImage'])) { ?>
-                        <img style="max-height:265px;" onclick="view('myImg');" id="myImg" src="<?= $path . $uploadpath . $item['StyleImage'] ?>" class="img-fluid img-thumbnail rounded" alt="Style No: <?= $item['StyleNumber'] ?>">
-                    <?php } else {
-                        ?>
-                        <img style="max-height:265px;" src="<?= $path ?>/assets/images/noimg.png" class="img-fluid img-thumbnail rounded" alt="No Image">
-                    <?php
-                    } ?>
+                    <style>
+                        .btn-label {
+                            position: relative;
+                            left: -12px;
+                            display: inline-block;
+                            font-size: 20px;
+                            padding: 0px 10px;
+                            background: rgba(0, 0, 0, 0.15);
+                            border-radius: 3px 0 0 3px;
+                        }
+
+                        .btn-labeled {
+                            padding-top: 0;
+                            padding-bottom: 0;
+                        }
+
+                        .btn {
+                            margin-bottom: 10px;
+                        }
+
+                        .img-thumbnail {
+                            max-height: 265px;
+                            position: relative;
+                        }
+
+                        .edit {
+                            position: absolute;
+                            bottom: 16px;
+                            right: 29px;
+                        }
+
+                        .name {
+                            line-height: 20px;
+                        }
+                    </style>
+                    <div>
+                        <img onclick="view('myImg');" id="myImg" src="<?= getimg($item['StyleImage']) ?>" class="img-fluid img-thumbnail rounded" alt="Style No: <?= $item['StyleNumber'] ?>">
+                        <div class="edit">
+                            <button type="button" class="btn btn-labeled btn-primary" data-toggle="modal" data-target="#imgedit">
+                                <span class="btn-label">
+                                    <i class="pe-7s-camera"></i>
+                                </span>
+                                <span class="name">Edit</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -421,7 +495,6 @@ include_once "includes/header.php";
                         <?php } ?>
                     </table>
                 </div>
-
             </div>
         </div>
     </div>
@@ -476,7 +549,6 @@ include_once "includes/header.php";
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
     </div>
@@ -492,6 +564,23 @@ function customPagefooter()
     ?>
 
     <script>
+        // Image Load
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#image')
+                        .attr('src', e.target.result)
+                        .width()
+                        .height();
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
         // Get the modal
         var modal = document.getElementById("myModal");
 
