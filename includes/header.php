@@ -289,6 +289,12 @@
                                             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                         </a>
                                         <ul>
+                                            <li <?php active('b2b_report'); ?>>
+                                                <a href="<?= $path ?>/index.php?page=b2b_report">
+                                                    <i class="metismenu-icon"></i>
+                                                    B2B Report
+                                                </a>
+                                            </li>
                                             <li <?php active('new_b2b_lc'); ?>>
                                                 <a href="<?= $path ?>/index.php?page=new_b2b_lc">
                                                     <i class="metismenu-icon"></i>
@@ -399,7 +405,7 @@
                                                   <li <?php active('fab_issue_stock'); ?>>
                                                       <a href="<?= $path ?>/index.php?page=fab_issue_stock">
                                                           <i class="metismenu-icon">
-                                                          </i>Fabric Issue Received
+                                                          </i>Fabric Issue Register
                                                       </a>
                                                   </li>
                                                     <li <?php active('fab_issue'); ?>>
