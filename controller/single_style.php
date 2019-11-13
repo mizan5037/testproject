@@ -74,12 +74,13 @@ if (isset($_POST['size']) && isset($_POST['item']) && isset($_POST['qty'])) {
 
             if (mysqli_query($conn, $sqli)) {
                 notice('success', 'New Item Added Successfully.');
-                nowgo('/index.php?page=single_style&id=' . $id);
+                
             } else {
                 notice('error', $sql . "<br>" . mysqli_error($conn));
             }
         }
     }
+    nowgo('/index.php?page=single_style&id=' . $id);
 }
 
 
@@ -97,12 +98,14 @@ if (isset($_POST['trim_name']) && isset($_POST['trim_description'])) {
 
             if (mysqli_query($conn, $sql)) {
                 notice('success', 'New TRIMS & ACCESSORIES Added Successfully.');
-                nowgo('/index.php?page=single_style&id=' . $id);
+                
             } else {
                 notice('error', $sql . "<br>" . mysqli_error($conn));
             }
         }
+        
     }
+    nowgo('/index.php?page=single_style&id=' . $id);
 }
 
 
