@@ -62,29 +62,22 @@ include_once "includes/header.php";
                         <th><?= $color['color'];?></th>
                         <th>
                           <table style="text-transform: uppercase; border: 1px solid black; text-align:center;" border="1">
-                            <tr>
-                              <th>Description</th>
                               <?php
                                 foreach ($cutiting_size as $key => $size) {
                                   $size_id = $size['Size'];
                                   $sql = "SELECT SUM(Qty) as Total FROM cutting_form_description WHERE Size = '$size_id' AND Color = '$color_id'";
                                   $total = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+                                  echo "<tr>";
+                                  echo "<th>Description</th>";
                                   echo "<th>".$size['size']."</th>";
+                                  echo "<tr>";
 
-
+                                  foreach ($total as  $value) {
+                                    echo "<th>Qty</th>";
+                                    echo "<th>".$value."</th>";
+                                  }
                                 }
-
                                ?>
-                             </tr>
-                             <tr>
-                               <?php
-
-                               foreach ($total as  $value) {
-                                 echo "<th>Qty</th>";
-                                 echo "<th>".$value."</th>";
-                               }
-                                ?>
-                             </tr>
                             <tr>
                               <th></th>
                             </tr>

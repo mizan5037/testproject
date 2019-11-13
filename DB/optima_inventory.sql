@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2019 at 07:19 AM
+-- Generation Time: Nov 13, 2019 at 12:58 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -63,14 +63,6 @@ CREATE TABLE `b2blc` (
   `AddedBy` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `b2blc`
---
-
-INSERT INTO `b2blc` (`B2BLCID`, `B2BLCNumber`, `MasterLCID`, `SupplierName`, `ContactPerson`, `ContactNumber`, `SupplierAddress`, `Issuedate`, `Maturitydate`, `timestamp`, `Status`, `AddedBy`) VALUES
-(1, '54544', 1, '5454', '45545', '54545445454', '5454trtrthhtffgbv', '2019-11-06', '2019-11-23', '2019-11-05 04:15:06', 1, 1),
-(2, '2121', 1, '221', '122121443', '21212', '2121', '2019-11-08', '2019-11-25', '2019-11-05 04:08:02', 1, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -90,14 +82,6 @@ CREATE TABLE `b2b_item` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `b2b_item`
---
-
-INSERT INTO `b2b_item` (`ID`, `ItemID`, `StyleID`, `POID`, `B2BLCID`, `Qty`, `PricePerUnit`, `TotalPrice`, `AddedBy`, `timestamp`, `Status`) VALUES
-(1, 1, 1, 1, 1, 455, 54, 5454, 1, '2019-11-05 03:50:04', 1),
-(2, 1, 1, 1, 2, 221121, 2112, 121212, 1, '2019-11-05 03:59:09', 1);
 
 -- --------------------------------------------------------
 
@@ -128,7 +112,7 @@ CREATE TABLE `buyer` (
 --
 
 INSERT INTO `buyer` (`BuyerID`, `BuyerName`, `BuyerEmail`, `BuyerPhone`, `BuyerAddress1`, `BuyerAddress2`, `BuyerCity`, `BuyerCountry`, `BuyerBuyingHouseName`, `BuyerContactPerson`, `ContactPersonDesignation`, `ContactPersonPhone`, `timestamp`, `AddedBy`, `Status`) VALUES
-(1, 'uhdfsj', 'admin@diu.edu.bd', '6543684654', 'SDSF', 'SADFD', 'SFDF', 'SFDFD', 'SFDDS', 'SFD', 'SDFFDS', 'SFD', '2019-11-05 03:20:41', 1, 1);
+(1, 'MG MACAO COMMERCIAL OFFSHORE LTD', 'test@exmaple.com', '01800000000', 'RM 901, WING  OF PLAZA', '62 MODY ROAD, TSIMSAHATSUI', 'KOWLOON', 'HONG KONG', 'Demo LTD', 'Jhon Doe', 'Demo Designation', '01788000000', '2019-11-13 10:48:51', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -149,21 +133,6 @@ CREATE TABLE `carton_form` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `carton_form`
---
-
-INSERT INTO `carton_form` (`CartonFromID`, `date`, `POID`, `StyleID`, `Color`, `Qty`, `Remark`, `AddedBy`, `Status`, `timestamp`) VALUES
-(1, '2019-12-15', 3, 1, '1', 4545, 'split', 1, 1, '2019-11-06 05:14:14'),
-(2, '2019-11-23', 3, 1, '1', 4545, 'to', 1, 1, '2019-11-06 05:12:31'),
-(3, '2019-11-23', 3, 1, '1', 4545, 'hi', 1, 1, '2019-11-06 05:13:14'),
-(4, '2019-11-23', 3, 1, '1', 4545, 'go', 1, 1, '2019-11-06 05:13:22'),
-(5, '1999-11-06', 3, 1, '1', 100, 'iuoiuiou', 1, 1, '2019-11-06 05:13:46'),
-(6, '2019-11-24', 2, 1, '1', 200, 'dfgf', 1, 1, '2019-11-06 02:50:36'),
-(7, '2019-11-22', 2, 1, '1', 4545, 'dd', 1, 1, '2019-11-06 04:55:09'),
-(8, '2019-11-22', 1, 1, '1', 332, 'dd', 1, 1, '2019-11-06 04:55:09'),
-(9, '2019-11-22', 3, 1, '1', 34, 'asas', 1, 1, '2019-11-06 04:55:09');
-
 -- --------------------------------------------------------
 
 --
@@ -183,7 +152,9 @@ CREATE TABLE `color` (
 --
 
 INSERT INTO `color` (`id`, `color`, `addedby`, `timestamp`, `status`) VALUES
-(1, 'White', 1, '2019-11-04 22:37:44', 1);
+(1, 'LTBL', 1, '2019-11-13 10:20:00', 1),
+(2, 'OPWH', 1, '2019-11-13 10:21:06', 1),
+(3, 'BLFN', 1, '2019-11-13 10:21:28', 1);
 
 -- --------------------------------------------------------
 
@@ -207,8 +178,7 @@ CREATE TABLE `cutting_form` (
 --
 
 INSERT INTO `cutting_form` (`CuttingFormID`, `date`, `StyleID`, `CuttingNo`, `POID`, `AddedBy`, `Status`, `timestamp`) VALUES
-(1, '2019-11-12', 1, 2, 1, 1, 0, '2019-11-12 05:25:21'),
-(2, '2019-11-30', 1, 200000, 1, 1, 1, '2019-11-12 05:46:00');
+(1, '2019-11-06', 1, 215, 1, 1, 1, '2019-11-13 11:51:21');
 
 -- --------------------------------------------------------
 
@@ -235,11 +205,12 @@ CREATE TABLE `cutting_form_description` (
 --
 
 INSERT INTO `cutting_form_description` (`ID`, `CuttingFormID`, `Color`, `Size`, `Qty`, `PrintEMBSent`, `PrintEmbReceive`, `remark`, `AddedBy`, `Status`, `timestamp`) VALUES
-(1, 0, '1', '1', 78897, 788789, 879897, '897897897', 1, 1, '2019-11-12 05:08:23'),
-(3, 2, '1', '1', 1, 1, 1, '1', 1, 1, '2019-11-12 06:18:54'),
-(4, 2, '1', '1', 554, 4554, 5454, '5454', 1, 1, '2019-11-12 06:17:08'),
-(5, 2, '1', '1', 5454, 5454, 5454, '54545', 1, 1, '2019-11-12 06:17:08'),
-(6, 2, '1', '1', 1, 1, 1, '1', 1, 1, '2019-11-12 06:18:54');
+(1, 1, '1', '1', 300, 300, 296, 'Missing', 1, 1, '2019-11-13 11:51:21'),
+(2, 1, '1', '2', 250, 250, 250, '', 1, 1, '2019-11-13 11:51:21'),
+(3, 1, '1', '3', 220, 220, 218, '', 1, 1, '2019-11-13 11:51:21'),
+(4, 1, '1', '4', 212, 212, 212, '', 1, 1, '2019-11-13 11:51:21'),
+(5, 1, '1', '5', 213, 213, 213, '', 1, 1, '2019-11-13 11:51:22'),
+(6, 1, '1', '6', 214, 214, 214, '', 1, 1, '2019-11-13 11:51:22');
 
 -- --------------------------------------------------------
 
@@ -261,7 +232,7 @@ CREATE TABLE `fabric_issue_other` (
 --
 
 INSERT INTO `fabric_issue_other` (`ID`, `BuyerID`, `ContrastPocket`, `AddedBy`, `timestamp`, `Status`) VALUES
-(1, 1, 'pocketing', 1, '2019-11-11 05:06:51', 1);
+(1, 1, 'contrast', 1, '2019-11-13 11:21:45', 1);
 
 -- --------------------------------------------------------
 
@@ -289,12 +260,7 @@ CREATE TABLE `fabric_issue_other_description` (
 --
 
 INSERT INTO `fabric_issue_other_description` (`ID`, `FabricIssueotherID`, `Particulars`, `Color`, `Qtz`, `Consumption`, `RqdQty`, `IssueQty`, `Roll`, `AddedBy`, `timestamp`, `Status`) VALUES
-(1, 1, '546', 1, 4554, 5454, 5454, 5454, 54545, 1, '2019-11-11 06:09:21', 0),
-(2, 1, '5454', 1, 4554, 5445, 4554, 545, 4554, 1, '2019-11-11 06:10:27', 0),
-(3, 1, '7865', 1, 1, 1, 1, 1, 1, 1, '2019-11-11 06:09:44', 1),
-(4, 1, '465564', 1, 45, 5445, 4554, 5454, 4554, 1, '2019-11-11 06:09:31', 0),
-(5, 1, '7865', 1, 4554, 5454, 4554, 5454, 4554, 1, '2019-11-11 05:38:59', 1),
-(6, 1, '100', 1, 0, 0, 0, 0, 10, 1, '2019-11-11 06:10:24', 0);
+(1, 1, '10-50/3', 1, 12, 1, 50, 300, 3, 1, '2019-11-13 11:21:45', 1);
 
 -- --------------------------------------------------------
 
@@ -317,7 +283,7 @@ CREATE TABLE `fab_issue` (
 --
 
 INSERT INTO `fab_issue` (`FabIssueID`, `BuyerID`, `StyleID`, `POID`, `timestamp`, `AddedBy`, `Status`) VALUES
-(1, 1, 1, 1, '2019-11-11 04:46:51', 1, 1);
+(1, 1, 1, 1, '2019-11-13 11:22:22', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -345,12 +311,7 @@ CREATE TABLE `fab_issue_description` (
 --
 
 INSERT INTO `fab_issue_description` (`ID`, `FabIssueID`, `Particulars`, `Color`, `Qtz`, `Consumption`, `RqdQty`, `IssueQty`, `Roll`, `AddedBy`, `Status`, `timestamp`) VALUES
-(1, 1, '7865', '1', 45335, 4535, 45354, 435435, 546546, 1, 1, '2019-11-11 04:46:51'),
-(2, 1, '54564', '1', 456564, 546564, 456654, 45654, 546564, 1, 1, '2019-11-11 04:46:51'),
-(3, 1, '4554', '1', 5454, 4554, 5454, 554, 5445, 1, 0, '2019-11-11 06:09:02'),
-(4, 1, 'qw', '1', 55, 5445, 5454, 5454, 554, 1, 0, '2019-11-11 06:03:23'),
-(5, 1, '545454545454545454545', '1', 4554, 5454, 4554, 4545, 5445, 1, 0, '2019-11-11 06:03:06'),
-(6, 1, '7865', '1', 4554, 4535, 4554, 435435, 333, 1, 0, '2019-11-11 06:08:55');
+(1, 1, '10-50/3', '1', 10, 1, 50, 300, 3, 1, 1, '2019-11-13 11:22:22');
 
 -- --------------------------------------------------------
 
@@ -379,7 +340,8 @@ CREATE TABLE `fab_receive` (
 --
 
 INSERT INTO `fab_receive` (`FabReceiveID`, `POID`, `StyleID`, `Color`, `Shade`, `Shrinkage`, `Width`, `ReceivedFab`, `ReceivedRoll`, `Shortage`, `AddedBy`, `timestamp`, `Status`) VALUES
-(1, 1, 1, '1', 'B', '10', '46', 45564, 65454, 45654, 1, '2019-11-11 04:56:32', 1);
+(1, 1, 1, '1', 'A', '>7.25%', '56', 1700, 10, 0, 1, '2019-11-13 11:13:20', 1),
+(2, 1, 1, '1', 'H', '>8.3', '50.6', 113, 9, 0, 1, '2019-11-13 11:15:05', 1);
 
 -- --------------------------------------------------------
 
@@ -408,7 +370,7 @@ CREATE TABLE `fab_receive_other` (
 --
 
 INSERT INTO `fab_receive_other` (`id`, `BuyerID`, `ContrastPocket`, `Color`, `Shade`, `Shrinkage`, `Width`, `ReceivedFab`, `ReceivedRoll`, `Shortage`, `AddedBy`, `timestamp`, `Status`) VALUES
-(1, 1, 'contrast', '1', 'B', '455', '5454', 5454, 5454, 5454, 1, '2019-11-11 04:56:52', 1);
+(1, 1, 'contrast', '1', 'A', '>6.25%', '55', 1284, 11, 0, 1, '2019-11-13 11:15:54', 1);
 
 -- --------------------------------------------------------
 
@@ -425,16 +387,6 @@ CREATE TABLE `fab_relaxation` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `fab_relaxation`
---
-
-INSERT INTO `fab_relaxation` (`FabRelaxationID`, `BuyerID`, `StyleID`, `Color`, `AddedBy`, `timestamp`, `Status`) VALUES
-(7, 1, 1, '1', 1, '2019-11-06 00:39:58', 0),
-(8, 1, 1, '1', 1, '2019-11-06 00:52:54', 0),
-(9, 1, 1, '1', 1, '2019-11-06 00:52:57', 0),
-(10, 1, 1, '1', 1, '2019-11-06 00:53:52', 1);
 
 -- --------------------------------------------------------
 
@@ -465,18 +417,6 @@ CREATE TABLE `fab_relaxation_description` (
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `fab_relaxation_description`
---
-
-INSERT INTO `fab_relaxation_description` (`ID`, `FabRelaxationID`, `Date`, `Shade`, `Shrinkage`, `RollNo`, `Yds`, `Shade2`, `Shrinkage2`, `RollNo2`, `Yds2`, `TotalYds`, `fabricOpenTime`, `FabricLayDate`, `FabricLayTime`, `TotalHours`, `Remarks`, `AddedBy`, `timestamp`, `Status`) VALUES
-(7, 7, '2019-11-12', '', '', 0, 0, '', '', 0, 0, 0, '', '0000-00-00', '', 0, '', 1, '2019-11-06 00:34:47', 1),
-(8, 8, '2019-11-12', 'hg', '', 0, 0, '', '', 0, 0, 0, '', '0000-00-00', '', 0, '', 1, '2019-11-06 00:36:44', 1),
-(9, 9, '2019-11-12', 'ssss', 'ssss', 44, 44, 'hhgh', 'hgh', 11, 22522, 4444, '444', '2019-04-08', 'uyuyu', 4455, 'yuy', 1, '2019-11-06 01:07:17', 1),
-(10, 9, '2019-11-18', '', '', 55444, 1, '', '', 0, 522, 0, '', '0000-00-00', '', 0, '', 1, '2019-11-06 00:48:51', 1),
-(11, 10, '2019-11-11', 'fdgfg', 'gfggf88', 0, 54, 'fgf444', 'fgfg', 77, 6, 46565, 'ffggf', '2019-11-11', '554546', 56456, 'fggfgf', 1, '2019-11-06 01:38:01', 1),
-(12, 10, '2019-11-11', 'fdgfg', '22', 0, 4, 'fgf', 'fgfg', 411, 44, 456, 'ffggfuuu', '2019-11-18', 'gfgf', 564546, 'fggfgf', 1, '2019-11-06 01:38:10', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -490,14 +430,6 @@ CREATE TABLE `floor` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `addedby` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `floor`
---
-
-INSERT INTO `floor` (`floor_id`, `floor_name`, `status`, `timestamp`, `addedby`) VALUES
-(1, '6th', 1, '2019-11-08 23:12:26', 1),
-(2, '5th', 1, '2019-11-08 23:13:37', 1);
 
 -- --------------------------------------------------------
 
@@ -593,7 +525,7 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`ItemID`, `ItemName`, `ItemDescription`, `ItemMeasurementUnit`, `AddedBy`, `timestamp`, `status`) VALUES
-(1, 'Shirt', 'Blue', '200', 1, '2019-11-04 22:38:10', 1);
+(1, 'MAIN LABEL', 'MAIN LABEL', 'PCS', 1, '2019-11-13 10:26:02', 1);
 
 -- --------------------------------------------------------
 
@@ -617,7 +549,12 @@ CREATE TABLE `itemrequirment` (
 --
 
 INSERT INTO `itemrequirment` (`ItemRequirmentID`, `ItemRequirmentStyleID`, `ItemRequirmentItemID`, `ItemRequirmentSize`, `ItemRequirmentQty`, `AddedBy`, `timestamp`, `Status`) VALUES
-(1, 1, 1, '1', 200, 1, '2019-11-04 22:39:48', 1);
+(1, 1, 1, '1', 400, 1, '2019-11-13 10:35:48', 1),
+(2, 1, 1, '2', 500, 1, '2019-11-13 10:35:48', 1),
+(3, 1, 1, '3', 600, 1, '2019-11-13 10:35:48', 1),
+(4, 1, 1, '4', 650, 1, '2019-11-13 10:35:49', 1),
+(5, 1, 1, '5', 700, 1, '2019-11-13 10:35:49', 1),
+(6, 1, 1, '6', 800, 1, '2019-11-13 10:35:49', 1);
 
 -- --------------------------------------------------------
 
@@ -635,9 +572,22 @@ CREATE TABLE `item_issue_access` (
   `Size` varchar(200) NOT NULL,
   `Qty` int(11) NOT NULL,
   `AddedBy` int(11) NOT NULL,
-  `timestamp` int(11) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `item_issue_access`
+--
+
+INSERT INTO `item_issue_access` (`ID`, `CuttingNumber`, `ItemID`, `StyleID`, `POID`, `Color`, `Size`, `Qty`, `AddedBy`, `timestamp`, `Status`) VALUES
+(1, '215', 1, 1, 1, '1', '1', 230, 1, '0000-00-00 00:00:00', 1),
+(2, '215', 1, 1, 1, '1', '1', 200, 1, '2019-11-13 11:48:31', 1),
+(3, '215', 1, 1, 1, '1', '2', 212, 1, '2019-11-13 11:48:31', 1),
+(4, '215', 1, 1, 1, '1', '3', 344, 1, '2019-11-13 11:48:31', 1),
+(5, '215', 1, 1, 1, '1', '4', 210, 1, '2019-11-13 11:48:31', 1),
+(6, '215', 1, 1, 1, '1', '5', 36, 1, '2019-11-13 11:48:31', 1),
+(7, '215', 1, 1, 1, '1', '6', 96, 1, '2019-11-13 11:48:31', 1);
 
 -- --------------------------------------------------------
 
@@ -658,6 +608,13 @@ CREATE TABLE `item_receive_access` (
   `TimeStamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `item_receive_access`
+--
+
+INSERT INTO `item_receive_access` (`ID`, `ItemID`, `ColorID`, `StyleID`, `POID`, `Size`, `Received`, `Shortage`, `AddedBy`, `TimeStamp`, `Status`) VALUES
+(1, 1, 1, 1, 1, 1, 2000, 120, 1, '2019-11-13 11:37:55', 1);
 
 -- --------------------------------------------------------
 
@@ -680,13 +637,6 @@ CREATE TABLE `lay_form` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `lay_form`
---
-
-INSERT INTO `lay_form` (`LayFormID`, `BuyerID`, `StyleID`, `POID`, `CuttingNo`, `Unit`, `Date`, `MarkerWidth`, `MarkerLength`, `SpecialAction`, `AddedBy`, `timestamp`, `Status`) VALUES
-(1, 1, 1, 1, 'jkl', '546', '2019-11-11', '56', '15', 'rthhygfhggf', 1, '2019-11-11 06:29:07', 1);
 
 -- --------------------------------------------------------
 
@@ -712,14 +662,6 @@ CREATE TABLE `lay_form_details` (
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `lay_form_details`
---
-
-INSERT INTO `lay_form_details` (`ID`, `layFormID`, `Color`, `LotNo`, `SlNo`, `RollNo`, `TTLFabricsYds`, `Lay`, `UsedFabricYds`, `RemainingYds`, `Shortage`, `Sticker`, `AddedBy`, `timestamp`, `Status`) VALUES
-(1, 1, '1', 45, 5, 55, 5, 54, 54, 5, 54, '54', 1, '2019-11-11 06:29:07', 1),
-(2, 1, '1', 45, 5, 22, 5, 54, 54, 5, 54, '54', 1, '2019-11-11 06:29:07', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -734,16 +676,6 @@ CREATE TABLE `line` (
   `addedby` int(11) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `line`
---
-
-INSERT INTO `line` (`id`, `floor`, `line`, `status`, `addedby`, `timestamp`) VALUES
-(1, '1', 'A', 1, 1, '2019-11-08 23:12:00'),
-(2, '1', 'B', 1, 1, '2019-11-08 23:11:59'),
-(3, '1', 'C', 1, 1, '2019-11-08 23:12:06'),
-(4, '2', 'A', 1, 1, '2019-11-08 23:13:59');
 
 -- --------------------------------------------------------
 
@@ -777,7 +709,7 @@ CREATE TABLE `masterlc` (
 --
 
 INSERT INTO `masterlc` (`MasterLCID`, `MasterLCNumber`, `MasterLCIssueDate`, `MasterLCExpiryDate`, `MasterLCIssuingCompany`, `MasterLCBuyer`, `MasterLCSenderBank`, `MasterLCReceiverBank`, `MasterLCCurrency`, `MasterLCAmount`, `MasterLCPartialShipment`, `MasterLCTranshipment`, `MasterLCPortOfLoading`, `MasterLCPortOfDischarge`, `Description`, `AddedBy`, `Timestamp`, `Status`) VALUES
-(1, '546', '2019-11-09', '2019-11-16', 'dgfggf', 1, '43drfd', 'gfffd', 'asddsadsa', 4443434, 1, 1, '54546', '4454', '<p>rettrtrt</p>', 1, '2019-11-05 03:21:29', 1);
+(1, 'DC TSE064836HH', '2019-12-06', '2019-10-29', 'ZAHIRA IRA', 1, 'HANG SENG BANK LIMITED', 'EXPORT IMPORT BANK OF BANGLADESH', 'USD', 14096390, 1, 1, 'BANGLADESH', 'UNITED STATES', '<p>MANUALLY SIGHED COMMERCIAL INVOICE IN 1 COPY</p>', 1, '2019-11-13 11:00:57', 1);
 
 -- --------------------------------------------------------
 
@@ -804,7 +736,7 @@ CREATE TABLE `masterlc_description` (
 --
 
 INSERT INTO `masterlc_description` (`ID`, `MasterLCID`, `POID`, `StyleID`, `Qty`, `Unit`, `Price`, `LSDate`, `AddedBy`, `timestamp`, `status`) VALUES
-(1, 1, 2, 1, 546465, '455456', 465654564, '2019-11-14', 1, '2019-11-05 03:21:29', 1);
+(1, 1, 1, 1, 4032, 'PCS', 5, '2019-11-13', 1, '2019-11-13 11:00:57', 1);
 
 -- --------------------------------------------------------
 
@@ -831,9 +763,12 @@ CREATE TABLE `order_description` (
 --
 
 INSERT INTO `order_description` (`OrderdescriptionID`, `POID`, `StyleID`, `Color`, `ClrNo`, `Dzs`, `PPack`, `Units`, `AddedBy`, `timestamp`, `Status`) VALUES
-(1, 1, 1, '1', '2584', 20, 200, 100, 1, '2019-11-04 22:41:39', 1),
-(2, 2, 1, '1', '2584', 17, 22, 7845, 1, '2019-11-05 00:05:30', 1),
-(3, 3, 1, '1', '1221', 1, 14, 242, 1, '2019-11-05 04:56:40', 1);
+(1, 1, 1, '1', '419', 3, 12, 36, 1, '2019-11-13 10:43:21', 1),
+(2, 1, 1, '1', '', 3, 12, 36, 1, '2019-11-13 10:43:21', 1),
+(3, 1, 1, '1', '', 15, 60, 180, 1, '2019-11-13 10:43:21', 1),
+(4, 1, 1, '1', '', 15, 60, 180, 1, '2019-11-13 10:43:21', 1),
+(5, 1, 1, '1', '', 30, 120, 360, 1, '2019-11-13 10:43:21', 1),
+(6, 1, 1, '1', '', 36, 144, 432, 1, '2019-11-13 10:43:21', 1);
 
 -- --------------------------------------------------------
 
@@ -856,8 +791,7 @@ CREATE TABLE `pi` (
 --
 
 INSERT INTO `pi` (`PIID`, `RefNo`, `IssueDate`, `SupplierName`, `AddedBy`, `timestamp`, `Status`) VALUES
-(1, 'jhjj', '2019-11-01', '4545', 1, '2019-11-05 03:23:10', 0),
-(2, 'jhjj', '2019-11-24', '4545', 1, '2019-11-05 03:23:03', 1);
+(1, 'OS-0913/19', '2019-10-02', 'SS-128USM BCI', 1, '2019-11-13 11:07:56', 1);
 
 -- --------------------------------------------------------
 
@@ -884,7 +818,7 @@ CREATE TABLE `pi_description` (
 --
 
 INSERT INTO `pi_description` (`PIDescriptionID`, `PIID`, `POID`, `ItemID`, `Description`, `Qty`, `PricePerUnit`, `TotalPrice`, `AddedBy`, `timestamp`, `Status`) VALUES
-(1, 2, 1, 1, 'ytytyt', 200, 2222, 444400, 1, '2019-11-05 03:23:03', 1);
+(1, 1, 1, 1, 'HIGH STRETH SATEEN SINGLE DYED WITH LAFFAR ULTRA SOFT', 39084, 2, 78168, 1, '2019-11-13 11:07:56', 1);
 
 -- --------------------------------------------------------
 
@@ -901,13 +835,6 @@ CREATE TABLE `plan` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `plan`
---
-
-INSERT INTO `plan` (`id`, `title`, `poid`, `styleid`, `addedby`, `timestamp`, `status`) VALUES
-(1, 'First Test', 2, 1, 1, '2019-11-08 23:58:56', 1);
 
 -- --------------------------------------------------------
 
@@ -926,16 +853,6 @@ CREATE TABLE `plan_details` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `floor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `plan_details`
---
-
-INSERT INTO `plan_details` (`id`, `date`, `plan_id`, `line`, `qty`, `addedby`, `status`, `timestamp`, `floor`) VALUES
-(1, '2019-11-09', 1, 2, 2000, 1, 1, '2019-11-09 00:19:44', 1),
-(2, '2019-11-09', 1, 1, 2000, 1, 1, '2019-11-09 00:19:51', 1),
-(3, '2019-11-09', 1, 3, 2000, 1, 0, '2019-11-09 01:05:38', 1),
-(4, '2019-11-09', 1, 4, 1845, 1, 0, '2019-11-09 00:59:59', 2);
 
 -- --------------------------------------------------------
 
@@ -970,9 +887,7 @@ CREATE TABLE `po` (
 --
 
 INSERT INTO `po` (`POID`, `MasterLCOccupied`, `BTBLCIDOccupied`, `PONumber`, `POFrom`, `PODate`, `POCMPWH`, `POCurrency`, `POSpecialInstruction`, `POFinalDestination`, `POCMP`, `POWASH`, `POHANGER`, `FOB`, `Division`, `special_note`, `AddedBy`, `Timestamp`, `Status`) VALUES
-(1, 0, 0, '2001478', 'Mrz', '2019-11-05', 40.25, 'BDT', 'Quick Delivery', 'Final_test', 0.25, 10, 30, 3, 'test_devision', 'Null', 1, '2019-11-05 22:53:04', 1),
-(2, 0, 0, 'test1', 'test1', '2019-11-14', 0.39, 'test1', 'test1', 'test1', 0.11, 0.13, 0.15, 0, 'test1', NULL, 1, '2019-11-05 00:05:30', 1),
-(3, 0, 0, 'fff', 'hf', '2019-11-01', 497.01, 'asddsadsa', '2112', '121212', 454.01, 22, 21.02, 20.03, '2121', 'hello from OWL', 1, '2019-11-05 05:11:09', 1);
+(1, 0, 0, '2074SB', 'DAVID TOLIDO', '2019-11-01', 13.5, 'USD', '', 'COLFAX,LA', 13.5, 0, 0, 15, 'BOYS', NULL, 1, '2019-11-13 10:43:20', 1);
 
 -- --------------------------------------------------------
 
@@ -1050,25 +965,6 @@ CREATE TABLE `po_time_action` (
   `added_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `po_time_action`
---
-
-INSERT INTO `po_time_action` (`po_time_action_id`, `projected_date`, `implement_date`, `1st_revised_implement_date`, `2nd_revised_implement_date`, `3rd_revised_implement_date`, `4th_revised_implement_date`, `remarks`, `POID`, `event_id`, `time_stamp`, `added_by`) VALUES
-(1, '2019-11-12', '2019-11-20', '', '', '2019-11-12', '', 'Confirmation', 1, 1, '2019-11-05 22:52:54', 1),
-(2, '', '', '', '', '2019-11-12', '', 'dfgh', 1, 2, '2019-11-05 22:53:16', 1),
-(3, '', '2019-11-20', '', '', '', '', 'ghgg', 2, 38, '2019-11-05 02:36:38', 1),
-(4, '2019-11-12', '2019-11-20', '', '2019-11-19', '', '', 'Confirmation 123456', 2, 1, '2019-11-05 03:16:28', 1),
-(5, '', '', '', '', '', '', 'Fabric P/I Received From Buyer	', 2, 3, '2019-11-05 01:59:24', 1),
-(6, '', '', '', '', '', '', 'etret123', 2, 4, '2019-11-05 02:35:11', 1),
-(7, '', '', '', '', '', '', 'sdfsdfsdfsdf', 1, 3, '2019-11-05 02:02:12', 1),
-(8, '', '', '2019-11-13', '', '', '', 'Received ', 2, 2, '2019-11-05 03:16:13', 1),
-(9, '', '', '', '', '', '', 'Bulk Fabric sample Received From Buyer', 2, 6, '2019-11-05 02:33:37', 1),
-(10, '', '', '', '', '', '', '123', 2, 5, '2019-11-05 02:35:39', 1),
-(11, '', '', '', '', '', '', 'dasdasdasd', 2, 8, '2019-11-05 02:42:49', 1),
-(12, '', '', '', '', '2019-11-19', '', '', 2, 37, '2019-11-05 03:17:05', 1),
-(13, '', '', '2019-11-13', '', '', '', '', 3, 1, '2019-11-05 05:10:45', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -1091,9 +987,12 @@ CREATE TABLE `prepack` (
 --
 
 INSERT INTO `prepack` (`PrePackID`, `POID`, `PrePackCode`, `PrePackSize`, `PrepackQty`, `AddedBy`, `Timestamp`, `Status`) VALUES
-(1, 1, '11', '1', 5454, 1, '2019-11-04 22:41:39', 1),
-(2, 2, '11', '1', 65445654, 1, '2019-11-05 00:05:30', 1),
-(3, 3, '4242', '1', 244, 1, '2019-11-05 04:56:40', 1);
+(1, 1, 'UFU', '1', 3, 1, '2019-11-13 10:43:21', 1),
+(2, 1, 'UGU', '2', 3, 1, '2019-11-13 10:43:21', 1),
+(3, 1, 'UHU', '3', 3, 1, '2019-11-13 10:43:21', 1),
+(4, 1, 'UIU', '4', 3, 1, '2019-11-13 10:43:21', 1),
+(5, 1, 'UJU', '5', 3, 1, '2019-11-13 10:43:21', 1),
+(6, 1, 'UKU', '6', 3, 1, '2019-11-13 10:43:21', 1);
 
 -- --------------------------------------------------------
 
@@ -1115,15 +1014,6 @@ CREATE TABLE `shipment_form` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `shipment_form`
---
-
-INSERT INTO `shipment_form` (`ShipmentFormID`, `date`, `POID`, `StyleID`, `Color`, `Shipment`, `Remark`, `Sample`, `AddedBy`, `Status`, `timestamp`) VALUES
-(1, '2019-11-10', 3, 1, 1, 200, 'kjkj', 0, 1, 0, '2019-11-06 05:48:34'),
-(3, '2019-11-10', 1, 1, 1, 1221, '', 2112, 1, 0, '2019-11-06 05:48:27'),
-(4, '2019-11-23', 1, 1, 1, 2, '44ppp', 1000, 1, 1, '2019-11-06 06:00:31');
-
 -- --------------------------------------------------------
 
 --
@@ -1143,7 +1033,12 @@ CREATE TABLE `size` (
 --
 
 INSERT INTO `size` (`id`, `size`, `addedby`, `timestamp`, `status`) VALUES
-(1, 'Xl', 1, '2019-11-04 22:37:50', 1);
+(1, 'XXS', 1, '2019-11-13 10:20:15', 1),
+(2, 'XS', 1, '2019-11-13 10:20:20', 1),
+(3, 'S', 1, '2019-11-13 10:20:24', 1),
+(4, 'M', 1, '2019-11-13 10:20:28', 1),
+(5, 'L', 1, '2019-11-13 10:20:36', 1),
+(6, 'XL', 1, '2019-11-13 10:20:40', 1);
 
 -- --------------------------------------------------------
 
@@ -1221,7 +1116,7 @@ CREATE TABLE `style` (
 --
 
 INSERT INTO `style` (`StyleID`, `StyleNumber`, `StyleDescription`, `StyleWash`, `StyleImage`, `StyleProto`, `StyleFabricDetails`, `AddedBy`, `Timestamp`, `Status`) VALUES
-(1, '20058', 'Demo_test Data', 'Low', '189984701_2019_Nov_05_1572928788_1.jpg', 'shirt_00285', 'Pure Cotton', 1, '2019-11-04 22:39:48', 1);
+(1, '125678S0UFU', 'LSSTRETHOXFORD-S0', 'NO WASH', '741513510_2019_Nov_13_1573641348_1.jpeg', 'B-2979', '58%COTTON,39%POLY,3%SPANDEX CVC SOLID STRETCH OXFORD', 1, '2019-11-13 10:35:48', 1);
 
 -- --------------------------------------------------------
 
@@ -1239,6 +1134,17 @@ CREATE TABLE `trimsaccess` (
   `Timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `trimsaccess`
+--
+
+INSERT INTO `trimsaccess` (`TrimsAccessID`, `TrimsAccessPOID`, `TrimsAccessStyleID`, `TrimsAccessName`, `TrimsAccessDescription`, `AddedBy`, `Timestamp`, `Status`) VALUES
+(1, 0, 1, 'MAIN LABEL', 'UBL 1791', 1, '2019-11-13 10:35:48', 1),
+(2, 0, 1, 'CONTENT/C.O.O.LABEL', 'UBL 1792 ,UML 1766 CO #A', 1, '2019-11-13 10:35:48', 1),
+(3, 0, 1, 'CARE LABEL', 'UML 1746', 1, '2019-11-13 10:35:48', 1),
+(4, 0, 1, 'SIZE STRIP/STICKER', 'UCT-1218 BOYS', 1, '2019-11-13 10:35:48', 1),
+(5, 0, 1, 'HANG TAG', 'UMT-1166 & USPA HOLOGRAM STICKER', 1, '2019-11-13 10:35:48', 1);
 
 -- --------------------------------------------------------
 
@@ -1283,14 +1189,6 @@ CREATE TABLE `wash_form` (
   `Status` tinyint(4) NOT NULL DEFAULT 1,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `wash_form`
---
-
-INSERT INTO `wash_form` (`WashFormID`, `Date`, `POID`, `StyleID`, `Color`, `Send`, `Receive`, `Remark`, `AddedBy`, `Status`, `timestamp`) VALUES
-(1, '2019-11-16', 1, 1, 1, 5366, 533, 'ssjhghghj', 1, 1, '2019-11-05 23:36:43'),
-(2, '2019-11-16', 3, 1, 1, 5455, 5454, 'iuoiuioudsfggg', 1, 0, '2019-11-05 23:37:13');
 
 --
 -- Indexes for dumped tables
@@ -1677,13 +1575,13 @@ ALTER TABLE `accessories`
 -- AUTO_INCREMENT for table `b2blc`
 --
 ALTER TABLE `b2blc`
-  MODIFY `B2BLCID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `B2BLCID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `b2b_item`
 --
 ALTER TABLE `b2b_item`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `buyer`
@@ -1695,25 +1593,25 @@ ALTER TABLE `buyer`
 -- AUTO_INCREMENT for table `carton_form`
 --
 ALTER TABLE `carton_form`
-  MODIFY `CartonFromID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `CartonFromID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `color`
 --
 ALTER TABLE `color`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `cutting_form`
 --
 ALTER TABLE `cutting_form`
-  MODIFY `CuttingFormID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `CuttingFormID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cutting_form_description`
 --
 ALTER TABLE `cutting_form_description`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `fabric_issue_other`
@@ -1725,7 +1623,7 @@ ALTER TABLE `fabric_issue_other`
 -- AUTO_INCREMENT for table `fabric_issue_other_description`
 --
 ALTER TABLE `fabric_issue_other_description`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `fab_issue`
@@ -1737,13 +1635,13 @@ ALTER TABLE `fab_issue`
 -- AUTO_INCREMENT for table `fab_issue_description`
 --
 ALTER TABLE `fab_issue_description`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `fab_receive`
 --
 ALTER TABLE `fab_receive`
-  MODIFY `FabReceiveID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `FabReceiveID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `fab_receive_other`
@@ -1755,19 +1653,19 @@ ALTER TABLE `fab_receive_other`
 -- AUTO_INCREMENT for table `fab_relaxation`
 --
 ALTER TABLE `fab_relaxation`
-  MODIFY `FabRelaxationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `FabRelaxationID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `fab_relaxation_description`
 --
 ALTER TABLE `fab_relaxation_description`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `floor`
 --
 ALTER TABLE `floor`
-  MODIFY `floor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `floor_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `hourly_finishing_form`
@@ -1797,37 +1695,37 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `itemrequirment`
 --
 ALTER TABLE `itemrequirment`
-  MODIFY `ItemRequirmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ItemRequirmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `item_issue_access`
 --
 ALTER TABLE `item_issue_access`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `item_receive_access`
 --
 ALTER TABLE `item_receive_access`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `lay_form`
 --
 ALTER TABLE `lay_form`
-  MODIFY `LayFormID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `LayFormID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `lay_form_details`
 --
 ALTER TABLE `lay_form_details`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `line`
 --
 ALTER TABLE `line`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `masterlc`
@@ -1845,13 +1743,13 @@ ALTER TABLE `masterlc_description`
 -- AUTO_INCREMENT for table `order_description`
 --
 ALTER TABLE `order_description`
-  MODIFY `OrderdescriptionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `OrderdescriptionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `pi`
 --
 ALTER TABLE `pi`
-  MODIFY `PIID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `PIID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pi_description`
@@ -1863,19 +1761,19 @@ ALTER TABLE `pi_description`
 -- AUTO_INCREMENT for table `plan`
 --
 ALTER TABLE `plan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `plan_details`
 --
 ALTER TABLE `plan_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `po`
 --
 ALTER TABLE `po`
-  MODIFY `POID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `POID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `po_event`
@@ -1887,25 +1785,25 @@ ALTER TABLE `po_event`
 -- AUTO_INCREMENT for table `po_time_action`
 --
 ALTER TABLE `po_time_action`
-  MODIFY `po_time_action_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `po_time_action_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `prepack`
 --
 ALTER TABLE `prepack`
-  MODIFY `PrePackID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `PrePackID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `shipment_form`
 --
 ALTER TABLE `shipment_form`
-  MODIFY `ShipmentFormID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ShipmentFormID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `size`
 --
 ALTER TABLE `size`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `stationary_issue`
@@ -1935,7 +1833,7 @@ ALTER TABLE `style`
 -- AUTO_INCREMENT for table `trimsaccess`
 --
 ALTER TABLE `trimsaccess`
-  MODIFY `TrimsAccessID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `TrimsAccessID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -1947,7 +1845,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `wash_form`
 --
 ALTER TABLE `wash_form`
-  MODIFY `WashFormID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `WashFormID` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
