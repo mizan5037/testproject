@@ -95,7 +95,7 @@ if (
                                     PPack       = '$ppack[$i]',
                                     Units       = '$units[$i]',
                                     AddedBy     = '$user_id'
-                                    where POID  = '$poid'";
+                                    where POID  = '$id'";
 
 		if (mysqli_query($conn, $sql)) {
 			notice('success', 'PO Updated Successfully');
