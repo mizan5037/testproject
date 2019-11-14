@@ -8,6 +8,7 @@ $conn = db_connection();
 
 
 include_once "includes/header.php";
+$poid = 2;
 
 ?>
 
@@ -46,13 +47,17 @@ include_once "includes/header.php";
                 <tr>
                   <th>
                     <?php
-                    $cutiting_size = "SELECT distinct s.size, cd.Size FROM cutting_form_description cd LEFT JOIN Size s ON s.id = cd.Size";
+                    $cutiting_size = "SELECT s.id, s.size FROM prepack p LEFT JOIN size s ON s.id = p.PrePackSize WHERE p.POID = '$poid'";
                     $cutiting_size = mysqli_query($conn, $cutiting_size);
 
-                    $cutting_color = "SELECT DISTINCT c.color, cd.Color FROM cutting_form_description cd LEFT JOIN color c ON cd.Color = c.id WHERE cd.Status = '1' AND c.status = '1'";
+                    $cutting_color = "SELECT DISTINCT c.color, cd.Color FROM cutting_form cf LEFT JOIN cutting_form_description cd ON cf.CuttingFormID = cd.CuttingFormID LEFT JOIN color c ON cd.Color = c.id WHERE cd.Status = '1' AND c.status = '1' AND cf.POID = '$poid'";
                     $cutting_color = mysqli_query($conn, $cutting_color);
 
-                        // code...
+
+
+                    // ORDER REPORT
+                    $order = "SELECT od.StyleID, od.color, od.units FROM order_description od WHERE od.POID = '$poid'";
+                    $order = mysqli_query($conn, $order);
 
                      ?>
                     <table style="text-transform: uppercase; border: 1px solid black;text-align:center;" width="100%" border="1">
@@ -63,36 +68,69 @@ include_once "includes/header.php";
                       <tr>
                         <th><?= $color['color'];?></th>
                         <th>
-                          <table style="text-transform: uppercase; border: 1px solid black; text-align:center;" border="1">
+                          <table style="text-transform: uppercase; border: 1px solid black; text-align:center; " border="1" width="100%">
                               <?php
                                 echo "<tr>";
                                 echo "<th>Description</th>";
                                 $total = array();
                                 foreach ($cutiting_size as $key => $size) {
-                                  $size_id = $size['Size'];
+                                  $size_id = $size['id'];
 
                                   $sql = "SELECT SUM(Qty) as Total FROM cutting_form_description WHERE Size = '$size_id' AND Color = '$color_id'";
 
                                   $total[] = mysqli_fetch_assoc(mysqli_query($conn, $sql));
                                   echo "<th>".$size['size']."</th>";
                                 }
+                                echo "<th>Total</th>";
+
                                 echo "</tr>";
+                                // Quantity
+                                echo "<tr>";
+                                echo "<th>Order Qty</th>";
+
+                                foreach ($order as  $qty) {
+                                  echo "<th>".$qty['units']."</th>";
+                                  $qty_total[] = $qty['units'];
+                                }
+                                echo "<th>".array_sum($qty_total)."</th>";
+
+                                // print_r($qty_total);
+                                echo "</tr>";
+                                // Cutting
                                 echo "<tr>";
                                 echo "<th>CUTTING</th>";
 
                                 foreach ($total as  $value) {
                                   echo "<th>".$value['Total']."</th>";
+                                  $cuting_total[] = $value['Total'];
                                 }
+                                echo "<th>".array_sum($cuting_total)."</th>";
+                                // print_r($cuting_total);
                                 echo "</tr>";
+                                // exss
+                                echo "<tr>";
+                                echo "<th>EXss</th>";
+
+                                foreach ($cuting_total as  $key =>$value) {
+                                  $value = $qty_total[$key]-$cuting_total[$key];
+                                  $total_exss[] = $value;
+                                  echo "<th>".$value."</th>";
+                                }
+                                echo "<th>".array_sum($total_exss)."</th>";
+
+                                echo "</tr>";
+
                                ?>
-                            <tr>
-                              <th></th>
-                            </tr>
                           </table>
                         </th>
 
-                      </tr>
-                      <?php echo "</tr>";} ?>
+                        <tr>
+                          <td><br></td>
+                        </tr>
+                      <?php echo "</tr>";
+                      $qty_total = null;
+                      $cuting_total =null;
+                    } ?>
                     </table>
 
                   </th>

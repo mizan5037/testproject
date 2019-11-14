@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2019 at 07:17 AM
+-- Generation Time: Nov 14, 2019 at 10:30 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -154,7 +154,8 @@ CREATE TABLE `color` (
 INSERT INTO `color` (`id`, `color`, `addedby`, `timestamp`, `status`) VALUES
 (1, 'LTBL', 1, '2019-11-13 10:20:00', 1),
 (2, 'OPWH', 1, '2019-11-13 10:21:06', 1),
-(3, 'BLFN', 1, '2019-11-13 10:21:28', 1);
+(3, 'BLFN', 1, '2019-11-13 10:21:28', 1),
+(4, 'PBLU', 1, '2019-11-14 06:48:49', 1);
 
 -- --------------------------------------------------------
 
@@ -178,7 +179,8 @@ CREATE TABLE `cutting_form` (
 --
 
 INSERT INTO `cutting_form` (`CuttingFormID`, `date`, `StyleID`, `CuttingNo`, `POID`, `AddedBy`, `Status`, `timestamp`) VALUES
-(1, '2019-11-06', 1, 215, 1, 1, 1, '2019-11-13 11:51:21');
+(1, '2019-11-06', 1, 215, 1, 1, 1, '2019-11-13 11:51:21'),
+(2, '2019-11-14', 7, 20015, 2, 1, 1, '2019-11-14 09:10:28');
 
 -- --------------------------------------------------------
 
@@ -205,12 +207,21 @@ CREATE TABLE `cutting_form_description` (
 --
 
 INSERT INTO `cutting_form_description` (`ID`, `CuttingFormID`, `Color`, `Size`, `Qty`, `PrintEMBSent`, `PrintEmbReceive`, `remark`, `AddedBy`, `Status`, `timestamp`) VALUES
-(1, 1, '1', '1', 300, 300, 296, 'Missing', 1, 1, '2019-11-13 11:51:21'),
+(1, 1, '2', '1', 300, 300, 296, 'Missing', 1, 1, '2019-11-14 07:39:11'),
 (2, 1, '1', '2', 250, 250, 250, '', 1, 1, '2019-11-13 11:51:21'),
 (3, 1, '1', '3', 220, 220, 218, '', 1, 1, '2019-11-13 11:51:21'),
 (4, 1, '1', '4', 212, 212, 212, '', 1, 1, '2019-11-13 11:51:21'),
 (5, 1, '1', '5', 213, 213, 213, '', 1, 1, '2019-11-13 11:51:22'),
-(6, 1, '1', '6', 214, 214, 214, '', 1, 1, '2019-11-13 11:51:22');
+(6, 1, '1', '6', 214, 214, 214, '', 1, 1, '2019-11-13 11:51:22'),
+(7, 1, '4', '6', 221, 46, 545, '', 1, 1, '2019-11-14 09:04:14'),
+(8, 1, '1', '1', 200, 100, 200, '1', 1, 1, '2019-11-14 09:05:34'),
+(9, 1, '2', '1', 400, 111, 22, '1', 1, 1, '2019-11-14 09:06:22'),
+(10, 2, '4', '7', 200, 200, 250, '', 1, 1, '2019-11-14 09:10:28'),
+(11, 2, '4', '2', 0, 0, 0, '0', 1, 1, '2019-11-14 09:12:08'),
+(12, 2, '4', '3', 0, 0, 0, '0', 1, 1, '2019-11-14 09:12:08'),
+(13, 2, '4', '5', 230, 200, 100, '', 1, 1, '2019-11-14 09:12:08'),
+(14, 2, '4', '4', 300, 100, 100, '1', 1, 1, '2019-11-14 09:12:08'),
+(15, 2, '4', '6', 100, 23, 123, '', 1, 1, '2019-11-14 09:12:08');
 
 -- --------------------------------------------------------
 
@@ -525,7 +536,8 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`ItemID`, `ItemName`, `ItemDescription`, `ItemMeasurementUnit`, `AddedBy`, `timestamp`, `status`) VALUES
-(1, 'MAIN LABEL', 'MAIN LABEL', 'PCS', 1, '2019-11-13 10:26:02', 1);
+(1, 'MAIN LABEL', 'MAIN LABEL', 'PCS', 1, '2019-11-13 10:26:02', 1),
+(2, 'MAIN LABEL	', 'MAIN LABEL', 'PCS', 1, '2019-11-14 06:49:37', 1);
 
 -- --------------------------------------------------------
 
@@ -559,7 +571,8 @@ INSERT INTO `itemrequirment` (`ItemRequirmentID`, `ItemRequirmentStyleID`, `Item
 (8, 3, 1, '2', 36, 1, '2019-11-14 05:41:43', 1),
 (9, 4, 1, '3', 180, 1, '2019-11-14 05:42:17', 1),
 (10, 5, 1, '3', 180, 1, '2019-11-14 05:42:49', 1),
-(11, 6, 1, '4', 360, 1, '2019-11-14 05:43:18', 1);
+(11, 6, 1, '4', 360, 1, '2019-11-14 05:43:18', 1),
+(12, 7, 1, '1', 210, 1, '2019-11-14 06:52:07', 1);
 
 -- --------------------------------------------------------
 
@@ -768,12 +781,13 @@ CREATE TABLE `order_description` (
 --
 
 INSERT INTO `order_description` (`OrderdescriptionID`, `POID`, `StyleID`, `Color`, `ClrNo`, `Dzs`, `PPack`, `Units`, `AddedBy`, `timestamp`, `Status`) VALUES
-(1, 1, 1, '1', '419', 3, 12, 36, 1, '2019-11-14 06:16:45', 1),
-(2, 1, 2, '1', '419', 3, 12, 36, 1, '2019-11-14 06:16:47', 1),
-(3, 1, 3, '1', '419', 15, 60, 180, 1, '2019-11-14 06:17:04', 1),
-(4, 1, 4, '1', '419', 15, 60, 180, 1, '2019-11-14 06:16:58', 1),
-(5, 1, 5, '1', '419', 30, 120, 360, 1, '2019-11-14 06:17:11', 1),
-(6, 1, 6, '1', '419', 36, 144, 432, 1, '2019-11-14 06:15:25', 1);
+(1, 1, 1, '1', '419', 3, 12, 36, 1, '2019-11-14 09:21:58', 1),
+(2, 1, 2, '1', '419', 3, 12, 36, 1, '2019-11-14 07:38:10', 1),
+(3, 1, 3, '1', '419', 15, 60, 180, 1, '2019-11-14 07:38:10', 1),
+(4, 1, 4, '1', '419', 15, 60, 180, 1, '2019-11-14 07:38:10', 1),
+(5, 1, 5, '1', '419', 30, 120, 360, 1, '2019-11-14 07:38:10', 1),
+(6, 1, 6, '1', '419', 36, 144, 432, 1, '2019-11-14 07:35:02', 1),
+(7, 2, 7, '4', '000', 141, 282, 1692, 1, '2019-11-14 06:56:20', 1);
 
 -- --------------------------------------------------------
 
@@ -892,7 +906,8 @@ CREATE TABLE `po` (
 --
 
 INSERT INTO `po` (`POID`, `MasterLCOccupied`, `BTBLCIDOccupied`, `PONumber`, `POFrom`, `PODate`, `POCMPWH`, `POCurrency`, `POSpecialInstruction`, `POFinalDestination`, `POCMP`, `POWASH`, `POHANGER`, `FOB`, `Division`, `special_note`, `AddedBy`, `Timestamp`, `Status`) VALUES
-(1, 0, 0, '2074SB', 'DAVID TOLIDO', '2019-11-01', 13.5, 'USD', 'EDITED', 'COLFAX,LA', 13.5, 0, 0, 15, 'BOYS', NULL, 1, '2019-11-14 05:44:29', 1);
+(1, 0, 0, '2074SB', 'DAVID TOLIDO', '2019-11-01', 13.5, 'USD', 'EDITED', 'COLFAX,LA', 13.5, 0, 0, 15, 'BOYS', NULL, 1, '2019-11-14 05:44:29', 1),
+(2, 0, 0, '8579UPB', 'DAVID TOLIDO', '2019-11-14', 16.94, 'USD', '', 'NEW JERSEY-WRHS3#06', 15.5, 0, 1.44, 0, '', NULL, 1, '2019-11-14 06:56:19', 1);
 
 -- --------------------------------------------------------
 
@@ -997,7 +1012,13 @@ INSERT INTO `prepack` (`PrePackID`, `POID`, `PrePackCode`, `PrePackSize`, `Prepa
 (3, 1, 'UHU', '3', 3, 1, '2019-11-13 10:43:21', 1),
 (4, 1, 'UIU', '4', 3, 1, '2019-11-13 10:43:21', 1),
 (5, 1, 'UJU', '5', 3, 1, '2019-11-13 10:43:21', 1),
-(6, 1, 'UKU', '6', 3, 1, '2019-11-13 10:43:21', 1);
+(6, 1, 'UKU', '6', 3, 1, '2019-11-13 10:43:21', 1),
+(7, 2, 'RAB', '2', 0, 1, '2019-11-14 06:56:20', 1),
+(8, 2, 'RAB', '3', 0, 1, '2019-11-14 06:56:20', 1),
+(9, 2, 'RAB', '4', 1, 1, '2019-11-14 06:56:20', 1),
+(10, 2, 'RAB', '5', 2, 1, '2019-11-14 06:56:20', 1),
+(11, 2, 'RAB', '6', 2, 1, '2019-11-14 06:56:20', 1),
+(12, 2, 'RAB', '7', 1, 1, '2019-11-14 06:57:01', 1);
 
 -- --------------------------------------------------------
 
@@ -1043,7 +1064,8 @@ INSERT INTO `size` (`id`, `size`, `addedby`, `timestamp`, `status`) VALUES
 (3, 'S', 1, '2019-11-13 10:20:24', 1),
 (4, 'M', 1, '2019-11-13 10:20:28', 1),
 (5, 'L', 1, '2019-11-13 10:20:36', 1),
-(6, 'XL', 1, '2019-11-13 10:20:40', 1);
+(6, 'XL', 1, '2019-11-13 10:20:40', 1),
+(7, 'XX', 1, '2019-11-14 06:56:44', 1);
 
 -- --------------------------------------------------------
 
@@ -1126,7 +1148,8 @@ INSERT INTO `style` (`StyleID`, `StyleNumber`, `StyleDescription`, `StyleWash`, 
 (3, '125678S0UHU', 'LSSTRETHOXFORD-S0', 'NO WASH', '614866341_2019_Nov_14_1573711013_1.jpeg', 'B-2979', '58% COTTON, 39% POLY,3%SPANDEX,CVC SOLID ', 1, '2019-11-14 05:56:53', 1),
 (4, '125678S0UIU', 'LSSTRETHOXFORD-S0', 'NO WASH', '146309447_2019_Nov_14_1573710137_1.jpeg', 'B-2979', '58% COTTON, 39% POLY,3%SPANDEX,CVC SOLID ', 1, '2019-11-14 05:42:17', 1),
 (5, '125678S0UJU', 'LSSTRETHOXFORD-S0', 'NO WASH', '610341382_2019_Nov_14_1573710169_1.jpeg', 'B-2979', '58% COTTON, 39% POLY,3%SPANDEX,CVC SOLID ', 1, '2019-11-14 05:42:49', 1),
-(6, '125678S0UKU', 'LSSTRETHOXFORD-S0', 'NO WASH', '913862195_2019_Nov_14_1573710198_1.jpeg', 'B-2979', '58% COTTON, 39% POLY,3%SPANDEX,CVC SOLID ', 1, '2019-11-14 05:43:18', 1);
+(6, '125678S0UKU', 'LSSTRETHOXFORD-S0', 'NO WASH', '913862195_2019_Nov_14_1573710198_1.jpeg', 'B-2979', '58% COTTON, 39% POLY,3%SPANDEX,CVC SOLID ', 1, '2019-11-14 05:43:18', 1),
+(7, '5319P8RAB', 'MED PLAID STRCH WVN-P8', 'NO WASH', '924020513_2019_Nov_14_1573714327_1.jpeg', '03833', 'CVC Y/D STRTCH POPLIN', 1, '2019-11-14 06:52:07', 1);
 
 -- --------------------------------------------------------
 
@@ -1159,7 +1182,8 @@ INSERT INTO `trimsaccess` (`TrimsAccessID`, `TrimsAccessPOID`, `TrimsAccessStyle
 (7, 0, 3, 'MAIN LABEL', 'UBL 1791', 1, '2019-11-14 05:41:43', 1),
 (8, 0, 4, 'MAIN LABEL', 'UBL 1791', 1, '2019-11-14 05:42:17', 1),
 (9, 0, 5, 'MAIN LABEL', 'UBL 1791', 1, '2019-11-14 05:42:49', 1),
-(10, 0, 6, 'MAIN LABEL', 'UBL 1791', 1, '2019-11-14 05:43:18', 1);
+(10, 0, 6, 'MAIN LABEL', 'UBL 1791', 1, '2019-11-14 05:43:18', 1),
+(11, 0, 7, 'MAIN LABEL', 'UBL 1764', 1, '2019-11-14 06:52:07', 1);
 
 -- --------------------------------------------------------
 
@@ -1614,19 +1638,19 @@ ALTER TABLE `carton_form`
 -- AUTO_INCREMENT for table `color`
 --
 ALTER TABLE `color`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `cutting_form`
 --
 ALTER TABLE `cutting_form`
-  MODIFY `CuttingFormID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `CuttingFormID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `cutting_form_description`
 --
 ALTER TABLE `cutting_form_description`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `fabric_issue_other`
@@ -1704,13 +1728,13 @@ ALTER TABLE `hourly_production_details`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `ItemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ItemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `itemrequirment`
 --
 ALTER TABLE `itemrequirment`
-  MODIFY `ItemRequirmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ItemRequirmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `item_issue_access`
@@ -1758,7 +1782,7 @@ ALTER TABLE `masterlc_description`
 -- AUTO_INCREMENT for table `order_description`
 --
 ALTER TABLE `order_description`
-  MODIFY `OrderdescriptionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `OrderdescriptionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pi`
@@ -1788,7 +1812,7 @@ ALTER TABLE `plan_details`
 -- AUTO_INCREMENT for table `po`
 --
 ALTER TABLE `po`
-  MODIFY `POID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `POID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `po_event`
@@ -1806,7 +1830,7 @@ ALTER TABLE `po_time_action`
 -- AUTO_INCREMENT for table `prepack`
 --
 ALTER TABLE `prepack`
-  MODIFY `PrePackID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `PrePackID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `shipment_form`
@@ -1818,7 +1842,7 @@ ALTER TABLE `shipment_form`
 -- AUTO_INCREMENT for table `size`
 --
 ALTER TABLE `size`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `stationary_issue`
@@ -1842,13 +1866,13 @@ ALTER TABLE `stationary_receive`
 -- AUTO_INCREMENT for table `style`
 --
 ALTER TABLE `style`
-  MODIFY `StyleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `StyleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `trimsaccess`
 --
 ALTER TABLE `trimsaccess`
-  MODIFY `TrimsAccessID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `TrimsAccessID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`

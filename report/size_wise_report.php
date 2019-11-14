@@ -15,122 +15,98 @@ $mpdf->setAutoTopMargin = 'stretch';
 
 $logo = $path . '/assets/images/risal.png';
 
-
-
-$cutiting_size = "SELECT distinct s.size FROM cutting_form_description cd LEFT JOIN Size s ON s.id = cd.Size";
-$cutiting_size = mysqli_query($conn, $cutiting_size);
-
-$cutting_color = "SELECT DISTINCT c.color FROM cutting_form_description cd LEFT JOIN color c ON cd.Color = c.id WHERE cd.Status = '1' AND c.status = '1'";
-$cutting_color = mysqli_query($conn, $cutting_color);
+//
+//
+// $cutiting_size = "SELECT distinct s.size FROM cutting_form_description cd LEFT JOIN Size s ON s.id = cd.Size";
+// $cutiting_size = mysqli_query($conn, $cutiting_size);
+//
+// $cutting_color = "SELECT DISTINCT c.color FROM cutting_form_description cd LEFT JOIN color c ON cd.Color = c.id WHERE cd.Status = '1' AND c.status = '1'";
+// $cutting_color = mysqli_query($conn, $cutting_color);
 
 // print_r($cutiting_size);
 // $sized = sizeof($cutiting_size);
 
 
-$html = '<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <body>
-    <table style="text-transform: uppercase; border: 1px solid black;border-collapse: collapse;" width="100%">
-      <tr>
-        <th align="right" colspan="2"><img src="'. $logo.'" alt="llogo" height="50px" style=""></th>
-        <th colspan="9" align="center">
-            <h1 style="line-height:.1; ;">RISHAL GROUP OF INDUSTRIES</h1>
-            <p style="line-height:.1;">PLOT#M-4/2, SECTION#14,MIRPUR, DHAKA-1216</p>
-            <p style="text-transform: uppercase; color:white; line-height:.1;"><strong style="background-color:black;">SIZE WISE CUTTING REPORT</strong></p>
-        </th>
-        <th colspan="8"></th>
-      </tr>
-      <tr>
-        <th  colspan="3" align="left" >STLYE:</th>
-        <th colspan="9" align="left" >&nbsp;</th>
-        <th colspan="7" align="left">BUYER:</th>
-      </tr>
-      <tr>
-        <th  colspan="3" align="left" >PO:</th>
-        <th colspan="9" align="left" >&nbsp;</th>
-        <th colspan="7" align="left">ITEM:</th>
-      </tr>
-      <tr>
-        <th  colspan="3" align="left" >LINE:</th>
-        <th colspan="9" align="left" >&nbsp;</th>
-        <th colspan="7" align="left">Date:</th>
-      </tr>
-      <tr>
-        <th colspan="19">&nbsp;</th>
-      </tr>
-      <tr>
-        <th colspan="19">
-          <table>
+$html = '<table style="text-transform: uppercase; border: 1px solid black;border-collapse: collapse; text-align:center;" width="100%" >
+    <tr>
+      <th >Rishal Group</th>
+    </tr>
+    <tr>
+      <th>';
 
 
-        <th>
-      </tr>
-      <tr align="center">
-        <th style="border: 1px solid black;">COLOUR</th>
-        <th style="border: 1px solid black;">DESCRIPTION</th>
-        <th style="border: 1px solid black;"></th>
-        <th style="border: 1px solid black;">SIZE</th>
-        <th style="border: 1px solid black;">TOTAL</th>
-      </tr>
+        $cutiting_size = "SELECT s.id, s.size FROM prepack p LEFT JOIN size s ON s.id = p.PrePackSize WHERE p.POID = '1'";
+        $cutiting_size = mysqli_query($conn, $cutiting_size);
 
-      <!-- First Table data strat -->
-      <tr align="center">
-        <td style="border: 1px solid black;">CUTTING</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-      </tr>
-      <tr align="center">
-        <td style="border: 1px solid black;">EXSS/SHORT CUTTING</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-        <td style="border: 1px solid black;">&nbsp;</td>
-      </tr>
-      <tr>
-        <td colspan="18" style="border: 1px solid black;">&nbsp;</td>
-      </tr>
-      <!-- First Table data End -->
-      <!-- if you need more row then copy and paste start to end -->
+        $cutting_color = "SELECT DISTINCT c.color, cd.Color FROM cutting_form cf LEFT JOIN cutting_form_description cd ON cf.CuttingFormID = cd.CuttingFormID LEFT JOIN color c ON cd.Color = c.id WHERE cd.Status = '1' AND c.status = '1' AND cf.POID = '1'";
+        $cutting_color = mysqli_query($conn, $cutting_color);
 
-      <tr>
-        <th colspan="19">&nbsp;</th>
-      </tr>
-      <tr>
-        <th colspan="19">&nbsp;</th>
-      </tr>
-      <tr>
-        <th colspan="10" align="left"><p><strong style=" border-top:1px solid black; line-height:80px; margin-left:50px;">Cutting Incharge</strong></p></th>
-        <th colspan="9" align="right" ><p><strong style=" border-top:1px solid black; line-height:80px; margin-right:50px;">Cutting Manager</strong></p></th>
-      </tr>
-    </table>
-  </body>
-</html>';
+
+
+        $order = "SELECT od.StyleID, od.color, od.units FROM order_description od WHERE od.POID = 1";
+        $order = mysqli_query($conn, $order);
+
+        $html .= '<table style="text-transform: uppercase; border: 1px solid black;text-align:center;" width="100%" border="1">';
+          foreach ($cutting_color as $key => $color){
+            $color_id = $color['Color'];
+          $html .= '<tr>
+                    <th>'.$color['color'].'</th>
+                    <th>
+                        <table style="text-transform: uppercase; border: 1px solid black; text-align:center;" border="1">
+                          <tr>
+                            <th>Description</th>';
+                    $total = array();
+                    foreach ($cutiting_size as $key => $size) {
+                      $size_id = $size['id'];
+
+                      $sql = "SELECT SUM(Qty) as Total FROM cutting_form_description WHERE Size = '$size_id' AND Color = '$color_id'";
+
+                      $total[] = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+                      $html .='<th>'.$size['size'].'</th>';
+                    }
+                    $html .= '</tr>
+                        <tr>
+                      <th>Qty</th>';
+
+                    foreach ($order as  $qty) {
+                      $html .=  '<th>'.$qty['units'].'</th>';
+                      $qty_total[] = $qty['units'];
+                    }
+                    // print_r($qty_total);
+                    $html .='</tr>
+                    <tr>
+                    <th>CUTTING</th>';
+
+                    foreach ($total as  $value) {
+                      $html .='<th>'.$value['Total'].'</th>';
+                      $cuting_total[] = $value['Total'];
+                    }
+                    // print_r($cuting_total);
+                       $html .='</tr>
+                     <tr>
+                     <th>EXss</th>';
+
+                    foreach ($cuting_total as  $key =>$value) {
+                      $value = $qty_total[$key]-$cuting_total[$key];
+                        $html .='<th>'.$value.'</th>';
+                    }
+                    $html .='</tr>;
+
+
+              </table>
+            </th>
+
+          </tr>
+          </tr>';
+          $qty_total = null;
+          $cuting_total =null;
+
+        }
+        $html .= '</table>
+
+      </th>
+    </tr>
+  </table>';
 $mpdf->WriteHTML($html);
 
 $mpdf->Output();
