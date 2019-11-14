@@ -290,7 +290,7 @@
                                         </a>
                                         <ul>
                                             <li <?php active('b2b_report'); ?>>
-                                                <a href="<?= $path ?>/index.php?page=b2b_report">
+                                                <a target="_blank" href="<?= $path ?>/index.php?page=b2b_report">
                                                     <i class="metismenu-icon"></i>
                                                     B2B Report
                                                 </a>
