@@ -49,23 +49,21 @@ if (
 		notice('error', $sql . "<br>" . mysqli_error($conn));
 	}
 
+	
 	//prepack table
+	$PrePackID = $_POST['PrePackID'];
 	$size = $_POST['size'];
 	$ppk = $_POST['ppk'];
 	$qty = $_POST['qty'];
 
-
-
-	for ($i = 0; $i < sizeof($size); $i++) {
+	for ($i = 0; $i < sizeof($PrePackID); $i++) {
 
 		$sql = "UPDATE prepack SET
                                     PrePackCode  = '$ppk[$i]',
                                     PrePackSize  = '$size[$i]',
                                     PrepackQty   = '$qty[$i]',
-                                    AddedBy      = '$user_id',
-                                    where POID   = '$id'";
-
-
+                                    AddedBy      = '$user_id'
+                                    where PrePackID   = '$PrePackID[$i]'";
 
 		if (mysqli_query($conn, $sql)) {
 			notice('success', 'PO Updated Successfully');
@@ -76,6 +74,7 @@ if (
 
 	// ORDER DESCRIPTION
 
+	$OrderdescriptionID = $_POST['OrderdescriptionID'];
 	$style = $_POST['style'];
 	$color = $_POST['color'];
 	$clr_no = $_POST['clr_no'];
@@ -85,7 +84,7 @@ if (
 
 
 
-	for ($i = 0; $i < sizeof($style); $i++) {
+	for ($i = 0; $i < sizeof($OrderdescriptionID); $i++) {
 
 		$sql = "UPDATE order_description SET
                                     StyleID     = '$style[$i]',
@@ -95,7 +94,7 @@ if (
                                     PPack       = '$ppack[$i]',
                                     Units       = '$units[$i]',
                                     AddedBy     = '$user_id'
-                                    where POID  = '$id'";
+                                    where OrderdescriptionID  = '$OrderdescriptionID[$i]'";
 
 		if (mysqli_query($conn, $sql)) {
 			notice('success', 'PO Updated Successfully');
@@ -103,7 +102,7 @@ if (
 			notice('error', $sql . "<br>" . mysqli_error($conn));
 		}
 	}
-	nowgo('/index.php?page=all_po');
+	nowgo('/index.php?page=po_single&poid=' . $id);
 }
 
 
