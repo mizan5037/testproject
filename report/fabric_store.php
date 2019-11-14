@@ -131,7 +131,7 @@ while ($rowo = mysqli_fetch_assoc($fabric)) {
     $sql = "SELECT sum(d.IssueQty) IssueQty FROM (SELECT * FROM fab_issue where POID='$poid' ) f LEFT JOIN fab_issue_description d on d.FabIssueID=f.FabIssueID LEFT JOIN  color co ON co.id=d.Color where d.Color='$color'" ;
     $totalissuefab = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
-    $sql2 = "SELECT d.IssueQty FROM (SELECT * FROM fab_issue where POID='$poid') f LEFT JOIN (select * from fab_issue_description where Color='$color' and Date(timestamp)='$date')  d on d.FabIssueID=f.FabIssueID LEFT JOIN  color co ON co.id=d.Color  " ;
+    $sql2 = "SELECT d.IssueQty FROM (SELECT * FROM fab_issue where POID='$poid' ) f LEFT JOIN (select * from fab_issue_description where Color='$color' and Date(timestamp)='$date')  d on d.FabIssueID=f.FabIssueID LEFT JOIN  color co ON co.id=d.Color  " ;
     $todayissue = mysqli_fetch_assoc(mysqli_query($conn, $sql2));
 
     $sql = "SELECT count(*) totalcolor FROM fab_receive where POID='$poid'  AND StyleID=".$rowo['StyleID'];
@@ -295,11 +295,6 @@ while ($result = mysqli_fetch_assoc($fabric)) {
     $total_balance_roll += $fabric_balace_contra_roll;
 
     $total_feb_required_allow = 0;
-
-
-
-
-
 
 
 }

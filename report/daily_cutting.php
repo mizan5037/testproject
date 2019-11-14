@@ -92,9 +92,6 @@ $total_today_input = 0;
 $total_all_input = 0;
 $total_input_balance = 0;
 
-
-
-
 $sql = "SELECT c.*,l.color,l.id as colorid,d.*,p.PONumber,s.StyleNumber,l.color,b.BuyerName,m.Qty totalorder FROM cutting_form c LEFT JOIN cutting_form_description d on d.CuttingFormID=c.CuttingFormID LEFT JOIN style s ON s.StyleID=c.StyleID LEFT JOIN color l on l.id=d.Color LEFT JOIN po p ON p.POID=c.POID LEFT JOIN masterlc_description m ON m.POID=c.POID LEFT JOIN masterlc t ON t.MasterLCID=m.MasterLCID LEFT JOIN buyer b ON b.BuyerID=t.MasterLCBuyer  where c.date='$date' order by c.POID";
 //echo $sql."<br>";
 $order = mysqli_query($conn, $sql);
@@ -115,12 +112,14 @@ while ($rowo = mysqli_fetch_assoc($order)) {
 	$styleid = $rowo['StyleID'];
 	$poid = $rowo['POID'];
 
-	$sql2 = "SELECT d.Qty,d.sewing  FROM (SELECT * FROM cutting_form where StyleID=$styleid and POID=$poid and date = '$date') c LEFT JOIN (SELECT * FROM cutting_form_description where Color='$colorid') d on d.CuttingFormID=c.CuttingFormID ";
+	$sql2 = "SELECT d.Qty,d.sewing  FROM (SELECT * FROM cutting_form where StyleID=$styleid and POID=$poid and date = '$date') c LEFT JOIN (SELECT * FROM cutting_form_description where Color='$colorid' and Date(timestamp) = '$date') d on d.CuttingFormID=c.CuttingFormID ";
+
+	//echo $sql2."<br>";
 	$todaycut = mysqli_fetch_assoc(mysqli_query($conn, $sql2));
 
 	$todaysewing = $todaycut['sewing'];
 
-	$sql2 = "SELECT sum(d.Qty) totalcut,sum(d.sewing) totalsewing  FROM (SELECT * FROM cutting_form where StyleID=$styleid and POID=$poid and date = '$date') c LEFT JOIN (SELECT * FROM cutting_form_description where Color='$colorid') d on d.CuttingFormID=c.CuttingFormID ";
+	$sql2 = "SELECT sum(d.Qty) totalcut,sum(d.sewing) totalsewing  FROM (SELECT * FROM cutting_form where StyleID=$styleid and POID=$poid and date = '$date') c LEFT JOIN (SELECT * FROM cutting_form_description where Color='$colorid' ) d on d.CuttingFormID=c.CuttingFormID ";
 
 	$totalcut = mysqli_fetch_assoc(mysqli_query($conn, $sql2));
 	$totalsewing = $totalcut['totalsewing'];
