@@ -28,10 +28,6 @@ if (
 	$special_instruction = $_POST['special_instruction'];
 	$user_id = get_ses('user_id');
 
-	echo $po_number . "<br>";
-
-	$poid = $id;
-
 	$sql = "UPDATE po SET
                             PONumber            = '$po_number',
                             POFrom              = '$from',
@@ -43,9 +39,9 @@ if (
                             POCMP               = '$cmp',
                             POWASH              = '$wash_cost',
                             POHANGER            = '$hanger_cost',
-                            FOB            			= '$fob',
+                            FOB            		= '$fob',
                             AddedBy             = '$user_id'
-                            where POID          =" . $poid;
+                            where POID          = '$id'";
 
 	if (mysqli_query($conn, $sql)) {
 		notice('success', 'New PO Updated Successfully');
@@ -63,12 +59,11 @@ if (
 	for ($i = 0; $i < sizeof($size); $i++) {
 
 		$sql = "UPDATE prepack SET
-                                    POID         = '$poid',
                                     PrePackCode  = '$ppk[$i]',
                                     PrePackSize  = '$size[$i]',
                                     PrepackQty   = '$qty[$i]',
                                     AddedBy      = '$user_id',
-                                    where POID   =" . $poid;
+                                    where POID   = '$id'";
 
 
 
@@ -93,7 +88,6 @@ if (
 	for ($i = 0; $i < sizeof($style); $i++) {
 
 		$sql = "UPDATE order_description SET
-                                    POID        = '$poid',
                                     StyleID     = '$style[$i]',
                                     Color       = '$color[$i]',
                                     ClrNo       = '$clr_no[$i]',
@@ -101,7 +95,7 @@ if (
                                     PPack       = '$ppack[$i]',
                                     Units       = '$units[$i]',
                                     AddedBy     = '$user_id'
-                                    where POID  =" . $poid;
+                                    where POID  = '$poid'";
 
 		if (mysqli_query($conn, $sql)) {
 			notice('success', 'PO Updated Successfully');
