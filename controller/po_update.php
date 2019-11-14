@@ -1,16 +1,18 @@
 <?php
 $conn = db_connection();
-if (isset($_POST['from'])  &&
-isset($_POST['date']) &&
-isset($_POST['po_number']) &&
-isset($_POST['currency']) &&
-isset($_POST['cmp']) &&
-isset($_POST['wash_cost']) &&
-isset($_POST['hanger_cost']) &&
-isset($_POST['cmp_w_wanger']) &&
-isset($_POST['fob']) &&
-isset($_POST['final_destination']) &&
-isset($_POST['style']) && $_POST['style'] != '' && isset($_POST['color']) && isset($_POST['clr_no']) && isset($_POST['dzs']) && isset($_POST['ppack']) && isset($_POST['units'])  && isset($_POST['size'])  && isset($_POST['ppk']) && isset($_POST['qty'])) {
+if (
+	isset($_POST['from'])  &&
+	isset($_POST['date']) &&
+	isset($_POST['po_number']) &&
+	isset($_POST['currency']) &&
+	isset($_POST['cmp']) &&
+	isset($_POST['wash_cost']) &&
+	isset($_POST['hanger_cost']) &&
+	isset($_POST['cmp_w_wanger']) &&
+	isset($_POST['fob']) &&
+	isset($_POST['final_destination']) &&
+	isset($_POST['style']) && $_POST['style'] != '' && isset($_POST['color']) && isset($_POST['clr_no']) && isset($_POST['dzs']) && isset($_POST['ppack']) && isset($_POST['units'])  && isset($_POST['size'])  && isset($_POST['ppk']) && isset($_POST['qty'])
+) {
 
 
 	$from = $_POST['from'];
@@ -107,9 +109,6 @@ isset($_POST['style']) && $_POST['style'] != '' && isset($_POST['color']) && iss
 			notice('error', $sql . "<br>" . mysqli_error($conn));
 		}
 	}
-
-
-
 	nowgo('/index.php?page=all_po');
 }
 
@@ -132,11 +131,8 @@ if (isset($_GET['preid'])) {
 	$sql = "DELETE FROM prepack  where PrePackID='$preid'";
 	if (mysqli_query($conn, $sql)) {
 		notice('success', ' PrePack Deleted Successfully');
-		nowgo('/index.php?page=po_single&poid=' . $id);
 	} else {
 		notice('error', $sql . "<br>" . mysqli_error($conn));
 	}
+	nowgo('/index.php?page=po_single&poid=' . $id);
 }
-
-
-
