@@ -32,16 +32,24 @@
             border-collapse: collapse;
             text-align: center;
         }
-        .h1{
+
+        .h1 {
             text-transform: uppercase;
             font-size: 24px;
         }
-        .h3{
+
+        .h3 {
             font-size: 14px;
         }
     </style>
-    <p> <span class="h1"> Back to Back LC</span> <br>
-     <span class="h2"> Maturity in <?= $monthName . '' . $year ?></span></p>
+    <h2>
+        RISHAL GROUP OF INDUSTRIES
+    </h2>
+    <p>
+        <span class="h1"> Back to Back LC</span>
+        <br>
+        <span class="h2"> Maturity in <?= $monthName . '' . $year ?></span>
+    </p>
     <table>
         <thead>
             <tr>

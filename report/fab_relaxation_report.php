@@ -26,8 +26,6 @@ $mpdf = new \Mpdf\Mpdf(['format' => 'A4-L']);
 $mpdf->SetTitle('FBRIC RELAXATION REPORT');
 
 $mpdf->setAutoTopMargin = 'stretch';
-
-$logo = $path . '/assets/images/risal.png';
 // fab Relaxation
 $fab_relax = "SELECT f.*,s.StyleNumber,b.BuyerName,c.color FROM fab_relaxation f LEFT JOIN color c ON f.Color = c.id LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN buyer b ON b.BuyerID=f.BuyerID WHERE f.Status = 1 AND FabRelaxationID ='$fba_relax_id'";
 $fab_relax = mysqli_fetch_assoc(mysqli_query($conn, $fab_relax));
@@ -112,4 +110,3 @@ $html = '<!DOCTYPE html>
 </html>';
 $mpdf->WriteHTML($html);
 $mpdf->Output();
-?>
