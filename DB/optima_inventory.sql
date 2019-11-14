@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2019 at 12:58 PM
+-- Generation Time: Nov 14, 2019 at 07:17 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -554,7 +554,12 @@ INSERT INTO `itemrequirment` (`ItemRequirmentID`, `ItemRequirmentStyleID`, `Item
 (3, 1, 1, '3', 600, 1, '2019-11-13 10:35:48', 1),
 (4, 1, 1, '4', 650, 1, '2019-11-13 10:35:49', 1),
 (5, 1, 1, '5', 700, 1, '2019-11-13 10:35:49', 1),
-(6, 1, 1, '6', 800, 1, '2019-11-13 10:35:49', 1);
+(6, 1, 1, '6', 800, 1, '2019-11-13 10:35:49', 1),
+(7, 2, 1, '2', 36, 1, '2019-11-14 05:40:28', 1),
+(8, 3, 1, '2', 36, 1, '2019-11-14 05:41:43', 1),
+(9, 4, 1, '3', 180, 1, '2019-11-14 05:42:17', 1),
+(10, 5, 1, '3', 180, 1, '2019-11-14 05:42:49', 1),
+(11, 6, 1, '4', 360, 1, '2019-11-14 05:43:18', 1);
 
 -- --------------------------------------------------------
 
@@ -763,12 +768,12 @@ CREATE TABLE `order_description` (
 --
 
 INSERT INTO `order_description` (`OrderdescriptionID`, `POID`, `StyleID`, `Color`, `ClrNo`, `Dzs`, `PPack`, `Units`, `AddedBy`, `timestamp`, `Status`) VALUES
-(1, 1, 1, '1', '419', 3, 12, 36, 1, '2019-11-13 10:43:21', 1),
-(2, 1, 1, '1', '', 3, 12, 36, 1, '2019-11-13 10:43:21', 1),
-(3, 1, 1, '1', '', 15, 60, 180, 1, '2019-11-13 10:43:21', 1),
-(4, 1, 1, '1', '', 15, 60, 180, 1, '2019-11-13 10:43:21', 1),
-(5, 1, 1, '1', '', 30, 120, 360, 1, '2019-11-13 10:43:21', 1),
-(6, 1, 1, '1', '', 36, 144, 432, 1, '2019-11-13 10:43:21', 1);
+(1, 1, 1, '1', '419', 3, 12, 36, 1, '2019-11-14 06:16:45', 1),
+(2, 1, 2, '1', '419', 3, 12, 36, 1, '2019-11-14 06:16:47', 1),
+(3, 1, 3, '1', '419', 15, 60, 180, 1, '2019-11-14 06:17:04', 1),
+(4, 1, 4, '1', '419', 15, 60, 180, 1, '2019-11-14 06:16:58', 1),
+(5, 1, 5, '1', '419', 30, 120, 360, 1, '2019-11-14 06:17:11', 1),
+(6, 1, 6, '1', '419', 36, 144, 432, 1, '2019-11-14 06:15:25', 1);
 
 -- --------------------------------------------------------
 
@@ -887,7 +892,7 @@ CREATE TABLE `po` (
 --
 
 INSERT INTO `po` (`POID`, `MasterLCOccupied`, `BTBLCIDOccupied`, `PONumber`, `POFrom`, `PODate`, `POCMPWH`, `POCurrency`, `POSpecialInstruction`, `POFinalDestination`, `POCMP`, `POWASH`, `POHANGER`, `FOB`, `Division`, `special_note`, `AddedBy`, `Timestamp`, `Status`) VALUES
-(1, 0, 0, '2074SB', 'DAVID TOLIDO', '2019-11-01', 13.5, 'USD', '', 'COLFAX,LA', 13.5, 0, 0, 15, 'BOYS', NULL, 1, '2019-11-13 10:43:20', 1);
+(1, 0, 0, '2074SB', 'DAVID TOLIDO', '2019-11-01', 13.5, 'USD', 'EDITED', 'COLFAX,LA', 13.5, 0, 0, 15, 'BOYS', NULL, 1, '2019-11-14 05:44:29', 1);
 
 -- --------------------------------------------------------
 
@@ -1116,7 +1121,12 @@ CREATE TABLE `style` (
 --
 
 INSERT INTO `style` (`StyleID`, `StyleNumber`, `StyleDescription`, `StyleWash`, `StyleImage`, `StyleProto`, `StyleFabricDetails`, `AddedBy`, `Timestamp`, `Status`) VALUES
-(1, '125678S0UFU', 'LSSTRETHOXFORD-S0', 'NO WASH', '741513510_2019_Nov_13_1573641348_1.jpeg', 'B-2979', '58%COTTON,39%POLY,3%SPANDEX CVC SOLID STRETCH OXFORD', 1, '2019-11-13 10:35:48', 1);
+(1, '125678S0UFU', 'LSSTRETHOXFORD-S0', 'NO WASH', '741513510_2019_Nov_13_1573641348_1.jpeg', 'B-2979', '58%COTTON,39%POLY,3%SPANDEX CVC SOLID STRETCH OXFORD', 1, '2019-11-13 10:35:48', 1),
+(2, '125678S0UGU	', 'LSSTRETHOXFORD-S0', 'NO WASH', '638116072_2019_Nov_14_1573711000_1.jpeg', 'B-2979', '58% COTTON, 39% POLY,3%SPANDEX,CVC SOLID ', 1, '2019-11-14 05:56:40', 1),
+(3, '125678S0UHU', 'LSSTRETHOXFORD-S0', 'NO WASH', '614866341_2019_Nov_14_1573711013_1.jpeg', 'B-2979', '58% COTTON, 39% POLY,3%SPANDEX,CVC SOLID ', 1, '2019-11-14 05:56:53', 1),
+(4, '125678S0UIU', 'LSSTRETHOXFORD-S0', 'NO WASH', '146309447_2019_Nov_14_1573710137_1.jpeg', 'B-2979', '58% COTTON, 39% POLY,3%SPANDEX,CVC SOLID ', 1, '2019-11-14 05:42:17', 1),
+(5, '125678S0UJU', 'LSSTRETHOXFORD-S0', 'NO WASH', '610341382_2019_Nov_14_1573710169_1.jpeg', 'B-2979', '58% COTTON, 39% POLY,3%SPANDEX,CVC SOLID ', 1, '2019-11-14 05:42:49', 1),
+(6, '125678S0UKU', 'LSSTRETHOXFORD-S0', 'NO WASH', '913862195_2019_Nov_14_1573710198_1.jpeg', 'B-2979', '58% COTTON, 39% POLY,3%SPANDEX,CVC SOLID ', 1, '2019-11-14 05:43:18', 1);
 
 -- --------------------------------------------------------
 
@@ -1144,7 +1154,12 @@ INSERT INTO `trimsaccess` (`TrimsAccessID`, `TrimsAccessPOID`, `TrimsAccessStyle
 (2, 0, 1, 'CONTENT/C.O.O.LABEL', 'UBL 1792 ,UML 1766 CO #A', 1, '2019-11-13 10:35:48', 1),
 (3, 0, 1, 'CARE LABEL', 'UML 1746', 1, '2019-11-13 10:35:48', 1),
 (4, 0, 1, 'SIZE STRIP/STICKER', 'UCT-1218 BOYS', 1, '2019-11-13 10:35:48', 1),
-(5, 0, 1, 'HANG TAG', 'UMT-1166 & USPA HOLOGRAM STICKER', 1, '2019-11-13 10:35:48', 1);
+(5, 0, 1, 'HANG TAG', 'UMT-1166 & USPA HOLOGRAM STICKER', 1, '2019-11-13 10:35:48', 1),
+(6, 0, 2, 'MAIN LABEL', 'UBL 1791', 1, '2019-11-14 05:40:28', 1),
+(7, 0, 3, 'MAIN LABEL', 'UBL 1791', 1, '2019-11-14 05:41:43', 1),
+(8, 0, 4, 'MAIN LABEL', 'UBL 1791', 1, '2019-11-14 05:42:17', 1),
+(9, 0, 5, 'MAIN LABEL', 'UBL 1791', 1, '2019-11-14 05:42:49', 1),
+(10, 0, 6, 'MAIN LABEL', 'UBL 1791', 1, '2019-11-14 05:43:18', 1);
 
 -- --------------------------------------------------------
 
@@ -1695,7 +1710,7 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `itemrequirment`
 --
 ALTER TABLE `itemrequirment`
-  MODIFY `ItemRequirmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ItemRequirmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `item_issue_access`
@@ -1827,13 +1842,13 @@ ALTER TABLE `stationary_receive`
 -- AUTO_INCREMENT for table `style`
 --
 ALTER TABLE `style`
-  MODIFY `StyleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `StyleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `trimsaccess`
 --
 ALTER TABLE `trimsaccess`
-  MODIFY `TrimsAccessID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `TrimsAccessID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`

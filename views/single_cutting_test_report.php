@@ -57,26 +57,33 @@ include_once "includes/header.php";
                      ?>
                     <table style="text-transform: uppercase; border: 1px solid black;text-align:center;" width="100%" border="1">
                       <?php
-                      foreach ($cutting_color as $key => $color) { $color_id = $color['Color'];?>
+                      foreach ($cutting_color as $key => $color){
+                        $color_id = $color['Color'];
+                      ?>
                       <tr>
                         <th><?= $color['color'];?></th>
                         <th>
                           <table style="text-transform: uppercase; border: 1px solid black; text-align:center;" border="1">
                               <?php
+                                echo "<tr>";
+                                echo "<th>Description</th>";
+                                $total = array();
                                 foreach ($cutiting_size as $key => $size) {
                                   $size_id = $size['Size'];
-                                  $sql = "SELECT SUM(Qty) as Total FROM cutting_form_description WHERE Size = '$size_id' AND Color = '$color_id'";
-                                  $total = mysqli_fetch_assoc(mysqli_query($conn, $sql));
-                                  echo "<tr>";
-                                  echo "<th>Description</th>";
-                                  echo "<th>".$size['size']."</th>";
-                                  echo "<tr>";
 
-                                  foreach ($total as  $value) {
-                                    echo "<th>Qty</th>";
-                                    echo "<th>".$value."</th>";
-                                  }
+                                  $sql = "SELECT SUM(Qty) as Total FROM cutting_form_description WHERE Size = '$size_id' AND Color = '$color_id'";
+
+                                  $total[] = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+                                  echo "<th>".$size['size']."</th>";
                                 }
+                                echo "</tr>";
+                                echo "<tr>";
+                                echo "<th>CUTTING</th>";
+
+                                foreach ($total as  $value) {
+                                  echo "<th>".$value['Total']."</th>";
+                                }
+                                echo "</tr>";
                                ?>
                             <tr>
                               <th></th>
@@ -85,7 +92,7 @@ include_once "includes/header.php";
                         </th>
 
                       </tr>
-                        <?php } ?>
+                      <?php echo "</tr>";} ?>
                     </table>
 
                   </th>
