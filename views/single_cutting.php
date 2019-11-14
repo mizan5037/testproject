@@ -213,6 +213,7 @@ include_once "includes/header.php";
                             <th>Color</th>
                             <th>Size</th>
                             <th>Qty</th>
+                            <th>Send to Sewing</th>
                             <th>Print & EMB Send</th>
                             <th>Print & EMB Receive	</th>
                             <th>Remark</th>
@@ -233,6 +234,7 @@ include_once "includes/header.php";
                                     <td><?= $rowo['color'] ?></td>
                                     <td><?= $rowo['size'] ?></td>
                                     <td><?= $rowo['Qty'] ?></td>
+                                    <td><?= $rowo['sewing'] ?></td>
                                     <td><?= $rowo['PrintEMBSent'] ?></td>
                                     <td><?= $rowo['PrintEmbReceive'] ?></td>
                                     <td><?= $rowo['remark'] ?></td>
