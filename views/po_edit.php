@@ -41,55 +41,55 @@ include_once "includes/header.php";
             <form class="needs-validation" method="POST" novalidate>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip01">From</label>
+                        <label >From</label>
                         <input type="text" name="from" value="<?= $single_po['POFrom'] ?>" class="form-control" id="validationTooltip01" placeholder="From" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip01">Date</label>
+                        <label >Date</label>
                         <input type="date" name="date" value="<?= $single_po['PODate'] ?>" class="form-control" id="validationTooltip01" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip03">PO Number</label>
-                        <input type="text" name="po_number" value="<?= $single_po['PONumber'] ?>" class="form-control" id="validationTooltip03" placeholder="PO Number" required>
+                        <label >PO Number</label>
+                        <input type="text" name="po_number" value="<?= $single_po['PONumber'] ?>" class="form-control"  placeholder="PO Number" required>
                         <div class="invalid-tooltip">
                             Please provide a PO Number.
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip03">Currency</label>
-                        <input type="text" name="currency" value="<?= $single_po['POCurrency'] ?>" class="form-control" id="validationTooltip03" placeholder="Currency" required>
+                        <label >Currency</label>
+                        <input type="text" name="currency" value="<?= $single_po['POCurrency'] ?>" class="form-control"  placeholder="Currency" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip01">CMP</label>
-                        <input type="number" name="cmp" value="<?= $single_po['POCMP'] ?>" class="form-control" id="validationTooltip01" placeholder="CMP" step="0.01" required>
+                        <label >CMP</label>
+                        <input type="number"  id="cmp" name="cmp" onchange="totalcost()" onkeyup="totalcost()" value="<?= $single_po['POCMP'] ?>" class="form-control" id="validationTooltip01" placeholder="CMP" step="0.01" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip03">Wash Cost</label>
-                        <input type="number" name="wash_cost" value="<?= $single_po['POWASH'] ?>" class="form-control" id="validationTooltip03" placeholder="Wash Cost" step="0.01" required>
+                        <label >Wash Cost</label>
+                        <input type="number" id="wash" name="wash_cost" onchange="totalcost()" onkeyup="totalcost()" value="<?= $single_po['POWASH'] ?>" class="form-control"  placeholder="Wash Cost" step="0.01" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip03">Hanger Cost</label>
-                        <input type="number" name="hanger_cost" value="<?= $single_po['POHANGER'] ?>" class="form-control" id="validationTooltip03" placeholder="Hanger Cost" step="0.01" required>
+                        <label >Hanger Cost</label>
+                        <input type="number" id="hanger" name="hanger_cost" onchange="totalcost()" onkeyup="totalcost()" value="<?= $single_po['POHANGER'] ?>" class="form-control"  placeholder="Hanger Cost" step="0.01" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip03">CMP+W+Hanger</label>
-                        <input type="number" name="cmp_w_wanger" value="<?= $single_po['POCMPWH'] ?>" class="form-control" id="validationTooltip03" placeholder="CMP+W+Hanger" step="0.01" required>
+                        <label >CMP+W+Hanger</label>
+                        <input type="number" name="cmp_w_wanger" value="<?= $single_po['POCMPWH'] ?>" class="form-control" id="total" placeholder="CMP+W+Hanger" step="0.01" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip03">FOB</label>
-                        <input type="number" name="fob" value="<?= $single_po['FOB'] ?>" class="form-control" id="validationTooltip03" placeholder="FOB" step="0.01" required>
+                        <label >FOB</label>
+                        <input type="number" name="fob" value="<?= $single_po['FOB'] ?>" class="form-control"  placeholder="FOB" step="0.01" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="validationTooltip01">Final Destination</label>
+                        <label >Final Destination</label>
                         <input type="Text" name="final_destination" value="<?= $single_po['POFinalDestination'] ?>" class="form-control" id="validationTooltip01" placeholder="Final Destination">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="validationTooltip03">Special Instruction</label>
-                        <textarea type="number" name="special_instruction" class="form-control" id="validationTooltip03" placeholder="Special Instruction" rows="1"><?= $single_po['POSpecialInstruction'] ?></textarea>
+                        <label >Special Instruction</label>
+                        <textarea type="number" name="special_instruction" class="form-control"  placeholder="Special Instruction" rows="1"><?= $single_po['POSpecialInstruction'] ?></textarea>
                     </div>
                 </div>
                 <div class="form-row">
@@ -132,7 +132,7 @@ include_once "includes/header.php";
                                                     while ($result = mysqli_fetch_assoc($results)) {
                                                         if ($row['StyleID'] === $result['StyleID']) {
                                                             $selected = 'selected';
-                                                        }else{
+                                                        } else {
                                                             $selected = '';
                                                         }
                                                         echo '<option ' . $selected . ' value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
@@ -141,7 +141,19 @@ include_once "includes/header.php";
                                             </select>
                                         </td>
                                         <td>
-                                            <input placeholder="Color" type="text" value="<?= $row['Color'] ?>" name="color[]" class="mb-2 form-control-sm form-control" required>
+                                            <select name="color[]" class="style mb-2 form-control-sm form-control" required>
+                                                <option></option>
+                                                <?php
+                                                    $conn = db_connection();
+                                                    $sql = "SELECT * FROM color WHERE status = 1";
+                                                    $results = mysqli_query($conn, $sql);
+                                                    while ($result = mysqli_fetch_assoc($results)) {
+                                                        $selected = $row['Color'] === $result['id'] ? 'selected' : '';
+
+                                                        echo '<option ' . $selected . ' value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                                    }
+                                                    ?>
+                                            </select>
                                         </td>
                                         <td>
                                             <input placeholder="CLR No" type="text" value="<?= $row['ClrNo'] ?>" name="clr_no[]" class="mb-2 form-control-sm form-control">
@@ -192,7 +204,18 @@ include_once "includes/header.php";
                                             <input type="hidden" value="<?= $row['PrePackID'] ?>" name="PrePackID[]">
                                         </th>
                                         <td>
-                                            <input placeholder="Size" type="text" name="size[]" value="<?= $row['PrePackSize'] ?>" class="mb-2 form-control-sm form-control" required>
+                                            <select name="size[]" class="style mb-2 form-control-sm form-control" required>
+                                                <option></option>
+                                                <?php
+                                                    $conn = db_connection();
+                                                    $sql = "SELECT * FROM size WHERE status = 1";
+                                                    $results = mysqli_query($conn, $sql);
+                                                    while ($result = mysqli_fetch_assoc($results)) {
+                                                        $selected = $row['PrePackSize'] === $result['id'] ? 'selected' : '';
+                                                        echo '<option ' . $selected . ' value="' . $result['id'] . '">' . $result['size'] . '</option>';
+                                                    }
+                                                    ?>
+                                            </select>
                                         </td>
                                         <td>
                                             <input placeholder="PrePack Code" type="text" name="ppk[]" value="<?= $row['PrePackCode'] ?>" class="mb-2 form-control-sm form-control" required>
@@ -225,7 +248,15 @@ include_once "includes/header.php";
 function customPagefooter()
 {
     ?>
-
+    <script>
+        function totalcost() {
+            let cmp = $('#cmp').val();
+            let wash = $('#wash').val();
+            let hanger = $('#hanger').val();
+            let total = (+cmp + +wash + +hanger).toFixed(2);
+            $('#total').val(total);
+        }
+    </script>
 <?php }
 include_once "includes/footer.php";
 ?>
