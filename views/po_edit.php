@@ -127,10 +127,12 @@ include_once "includes/header.php";
                                                     $sql = "SELECT * FROM style WHERE status = 1";
                                                     $results = mysqli_query($conn, $sql);
                                                     while ($result = mysqli_fetch_assoc($results)) {
-                                                        if ($row['StyleID'] == $result['StyleID']) {
+                                                        if ($row['StyleID'] === $result['StyleID']) {
                                                             $selected = 'selected';
+                                                        }else{
+                                                            $selected = '';
                                                         }
-                                                        echo '<option  '.$selected.'  value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                                        echo '<option ' . $selected . ' value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
                                                     }
                                                     ?>
                                             </select>
