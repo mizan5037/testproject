@@ -91,6 +91,7 @@ include_once "includes/header.php";
                                 <th>Color</th>
                                 <th>Size</th>
                                 <th>Qty</th>
+                                <th>Send to Sewing</th>
                                 <th>Print & EMB Send</th>
                                 <th>Print & EMB Receive</th>
                                 <th>Remark</th>
@@ -128,6 +129,9 @@ include_once "includes/header.php";
                                 </td>
                                 <td>
                                     <input placeholder="Qty" name="qty[]" type="number" class="mb-2 form-control-sm form-control">
+                                </td>
+                                <td>
+                                    <input placeholder="Send Sewing" name="sewing[]" type="number" class="mb-2 form-control-sm form-control">
                                 </td>
                                 <td>
                                     <input placeholder="Print & EMB Send" name="embsend[]" type="number" class="mb-2 form-control-sm form-control">

@@ -9,6 +9,7 @@ if (isset($_POST['catdeid']) &&
     isset($_POST['color']) &&
     isset($_POST['size']) &&
     isset($_POST['qty']) &&
+    isset($_POST['sewing']) &&
     isset($_POST['embsend']) &&
     isset($_POST['embreceive']) &&
     isset($_POST['remark'])) {
@@ -44,6 +45,7 @@ if (isset($_POST['catdeid']) &&
     $color = $_POST['color'];
     $size = $_POST['size'];
     $qty = $_POST['qty'];
+    $sewing = $_POST['sewing'];
     $embsend = $_POST['embsend'];
     $embreceive = $_POST['embreceive'];
     $remark = $_POST['remark'];
@@ -55,6 +57,7 @@ if (isset($_POST['catdeid']) &&
                                                     Color = '$color[$i]',
                                                     Size  = '$size[$i]',
                                                     Qty   =  '$qty[$i]',
+                                                    sewing   =  '$sewing[$i]',
                                                     PrintEMBSent = '$embsend[$i]',
                                                     PrintEmbReceive = '$embreceive[$i]',
                                                     remark = '$remark[$i]',

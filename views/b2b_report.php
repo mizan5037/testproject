@@ -48,7 +48,7 @@ include_once "includes/header.php";
                                     </div>
                                     <div class="form-group">
                                         <label for="">Type</label>
-                                        <select name="name" id="" class="form-control form-control-sm">
+                                        <select name="type" id="" class="form-control form-control-sm">
                                             <option value="view">View</option>
                                             <option value="download">Download</option>
                                         </select>

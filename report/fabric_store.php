@@ -217,7 +217,7 @@ while ($result = mysqli_fetch_assoc($fabric)) {
     $buyerid = $result['BuyerID'];
     $contrast = $result['ContrastPocket'];
 
-    $sql = "SELECT * FROM fab_receive_other where BuyerID='$buyer' AND Color='$color' AND  Date(timestamp)='$date'";
+    $sql = "SELECT * FROM fab_receive_other where BuyerID='$buyer' and ContrastPocket='$contrast' and Color='$color' ";
     $todayreceive = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
     $sql = "SELECT sum(ReceivedFab) ReceivedFab,sum(ReceivedRoll) ReceivedRoll FROM fab_receive_other where BuyerID='$buyer' and ContrastPocket='$contrast' and Color='$color' ";

@@ -79,6 +79,7 @@ include_once "includes/header.php";
                                 <th>Color</th>
                                 <th>Size</th>
                                 <th>Qty</th>
+                                <th>Send to Sewing</th>
                                 <th>Print & EMB Send</th>
                                 <th>Print & EMB Receive</th>
                                 <th>Remark</th>
@@ -116,6 +117,9 @@ include_once "includes/header.php";
                                 </td>
                                 <td>
                                     <input placeholder="Qty" name="qty[]" type="number" class="mb-2 form-control-sm form-control">
+                                </td>
+                                <td>
+                                    <input placeholder="Sewing" name="sewing[]" type="number" class="mb-2 form-control-sm form-control">
                                 </td>
                                 <td>
                                     <input placeholder="Print & EMB Send" name="embsend[]" type="number" class="mb-2 form-control-sm form-control">
@@ -187,6 +191,8 @@ function customPagefooter()
                     ?>
                 cols += '</select></td>';
                 cols += '<td><input placeholder="Qty" type="number" name="qty[]" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><input placeholder="Sewing" type="number" name="sewing[]" class="mb-2 form-control-sm form-control"></td>';
+
                 cols += '<td><input placeholder="Print & EMB Send" type="number" name="embsend[]" class="mb-2 form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Print & EMB Receive" name="embreceive[]" type="number" class="mb-2 form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Remark" name="remark[]" type="text" class="mb-2 form-control-sm form-control"></td>';

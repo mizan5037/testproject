@@ -1,7 +1,7 @@
 <?php
 
 $conn = db_connection();
-if (isset($_POST['date']) && isset($_POST['style']) && isset($_POST['cutting_no']) && isset($_POST['po'])  && isset($_POST['color']) && isset($_POST['size']) && isset($_POST['qty']) && isset($_POST['embsend']) && isset($_POST['embreceive']) && isset($_POST['remark'])) {
+if (isset($_POST['date']) && isset($_POST['style']) && isset($_POST['cutting_no']) && isset($_POST['po'])  && isset($_POST['color']) && isset($_POST['size']) && isset($_POST['qty']) && isset($_POST['sewing']) && isset($_POST['embsend']) && isset($_POST['embreceive']) && isset($_POST['remark'])) {
 
     $date = $_POST['date'];
     $style = $_POST['style'];
@@ -25,6 +25,7 @@ if (isset($_POST['date']) && isset($_POST['style']) && isset($_POST['cutting_no'
     $color = $_POST['color'];
     $size = $_POST['size'];
     $qty = $_POST['qty'];
+    $sewing = $_POST['sewing'];
     $embsend = $_POST['embsend'];
     $embreceive = $_POST['embreceive'];
     $remark = $_POST['remark'];
@@ -32,8 +33,8 @@ if (isset($_POST['date']) && isset($_POST['style']) && isset($_POST['cutting_no'
 
 
     for ($i = 0; $i < sizeof($color); $i++) {
-        $sql = "INSERT INTO cutting_form_description (CuttingFormID,Color,Size,Qty,PrintEMBSent,PrintEmbReceive,remark,AddedBy)
-        values('$last_id','$color[$i]','$size[$i]','$qty[$i]','$embsend[$i]', '$embreceive[$i]','$remark[$i]','$user_id') ";
+        $sql = "INSERT INTO cutting_form_description (CuttingFormID,Color,Size,Qty,sewing,PrintEMBSent,PrintEmbReceive,remark,AddedBy)
+        values('$last_id','$color[$i]','$size[$i]','$qty[$i]',$sewing[$i],'$embsend[$i]', '$embreceive[$i]','$remark[$i]','$user_id') ";
 
         if (mysqli_query($conn, $sql)) {
             notice('success', 'New Cutting Product Added Successfully');
