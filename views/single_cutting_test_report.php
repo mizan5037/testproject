@@ -52,7 +52,13 @@ include_once "includes/header.php";
                     $cutting_color = "SELECT DISTINCT c.color, cd.Color FROM cutting_form_description cd LEFT JOIN color c ON cd.Color = c.id WHERE cd.Status = '1' AND c.status = '1'";
                     $cutting_color = mysqli_query($conn, $cutting_color);
 
-                        // code...
+
+
+                    // ORDER REPORT
+
+
+                    $order = "SELECT od.StyleID, od.color, od.units FROM order_description od WHERE od.POID = 1";
+                    $order = mysqli_query($conn, $order);
 
                      ?>
                     <table style="text-transform: uppercase; border: 1px solid black;text-align:center;" width="100%" border="1">
@@ -77,12 +83,35 @@ include_once "includes/header.php";
                                   echo "<th>".$size['size']."</th>";
                                 }
                                 echo "</tr>";
+                                // Quantity
+                                echo "<tr>";
+                                echo "<th>Qty</th>";
+
+                                foreach ($order as  $qty) {
+                                  echo "<th>".$qty['units']."</th>";
+                                  $qty_total[] = $qty['units'];
+                                }
+                                print_r($qty_total);
+                                echo "</tr>";
+                                // Cutting
                                 echo "<tr>";
                                 echo "<th>CUTTING</th>";
 
                                 foreach ($total as  $value) {
                                   echo "<th>".$value['Total']."</th>";
+                                  $exs_total[] = $value['Total'];
                                 }
+                                echo "<br>";
+                                print_r($exs_total);
+                                echo "</tr>";
+                                // exss
+                                echo "<tr>";
+                                echo "<th>EXss</th>";
+
+                                // foreach ($exs_total as  $value) {
+                                //   echo "<th>".$value['Total'] - ."</th>";
+                                //   $exs_total[] = $value['Total'];
+                                // }
                                 echo "</tr>";
                                ?>
                             <tr>
