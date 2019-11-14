@@ -130,7 +130,7 @@ include_once "includes/header.php";
                                                         if ($row['StyleID'] == $result['StyleID']) {
                                                             $selected = 'selected';
                                                         }
-                                                        echo '<option  selected=".$selected."  value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                                        echo '<option  '.$selected.'  value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
                                                     }
                                                     ?>
                                             </select>
