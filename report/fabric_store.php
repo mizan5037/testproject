@@ -33,23 +33,16 @@ td{
     text-align:center;
 }
 
-
-
-
 </style>
 <body>
-
-
-
-
 
 <table style="font-size: 8pt;" border="1pt">
 	<thead>
 		<tr>
-			<th width="10%" style="border: 1px solid #000000; font-size:16px;">
+			<th width="12%" style="border: 1px solid #000000; font-size:16px;">
 				<b>STYLE</b>
 			</th>
-			<th width="10%" style="border: 1px solid #000000; font-size:16px;">
+			<th width="8%" style="border: 1px solid #000000; font-size:16px;">
 				<b>COLOR </b>
 			</th>
 			</th>
@@ -207,7 +200,7 @@ while ($rowo = mysqli_fetch_assoc($fabric)) {
 $total_particular_issue = 0;
 
 
-$pocket = "SELECT f.*,c.id as colorid,c.color FROM fab_receive_other f LEFT JOIN color c ON c.id=f.Color where f.BuyerID='1' order by f.ContrastPocket   ";
+$pocket = "SELECT f.*,c.id as colorid,c.color FROM fab_receive_other f LEFT JOIN color c ON c.id=f.Color where f.BuyerID='1' and DATE(f.timestamp)='$date' order by f.ContrastPocket   ";
 
 $fabric = mysqli_query($conn, $pocket);
 $b = 0;
@@ -217,10 +210,10 @@ while ($result = mysqli_fetch_assoc($fabric)) {
     $buyerid = $result['BuyerID'];
     $contrast = $result['ContrastPocket'];
 
-    $sql = "SELECT * FROM fab_receive_other where BuyerID='$buyer' and ContrastPocket='$contrast' and Color='$color' ";
+    $sql = "SELECT * FROM fab_receive_other where BuyerID='$buyer' and ContrastPocket='$contrast' and Color='$color'  and DATE(f.timestamp)='$date' ";
     $todayreceive = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
-    $sql = "SELECT sum(ReceivedFab) ReceivedFab,sum(ReceivedRoll) ReceivedRoll FROM fab_receive_other where BuyerID='$buyer' and ContrastPocket='$contrast' and Color='$color' ";
+    $sql = "SELECT sum(ReceivedFab) ReceivedFab,sum(ReceivedRoll) ReceivedRoll FROM fab_receive_other where BuyerID='$buyer' and ContrastPocket='$contrast' and Color='$color'  ";
     $totalreceive = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
     $sql = "SELECT sum(d.Roll) totalroll FROM (SELECT * FROM fabric_issue_other WHERE BuyerID='$buyer' AND ContrastPocket='$contrast') f LEFT JOIN (select * from fabric_issue_other_description where Color='$color') d ON d.FabricIssueotherID=f.ID";
@@ -358,7 +351,7 @@ $mpdf->SetHTMLHeader('
 			<h4 ><u>BUYER:'.$buyername['BuyerName'].'</u></h4>
 
         </td>
-        <td><h3><b></b></h3></>
+        <td><h2><b>DATE: '.$date.'</b></h2></>
 	</tr>
 	
 </table>
