@@ -140,7 +140,7 @@ td{
  
 $sql = "SELECT f.*,d.Consumption,d.RqdQty,c.color,c.id as colorid, r.ReceivedFab FROM (SELECT * FROM fab_issue WHERE POID='$po' and BuyerID='$buyer' AND StyleID='$style' and DATE(timestamp)='$date' ) f LEFT JOIN fab_issue_description d ON d.FabIssueID=f.FabIssueID LEFT JOIN (SELECT * FROM fab_receive where DATE(timestamp)='$date')  r ON r.POID=f.POID LEFT JOIN color c ON c.id=d.Color where  DATE(d.timestamp)='$date' order by f.StyleID";
 
-//echo $sql;
+echo $sql;
 $consumption = mysqli_query($conn, $sql);
 $fabric_short= 0;
 $fabric_excess = 0;
@@ -271,6 +271,6 @@ $mpdf->SetHTMLHeader('
         </tr>
 
     </table>');
-//echo $html;
-$mpdf->WriteHTML($html);
-$mpdf->Output();
+echo $html;
+// $mpdf->WriteHTML($html);
+// $mpdf->Output();
