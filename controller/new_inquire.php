@@ -1,7 +1,7 @@
 <?php
 $conn = db_connection();
 if (isset($_POST['style'])) {
-    $stylenumber = $_POST['style'];
+    $stylenumber = mysqli_real_escape_string($conn, $_POST['style']);
     $sql = "SELECT * FROM style WHERE StyleNumber = '$stylenumber'";
     $row = mysqli_query($conn, $sql);
 }

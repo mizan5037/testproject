@@ -1,8 +1,8 @@
 <?php
 
 if (isset($_GET['fabid']) && $_GET['fabid'] !='' && $_GET['fabricid'] != '') {
-    $fabid = $_GET['fabid'];
-    $fabricid =  $_GET['fabricid'];
+    $fabid = mysqli_real_escape_string($conn, $_GET['fabid']);
+    $fabricid =  mysqli_real_escape_string($conn, $_GET['fabricid']);
 
     $sql = "DELETE FROM fab_relaxation_description  where ID=".$fabid;
 

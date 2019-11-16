@@ -103,13 +103,13 @@ while ($rowo = mysqli_fetch_assoc($fabric)) {
     $poid = $rowo['POID'];
     $color = $rowo['colorid'];
     $styleid = $rowo['StyleID'];
-    $sql = "SELECT sum(ReceivedFab) totalReceivedFab FROM fab_receive where POID='$poid'  AND StyleID=".$rowo['StyleID'];
+    $sql = "SELECT sum(ReceivedFab) totalReceivedFab FROM fab_receive where POID='$poid' and Color='$color'  AND StyleID=".$rowo['StyleID'];
     $totalReceivedFab = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
-    $sql = "SELECT ReceivedFab FROM fab_receive where POID='$poid'  AND StyleID='$styleid' AND  Date(timestamp)='$date'  GROUP BY StyleID ";
+    $sql = "SELECT ReceivedFab FROM fab_receive where POID='$poid'  AND StyleID='$styleid' and Color='$color' AND  Date(timestamp)='$date'  GROUP BY StyleID ";
     $todayreceiveroll = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
-    $sql = "SELECT sum(ReceivedRoll) ReceivedRoll FROM fab_receive where POID='$poid'  AND StyleID='$styleid'   GROUP BY StyleID ";
+    $sql = "SELECT sum(ReceivedRoll) ReceivedRoll FROM fab_receive where POID='$poid'  and Color='$color' AND  StyleID='$styleid'   GROUP BY StyleID ";
     $totalreceivedroll = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
     $sql = "SELECT sum(d.Roll) Roll FROM (SELECT * FROM fab_issue where POID='$poid' ) f LEFT JOIN fab_issue_description d on d.FabIssueID=f.FabIssueID LEFT JOIN  color co ON co.id=d.Color where d.Color='$color'" ;
@@ -124,7 +124,7 @@ while ($rowo = mysqli_fetch_assoc($fabric)) {
     $sql = "SELECT sum(d.IssueQty) IssueQty FROM (SELECT * FROM fab_issue where POID='$poid' ) f LEFT JOIN fab_issue_description d on d.FabIssueID=f.FabIssueID LEFT JOIN  color co ON co.id=d.Color where d.Color='$color'" ;
     $totalissuefab = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
-    $sql2 = "SELECT d.IssueQty FROM (SELECT * FROM fab_issue where POID='$poid' ) f LEFT JOIN (select * from fab_issue_description where Color='$color' and Date(timestamp)='$date')  d on d.FabIssueID=f.FabIssueID LEFT JOIN  color co ON co.id=d.Color  " ;
+    $sql2 = "SELECT d.IssueQty FROM (SELECT * FROM fab_issue where POID='$poid' ) f LEFT JOIN (select * from fab_issue_description where Color='$color' )  d on d.FabIssueID=f.FabIssueID LEFT JOIN  color co ON co.id=d.Color  " ;
     $todayissue = mysqli_fetch_assoc(mysqli_query($conn, $sql2));
 
     $sql = "SELECT count(*) totalcolor FROM fab_receive where POID='$poid'  AND StyleID=".$rowo['StyleID'];
@@ -200,7 +200,7 @@ while ($rowo = mysqli_fetch_assoc($fabric)) {
 $total_particular_issue = 0;
 
 
-$pocket = "SELECT f.*,c.id as colorid,c.color FROM fab_receive_other f LEFT JOIN color c ON c.id=f.Color where f.BuyerID='1' and DATE(f.timestamp)='$date' order by f.ContrastPocket   ";
+$pocket = "SELECT f.*,c.id as colorid,c.color FROM fab_receive_other f LEFT JOIN color c ON c.id=f.Color where f.BuyerID='$buyer' and DATE(f.timestamp)='$date' order by f.ContrastPocket   ";
 
 $fabric = mysqli_query($conn, $pocket);
 $b = 0;
@@ -210,8 +210,10 @@ while ($result = mysqli_fetch_assoc($fabric)) {
     $buyerid = $result['BuyerID'];
     $contrast = $result['ContrastPocket'];
 
-    $sql = "SELECT * FROM fab_receive_other where BuyerID='$buyer' and ContrastPocket='$contrast' and Color='$color'  and DATE(f.timestamp)='$date' ";
+    $sql = "SELECT * FROM fab_receive_other where BuyerID='$buyer' and ContrastPocket='$contrast' and Color='$color'  and DATE(timestamp)='$date' ";
     $todayreceive = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+
+    //echo $sql;
 
     $sql = "SELECT sum(ReceivedFab) ReceivedFab,sum(ReceivedRoll) ReceivedRoll FROM fab_receive_other where BuyerID='$buyer' and ContrastPocket='$contrast' and Color='$color'  ";
     $totalreceive = mysqli_fetch_assoc(mysqli_query($conn, $sql));

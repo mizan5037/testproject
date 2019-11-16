@@ -4,19 +4,19 @@ $conn = db_connection();
 
 if (isset($_POST['date']) && isset($_POST['floor']) && isset($_POST['line']) && isset($_POST['po']) && isset($_POST['style']) && isset($_POST['color']) && isset($_POST['hour']) && isset($_POST['quantity'])  ) {
 
-    $date = $_POST['date'];
-    $floorno = $_POST['floor'];
-    $user_id = get_ses('user_id');
+    $date = mysqli_real_escape_string($conn, $_POST['date']);
+    $floorno = mysqli_real_escape_string($conn, $_POST['floor']);
+    $user_id = mysqli_real_escape_string($conn, get_ses('user_id'));
 
 
 
     //hourly production datails
-    $line = $_POST['line'];
-    $po = $_POST['po'];
-    $style = $_POST['style'];
-    $color = $_POST['color'];
-    $hour = $_POST['hour'];
-    $quantity = $_POST['quantity'];
+    $line = mysqli_real_escape_string($conn, $_POST['line']);
+    $po = mysqli_real_escape_string($conn, $_POST['po']);
+    $style = mysqli_real_escape_string($conn, $_POST['style']);
+    $color = mysqli_real_escape_string($conn, $_POST['color']);
+    $hour = mysqli_real_escape_string($conn, $_POST['hour']);
+    $quantity = mysqli_real_escape_string($conn, $_POST['quantity']);
 
 
     for ($i = 0; $i < sizeof($color); $i++) {

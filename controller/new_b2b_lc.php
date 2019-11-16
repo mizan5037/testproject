@@ -21,7 +21,7 @@ while ($resulti = mysqli_fetch_assoc($resultis)) {
     $itemArr[] = $resulti;
 }
 
-if(
+if (
     isset($_POST['masterlcid']) &&
     isset($_POST['b2blcnumber']) &&
     isset($_POST['suppliername']) &&
@@ -36,53 +36,52 @@ if(
     isset($_POST['qty']) &&
     isset($_POST['ppu']) &&
     isset($_POST['tp'])
-){
-    $masterlcid = $_POST['masterlcid'];
-    $b2blcnumber = $_POST['b2blcnumber'];
-    $suppliername = $_POST['suppliername'];
-    $contactperson = $_POST['contactperson'];
-    $contactnumber = $_POST['contactnumber'];
-    $address = $_POST['address'];
-    $issuedate = $_POST['issuedate'];
-    $maturitydate = $_POST['maturitydate'];
-	  $user_id      = get_ses('user_id');
+) {
+    $masterlcid     = mysqli_real_escape_string($conn, $_POST['masterlcid']);
+    $b2blcnumber    = mysqli_real_escape_string($conn, $_POST['b2blcnumber']);
+    $suppliername   = mysqli_real_escape_string($conn, $_POST['suppliername']);
+    $contactperson  = mysqli_real_escape_string($conn, $_POST['contactperson']);
+    $contactnumber  = mysqli_real_escape_string($conn, $_POST['contactnumber']);
+    $address        = mysqli_real_escape_string($conn, $_POST['address']);
+    $issuedate      = mysqli_real_escape_string($conn, $_POST['issuedate']);
+    $maturitydate   = mysqli_real_escape_string($conn, $_POST['maturitydate']);
+    $user_id        = get_ses('user_id');
 
     $sql = "INSERT INTO b2blc (B2BLCNumber, MasterLCID, SupplierName, ContactPerson, ContactNumber, SupplierAddress, Issuedate, Maturitydate, AddedBy)
 
 	values('$b2blcnumber','$masterlcid','$suppliername' , '$contactperson','$contactnumber', '$address', '$issuedate','$maturitydate','$user_id')";
 
-	if (mysqli_query($conn, $sql)) {
-		notice('success', 'New B2B LC added Successfully');
-		$last_id = mysqli_insert_id($conn);
-
-	} else {
-		notice('error', $sql . "<br>" . mysqli_error($conn));
-	}
+    if (mysqli_query($conn, $sql)) {
+        notice('success', 'New B2B LC added Successfully');
+        $last_id = mysqli_insert_id($conn);
+    } else {
+        notice('error', $sql . "<br>" . mysqli_error($conn));
+    }
 
     //array items
-    $item = $_POST['item'];
-    $style = $_POST['style'];
-    $po = $_POST['po'];
-    $qty = $_POST['qty'];
-    $ppu = $_POST['ppu'];
-    $tp = $_POST['tp'];
+    $item   = mysqli_real_escape_string($conn, $_POST['item']);
+    $style  = mysqli_real_escape_string($conn, $_POST['style']);
+    $po     = mysqli_real_escape_string($conn, $_POST['po']);
+    $qty    = mysqli_real_escape_string($conn, $_POST['qty']);
+    $ppu    = mysqli_real_escape_string($conn, $_POST['ppu']);
+    $tp     = mysqli_real_escape_string($conn, $_POST['tp']);
 
     for ($i = 0; $i < sizeof($item); $i++) {
 
-		$totalprice  = $qty[$i] * $price_per_unit[$i];
+        $totalprice  = $qty[$i] * $price_per_unit[$i];
 
-		$sql = "INSERT INTO b2b_item (B2BLCID, ItemID, StyleID, POID, Qty, PricePerUnit, TotalPrice, AddedBy)
+        $sql = "INSERT INTO b2b_item (B2BLCID, ItemID, StyleID, POID, Qty, PricePerUnit, TotalPrice, AddedBy)
 
 		values('$last_id','$item[$i]','$style[$i]','$po[$i]','$qty[$i]','$ppu[$i]','$tp[$i]','$user_id') ";
 
 
 
-		if (mysqli_query($conn, $sql)) {
-			notice('success', 'New B2B LC added Successfully');
-		} else {
-			notice('error', $sql . "<br>" . mysqli_error($conn));
-		}
-	}
+        if (mysqli_query($conn, $sql)) {
+            notice('success', 'New B2B LC added Successfully');
+        } else {
+            notice('error', $sql . "<br>" . mysqli_error($conn));
+        }
+    }
 
-	nowgo('/index.php?page=all_b2b_lc');
+    nowgo('/index.php?page=all_b2b_lc');
 }

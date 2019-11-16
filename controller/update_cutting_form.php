@@ -12,12 +12,13 @@ if (isset($_POST['catdeid']) &&
     isset($_POST['sewing']) &&
     isset($_POST['embsend']) &&
     isset($_POST['embreceive']) &&
-    isset($_POST['remark'])) {
+    isset($_POST['remark'])
+    ) {
 
-    $style = $_POST['style'];
-    $date = $_POST['date'];
-    $cutting_no = $_POST['cutting_no'];
-    $po = $_POST['po'];
+    $style = mysqli_real_escape_string($conn, $_POST['style']);
+    $date = mysqli_real_escape_string($conn, $_POST['date']);
+    $cutting_no = mysqli_real_escape_string($conn, $_POST['cutting_no']);
+    $po = mysqli_real_escape_string($conn, $_POST['po']);
     $user_id = get_ses('user_id');
 
     $sql = "INSERT INTO cutting_form (StyleID,CuttingNo,POID,AddedBy)
@@ -41,14 +42,14 @@ if (isset($_POST['catdeid']) &&
     }
 
     //fab relaxation details
-    $id = $_POST['catdeid'];
-    $color = $_POST['color'];
-    $size = $_POST['size'];
-    $qty = $_POST['qty'];
-    $sewing = $_POST['sewing'];
-    $embsend = $_POST['embsend'];
-    $embreceive = $_POST['embreceive'];
-    $remark = $_POST['remark'];
+    $id = mysqli_real_escape_string($conn, $_POST['catdeid']);
+    $color = mysqli_real_escape_string($conn, $_POST['color']);
+    $size = mysqli_real_escape_string($conn, $_POST['size']);
+    $qty = mysqli_real_escape_string($conn, $_POST['qty']);
+    $sewing = mysqli_real_escape_string($conn, $_POST['sewing']);
+    $embsend = mysqli_real_escape_string($conn, $_POST['embsend']);
+    $embreceive = mysqli_real_escape_string($conn, $_POST['embreceive']);
+    $remark = mysqli_real_escape_string($conn, $_POST['remark']);
 
 
 

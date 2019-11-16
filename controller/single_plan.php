@@ -1,6 +1,6 @@
 <?php
 if (isset($_GET['id']) && $_GET['id'] != '') {
-    $id = $_GET['id'];
+    $id = mysqli_real_escape_string($conn, $_GET['id']);
 } else {
     nowgo('/index.php?page=all_plan');
 }
@@ -16,7 +16,7 @@ $plan_details = mysqli_query($conn, $sql);
 
 
 if (isset($_GET['delete']) && $_GET['delete'] != '') {
-    $delete = $_GET['delete'];
+    $delete = mysqli_real_escape_string($conn, $_GET['delete']);
     $sql = "UPDATE plan_details SET status = 0 WHERE id= '$delete'";
     if (mysqli_query($conn, $sql)) {
         notice('success', 'Day Plan Deleted Successfully');

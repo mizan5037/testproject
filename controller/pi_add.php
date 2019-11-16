@@ -3,9 +3,9 @@
 if (isset($_POST['refno'])  && isset($_POST['date']) && isset($_POST['supplier']) && isset($_POST['po']) && isset($_POST['item']) && isset($_POST['description']) && isset($_POST['qty']) && isset($_POST['ppu'])) {
 	$conn = db_connection();
 
-	$reference_no = $_POST['refno'];
-	$date         = $_POST['date'];
-	$supplier     = $_POST['supplier'];
+	$reference_no = mysqli_real_escape_string($conn, $_POST['refno']);
+	$date         = mysqli_real_escape_string($conn, $_POST['date']);
+	$supplier     = mysqli_real_escape_string($conn, $_POST['supplier']);
 	$user_id      = get_ses('user_id');
 
 
@@ -24,11 +24,11 @@ if (isset($_POST['refno'])  && isset($_POST['date']) && isset($_POST['supplier']
 	
   //PI Description Table
 
-	$po_number   = $_POST['po'];
-    $item        = $_POST['item'];
-    $description = $_POST['description'];
-    $qty         = $_POST['qty'];
-    $price_per_unit   = $_POST['ppu'];
+	$po_number   		= mysqli_real_escape_string($conn, $_POST['po']);
+    $item        		= mysqli_real_escape_string($conn, $_POST['item']);
+    $description 		= mysqli_real_escape_string($conn, $_POST['description']);
+    $qty         		= mysqli_real_escape_string($conn, $_POST['qty']);
+    $price_per_unit   	= mysqli_real_escape_string($conn, $_POST['ppu']);
 	for ($i = 0; $i < sizeof($item); $i++) {
 
 		$totalprice  = $qty[$i] * $price_per_unit[$i];

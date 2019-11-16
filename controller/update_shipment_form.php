@@ -1,13 +1,13 @@
 <?php
 $conn = db_connection();
 if (isset($_POST['date']) && isset($_POST['po'])  && isset($_POST['style']) && isset($_POST['color']) && isset($_POST['receivefab']) && isset($_POST['receiveroll']) && isset($_POST['remark']) ) {
-    $date = $_POST['date'];
-    $po = $_POST['po'];
-    $style = $_POST['style'];
-    $color = $_POST['color'];
-    $receivefab = $_POST['receivefab'];
-    $receiveroll = $_POST['receiveroll'];
-    $remark = $_POST['remark'];
+    $date = mysqli_real_escape_string($conn, $_POST['date']);
+    $po = mysqli_real_escape_string($conn, $_POST['po']);
+    $style = mysqli_real_escape_string($conn, $_POST['style']);
+    $color = mysqli_real_escape_string($conn, $_POST['color']);
+    $receivefab = mysqli_real_escape_string($conn, $_POST['receivefab']);
+    $receiveroll = mysqli_real_escape_string($conn, $_POST['receiveroll']);
+    $remark = mysqli_real_escape_string($conn, $_POST['remark']);
     $user_id = get_ses('user_id');
 
     $sql = "UPDATE shipment_form SET
@@ -29,7 +29,7 @@ if (isset($_POST['date']) && isset($_POST['po'])  && isset($_POST['style']) && i
 }
 if(isset($_GET['delete']) && $_GET['delete'] !=''){
 
-    $delete = $_GET['delete'];
+    $delete = mysqli_real_escape_string($conn, $_GET['delete']);
     $sql = "UPDATE shipment_form SET Status=0 where ShipmentFormID='$delete'";
 
 	if (mysqli_query($conn, $sql)) {

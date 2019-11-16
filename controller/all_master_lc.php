@@ -20,7 +20,7 @@ function searchForBuyer($id, $array)
 
 
 if (isset($_GET['delete'])) {
-    $id = $_GET['delete'];
+    $id = mysqli_real_escape_string($conn, $_GET['delete']);
     $sql = "UPDATE masterlc set status=0 where MasterLCID=" . $id;
 
     if (mysqli_query($conn, $sql)) {

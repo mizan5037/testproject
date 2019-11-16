@@ -2,7 +2,7 @@
 
 $conn = db_connection();
 if (isset($_GET['item_id'])) {
-    $id = $_GET['item_id'];
+    $id = mysqli_real_escape_string($conn, $_GET['item_id']);
 
     $sql = "SELECT * FROM item where ItemID='$id'";;
 
@@ -10,9 +10,9 @@ if (isset($_GET['item_id'])) {
 }
 
 if (isset($_POST['update'])) {
-    $name = $_POST['item_name'] ? $_POST['item_name'] : '';
-    $specification = $_POST['item_specification'] ? $_POST['item_specification'] : '';
-    $unit = $_POST['item_unit'] ? $_POST['item_unit'] : '';
+    $name = $_POST['item_name'] ? mysqli_real_escape_string($conn, $_POST['item_name']) : '';
+    $specification = $_POST['item_specification'] ? mysqli_real_escape_string($conn, $_POST['item_specification']) : '';
+    $unit = $_POST['item_unit'] ? mysqli_real_escape_string($conn, $_POST['item_unit']) : '';
 
 
 

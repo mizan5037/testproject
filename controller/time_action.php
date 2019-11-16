@@ -1,15 +1,15 @@
 <?php
 $conn = db_connection();
 if (isset($_POST['submit'])) {
-	$projected_date = $_POST['projected_date'];
-	$implement_date = $_POST['implement_date'];
-	$rimplement_date_1st = $_POST['1st_revised_implement_date'];
-	$revised_implement_date_2nd = $_POST['2nd_revised_implement_date'];
-	$revised_implement_date_3rd = $_POST['3rd_revised_implement_date'];
-	$revised_implement_date_4th = $_POST['4th_revised_implement_date'];
-	$remarks = $_POST['remarks'];
-	$POID = $_POST['POID'];
-	$event_id = $_POST['event_id'];
+	$projected_date = mysqli_real_escape_string($conn, $_POST['projected_date']);
+	$implement_date = mysqli_real_escape_string($conn, $_POST['implement_date']);
+	$rimplement_date_1st = mysqli_real_escape_string($conn, $_POST['1st_revised_implement_date']);
+	$revised_implement_date_2nd = mysqli_real_escape_string($conn, $_POST['2nd_revised_implement_date']);
+	$revised_implement_date_3rd = mysqli_real_escape_string($conn, $_POST['3rd_revised_implement_date']);
+	$revised_implement_date_4th = mysqli_real_escape_string($conn, $_POST['4th_revised_implement_date']);
+	$remarks = mysqli_real_escape_string($conn, $_POST['remarks']);
+	$POID = mysqli_real_escape_string($conn, $_POST['POID']);
+	$event_id = mysqli_real_escape_string($conn, $_POST['event_id']);
 	$user_id = get_ses('user_id');
 
 	$event_check = "SELECT * FROM `po_time_action` WHERE `event_id` = '$event_id' AND `POID`= '$POID'";
@@ -38,8 +38,8 @@ if (isset($_POST['submit'])) {
 	nowgo('/index.php?page=new_time_action&POID='.$POID);
 }
 if (isset($_POST['save_note'])) {
-	$POID = $_POST['POID_sn'];
-	$special_note = $_POST['special_note'];
+	$POID = mysqli_real_escape_string($conn, $_POST['POID_sn']);
+	$special_note = mysqli_real_escape_string($conn, $_POST['special_note']);
 
 	$sql = "UPDATE `po` SET `special_note`='$special_note' WHERE `POID` = $POID";
 

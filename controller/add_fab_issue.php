@@ -3,10 +3,10 @@
 if ( isset($_POST['buyer']) && $_POST['style'] && isset($_POST['po']) && isset($_POST['particulars']) && isset($_POST['color']) && isset($_POST['qtz']) && isset($_POST['consuption'])&& isset($_POST['rqd'])&& isset($_POST['issue'])&& isset($_POST['remark'])) {
 
    
-    $buyer = $_POST['buyer'];
-	$style = $_POST['style'];
-	$po = $_POST['po'];
-    $user_id = get_ses('user_id');
+    $buyer = mysqli_real_escape_string($conn, $_POST['buyer']);
+	$style = mysqli_real_escape_string($conn, $_POST['style']);
+	$po = mysqli_real_escape_string($conn, $_POST['po']);
+    $user_id = mysqli_real_escape_string($conn, get_ses('user_id'));
     
 
 	for ($i = 0; $i < sizeof($style); $i++) {
@@ -23,14 +23,14 @@ if ( isset($_POST['buyer']) && $_POST['style'] && isset($_POST['po']) && isset($
 		}
     }
     
-    $particulars = $_POST['particulars'];
-	$color = $_POST['color'];
-	$qtz = $_POST['qtz'];
-	$consuption = $_POST['consuption'];
-	$rqd = $_POST['rqd'];
-	$issue  = $_POST['issue'];
-	$remark  = $_POST['remark'];
-    $user_id = get_ses('user_id');
+    $particulars = mysqli_real_escape_string($conn, $_POST['particulars']);
+	$color = mysqli_real_escape_string($conn, $_POST['color']);
+	$qtz = mysqli_real_escape_string($conn, $_POST['qtz']);
+	$consuption = mysqli_real_escape_string($conn, $_POST['consuption']);
+	$rqd = mysqli_real_escape_string($conn, $_POST['rqd']);
+	$issue  = mysqli_real_escape_string($conn, $_POST['issue']);
+	$remark  = mysqli_real_escape_string($conn, $_POST['remark']);
+    $user_id = mysqli_real_escape_string($conn, get_ses('user_id'));
 
     for ($i = 0; $i < sizeof($color); $i++) {
 

@@ -2,7 +2,7 @@
 $conn = db_connection();
 
 if (isset($_GET['id']) && $_GET['id'] != '') {
-    $id = $_GET['id'];
+    $id = mysqli_real_escape_string($conn, $_GET['id']);
 } else {
     nowgo('/index.php?page=all_master_lc');
 }
@@ -38,12 +38,12 @@ $mlc = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
 if (isset($_POST['pono']) && isset($_POST['style']) && isset($_POST['qty']) && isset($_POST['unitname']) && isset($_POST['price']) && isset($_POST['lsdate'])) {
     //array MasterLC Description
-    $pono  = $_POST['pono'];
-    $style  = $_POST['style'];
-    $qty  = $_POST['qty'];
-    $unitname  = $_POST['unitname'];
-    $price  = $_POST['price'];
-    $lsdate  = $_POST['lsdate'];
+    $pono  = mysqli_real_escape_string($conn, $_POST['pono']);
+    $style  = mysqli_real_escape_string($conn, $_POST['style']);
+    $qty  = mysqli_real_escape_string($conn, $_POST['qty']);
+    $unitname  = mysqli_real_escape_string($conn, $_POST['unitname']);
+    $price  = mysqli_real_escape_string($conn, $_POST['price']);
+    $lsdate  = mysqli_real_escape_string($conn, $_POST['lsdate']);
     $user_id = get_ses('user_id');
 
     for ($i = 0; $i < sizeof($pono); $i++) {
@@ -81,20 +81,20 @@ if (
     isset($_POST['portofdischarge']) &&
     isset($_POST['description'])
 ) {
-    $mlcnumber = $_POST['mlcnumber'];
-    $mlcissuedate  = $_POST['mlcissuedate'];
-    $mlcexpirydate  = $_POST['mlcexpirydate'];
-    $lcissuedby  = $_POST['lcissuedby'];
-    $buyer  = $_POST['buyer'];
-    $sender_bank  = $_POST['sender_bank'];
-    $receiver_bank  = $_POST['receiver_bank'];
-    $currency  = $_POST['currency'];
-    $amount  = $_POST['amount'];
-    $partialshipment  = $_POST['partialshipment'];
-    $transshipment  = $_POST['transshipment'];
-    $portofloading  = $_POST['portofloading'];
-    $portofdischarge  = $_POST['portofdischarge'];
-    $description  = $_POST['description'];
+    $mlcnumber = mysqli_real_escape_string($conn, $_POST['mlcnumber']);
+    $mlcissuedate  = mysqli_real_escape_string($conn, $_POST['mlcissuedate']);
+    $mlcexpirydate  = mysqli_real_escape_string($conn, $_POST['mlcexpirydate']);
+    $lcissuedby  = mysqli_real_escape_string($conn, $_POST['lcissuedby']);
+    $buyer  = mysqli_real_escape_string($conn, $_POST['buyer']);
+    $sender_bank  = mysqli_real_escape_string($conn, $_POST['sender_bank']);
+    $receiver_bank  = mysqli_real_escape_string($conn, $_POST['receiver_bank']);
+    $currency  = mysqli_real_escape_string($conn, $_POST['currency']);
+    $amount  = mysqli_real_escape_string($conn, $_POST['amount']);
+    $partialshipment  = mysqli_real_escape_string($conn, $_POST['partialshipment']);
+    $transshipment  = mysqli_real_escape_string($conn, $_POST['transshipment']);
+    $portofloading  = mysqli_real_escape_string($conn, $_POST['portofloading']);
+    $portofdischarge  = mysqli_real_escape_string($conn, $_POST['portofdischarge']);
+    $description  = mysqli_real_escape_string($conn, $_POST['description']);
     $user_id = get_ses('user_id');
 
     $sql = "UPDATE masterlc SET 
@@ -124,8 +124,8 @@ if (
 }
 
 if (isset($_GET['delete'])) {
-    $id = $_GET['delete'];
-    $sid = $_GET['id'];
+    $id = mysqli_real_escape_string($conn, $_GET['delete']);
+    $sid = mysqli_real_escape_string($conn, $_GET['id']);
     $sql = "DELETE FROM masterlc_description  WHERE ID=" . $id;
 
     if (mysqli_query($conn, $sql)) {
