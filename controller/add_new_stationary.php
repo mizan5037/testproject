@@ -2,10 +2,10 @@
 $conn = db_connection();
 if (isset($_POST['item_name']) && $_POST['specification'] != '' && isset($_POST['unit']) && isset($_POST['unit'])) {
 
-    $name = $_POST['item_name'];
-    $specification = $_POST['specification'];
-    $unit = $_POST['unit'];
-    $user_id = get_ses('user_id');
+    $name = mysqli_real_escape_string($conn, $_POST['item_name']);
+    $specification = mysqli_real_escape_string($conn, $_POST['specification']);
+    $unit = mysqli_real_escape_string($conn, $_POST['unit']);
+    $user_id = mysqli_real_escape_string($conn, get_ses('user_id'));
 
     $sql = "INSERT INTO stationary_item (Name,Description,MeasurmentUnit,AddedBy)
 
@@ -21,7 +21,7 @@ if (isset($_POST['item_name']) && $_POST['specification'] != '' && isset($_POST[
 
 
 if (isset($_GET['delete'])) {
-    $id = $_GET['delete'];
+    $id = mysqli_real_escape_string($conn, $_GET['delete']);
     $sql = "UPDATE stationary_item set status=0 where ID=" . $id;
 
     if (mysqli_query($conn, $sql)) {

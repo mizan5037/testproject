@@ -2,7 +2,7 @@
 $conn = db_connection();
 //color add
 if (isset($_POST['color']) && $_POST['color'] != '') {
-  $color = $_POST['color'];
+  $color = mysqli_real_escape_string($conn, $_POST['color']);
   $user_id = get_ses('user_id');
   $sql = "INSERT INTO color (color, addedby) VALUES ('$color', '$user_id')";
 
@@ -16,7 +16,7 @@ if (isset($_POST['color']) && $_POST['color'] != '') {
 
 //size add
 if (isset($_POST['size']) && $_POST['size'] != '') {
-  $size = $_POST['size'];
+  $size = mysqli_real_escape_string($conn, $_POST['size']);
   $user_id = get_ses('user_id');
   $sql = "INSERT INTO size (size, addedby) VALUES ('$size', '$user_id')";
 
@@ -30,7 +30,7 @@ if (isset($_POST['size']) && $_POST['size'] != '') {
 
 //color delete
 if (isset($_GET['color_delete']) && $_GET['color_delete'] != '') {
-  $sql = "UPDATE color SET status = 0 WHERE id = " . $_GET['color_delete'];
+  $sql = "UPDATE color SET status = 0 WHERE id = " . mysqli_real_escape_string($conn, $_GET['color_delete']);
   if (mysqli_query($conn, $sql)) {
     notice('success', 'Color Deleted Successfully');
     nowgo('/index.php?page=color_size');
@@ -41,7 +41,7 @@ if (isset($_GET['color_delete']) && $_GET['color_delete'] != '') {
 
 //size delete 
 if (isset($_GET['size_delete']) && $_GET['size_delete'] != '') {
-  $sql = "UPDATE color SET status = 0 WHERE id = " . $_GET['size_delete'];
+  $sql = "UPDATE color SET status = 0 WHERE id = " . mysqli_real_escape_string($conn, $_GET['size_delete']);
   if (mysqli_query($conn, $sql)) {
     notice('success', 'Color Deleted Successfully');
     nowgo('/index.php?page=color_size');

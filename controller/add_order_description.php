@@ -3,14 +3,14 @@
 if ( isset($_POST['style']) && $_POST['style'] != '' && isset($_POST['color']) && isset($_POST['clr_no']) && isset($_POST['dzs']) && isset($_POST['ppack']) && isset($_POST['units'])) {
 
     $conn = db_connection();
-    $style = $_POST['style'];
-	$color = $_POST['color'];
-	$clr_no = $_POST['clr_no'];
-	$dzs = $_POST['dzs'];
-	$ppack = $_POST['ppack'];
-    $units = $_POST['units'];
-    $user_id = get_ses('user_id');
-    $POID = $_GET['poid'];
+    $style = mysqli_real_escape_string($conn, $_POST['style']);
+	$color = mysqli_real_escape_string($conn, $_POST['color']);
+	$clr_no = mysqli_real_escape_string($conn, $_POST['clr_no']);
+	$dzs = mysqli_real_escape_string($conn, $_POST['dzs']);
+	$ppack = mysqli_real_escape_string($conn, $_POST['ppack']);
+    $units = mysqli_real_escape_string($conn, $_POST['units']);
+    $user_id = mysqli_real_escape_string($conn, get_ses('user_id'));
+    $POID = mysqli_real_escape_string($conn, $_GET['poid']);
 
 	for ($i = 0; $i < sizeof($style); $i++) {
 

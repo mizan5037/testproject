@@ -2,7 +2,7 @@
 $conn = db_connection();
 
 if (isset($_GET['id']) && $_GET['id'] != '') {
-    $id = $_GET['id'];
+    $id = mysqli_real_escape_string($conn, $_GET['id']);
 } else {
     nowgo('/index.php?page=all_b2b_lc');
 }
@@ -53,13 +53,13 @@ $blc = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
 if (isset($_POST['pono']) && isset($_POST['style']) && isset($_POST['qty']) && isset($_POST['unitname']) && isset($_POST['price']) && isset($_POST['lsdate'])) {
     //array MasterLC Description
-    $pono  = $_POST['pono'];
-    $style  = $_POST['style'];
-    $qty  = $_POST['qty'];
-    $unitname  = $_POST['unitname'];
-    $price  = $_POST['price'];
-    $lsdate  = $_POST['lsdate'];
-    $user_id = get_ses('user_id');
+    $pono       = mysqli_real_escape_string($conn, $_POST['pono']);
+    $style      = mysqli_real_escape_string($conn, $_POST['style']);
+    $qty        = mysqli_real_escape_string($conn, $_POST['qty']);
+    $unitname   = mysqli_real_escape_string($conn, $_POST['unitname']);
+    $price      = mysqli_real_escape_string($conn, $_POST['price']);
+    $lsdate     = mysqli_real_escape_string($conn, $_POST['lsdate']);
+    $user_id    = get_ses('user_id');
 
     for ($i = 0; $i < sizeof($pono); $i++) {
         if ($pono[$i] != '') {
@@ -90,14 +90,14 @@ if (
     isset($_POST['number']) &&
     isset($_POST['address'])
 ) {
-    $blcnumber = $_POST['blcnumber'];
-    $blcissuedate  = $_POST['blcissuedate'];
-    $blcmaturitydate  = $_POST['blcmaturitydate'];
-    $masterlc  = $_POST['masterlc'];
-    $supplier  = $_POST['supplier'];
-    $person  = $_POST['person'];
-    $number  = $_POST['number'];
-    $address  = $_POST['address'];
+    $blcnumber          = mysqli_real_escape_string($conn, $_POST['blcnumber']);
+    $blcissuedate       = mysqli_real_escape_string($conn, $_POST['blcissuedate']);
+    $blcmaturitydate    = mysqli_real_escape_string($conn, $_POST['blcmaturitydate']);
+    $masterlc           = mysqli_real_escape_string($conn, $_POST['masterlc']);
+    $supplier           = mysqli_real_escape_string($conn, $_POST['supplier']);
+    $person             = mysqli_real_escape_string($conn, $_POST['person']);
+    $number             = mysqli_real_escape_string($conn, $_POST['number']);
+    $address            = mysqli_real_escape_string($conn, $_POST['address']);
 
     $sql = "UPDATE b2blc SET
     B2BLCNumber = '$blcnumber',
@@ -119,8 +119,8 @@ if (
 }
 
 if (isset($_GET['delete'])) {
-    $id = $_GET['delete'];
-    $sid = $_GET['id'];
+    $id = mysqli_real_escape_string($conn, $_GET['delete']);
+    $sid = mysqli_real_escape_string($conn, $_GET['id']);
     $sql = "DELETE FROM b2b_item  WHERE ID=" . $id;
 
     if (mysqli_query($conn, $sql)) {

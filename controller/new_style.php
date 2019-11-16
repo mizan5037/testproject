@@ -54,13 +54,13 @@ if (isset($_POST['stylenumber']) && $_POST['styledescription'] != '' && isset($_
         }
     }
 
-    $conn = db_connection();
-    $stylenumber = $_POST['stylenumber'];
-    $styledescription = $_POST['styledescription'];
-    $fabricdetails = $_POST['fabricdetails'];
-    $protono = $_POST['protono'];
-    $wash = $_POST['wash'];
-    $user_id = get_ses('user_id');
+    $conn               = db_connection();
+    $stylenumber        = mysqli_real_escape_string($conn, $_POST['stylenumber']);
+    $styledescription   = mysqli_real_escape_string($conn, $_POST['styledescription']);
+    $fabricdetails      = mysqli_real_escape_string($conn, $_POST['fabricdetails']);
+    $protono            = mysqli_real_escape_string($conn, $_POST['protono']);
+    $wash               = mysqli_real_escape_string($conn, $_POST['wash']);
+    $user_id            = get_ses('user_id');
 
     $sql = "INSERT INTO style (StyleNumber,StyleDescription,StyleWash,StyleProto,StyleImage,StyleFabricDetails,AddedBy)
 
@@ -75,8 +75,8 @@ if (isset($_POST['stylenumber']) && $_POST['styledescription'] != '' && isset($_
     }
 
     //array TRIMS & ACCESSORIES
-    $trim_name = $_POST['trim_name'];
-    $trim_description = $_POST['trim_description'];
+    $trim_name          = mysqli_real_escape_string($conn, $_POST['trim_name']);
+    $trim_description   = mysqli_real_escape_string($conn, $_POST['trim_description']);
 
     for ($i = 0; $i < sizeof($trim_name); $i++) {
 
@@ -92,9 +92,9 @@ if (isset($_POST['stylenumber']) && $_POST['styledescription'] != '' && isset($_
     }
 
     //array Item Requirments
-    $size = $_POST['size'];
-    $item = $_POST['item'];
-    $qty = $_POST['qty'];
+    $size   = mysqli_real_escape_string($conn, $_POST['size']);
+    $item   = mysqli_real_escape_string($conn, $_POST['item']);
+    $qty    = mysqli_real_escape_string($conn, $_POST['qty']);
 
 
     for ($i = 0; $i < sizeof($size); $i++) {

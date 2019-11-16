@@ -12,10 +12,10 @@ if (
 ) {
     $conn = db_connection();
 
-    $buyer = $_GET['buyer'];
-    $color = $_GET['color'];
-    $style = $_GET['style'];
-    $po = $_GET['po'];
+    $buyer = mysqli_real_escape_string($conn, $_GET['buyer']);
+    $color = mysqli_real_escape_string($conn, $_GET['color']);
+    $style = mysqli_real_escape_string($conn, $_GET['style']);
+    $po = mysqli_real_escape_string($conn, $_GET['po']);
 
     $sql = "SELECT DISTINCT ir.*, i.ItemName, s.size, i.ItemMeasurementUnit FROM item_receive_access ir LEFT JOIN order_description od ON ir.POID = od.POID LEFT JOIN masterlc_description md ON md.POID = od.POID LEFT JOIN masterlc m ON m.MasterLCID = md.MasterLCID LEFT JOIN item i ON i.ItemID = ir.ItemID LEFT JOIN size s ON s.id = ir.Size WHERE m.MasterLCBuyer = '$buyer' AND ir.ColorID = '$color' AND ir.StyleID = '$style' AND ir.POID = '$po'";
     $query = mysqli_query($conn, $sql);

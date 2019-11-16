@@ -3,11 +3,11 @@
 $conn = db_connection();
 if (isset($_POST['date']) && isset($_POST['style']) && isset($_POST['cutting_no']) && isset($_POST['po'])  && isset($_POST['color']) && isset($_POST['size']) && isset($_POST['qty']) && isset($_POST['sewing']) && isset($_POST['embsend']) && isset($_POST['embreceive']) && isset($_POST['remark'])) {
 
-    $date = $_POST['date'];
-    $style = $_POST['style'];
-    $cutting_no = $_POST['cutting_no'];
-    $po = $_POST['po'];
-    $user_id = get_ses('user_id');
+    $date = mysqli_real_escape_string($conn, $_POST['date']);
+    $style = mysqli_real_escape_string($conn, $_POST['style']);
+    $cutting_no = mysqli_real_escape_string($conn, $_POST['cutting_no']);
+    $po = mysqli_real_escape_string($conn, $_POST['po']);
+    $user_id = mysqli_real_escape_string($conn, get_ses('user_id'));
 
     $sql = "INSERT INTO cutting_form (date,StyleID,CuttingNo,POID,AddedBy)
 

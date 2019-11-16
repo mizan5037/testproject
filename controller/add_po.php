@@ -23,19 +23,19 @@ if (
 ) {
 	$conn = db_connection();
 
-	$from = $_POST['from'];
-	$date = $_POST['date'];
-	$po_number = $_POST['po_number'];
-	$currency = $_POST['currency'];
-	$cmp = $_POST['cmp'];
-	$wash_cost = $_POST['wash_cost'];
-	$hanger_cost = $_POST['hanger_cost'];
-	$cmp_w_wanger = $_POST['cmp_w_wanger'];
-	$fob = $_POST['fob'];
-	$final_destination = $_POST['final_destination'];
-	$special_instruction = $_POST['special_instruction'];
-	$division = $_POST['division'];
-	$user_id = get_ses('user_id');
+	$from 					= mysqli_real_escape_string($conn, $_POST['from']);
+	$date 					= mysqli_real_escape_string($conn, $_POST['date']);
+	$po_number 				= mysqli_real_escape_string($conn, $_POST['po_number']);
+	$currency 				= mysqli_real_escape_string($conn, $_POST['currency']);
+	$cmp 					= mysqli_real_escape_string($conn, $_POST['cmp']);
+	$wash_cost 				= mysqli_real_escape_string($conn, $_POST['wash_cost']);
+	$hanger_cost 			= mysqli_real_escape_string($conn, $_POST['hanger_cost']);
+	$cmp_w_wanger 			= mysqli_real_escape_string($conn, $_POST['cmp_w_wanger']);
+	$fob 					= mysqli_real_escape_string($conn, $_POST['fob']);
+	$final_destination 		= mysqli_real_escape_string($conn, $_POST['final_destination']);
+	$special_instruction 	= mysqli_real_escape_string($conn, $_POST['special_instruction']);
+	$division 				= mysqli_real_escape_string($conn, $_POST['division']);
+	$user_id 				= mysqli_real_escape_string($conn, get_ses('user_id'));
 
 
 
@@ -51,9 +51,9 @@ if (
 	}
 
 	//prepack table
-	$size = $_POST['size'];
-	$ppk = $_POST['ppk'];
-	$qty = $_POST['qty'];
+	$size 	= mysqli_real_escape_string($conn, $_POST['size']);
+	$ppk 	= mysqli_real_escape_string($conn, $_POST['ppk']);
+	$qty 	= mysqli_real_escape_string($conn, $_POST['qty']);
 
 
 
@@ -74,12 +74,12 @@ if (
 
 	// ORDER DESCRIPTION
 
-	$style = $_POST['style'];
-	$color = $_POST['color'];
-	$clr_no = $_POST['clr_no'];
-	$dzs = $_POST['dzs'];
-	$ppack = $_POST['ppack'];
-	$units = $_POST['units'];
+	$style 		= mysqli_real_escape_string($conn, $_POST['style']);
+	$color 		= mysqli_real_escape_string($conn, $_POST['color']);
+	$clr_no 	= mysqli_real_escape_string($conn, $_POST['clr_no']);
+	$dzs 		= mysqli_real_escape_string($conn, $_POST['dzs']);
+	$ppack 		= mysqli_real_escape_string($conn, $_POST['ppack']);
+	$units 		= mysqli_real_escape_string($conn, $_POST['units']);
 
 
 

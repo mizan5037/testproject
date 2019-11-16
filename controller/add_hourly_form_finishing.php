@@ -2,23 +2,23 @@
 $conn = db_connection();
 if (isset($_POST['date']) && isset($_POST['floorno']) && isset($_POST['po']) && isset($_POST['style']) && isset($_POST['color']) && isset($_POST['nine']) && isset($_POST['ten']) && isset($_POST['eleven']) && isset($_POST['twelve']) && isset($_POST['one']) && isset($_POST['three']) && isset($_POST['four']) && isset($_POST['five']) && isset($_POST['six']) && isset($_POST['seven']) && isset($_POST['eight']) ) {
 
-    $date = $_POST['date'];
-    $floorno = $_POST['floorno'];
-    $po = $_POST['po'];
-    $style = $_POST['style'];
-    $color = $_POST['color'];
-    $nine = $_POST['nine'];
-    $ten = $_POST['ten'];
-    $eleven = $_POST['eleven'];
-    $twelve = $_POST['twelve'];
-    $one = $_POST['one'];
-    $three = $_POST['three'];
-    $four = $_POST['four'];
-    $five = $_POST['five'];
-    $six = $_POST['six'];
-    $seven = $_POST['seven'];
-    $eight = $_POST['eight'];
-    $user_id = get_ses('user_id');
+    $date = mysqli_real_escape_string($conn, $_POST['date']);
+    $floorno = mysqli_real_escape_string($conn, $_POST['floorno']);
+    $po = mysqli_real_escape_string($conn, $_POST['po']);
+    $style = mysqli_real_escape_string($conn, $_POST['style']);
+    $color = mysqli_real_escape_string($conn, $_POST['color']);
+    $nine = mysqli_real_escape_string($conn, $_POST['nine']);
+    $ten = mysqli_real_escape_string($conn, $_POST['ten']);
+    $eleven = mysqli_real_escape_string($conn, $_POST['eleven']);
+    $twelve = mysqli_real_escape_string($conn, $_POST['twelve']);
+    $one = mysqli_real_escape_string($conn, $_POST['one']);
+    $three = mysqli_real_escape_string($conn, $_POST['three']);
+    $four = mysqli_real_escape_string($conn, $_POST['four']);
+    $five = mysqli_real_escape_string($conn, $_POST['five']);
+    $six = mysqli_real_escape_string($conn, $_POST['six']);
+    $seven = mysqli_real_escape_string($conn, $_POST['seven']);
+    $eight = mysqli_real_escape_string($conn, $_POST['eight']);
+    $user_id = mysqli_real_escape_string($conn, get_ses('user_id'));
     
 
     for ($i = 0; $i < sizeof($color); $i++) {

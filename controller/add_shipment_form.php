@@ -2,14 +2,14 @@
 $conn = db_connection();
 if (isset($_POST['date']) && isset($_POST['po'])  && isset($_POST['style']) && isset($_POST['color']) && isset($_POST['receivefab']) && isset($_POST['receiveroll']) && isset($_POST['remark']) ) {
 
-    $date = $_POST['date'];
-    $po = $_POST['po'];
-    $style = $_POST['style'];
-    $color = $_POST['color'];
-    $receivefab = $_POST['receivefab'];
-    $receiveroll = $_POST['receiveroll'];
-    $remark = $_POST['remark'];
-    $user_id = get_ses('user_id');
+    $date           = mysqli_real_escape_string($conn, $_POST['date']);
+    $po             = mysqli_real_escape_string($conn, $_POST['po']);
+    $style          = mysqli_real_escape_string($conn, $_POST['style']);
+    $color          = mysqli_real_escape_string($conn, $_POST['color']);
+    $receivefab     = mysqli_real_escape_string($conn, $_POST['receivefab']);
+    $receiveroll    = mysqli_real_escape_string($conn, $_POST['receiveroll']);
+    $remark         = mysqli_real_escape_string($conn, $_POST['remark']);
+    $user_id        = mysqli_real_escape_string($conn, get_ses('user_id'));
 
 
     for ($i = 0; $i < sizeof($color); $i++) {

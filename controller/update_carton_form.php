@@ -2,12 +2,12 @@
 $conn = db_connection();
 if (isset($_POST['date'])  && isset($_POST['po']) && isset($_POST['style']) && isset($_POST['color']) && isset($_POST['receivefab']) && isset($_POST['remark']) ) {
 
-    $date = $_POST['date'];
-    $po = $_POST['po'];
-    $style = $_POST['style'];
-    $color = $_POST['color'];
-    $receivefab = $_POST['receivefab'];
-    $remark = $_POST['remark'];
+    $date = mysqli_real_escape_string($conn, $_POST['date']);
+    $po = mysqli_real_escape_string($conn, $_POST['po']);
+    $style = mysqli_real_escape_string($conn, $_POST['style']);
+    $color = mysqli_real_escape_string($conn, $_POST['color']);
+    $receivefab = mysqli_real_escape_string($conn, $_POST['receivefab']);
+    $remark = mysqli_real_escape_string($conn, $_POST['remark']);
     $user_id = get_ses('user_id');
 
 
@@ -34,7 +34,7 @@ if (isset($_POST['date'])  && isset($_POST['po']) && isset($_POST['style']) && i
 }
 if(isset($_GET['delete']) && $_GET['delete'] !=''){
 
-    $delete = $_GET['delete'];
+    $delete = mysqli_real_escape_string($conn, $_GET['delete']);
     $sql = "UPDATE carton_form SET Status=0 where CartonFromID='$delete'";
 	if (mysqli_query($conn, $sql)) {
 		notice('success', 'Carton  Deleted From PO Successfully');

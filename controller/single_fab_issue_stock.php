@@ -27,8 +27,8 @@ else{
 
 
 if (isset($_POST['id']) && isset($_POST['submit']) && isset($_POST['fab_id'])) {
-    $id = $_POST['id'];
-    $fab_id = $_POST['fab_id'];
+    $id = mysqli_real_escape_string($conn, $_POST['id']);
+    $fab_id = mysqli_real_escape_string($conn, $_POST['fab_id']);
     $user_id = get_ses('user_id');
 
 
@@ -43,8 +43,8 @@ if (isset($_POST['id']) && isset($_POST['submit']) && isset($_POST['fab_id'])) {
 
 
 if (isset($_POST['id1']) && isset($_POST['submit1']) && isset($_POST['fab_other_id'])) {
-    $id = $_POST['id1'];
-    $fab_other_id = $_POST['fab_other_id'];
+    $id = mysqli_real_escape_string($conn, $_POST['id1']);
+    $fab_other_id = mysqli_real_escape_string($conn, $_POST['fab_other_id']);
     $user_id = get_ses('user_id');
 
 
@@ -56,8 +56,6 @@ if (isset($_POST['id1']) && isset($_POST['submit1']) && isset($_POST['fab_other_
     }
     nowgo('/index.php?page=single_fab_issue_stock&fab_issue_other_id='.$fab_other_id);
 }
-
-
 
 function getname($table, $column, $idColumn, $id){
     global $conn;

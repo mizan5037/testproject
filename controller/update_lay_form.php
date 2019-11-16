@@ -3,16 +3,16 @@
 $conn = db_connection();
 if (isset($_POST['buyer']) && isset($_POST['layid']) && isset($_POST['style']) && isset($_POST['po'])  && isset($_POST['cutting_no']) && isset($_POST['unit']) && isset($_POST['date']) && isset($_POST['item']) && isset($_POST['mw']) && isset($_POST['marker_length']) && isset($_POST['color']) && isset($_POST['lotno']) && isset($_POST['slno']) && isset($_POST['rollno']) && isset($_POST['ttlfab']) && isset($_POST['lay']) && isset($_POST['usedfab']) && isset($_POST['ramaining']) && isset($_POST['exsshort']) && isset($_POST['sticker'])  && isset($_POST['specialaction'])) {
 
-    $buyer = $_POST['buyer'];
-    $style = $_POST['style'];
-    $po = $_POST['po'];
-    $cutting_no = $_POST['cutting_no'];
-    $unit = $_POST['unit'];
-    $date = $_POST['date'];
-    $item = $_POST['item'];
-    $mw = $_POST['mw'];
-    $marker_length = $_POST['marker_length'];
-    $specialaction = $_POST['specialaction'];
+    $buyer = mysqli_real_escape_string($conn, $_POST['buyer']);
+    $style = mysqli_real_escape_string($conn, $_POST['style']);
+    $po = mysqli_real_escape_string($conn, $_POST['po']);
+    $cutting_no = mysqli_real_escape_string($conn, $_POST['cutting_no']);
+    $unit = mysqli_real_escape_string($conn, $_POST['unit']);
+    $date = mysqli_real_escape_string($conn, $_POST['date']);
+    $item = mysqli_real_escape_string($conn, $_POST['item']);
+    $mw = mysqli_real_escape_string($conn, $_POST['mw']);
+    $marker_length = mysqli_real_escape_string($conn, $_POST['marker_length']);
+    $specialaction = mysqli_real_escape_string($conn, $_POST['specialaction']);
     $user_id = get_ses('user_id');
     
     $sql = "UPDATE lay_form SET 
@@ -36,17 +36,17 @@ if (isset($_POST['buyer']) && isset($_POST['layid']) && isset($_POST['style']) &
     }
 
     //lay from datails
-    $id = $_POST['layid'];
-    $color = $_POST['color'];
-    $lotno = $_POST['lotno'];
-    $slno = $_POST['slno'];
-    $rollno = $_POST['rollno'];
-    $ttlfab = $_POST['ttlfab'];
-    $lay = $_POST['lay'];
-    $usedfab = $_POST['usedfab'];
-    $ramaining = $_POST['ramaining'];
-    $exsshort = $_POST['exsshort'];
-    $sticker = $_POST['sticker'];
+    $id = mysqli_real_escape_string($conn, $_POST['layid']);
+    $color = mysqli_real_escape_string($conn, $_POST['color']);
+    $lotno = mysqli_real_escape_string($conn, $_POST['lotno']);
+    $slno = mysqli_real_escape_string($conn, $_POST['slno']);
+    $rollno = mysqli_real_escape_string($conn, $_POST['rollno']);
+    $ttlfab = mysqli_real_escape_string($conn, $_POST['ttlfab']);
+    $lay = mysqli_real_escape_string($conn, $_POST['lay']);
+    $usedfab = mysqli_real_escape_string($conn, $_POST['usedfab']);
+    $ramaining = mysqli_real_escape_string($conn, $_POST['ramaining']);
+    $exsshort = mysqli_real_escape_string($conn, $_POST['exsshort']);
+    $sticker = mysqli_real_escape_string($conn, $_POST['sticker']);
 
     for($i=0; $i<sizeof($color);$i++){
 

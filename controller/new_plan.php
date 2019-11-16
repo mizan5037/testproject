@@ -1,13 +1,13 @@
 <?php
 $conn = db_connection();
 if (isset($_POST['submit']) && $_POST['submit'] == 'Save') {
-    $title = $_POST['title'];
-    $poid = $_POST['po'];
-    $style = $_POST['style'];
-    $user_id = get_ses('user_id');
+    $title      = mysqli_real_escape_string($conn, $_POST['title']);
+    $poid       = mysqli_real_escape_string($conn, $_POST['po']);
+    $style      = mysqli_real_escape_string($conn, $_POST['style']);
+    $user_id    = get_ses('user_id');
 
     if (isset($_POST['id']) && $_POST['id'] != '') {
-        $last_id = $_POST['id'];
+        $last_id = mysqli_real_escape_string($conn, $_POST['id']);
     } else {
 
         $sql = "INSERT INTO plan (title, poid, styleid, addedby) VALUES ('$title', '$poid', '$style', '$user_id')";
@@ -19,10 +19,10 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'Save') {
         }
     }
 
-    $date = $_POST['date'];
-    $floor = $_POST['floor'];
-    $line = $_POST['line'];
-    $qty = $_POST['qty'];
+    $date   = mysqli_real_escape_string($conn, $_POST['date']);
+    $floor  = mysqli_real_escape_string($conn, $_POST['floor']);
+    $line   = mysqli_real_escape_string($conn, $_POST['line']);
+    $qty    = mysqli_real_escape_string($conn, $_POST['qty']);
 
     for ($i = 0; $i < sizeof($date); $i++) {
         $sql = "INSERT INTO plan_details (date,plan_id,floor,line,qty,addedby)

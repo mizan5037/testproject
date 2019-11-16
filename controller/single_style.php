@@ -10,9 +10,9 @@ if (isset($_POST['form']) && $_POST['form'] = "editDetails") {
 
     if (get_ses('token') === $token) {
 
-        $eid = $_POST["id"];
-        $cname = $_POST['cname'];
-        $text = $_POST["text"];
+        $eid = mysqli_real_escape_string($conn, $_POST["id"]);
+        $cname = mysqli_real_escape_string($conn, $_POST['cname']);
+        $text = mysqli_real_escape_string($conn, $_POST["text"]);
 
 
         $sql = "UPDATE style SET " . $cname . "='" . $text . "' WHERE StyleID = '" . $eid . "'";
@@ -27,8 +27,8 @@ if (isset($_POST['form']) && $_POST['form'] = "editDetails") {
 
 //Delete item requiremwnts
 if (isset($_GET['delete'])) {
-    $itemid = $_GET['delete'];
-    $id = $_GET['id'];
+    $itemid = mysqli_real_escape_string($conn, $_GET['delete']);
+    $id = mysqli_real_escape_string($conn, $_GET['id']);
     $sql = "DELETE FROM itemrequirment WHERE ItemRequirmentID=" . $itemid;
 
     if (mysqli_query($conn, $sql)) {
@@ -41,8 +41,8 @@ if (isset($_GET['delete'])) {
 
 //delete trims & Accessories
 if (isset($_GET['deletet'])) {
-    $tid = $_GET['deletet'];
-    $id = $_GET['id'];
+    $tid = mysqli_real_escape_string($conn, $_GET['deletet']);
+    $id = mysqli_real_escape_string($conn, $_GET['id']);
     $sql = "DELETE FROM trimsaccess where TrimsAccessID=" . $tid;
 
     if (mysqli_query($conn, $sql)) {
@@ -54,16 +54,16 @@ if (isset($_GET['deletet'])) {
 }
 
 if (isset($_GET['id']) && $_GET['id'] != '') {
-    $id = $_GET['id'];
+    $id = mysqli_real_escape_string($conn, $_GET['id']);
 } else {
     nowgo('/index.php?page=all_style');
 }
 
 if (isset($_POST['size']) && isset($_POST['item']) && isset($_POST['qty'])) {
     //array Item Requirments
-    $size = $_POST['size'];
-    $item = $_POST['item'];
-    $qty = $_POST['qty'];
+    $size = mysqli_real_escape_string($conn, $_POST['size']);
+    $item = mysqli_real_escape_string($conn, $_POST['item']);
+    $qty = mysqli_real_escape_string($conn, $_POST['qty']);
 
 
     for ($i = 0; $i < sizeof($size); $i++) {
@@ -86,8 +86,8 @@ if (isset($_POST['size']) && isset($_POST['item']) && isset($_POST['qty'])) {
 
 if (isset($_POST['trim_name']) && isset($_POST['trim_description'])) {
     //array TRIMS & ACCESSORIES
-    $trim_name = $_POST['trim_name'];
-    $trim_description = $_POST['trim_description'];
+    $trim_name = mysqli_real_escape_string($conn, $_POST['trim_name']);
+    $trim_description = mysqli_real_escape_string($conn, $_POST['trim_description']);
 
     for ($i = 0; $i < sizeof($trim_name); $i++) {
 

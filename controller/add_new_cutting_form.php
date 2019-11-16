@@ -9,18 +9,18 @@ if (isset($_POST['color']) &&
     isset($_POST['remark']) &&
     isset($_POST['last_id'])) {
 
-    $user_id = get_ses('user_id');
+    $user_id = mysqli_real_escape_string($conn, get_ses('user_id'));
 
-    $last_id = $_POST['last_id'];
+    $last_id = mysqli_real_escape_string($conn, $_POST['last_id']);
 
 
     //fab relaxation details
-    $color = $_POST['color'];
-    $size = $_POST['size'];
-    $qty = $_POST['qty'];
-    $embsend = $_POST['embsend'];
-    $embreceive = $_POST['embreceive'];
-    $remark = $_POST['remark'];
+    $color = mysqli_real_escape_string($conn, $_POST['color']);
+    $size = mysqli_real_escape_string($conn, $_POST['size']);
+    $qty = mysqli_real_escape_string($conn, $_POST['qty']);
+    $embsend = mysqli_real_escape_string($conn, $_POST['embsend']);
+    $embreceive = mysqli_real_escape_string($conn, $_POST['embreceive']);
+    $remark = mysqli_real_escape_string($conn, $_POST['remark']);
 
 
 
