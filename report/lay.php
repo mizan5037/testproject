@@ -28,7 +28,12 @@ table {
 
 th, td {
   text-align: center;
-  padding: 8px;
+  padding: 5px;
+  font-size:16px;
+}
+td{
+	font-weight:bold;
+	font-size:16px;
 }
 
 
@@ -84,39 +89,39 @@ th, td {
 <table style="font-size: 8pt;" border="1pt">
 	<thead>
 		<tr>
-			<td width="10%" style="border: 1px solid #000000;">
+			<th width="10%" style="border: 1px solid #000000;">
 				<b>Colour</b>
-			</td>
-			<td width="20%" style="border: 1px solid #000000;">
-				<b>Lot <br> No.</b>
-			</td>
-			<td width="18%" style="border: 1px solid #000000;">
+			</th>
+			<th width="15%" style="border: 1px solid #000000;">
+				<b>Lot No.</b>
+			</th>
+			<th width="18%" style="border: 1px solid #000000;">
 				<b>SL. No.</b>
-			</td>
-			<td width="8%" style="border: 1px solid #000000;">
+			</th>
+			<th width="8%" style="border: 1px solid #000000;">
 				<b>Roll No.</b>
-			</td>
-			<td width="8%" style="border: 1px solid #000000;">
+			</th>
+			<th width="8%" style="border: 1px solid #000000;">
 				<b> TTL <br> Fabrics/yds</b>
-			</td>
-			<td width="10%" style="border: 1px solid #000000;">
+			</th>
+			<th width="10%" style="border: 1px solid #000000;">
 				<b>Lay </b>
-			</td>
-			<td width="10%" style="border: 1px solid #000000;">
+			</th>
+			<th width="10%" style="border: 1px solid #000000;">
 				<b>TTL Lay</b>
-			</td>
-			<td width="10%" style="border: 1px solid #000000;">
+			</th>
+			<th width="10%" style="border: 1px solid #000000;">
 				<b>Used Fabrics/yds</b>
-			</td>
-			<td width="10%" style="border: 1px solid #000000;">
+			</th>
+			<th width="10%" style="border: 1px solid #000000;">
 				<b>Remaining</b>
-			</td>
-			<td width="10%" style="border: 1px solid #000000;">
+			</th>
+			<th width="15%" style="border: 1px solid #000000;">
 				<b>Excess/Shori</b>
-			</td>
-			<td width="10%" style="border: 1px solid #000000;">
+			</th>
+			<th width="10%" style="border: 1px solid #000000;">
 				<b>Sticker</b>
-			</td>
+			</th>
 		</tr>
 	</thead>
 ';
@@ -146,10 +151,10 @@ while ($rowo = mysqli_fetch_assoc($order)) {
 			<td style="border: 1px solid #000000;">
 				' . $color . '
 			</td>
-			<td style="text-align:left;border: 1px solid #000000;">
+			<td style="border: 1px solid #000000;">
 				' . $lotno . '
 			</td>
-			<td style="text-align:left;border: 1px solid #000000;">
+			<td style="border: 1px solid #000000;">
 				' . $slno . '
 			</td>
 			<td style="border: 1px solid #000000;">
