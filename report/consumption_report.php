@@ -138,7 +138,7 @@ td{
 	</thead>
 ';
  
-$sql = "SELECT f.*,d.Consumption,d.RqdQty,c.color,c.id as colorid, r.ReceivedFab FROM (SELECT * FROM fab_issue WHERE POID='$po' and BuyerID='$buyer' AND StyleID='$style') f LEFT JOIN fab_issue_description d ON d.FabIssueID=f.FabIssueID LEFT JOIN fab_receive r ON r.POID=f.POID LEFT JOIN color c ON c.id=d.Color order by f.StyleID";
+$sql = "SELECT f.*,d.Consumption,d.RqdQty,c.color,c.id as colorid, r.ReceivedFab FROM (SELECT * FROM fab_issue WHERE POID='$po' and BuyerID='$buyer' AND StyleID='$style' and DATE(timestamp)='$date' ) f LEFT JOIN fab_issue_description d ON d.FabIssueID=f.FabIssueID LEFT JOIN (SELECT * FROM fab_receive where DATE(timestamp)='$date')  r ON r.POID=f.POID LEFT JOIN color c ON c.id=d.Color where  DATE(d.timestamp)='$date' order by f.StyleID";
 
 //echo $sql;
 $consumption = mysqli_query($conn, $sql);
