@@ -56,8 +56,55 @@ $poid = 2;
 
 
                     // ORDER REPORT
-                    $order = "SELECT od.StyleID, od.color, od.units FROM order_description od WHERE od.POID = '$poid'";
-                    $order = mysqli_query($conn, $order);
+
+
+                    // count ORDER
+
+                    $count_order = "SELECT PrePackCode FROM prepack WHERE POID = $poid GROUP BY PrePackCode";
+                    $count_order = mysqli_num_rows(mysqli_query($conn, $count_order));
+
+                    $prepack_count = "SELECT COUNT(PrePackCode) as total FROM prepack WHERE POID = $poid";
+                    $prepack_count = mysqli_fetch_assoc(mysqli_query($conn, $prepack_count));
+
+                    if($prepack_count['total'] == $count_order){
+                      $order = "SELECT od.StyleID, od.color, od.units FROM order_description od WHERE od.POID = '$poid'";
+                      $order = mysqli_query($conn, $order);
+                      $check = true;
+                    }
+                    else {
+                      $total_units = "SELECT od.Units FROM order_description od WHERE POID = $poid";
+                      $total_units = mysqli_fetch_assoc(mysqli_query($conn, $total_units));
+
+                      $check = false;
+
+                      $prepack_table = "SELECT p.PrePackSize ,p.PrepackQty FROM prepack p WHERE p.POID = $poid";
+                      $prepack_table = mysqli_query($conn,$prepack_table);
+
+
+
+                      $total = 0;
+                      foreach ($prepack_table as $key => $value) {
+                        $total += $value['PrepackQty'];
+                      }
+
+
+
+
+
+                      function order_qty($total,$qty,$unit){
+                        return ($unit*$qty)/$total;
+                      }
+
+                      $total_units = $total_units['Units'];
+                      foreach ($prepack_table as $key => $value) {
+                        $qty = $value['PrepackQty'];
+                        $order[] = order_qty($total,$qty,$total_units);
+                      }
+
+
+                    }
+
+                    //
 
                      ?>
                     <table style="text-transform: uppercase; border: 1px solid black;text-align:center;" width="100%" border="1">
@@ -87,11 +134,20 @@ $poid = 2;
                                 // Quantity
                                 echo "<tr>";
                                 echo "<th>Order Qty</th>";
-
-                                foreach ($order as  $qty) {
-                                  echo "<th>".$qty['units']."</th>";
-                                  $qty_total[] = $qty['units'];
+                                if($check){
+                                  foreach ($order as  $qty) {
+                                    echo "<th>".$qty['units']."</th>";
+                                    $qty_total[] = $qty['units'];
+                                  }
                                 }
+                                else {
+                                  print_r($order);
+                                  foreach ($order as  $qty) {
+                                    echo "<th>".$qty."</th>";
+                                    $qty_total[] = $qty;
+                                  }
+                                }
+
                                 echo "<th>".array_sum($qty_total)."</th>";
 
                                 // print_r($qty_total);
@@ -110,8 +166,8 @@ $poid = 2;
                                 // exss
                                 echo "<tr>";
                                 echo "<th>EXss</th>";
-
                                 foreach ($cuting_total as  $key =>$value) {
+
                                   $value = $qty_total[$key]-$cuting_total[$key];
                                   $total_exss[] = $value;
                                   echo "<th>".$value."</th>";
