@@ -7,7 +7,7 @@ require_once '../lib/functions.php';
 $conn = db_connection();
 
 $token = mysqli_real_escape_string($conn, $_POST["token"]);
-
+// po to style
 if (get_ses('token') === $token && $_POST["form"] == 'get_style') {
 
     $po = mysqli_real_escape_string($conn, $_POST["po"]);
@@ -45,7 +45,7 @@ if (get_ses('token') === $token && $_POST["form"] == 'get_line') {
         echo '<option value="' . $row['id'] . '">' . $row['line'] . '</option>';
     }
   }
-
+// buyer To po
 if (get_ses('token') === $token && $_POST["form"] == 'get_po_size_wise') {
 
     $buyer_id = mysqli_real_escape_string($conn, $_POST["buyer_id"]);
@@ -55,6 +55,40 @@ if (get_ses('token') === $token && $_POST["form"] == 'get_po_size_wise') {
     echo '<option>Select PO Number</option>';
      while($row = mysqli_fetch_assoc($result)){
          echo '<option value="' . $row['POID'] . '">' . $row['PONumber'] . '</option>';
+     }
+
+}
+
+// buyer to style
+if (get_ses('token') === $token && $_POST["form"] == 'get_buyer_fab') {
+
+    $buyer_id = mysqli_real_escape_string($conn, $_POST["buyer_id"]);
+
+    $sql = "SELECT DISTINCT s.StyleID,s.StyleNumber
+            FROM fab_relaxation f
+            LEFT JOIN style s ON f.StyleID = s.StyleID
+            WHERE f.Status='1' AND s.Status ='1' AND f.BuyerID = '$buyer_id'";
+    $result = mysqli_query($conn, $sql);
+    echo '<option>Select Style Number</option>';
+     while($row = mysqli_fetch_assoc($result)){
+         echo '<option value="' . $row['StyleID'] . '">' . $row['StyleNumber'] . '</option>';
+     }
+
+}
+
+// style to colour
+if (get_ses('token') === $token && $_POST["form"] == 'get_style_color_fab') {
+
+    $style_id = mysqli_real_escape_string($conn, $_POST["style_id"]);
+
+    $sql = "SELECT DISTINCT c.id,c.color
+            FROM fab_relaxation f
+            LEFT JOIN color c ON f.Color=c.id
+            WHERE f.Status='1' AND c.status = '1' AND f.StyleID = '$style_id'";
+    $result = mysqli_query($conn, $sql);
+    echo '<option>Select Style Number</option>';
+     while($row = mysqli_fetch_assoc($result)){
+         echo '<option value="' . $row['id'] . '">' . $row['color'] . '</option>';
      }
 
 }

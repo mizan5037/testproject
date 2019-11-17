@@ -66,7 +66,7 @@ $conn = db_connection();
                                      ?>
                                     <div class="form-group">
                                         <label for="">Buyer</label>
-                                        <select class="form-control form-control-sm" name="buyer" required>
+                                        <select id="buyer" class="form-control form-control-sm" name="buyer" required>
                                           <option value="">Select Buyer</option>
                                           <?php foreach ($fab_relaxation_buyer as $buyer) {
                                             echo "<option value=".$buyer['BuyerID'].">".$buyer['BuyerName']."</option>";
@@ -76,22 +76,18 @@ $conn = db_connection();
 
                                     <div class="form-group">
                                         <label for="">Style</label>
-                                        <select name="style" id="" class="form-control form-control-sm" required>
-                                          <option value="">Select Style</option>
-                                          <?php foreach ($fab_relaxation_style as $style) {
-                                            echo "<option value=".$style['StyleID'].">".$style['StyleNumber']."</option>";
-                                          } ?>
+                                        <select name="style" id="style" class="form-control form-control-sm" required>
+
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Color</label>
-                                        <select name="color" id="" class="form-control form-control-sm" required>
+                                        <select name="color" id="color" class="form-control form-control-sm" required>
                                           <option value="">Select Colour</option>
-                                          <?php foreach ($fab_relaxation_color as $color) {
-                                            echo "<option value=".$color['id'].">".$color['color']."</option>";
-                                          } ?>
+
                                         </select>
                                     </div>
+                                    
                                     <div class="form-group">
                                         <button class="btn btn-sm btn-success" type="submit">Get Report</button>
                                     </div>
@@ -112,9 +108,58 @@ $conn = db_connection();
 <?php
 function customPagefooter()
 {
+  global $path;
     ?>
 
     <!-- Extra Script Here -->
+    <script type="text/javascript">
+    $(document).ready(function() {
+        //get buyer to PO
+        $("#buyer").change(function() {
+            let buyer_id = this.value;
+            if (buyer_id != '') {
+                $.ajax({
+                    url: "<?= $path ?>/controller/api.php",
+                    method: "POST",
+                    data: {
+                        buyer_id: buyer_id,
+                        form: 'get_buyer_fab',
+                        token: '<?= get_ses('token') ?>'
+                    },
+                    dataType: "text",
+                    success: function(data) {
+                        $("#style").html(data);
+                    }
+                });
+            } else {
+                $("#style").html("<option>-----</option>");
+            }
+
+        });
+        //  style to colour
+        $("#style").change(function() {
+            let style_id = this.value;
+            if (style_id != '') {
+                $.ajax({
+                    url: "<?= $path ?>/controller/api.php",
+                    method: "POST",
+                    data: {
+                        style_id: style_id,
+                        form: 'get_style_color_fab',
+                        token: '<?= get_ses('token') ?>'
+                    },
+                    dataType: "text",
+                    success: function(data) {
+                        $("#color").html(data);
+                    }
+                });
+            } else {
+                $("#color").html("<option>-----</option>");
+            }
+
+        });
+      });
+    </script>
 
 <?php }
 include_once "includes/footer.php";
