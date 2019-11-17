@@ -532,8 +532,8 @@
                                                     </i>Fab Relaxation Report
                                                 </a>
                                             </li>
-                                            <li <?php active('size_wise_report'); ?>>
-                                                <a target="_blank" href="<?= $path ?>/index.php?report=size_wise_report">
+                                            <li <?php active('size_wize_cutting_report'); ?>>
+                                                <a target="_blank" href="<?= $path ?>/index.php?page=size_wize_cutting_report">
                                                     <i class="metismenu-icon">
                                                     </i>Size Wise Cutting Report
                                                 </a>
