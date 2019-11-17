@@ -59,12 +59,12 @@ if (
     }
 
     //array items
-    $item  = mysqli_real_escape_string($conn, $_POST['item']);
-    $style = mysqli_real_escape_string($conn, $_POST['style']);
-    $po    = mysqli_real_escape_string($conn, $_POST['po']);
-    $qty   = mysqli_real_escape_string($conn, $_POST['qty']);
-    $ppu   = mysqli_real_escape_string($conn, $_POST['ppu']);
-    $tp    = mysqli_real_escape_string($conn, $_POST['tp']);
+    $item  = ($_POST['item']);
+    $style = ($_POST['style']);
+    $po    = ($_POST['po']);
+    $qty   = ($_POST['qty']);
+    $ppu   = ($_POST['ppu']);
+    $tp    = ($_POST['tp']);
 
     for ($i = 0; $i < sizeof($item); $i++) {
 

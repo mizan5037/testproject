@@ -66,12 +66,12 @@ if (
     }
 
     //array MasterLC Description
-    $pono     = mysqli_real_escape_string($conn, $_POST['pono']);
-    $style    = mysqli_real_escape_string($conn, $_POST['style']);
-    $qty      = mysqli_real_escape_string($conn, $_POST['qty']);
-    $unitname = mysqli_real_escape_string($conn, $_POST['unitname']);
-    $price    = mysqli_real_escape_string($conn, $_POST['price']);
-    $lsdate   = mysqli_real_escape_string($conn, $_POST['lsdate']);
+    $pono     = ($_POST['pono']);
+    $style    = ($_POST['style']);
+    $qty      = ($_POST['qty']);
+    $unitname = ($_POST['unitname']);
+    $price    = ($_POST['price']);
+    $lsdate   = ($_POST['lsdate']);
 
     for ($i = 0; $i < sizeof($pono); $i++) {
 

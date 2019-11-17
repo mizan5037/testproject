@@ -19,10 +19,10 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'Save') {
         }
     }
 
-    $date  = mysqli_real_escape_string($conn, $_POST['date']);
-    $floor = mysqli_real_escape_string($conn, $_POST['floor']);
-    $line  = mysqli_real_escape_string($conn, $_POST['line']);
-    $qty   = mysqli_real_escape_string($conn, $_POST['qty']);
+    $date  = ($_POST['date']);
+    $floor = ($_POST['floor']);
+    $line  = ($_POST['line']);
+    $qty   = ($_POST['qty']);
 
     for ($i = 0; $i < sizeof($date); $i++) {
         $sql = "INSERT INTO plan_details (date,plan_id,floor,line,qty,addedby)

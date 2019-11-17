@@ -2,9 +2,9 @@
 
 if (isset($_POST['item_name']) && $_POST['item_name'] != '' && isset($_POST['item_specification']) && isset($_POST['item_unit'])) {
 	$conn          = db_connection();
-	$name          = mysqli_real_escape_string($conn, $_POST['item_name']);
-	$specification = mysqli_real_escape_string($conn, $_POST['item_specification']);
-	$unit          = mysqli_real_escape_string($conn, $_POST['item_unit']);
+	$name          = ($_POST['item_name']);
+	$specification = ($_POST['item_specification']);
+	$unit          = ($_POST['item_unit']);
 	$user_id       = get_ses('user_id');
 
 

@@ -61,9 +61,9 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
 
 if (isset($_POST['size']) && isset($_POST['item']) && isset($_POST['qty'])) {
     //array Item Requirments
-    $size = mysqli_real_escape_string($conn, $_POST['size']);
-    $item = mysqli_real_escape_string($conn, $_POST['item']);
-    $qty  = mysqli_real_escape_string($conn, $_POST['qty']);
+    $size = ( $_POST['size']);
+    $item = ( $_POST['item']);
+    $qty  = ( $_POST['qty']);
 
 
     for ($i = 0; $i < sizeof($size); $i++) {
@@ -74,7 +74,7 @@ if (isset($_POST['size']) && isset($_POST['item']) && isset($_POST['qty'])) {
 
             if (mysqli_query($conn, $sqli)) {
                 notice('success', 'New Item Added Successfully.');
-                
+
             } else {
                 notice('error', $sql . "<br>" . mysqli_error($conn));
             }
@@ -86,8 +86,8 @@ if (isset($_POST['size']) && isset($_POST['item']) && isset($_POST['qty'])) {
 
 if (isset($_POST['trim_name']) && isset($_POST['trim_description'])) {
     //array TRIMS & ACCESSORIES
-    $trim_name        = mysqli_real_escape_string($conn, $_POST['trim_name']);
-    $trim_description = mysqli_real_escape_string($conn, $_POST['trim_description']);
+    $trim_name        = ($_POST['trim_name']);
+    $trim_description = ($_POST['trim_description']);
 
     for ($i = 0; $i < sizeof($trim_name); $i++) {
 
@@ -98,12 +98,12 @@ if (isset($_POST['trim_name']) && isset($_POST['trim_description'])) {
 
             if (mysqli_query($conn, $sql)) {
                 notice('success', 'New TRIMS & ACCESSORIES Added Successfully.');
-                
+
             } else {
                 notice('error', $sql . "<br>" . mysqli_error($conn));
             }
         }
-        
+
     }
     nowgo('/index.php?page=single_style&id=' . $id);
 }

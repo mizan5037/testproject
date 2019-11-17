@@ -21,18 +21,18 @@ if (isset($_POST['refno'])  && isset($_POST['date']) && isset($_POST['supplier']
 	} else {
 		notice('error', $sql . "<br>" . mysqli_error($conn));
 	}
-	
+
   //PI Description Table
 
-	$po_number   		= mysqli_real_escape_string($conn, $_POST['po']);
-    $item        		= mysqli_real_escape_string($conn, $_POST['item']);
-    $description 		= mysqli_real_escape_string($conn, $_POST['description']);
-    $qty         		= mysqli_real_escape_string($conn, $_POST['qty']);
-    $price_per_unit   	= mysqli_real_escape_string($conn, $_POST['ppu']);
+		$po_number   		= ($_POST['po']);
+    $item        		= ($_POST['item']);
+    $description 		= ($_POST['description']);
+    $qty         		= ($_POST['qty']);
+    $price_per_unit = ($_POST['ppu']);
 	for ($i = 0; $i < sizeof($item); $i++) {
 
 		$totalprice  = $qty[$i] * $price_per_unit[$i];
-	
+
 		$sql = "INSERT INTO pi_description (PIID,POID,ItemID,Description,Qty,PricePerUnit,TotalPrice,AddedBy)
 
 		values('$last_id','$po_number[$i]','$item[$i]','$description[$i]','$qty[$i]','$price_per_unit[$i]','$totalprice','$user_id') ";
@@ -48,5 +48,3 @@ if (isset($_POST['refno'])  && isset($_POST['date']) && isset($_POST['supplier']
 
 	nowgo('/index.php?page=all_pi');
 }
-
-

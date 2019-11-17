@@ -75,8 +75,8 @@ if (isset($_POST['stylenumber']) && $_POST['styledescription'] != '' && isset($_
     }
 
     //array TRIMS & ACCESSORIES
-    $trim_name          = mysqli_real_escape_string($conn, $_POST['trim_name']);
-    $trim_description   = mysqli_real_escape_string($conn, $_POST['trim_description']);
+    $trim_name          = ($_POST['trim_name']);
+    $trim_description   = ($_POST['trim_description']);
 
     for ($i = 0; $i < sizeof($trim_name); $i++) {
 
@@ -92,9 +92,9 @@ if (isset($_POST['stylenumber']) && $_POST['styledescription'] != '' && isset($_
     }
 
     //array Item Requirments
-    $size = mysqli_real_escape_string($conn, $_POST['size']);
-    $item = mysqli_real_escape_string($conn, $_POST['item']);
-    $qty  = mysqli_real_escape_string($conn, $_POST['qty']);
+    $size = ($_POST['size']);
+    $item = ($_POST['item']);
+    $qty  = ($_POST['qty']);
 
 
     for ($i = 0; $i < sizeof($size); $i++) {
