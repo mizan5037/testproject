@@ -81,39 +81,39 @@ if (
     isset($_POST['portofdischarge']) &&
     isset($_POST['description'])
 ) {
-    $mlcnumber = mysqli_real_escape_string($conn, $_POST['mlcnumber']);
-    $mlcissuedate  = mysqli_real_escape_string($conn, $_POST['mlcissuedate']);
-    $mlcexpirydate  = mysqli_real_escape_string($conn, $_POST['mlcexpirydate']);
-    $lcissuedby  = mysqli_real_escape_string($conn, $_POST['lcissuedby']);
-    $buyer  = mysqli_real_escape_string($conn, $_POST['buyer']);
-    $sender_bank  = mysqli_real_escape_string($conn, $_POST['sender_bank']);
-    $receiver_bank  = mysqli_real_escape_string($conn, $_POST['receiver_bank']);
-    $currency  = mysqli_real_escape_string($conn, $_POST['currency']);
-    $amount  = mysqli_real_escape_string($conn, $_POST['amount']);
-    $partialshipment  = mysqli_real_escape_string($conn, $_POST['partialshipment']);
-    $transshipment  = mysqli_real_escape_string($conn, $_POST['transshipment']);
-    $portofloading  = mysqli_real_escape_string($conn, $_POST['portofloading']);
-    $portofdischarge  = mysqli_real_escape_string($conn, $_POST['portofdischarge']);
-    $description  = mysqli_real_escape_string($conn, $_POST['description']);
-    $user_id = get_ses('user_id');
+    $mlcnumber       = mysqli_real_escape_string($conn, $_POST['mlcnumber']);
+    $mlcissuedate    = mysqli_real_escape_string($conn, $_POST['mlcissuedate']);
+    $mlcexpirydate   = mysqli_real_escape_string($conn, $_POST['mlcexpirydate']);
+    $lcissuedby      = mysqli_real_escape_string($conn, $_POST['lcissuedby']);
+    $buyer           = mysqli_real_escape_string($conn, $_POST['buyer']);
+    $sender_bank     = mysqli_real_escape_string($conn, $_POST['sender_bank']);
+    $receiver_bank   = mysqli_real_escape_string($conn, $_POST['receiver_bank']);
+    $currency        = mysqli_real_escape_string($conn, $_POST['currency']);
+    $amount          = mysqli_real_escape_string($conn, $_POST['amount']);
+    $partialshipment = mysqli_real_escape_string($conn, $_POST['partialshipment']);
+    $transshipment   = mysqli_real_escape_string($conn, $_POST['transshipment']);
+    $portofloading   = mysqli_real_escape_string($conn, $_POST['portofloading']);
+    $portofdischarge = mysqli_real_escape_string($conn, $_POST['portofdischarge']);
+    $description     = mysqli_real_escape_string($conn, $_POST['description']);
+    $user_id         = get_ses('user_id');
 
     $sql = "UPDATE masterlc SET 
-    MasterLCNumber = '$mlcnumber',
-    MasterLCIssueDate = '$mlcissuedate', 
-    MasterLCExpiryDate = '$mlcexpirydate', 
-    MasterLCIssuingCompany = '$lcissuedby', 
-    MasterLCBuyer = '$buyer', 
-    MasterLCSenderBank = '$sender_bank', 
-    MasterLCReceiverBank = '$receiver_bank', 
-    MasterLCCurrency = '$currency', 
-    MasterLCAmount = '$amount', 
-    MasterLCPartialShipment = '$partialshipment', 
-    MasterLCTranshipment = '$transshipment', 
-    MasterLCPortOfLoading = '$portofloading', 
-    MasterLCPortOfDischarge = '$portofdischarge', 
-    Description = '$description', 
-    AddedBy = '$user_id'
-    WHERE MasterLCID = '$id'";
+          MasterLCNumber          = '$mlcnumber',
+          MasterLCIssueDate       = '$mlcissuedate',
+          MasterLCExpiryDate      = '$mlcexpirydate',
+          MasterLCIssuingCompany  = '$lcissuedby',
+          MasterLCBuyer           = '$buyer',
+          MasterLCSenderBank      = '$sender_bank',
+          MasterLCReceiverBank    = '$receiver_bank',
+          MasterLCCurrency        = '$currency',
+          MasterLCAmount          = '$amount',
+          MasterLCPartialShipment = '$partialshipment',
+          MasterLCTranshipment    = '$transshipment',
+          MasterLCPortOfLoading   = '$portofloading',
+          MasterLCPortOfDischarge = '$portofdischarge',
+          Description             = '$description',
+          AddedBy                 = '$user_id'
+    WHERE MasterLCID              = '$id'";
 
     if (mysqli_query($conn, $sql)) {
         notice('success', 'Master LC Updated Successfully.');
@@ -124,7 +124,7 @@ if (
 }
 
 if (isset($_GET['delete'])) {
-    $id = mysqli_real_escape_string($conn, $_GET['delete']);
+    $id  = mysqli_real_escape_string($conn, $_GET['delete']);
     $sid = mysqli_real_escape_string($conn, $_GET['id']);
     $sql = "DELETE FROM masterlc_description  WHERE ID=" . $id;
 

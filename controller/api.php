@@ -9,8 +9,6 @@ $conn = db_connection();
 $token = mysqli_real_escape_string($conn, $_POST["token"]);
 
 if (get_ses('token') === $token && $_POST["form"] == 'get_style') {
-
-    
     $po = mysqli_real_escape_string($conn, $_POST["po"]);
 
 
@@ -26,11 +24,11 @@ if (get_ses('token') === $token && $_POST["form"] == 'get_style') {
 if (get_ses('token') === $token && $_POST["form"] == 'get_qty') {
 
     $style = mysqli_real_escape_string($conn, $_POST["style"]);
-    $po = mysqli_real_escape_string($conn, $_POST["po"]);
+    $po    = mysqli_real_escape_string($conn, $_POST["po"]);
 
-    $sql = "SELECT SUM(d.Units) FROM order_description d WHERE d.StyleID = '$style' AND d.POID = '$po'";
+    $sql    = "SELECT SUM(d.Units) FROM order_description d WHERE d.StyleID = '$style' AND d.POID = '$po'";
     $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
+    $row    = mysqli_fetch_assoc($result);
     echo $row['SUM(d.Units)'];
     
 }
@@ -40,7 +38,7 @@ if (get_ses('token') === $token && $_POST["form"] == 'get_line') {
 
     $floor = mysqli_real_escape_string($conn, $_POST["floor"]);
 
-    $sql = "SELECT line, id FROM line WHERE floor = '$floor'";
+    $sql    = "SELECT line, id FROM line WHERE floor = '$floor'";
     $result = mysqli_query($conn, $sql);
     echo '<option>------</option>';
     while($row = mysqli_fetch_assoc($result)){

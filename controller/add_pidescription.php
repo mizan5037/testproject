@@ -1,13 +1,13 @@
 <?php
 $conn = db_connection();
 if (isset($_POST['po']) && isset($_POST['item']) && isset($_POST['description']) && isset($_POST['qty']) && isset($_POST['ppu'])) {
-	$po_number   	= mysqli_real_escape_string($conn, $_POST['po']);
-	$item        	= mysqli_real_escape_string($conn, $_POST['item']);
-	$description	= mysqli_real_escape_string($conn, $_POST['description']);
-	$qty         	= mysqli_real_escape_string($conn, $_POST['qty']);
+	$po_number      = mysqli_real_escape_string($conn, $_POST['po']);
+	$item           = mysqli_real_escape_string($conn, $_POST['item']);
+	$description    = mysqli_real_escape_string($conn, $_POST['description']);
+	$qty            = mysqli_real_escape_string($conn, $_POST['qty']);
 	$price_per_unit = mysqli_real_escape_string($conn, $_POST['ppu']);
-	$totalprice  	= $qty * $price_per_unit;
-	$user_id      	= mysqli_real_escape_string($conn, get_ses('user_id'));
+	$totalprice     = $qty * $price_per_unit;
+	$user_id        = mysqli_real_escape_string($conn, get_ses('user_id'));
 
 		$sql = "INSERT INTO pi_description (PIID,POID,ItemID,Description,Qty,PricePerUnit,TotalPrice,AddedBy)
 

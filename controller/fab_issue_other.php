@@ -14,8 +14,8 @@ if (
     isset($_POST['roll'])
 ) {
     
-    $buyer = mysqli_real_escape_string($conn, $_POST['buyer']);
-    $type = mysqli_real_escape_string($conn, $_POST['type']);
+    $buyer   = mysqli_real_escape_string($conn, $_POST['buyer']);
+    $type    = mysqli_real_escape_string($conn, $_POST['type']);
     $user_id = get_ses('user_id');
 
     $sql = "INSERT INTO fabric_issue_other (BuyerID, ContrastPocket, AddedBy) VALUES ('$buyer','$type','$user_id')";
@@ -29,12 +29,12 @@ if (
 
     // Arrays
     $particulars = mysqli_real_escape_string($conn, $_POST['particulars']);
-    $color = mysqli_real_escape_string($conn, $_POST['color']);
-    $qtz = mysqli_real_escape_string($conn, $_POST['qtz']);
-    $consuption = mysqli_real_escape_string($conn, $_POST['consuption']);
-    $rqd = mysqli_real_escape_string($conn, $_POST['rqd']);
-    $issue = mysqli_real_escape_string($conn, $_POST['issue']);
-    $roll = mysqli_real_escape_string($conn, $_POST['roll']);
+    $color       = mysqli_real_escape_string($conn, $_POST['color']);
+    $qtz         = mysqli_real_escape_string($conn, $_POST['qtz']);
+    $consuption  = mysqli_real_escape_string($conn, $_POST['consuption']);
+    $rqd         = mysqli_real_escape_string($conn, $_POST['rqd']);
+    $issue       = mysqli_real_escape_string($conn, $_POST['issue']);
+    $roll        = mysqli_real_escape_string($conn, $_POST['roll']);
 
     for ($i = 0; $i < sizeof($color); $i++) {
 

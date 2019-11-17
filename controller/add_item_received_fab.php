@@ -3,16 +3,16 @@
 if ( isset($_POST['po']) && $_POST['style'] && isset($_POST['color']) && isset($_POST['receivefab']) && isset($_POST['receiveroll']) && isset($_POST['sortexs'])) {
 
    
-    $POID = mysqli_real_escape_string($conn, $_POST['po']);
-	$style = mysqli_real_escape_string($conn, $_POST['style']);
-	$color = mysqli_real_escape_string($conn, $_POST['color']);
-	$shade = mysqli_real_escape_string($conn, $_POST['shade']);
-	$shrinkage = mysqli_real_escape_string($conn, $_POST['shrinkage']);
-	$width = mysqli_real_escape_string($conn, $_POST['width']);
-	$receivefab = mysqli_real_escape_string($conn, $_POST['receivefab']);
-	$receiveroll = mysqli_real_escape_string($conn, $_POST['receiveroll']);
-    $sortexs = mysqli_real_escape_string($conn, $_POST['sortexs']);
-    $user_id = mysqli_real_escape_string($conn, get_ses('user_id'));
+    $POID        = mysqli_real_escape_string($conn, $_POST['po']);
+    $style       = mysqli_real_escape_string($conn, $_POST['style']);
+    $color       = mysqli_real_escape_string($conn, $_POST['color']);
+    $shade       = mysqli_real_escape_string($conn, $_POST['shade']);
+    $shrinkage   = mysqli_real_escape_string($conn, $_POST['shrinkage']);
+    $width       = mysqli_real_escape_string($conn, $_POST['width']);
+    $receivefab  = mysqli_real_escape_string($conn, $_POST['receivefab']);
+    $receiveroll = mysqli_real_escape_string($conn, $_POST['receiveroll']);
+    $sortexs     = mysqli_real_escape_string($conn, $_POST['sortexs']);
+    $user_id     = mysqli_real_escape_string($conn, get_ses('user_id'));
     
 
 	for ($i = 0; $i < sizeof($style); $i++) {

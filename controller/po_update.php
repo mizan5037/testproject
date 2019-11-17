@@ -15,33 +15,33 @@ if (
 ) {
 
 
-	$from 				= mysqli_real_escape_string($conn, $_POST['from']);
-	$date 				= mysqli_real_escape_string($conn, $_POST['date']);
-	$po_number 			= mysqli_real_escape_string($conn, $_POST['po_number']);
-	$currency 			= mysqli_real_escape_string($conn, $_POST['currency']);
-	$cmp 				= mysqli_real_escape_string($conn, $_POST['cmp']);
-	$wash_cost 			= mysqli_real_escape_string($conn, $_POST['wash_cost']);
-	$hanger_cost 		= mysqli_real_escape_string($conn, $_POST['hanger_cost']);
-	$cmp_w_wanger 		= mysqli_real_escape_string($conn, $_POST['cmp_w_wanger']);
-	$fob 				= mysqli_real_escape_string($conn, $_POST['fob']);
-	$final_destination  = mysqli_real_escape_string($conn, $_POST['final_destination']);
+	$from                = mysqli_real_escape_string($conn, $_POST['from']);
+	$date                = mysqli_real_escape_string($conn, $_POST['date']);
+	$po_number           = mysqli_real_escape_string($conn, $_POST['po_number']);
+	$currency            = mysqli_real_escape_string($conn, $_POST['currency']);
+	$cmp                 = mysqli_real_escape_string($conn, $_POST['cmp']);
+	$wash_cost           = mysqli_real_escape_string($conn, $_POST['wash_cost']);
+	$hanger_cost         = mysqli_real_escape_string($conn, $_POST['hanger_cost']);
+	$cmp_w_wanger        = mysqli_real_escape_string($conn, $_POST['cmp_w_wanger']);
+	$fob                 = mysqli_real_escape_string($conn, $_POST['fob']);
+	$final_destination   = mysqli_real_escape_string($conn, $_POST['final_destination']);
 	$special_instruction = mysqli_real_escape_string($conn, $_POST['special_instruction']);
-	$user_id = get_ses('user_id');
+	$user_id             = get_ses('user_id');
 
 	$sql = "UPDATE po SET
-                            PONumber            = '$po_number',
-                            POFrom              = '$from',
-                            PODate              = '$date',
-                            POCMPWH             = '$cmp_w_wanger',
-                            POCurrency          = '$currency',
-                            POSpecialInstruction= '$special_instruction',
-                            POFinalDestination  = '$final_destination',
-                            POCMP               = '$cmp',
-                            POWASH              = '$wash_cost',
-                            POHANGER            = '$hanger_cost',
-                            FOB            		= '$fob',
-                            AddedBy             = '$user_id'
-                            where POID          = '$id'";
+                                  PONumber             = '$po_number',
+                                  POFrom               = '$from',
+                                  PODate               = '$date',
+                                  POCMPWH              = '$cmp_w_wanger',
+                                  POCurrency           = '$currency',
+                                  POSpecialInstruction = '$special_instruction',
+                                  POFinalDestination   = '$final_destination',
+                                  POCMP                = '$cmp',
+                                  POWASH               = '$wash_cost',
+                                  POHANGER             = '$hanger_cost',
+                                  FOB                  = '$fob',
+                                  AddedBy              = '$user_id'
+                            where POID                 = '$id'";
 
 	if (mysqli_query($conn, $sql)) {
 		notice('success', 'New PO Updated Successfully');
@@ -51,18 +51,18 @@ if (
 
 	
 	//prepack table
-	$PrePackID 	= mysqli_real_escape_string($conn, $_POST['PrePackID']);
-	$size 		= mysqli_real_escape_string($conn, $_POST['size']);
-	$ppk 		= mysqli_real_escape_string($conn, $_POST['ppk']);
-	$qty 		= mysqli_real_escape_string($conn, $_POST['qty']);
+	$PrePackID = mysqli_real_escape_string($conn, $_POST['PrePackID']);
+	$size      = mysqli_real_escape_string($conn, $_POST['size']);
+	$ppk       = mysqli_real_escape_string($conn, $_POST['ppk']);
+	$qty       = mysqli_real_escape_string($conn, $_POST['qty']);
 
 	for ($i = 0; $i < sizeof($PrePackID); $i++) {
 
 		$sql = "UPDATE prepack SET
-                                    PrePackCode  = '$ppk[$i]',
-                                    PrePackSize  = '$size[$i]',
-                                    PrepackQty   = '$qty[$i]',
-                                    AddedBy      = '$user_id'
+                                          PrePackCode = '$ppk[$i]',
+                                          PrePackSize = '$size[$i]',
+                                          PrepackQty  = '$qty[$i]',
+                                          AddedBy     = '$user_id'
                                     where PrePackID   = '$PrePackID[$i]'";
 
 		if (mysqli_query($conn, $sql)) {
@@ -75,12 +75,12 @@ if (
 	// ORDER DESCRIPTION
 
 	$OrderdescriptionID = mysqli_real_escape_string($conn, $_POST['OrderdescriptionID']);
-	$style = mysqli_real_escape_string($conn, $_POST['style']);
-	$color = mysqli_real_escape_string($conn, $_POST['color']);
-	$clr_no = mysqli_real_escape_string($conn, $_POST['clr_no']);
-	$dzs = mysqli_real_escape_string($conn, $_POST['dzs']);
-	$ppack = mysqli_real_escape_string($conn, $_POST['ppack']);
-	$units = mysqli_real_escape_string($conn, $_POST['units']);
+	$style              = mysqli_real_escape_string($conn, $_POST['style']);
+	$color              = mysqli_real_escape_string($conn, $_POST['color']);
+	$clr_no             = mysqli_real_escape_string($conn, $_POST['clr_no']);
+	$dzs                = mysqli_real_escape_string($conn, $_POST['dzs']);
+	$ppack              = mysqli_real_escape_string($conn, $_POST['ppack']);
+	$units              = mysqli_real_escape_string($conn, $_POST['units']);
 
 
 
@@ -108,8 +108,8 @@ if (
 
 if (isset($_GET['orde'])) {
 	$orderid = mysqli_real_escape_string($conn, $_GET['orde']);
-	$id = mysqli_real_escape_string($conn, $_GET['poid']);
-	$sql = "UPDATE order_description SET Status=0 where OrderdescriptionID='$orderid'";
+	$id      = mysqli_real_escape_string($conn, $_GET['poid']);
+	$sql     = "UPDATE order_description SET Status=0 where OrderdescriptionID='$orderid'";
 	if (mysqli_query($conn, $sql)) {
 		notice('success', 'Style Deleted From PO Successfully');
 		nowgo('/index.php?page=po_single&poid=' . $id);
@@ -120,8 +120,8 @@ if (isset($_GET['orde'])) {
 
 if (isset($_GET['preid'])) {
 	$preid = mysqli_real_escape_string($conn, $_GET['preid']);
-	$id = mysqli_real_escape_string($conn, $_GET['poid']);
-	$sql = "DELETE FROM prepack  where PrePackID='$preid'";
+	$id    = mysqli_real_escape_string($conn, $_GET['poid']);
+	$sql   = "DELETE FROM prepack  where PrePackID='$preid'";
 	if (mysqli_query($conn, $sql)) {
 		notice('success', ' PrePack Deleted Successfully');
 	} else {

@@ -9,10 +9,10 @@ $token = $_POST["token"];
 
 if (get_ses('token') === $token) {
 
-	$conn = db_connection();
-	$id = mysqli_real_escape_string($conn, $_POST["id"]);
+	$conn  = db_connection();
+	$id    = mysqli_real_escape_string($conn, $_POST["id"]);
 	$cname = mysqli_real_escape_string($conn, $_POST['cname']);
-	$text = mysqli_real_escape_string($conn, $_POST["text"]);
+	$text  = mysqli_real_escape_string($conn, $_POST["text"]);
 
 
 	$sql = "UPDATE buyer SET " . $cname . "='" . $text . "' WHERE BuyerID='" . $id . "'";

@@ -15,12 +15,12 @@ if (isset($_POST['color']) &&
 
 
     //fab relaxation details
-    $color = mysqli_real_escape_string($conn, $_POST['color']);
-    $size = mysqli_real_escape_string($conn, $_POST['size']);
-    $qty = mysqli_real_escape_string($conn, $_POST['qty']);
-    $embsend = mysqli_real_escape_string($conn, $_POST['embsend']);
+    $color      = mysqli_real_escape_string($conn, $_POST['color']);
+    $size       = mysqli_real_escape_string($conn, $_POST['size']);
+    $qty        = mysqli_real_escape_string($conn, $_POST['qty']);
+    $embsend    = mysqli_real_escape_string($conn, $_POST['embsend']);
     $embreceive = mysqli_real_escape_string($conn, $_POST['embreceive']);
-    $remark = mysqli_real_escape_string($conn, $_POST['remark']);
+    $remark     = mysqli_real_escape_string($conn, $_POST['remark']);
 
 
 

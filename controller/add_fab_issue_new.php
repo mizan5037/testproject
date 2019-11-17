@@ -9,16 +9,16 @@ if (isset($_POST['particulars']) &&
     isset($_POST['remark'])&&
     isset($_POST['last_id'])) {
 
-    $user_id = mysqli_real_escape_string($conn, get_ses('user_id'));
-    $last_id = mysqli_real_escape_string($conn, $_POST['last_id']);
+    $user_id     = mysqli_real_escape_string($conn, get_ses('user_id'));
+    $last_id     = mysqli_real_escape_string($conn, $_POST['last_id']);
     $particulars = mysqli_real_escape_string($conn, $_POST['particulars']);
-  	$color = mysqli_real_escape_string($conn, $_POST['color']);
-  	$qtz = mysqli_real_escape_string($conn, $_POST['qtz']);
-  	$consuption = mysqli_real_escape_string($conn, $_POST['consuption']);
-  	$rqd = mysqli_real_escape_string($conn, $_POST['rqd']);
-  	$issue  = mysqli_real_escape_string($conn, $_POST['issue']);
-  	$remark  = mysqli_real_escape_string($conn, $_POST['remark']);
-    $user_id = mysqli_real_escape_string($conn, get_ses('user_id'));
+    $color       = mysqli_real_escape_string($conn, $_POST['color']);
+    $qtz         = mysqli_real_escape_string($conn, $_POST['qtz']);
+    $consuption  = mysqli_real_escape_string($conn, $_POST['consuption']);
+    $rqd         = mysqli_real_escape_string($conn, $_POST['rqd']);
+    $issue       = mysqli_real_escape_string($conn, $_POST['issue']);
+    $remark      = mysqli_real_escape_string($conn, $_POST['remark']);
+    $user_id     = mysqli_real_escape_string($conn, get_ses('user_id'));
 
     for ($i = 0; $i < sizeof($color); $i++) {
 

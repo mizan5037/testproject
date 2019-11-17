@@ -2,16 +2,16 @@
 
 $conn = db_connection();
 
-$sqlpo = "SELECT POID, PONumber FROM po WHERE status = 1";
+$sqlpo     = "SELECT POID, PONumber FROM po WHERE status = 1";
 $resultpos = mysqli_query($conn, $sqlpo);
-$poArr = array();
+$poArr     = array();
 while ($resultpo = mysqli_fetch_assoc($resultpos)) {
     $poArr[] = $resultpo;
 }
 
-$sqlstyle = "SELECT StyleID, StyleNumber FROM style WHERE status = 1";
+$sqlstyle     = "SELECT StyleID, StyleNumber FROM style WHERE status = 1";
 $resultstyles = mysqli_query($conn, $sqlstyle);
-$styleArr = array();
+$styleArr     = array();
 while ($resultstyle = mysqli_fetch_assoc($resultstyles)) {
     $styleArr[] = $resultstyle;
 }
@@ -39,21 +39,21 @@ if (
     isset($_POST['price']) &&
     isset($_POST['lsdate'])
 ) {
-    $mlcnumber          = mysqli_real_escape_string($conn, $_POST['mlcnumber']);
-    $mlcissuedate       = mysqli_real_escape_string($conn, $_POST['mlcissuedate']);
-    $mlcexpirydate      = mysqli_real_escape_string($conn, $_POST['mlcexpirydate']);
-    $lcissuedby         = mysqli_real_escape_string($conn, $_POST['lcissuedby']);
-    $buyer              = mysqli_real_escape_string($conn, $_POST['buyer']);
-    $sender_bank        = mysqli_real_escape_string($conn, $_POST['sender_bank']);
-    $receiver_bank      = mysqli_real_escape_string($conn, $_POST['receiver_bank']);
-    $currency           = mysqli_real_escape_string($conn, $_POST['currency']);
-    $amount             = mysqli_real_escape_string($conn, $_POST['amount']);
-    $partialshipment    = mysqli_real_escape_string($conn, $_POST['partialshipment']);
-    $transshipment      = mysqli_real_escape_string($conn, $_POST['transshipment']);
-    $portofloading      = mysqli_real_escape_string($conn, $_POST['portofloading']);
-    $portofdischarge    = mysqli_real_escape_string($conn, $_POST['portofdischarge']);
-    $description        = mysqli_real_escape_string($conn, $_POST['description']);
-    $user_id            = get_ses('user_id');
+    $mlcnumber       = mysqli_real_escape_string($conn, $_POST['mlcnumber']);
+    $mlcissuedate    = mysqli_real_escape_string($conn, $_POST['mlcissuedate']);
+    $mlcexpirydate   = mysqli_real_escape_string($conn, $_POST['mlcexpirydate']);
+    $lcissuedby      = mysqli_real_escape_string($conn, $_POST['lcissuedby']);
+    $buyer           = mysqli_real_escape_string($conn, $_POST['buyer']);
+    $sender_bank     = mysqli_real_escape_string($conn, $_POST['sender_bank']);
+    $receiver_bank   = mysqli_real_escape_string($conn, $_POST['receiver_bank']);
+    $currency        = mysqli_real_escape_string($conn, $_POST['currency']);
+    $amount          = mysqli_real_escape_string($conn, $_POST['amount']);
+    $partialshipment = mysqli_real_escape_string($conn, $_POST['partialshipment']);
+    $transshipment   = mysqli_real_escape_string($conn, $_POST['transshipment']);
+    $portofloading   = mysqli_real_escape_string($conn, $_POST['portofloading']);
+    $portofdischarge = mysqli_real_escape_string($conn, $_POST['portofdischarge']);
+    $description     = mysqli_real_escape_string($conn, $_POST['description']);
+    $user_id         = get_ses('user_id');
 
     $sql = "INSERT INTO masterlc (MasterLCNumber, MasterLCIssueDate, MasterLCExpiryDate, MasterLCIssuingCompany, MasterLCBuyer, MasterLCSenderBank, MasterLCReceiverBank, MasterLCCurrency, MasterLCAmount, MasterLCPartialShipment, MasterLCTranshipment, MasterLCPortOfLoading, MasterLCPortOfDischarge, Description, AddedBy)
 		   	values('$mlcnumber', '$mlcissuedate', '$mlcexpirydate' ,'$lcissuedby', '$buyer', '$sender_bank', '$receiver_bank', '$currency', '$amount', '$partialshipment', '$transshipment', '$portofloading', '$portofdischarge', '$description', '$user_id')";
@@ -66,12 +66,12 @@ if (
     }
 
     //array MasterLC Description
-    $pono       = mysqli_real_escape_string($conn, $_POST['pono']);
-    $style      = mysqli_real_escape_string($conn, $_POST['style']);
-    $qty        = mysqli_real_escape_string($conn, $_POST['qty']);
-    $unitname   = mysqli_real_escape_string($conn, $_POST['unitname']);
-    $price      = mysqli_real_escape_string($conn, $_POST['price']);
-    $lsdate     = mysqli_real_escape_string($conn, $_POST['lsdate']);
+    $pono     = mysqli_real_escape_string($conn, $_POST['pono']);
+    $style    = mysqli_real_escape_string($conn, $_POST['style']);
+    $qty      = mysqli_real_escape_string($conn, $_POST['qty']);
+    $unitname = mysqli_real_escape_string($conn, $_POST['unitname']);
+    $price    = mysqli_real_escape_string($conn, $_POST['price']);
+    $lsdate   = mysqli_real_escape_string($conn, $_POST['lsdate']);
 
     for ($i = 0; $i < sizeof($pono); $i++) {
 

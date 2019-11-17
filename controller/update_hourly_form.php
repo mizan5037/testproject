@@ -3,7 +3,7 @@ $conn = db_connection();
 
 // Soft Delete
 if (isset($_POST['id']) && isset($_POST['submit'])) {
-    $id = mysqli_real_escape_string($conn, $_POST['id']);
+    $id      = mysqli_real_escape_string($conn, $_POST['id']);
     $user_id = get_ses('user_id');
 
 

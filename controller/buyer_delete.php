@@ -9,7 +9,7 @@ $token = $_POST["token"];
 
 if (get_ses('token') === $token) {
 	$conn = db_connection();
-	$id = mysqli_real_escape_string($conn, $_POST["id"]);
+	$id   = mysqli_real_escape_string($conn, $_POST["id"]);
 
 	$sql = "UPDATE buyer set status=0 where BuyerID=" . $id;
 	if (mysqli_query($conn, $sql)) {

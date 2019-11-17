@@ -2,9 +2,9 @@
 $conn = db_connection();
 //color add
 if (isset($_POST['color']) && $_POST['color'] != '') {
-  $color = mysqli_real_escape_string($conn, $_POST['color']);
+  $color   = mysqli_real_escape_string($conn, $_POST['color']);
   $user_id = get_ses('user_id');
-  $sql = "INSERT INTO color (color, addedby) VALUES ('$color', '$user_id')";
+  $sql     = "INSERT INTO color (color, addedby) VALUES ('$color', '$user_id')";
 
   if (mysqli_query($conn, $sql)) {
     notice('success', 'New Color Added Successfully');
@@ -16,9 +16,9 @@ if (isset($_POST['color']) && $_POST['color'] != '') {
 
 //size add
 if (isset($_POST['size']) && $_POST['size'] != '') {
-  $size = mysqli_real_escape_string($conn, $_POST['size']);
+  $size    = mysqli_real_escape_string($conn, $_POST['size']);
   $user_id = get_ses('user_id');
-  $sql = "INSERT INTO size (size, addedby) VALUES ('$size', '$user_id')";
+  $sql     = "INSERT INTO size (size, addedby) VALUES ('$size', '$user_id')";
 
   if (mysqli_query($conn, $sql)) {
     notice('success', 'New Size Added Successfully');
@@ -51,8 +51,8 @@ if (isset($_GET['size_delete']) && $_GET['size_delete'] != '') {
 }
 
 
-$sqlc = "SELECT id, color FROM color WHERE status = 1";
+$sqlc        = "SELECT id, color FROM color WHERE status = 1";
 $colorresult = mysqli_query($conn, $sqlc);
 
-$sqls = "SELECT id, size FROM size WHERE status = 1";
+$sqls       = "SELECT id, size FROM size WHERE status = 1";
 $sizeresult = mysqli_query($conn, $sqls);

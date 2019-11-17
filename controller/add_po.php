@@ -23,19 +23,19 @@ if (
 ) {
 	$conn = db_connection();
 
-	$from 					= mysqli_real_escape_string($conn, $_POST['from']);
-	$date 					= mysqli_real_escape_string($conn, $_POST['date']);
-	$po_number 				= mysqli_real_escape_string($conn, $_POST['po_number']);
-	$currency 				= mysqli_real_escape_string($conn, $_POST['currency']);
-	$cmp 					= mysqli_real_escape_string($conn, $_POST['cmp']);
-	$wash_cost 				= mysqli_real_escape_string($conn, $_POST['wash_cost']);
-	$hanger_cost 			= mysqli_real_escape_string($conn, $_POST['hanger_cost']);
-	$cmp_w_wanger 			= mysqli_real_escape_string($conn, $_POST['cmp_w_wanger']);
-	$fob 					= mysqli_real_escape_string($conn, $_POST['fob']);
-	$final_destination 		= mysqli_real_escape_string($conn, $_POST['final_destination']);
-	$special_instruction 	= mysqli_real_escape_string($conn, $_POST['special_instruction']);
-	$division 				= mysqli_real_escape_string($conn, $_POST['division']);
-	$user_id 				= mysqli_real_escape_string($conn, get_ses('user_id'));
+	$from                = mysqli_real_escape_string($conn, $_POST['from']);
+	$date                = mysqli_real_escape_string($conn, $_POST['date']);
+	$po_number           = mysqli_real_escape_string($conn, $_POST['po_number']);
+	$currency            = mysqli_real_escape_string($conn, $_POST['currency']);
+	$cmp                 = mysqli_real_escape_string($conn, $_POST['cmp']);
+	$wash_cost           = mysqli_real_escape_string($conn, $_POST['wash_cost']);
+	$hanger_cost         = mysqli_real_escape_string($conn, $_POST['hanger_cost']);
+	$cmp_w_wanger        = mysqli_real_escape_string($conn, $_POST['cmp_w_wanger']);
+	$fob                 = mysqli_real_escape_string($conn, $_POST['fob']);
+	$final_destination   = mysqli_real_escape_string($conn, $_POST['final_destination']);
+	$special_instruction = mysqli_real_escape_string($conn, $_POST['special_instruction']);
+	$division            = mysqli_real_escape_string($conn, $_POST['division']);
+	$user_id             = mysqli_real_escape_string($conn, get_ses('user_id'));
 
 
 
@@ -51,9 +51,9 @@ if (
 	}
 
 	//prepack table
-	$size 	= mysqli_real_escape_string($conn, $_POST['size']);
-	$ppk 	= mysqli_real_escape_string($conn, $_POST['ppk']);
-	$qty 	= mysqli_real_escape_string($conn, $_POST['qty']);
+	$size = mysqli_real_escape_string($conn, $_POST['size']);
+	$ppk  = mysqli_real_escape_string($conn, $_POST['ppk']);
+	$qty  = mysqli_real_escape_string($conn, $_POST['qty']);
 
 
 
@@ -74,12 +74,12 @@ if (
 
 	// ORDER DESCRIPTION
 
-	$style 		= mysqli_real_escape_string($conn, $_POST['style']);
-	$color 		= mysqli_real_escape_string($conn, $_POST['color']);
-	$clr_no 	= mysqli_real_escape_string($conn, $_POST['clr_no']);
-	$dzs 		= mysqli_real_escape_string($conn, $_POST['dzs']);
-	$ppack 		= mysqli_real_escape_string($conn, $_POST['ppack']);
-	$units 		= mysqli_real_escape_string($conn, $_POST['units']);
+	$style  = mysqli_real_escape_string($conn, $_POST['style']);
+	$color  = mysqli_real_escape_string($conn, $_POST['color']);
+	$clr_no = mysqli_real_escape_string($conn, $_POST['clr_no']);
+	$dzs    = mysqli_real_escape_string($conn, $_POST['dzs']);
+	$ppack  = mysqli_real_escape_string($conn, $_POST['ppack']);
+	$units  = mysqli_real_escape_string($conn, $_POST['units']);
 
 
 
