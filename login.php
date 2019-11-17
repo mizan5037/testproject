@@ -82,6 +82,15 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="row justify-content-md-center">
                         <div class="col-md-4">
+                            <?php if( isset($attempt) && $attempt === 'Failed'){ ?>
+                            <div class="alert alert-danger alert-dismissible fade show main-card mb-3 card" role="alert">
+                                <strong>Ops!</strong> You should enter valid details to login. <br>
+                                <small>Please Try Again!!</small>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <?php } ?>
                             <div class="main-card mb-3 card">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Login</h5>
