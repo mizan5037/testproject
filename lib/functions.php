@@ -52,6 +52,7 @@ function nowlog($attempt)
         "-------------------------" . PHP_EOL;
     //Save string to log, use FILE_APPEND to append.
     $logFolder = $_SERVER['DOCUMENT_ROOT'] . $path . '/log';
+
     if (!file_exists($logFolder)) {
         mkdir($logFolder, 0777, true);
     }
@@ -116,7 +117,7 @@ function paginate($table)
 
     $out['offset'] = $offset;
     $out['total_pages'] = $total_pages;
-    $out['sql'] = "LIMIT ". $offset .", " .$no_of_records_per_page;
+    $out['sql'] = "LIMIT " . $offset . ", " . $no_of_records_per_page;
     return $out;
 }
 
@@ -150,14 +151,23 @@ function links($pageno, $total_pages)
 }
 
 
-function getimg($img){
+function getimg($img)
+{
     global $uploadpath;
     global $path;
 
     $image = $path . $uploadpath . $img;
-	if (file_exists($_SERVER['DOCUMENT_ROOT'] . $image)) {
+    if (file_exists($_SERVER['DOCUMENT_ROOT'] . $image)) {
         echo $image;
-    }else{
+    } else {
         echo $path . $uploadpath . 'noimg.png';
     }
+}
+
+function getcount($table, $column)
+{
+    $conn = db_connection();
+    $sql = "SELECT COUNT($column) as total FROM $table WHERE Status = 1";
+    $row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+    return $row['total'];
 }
