@@ -9,12 +9,11 @@ $conn = db_connection();
 $token = mysqli_real_escape_string($conn, $_POST["token"]);
 
 if (get_ses('token') === $token && $_POST["form"] == 'get_style') {
+
     $po = mysqli_real_escape_string($conn, $_POST["po"]);
-
-
     $sql = "SELECT DISTINCT s.StyleID, s.StyleNumber FROM order_description o LEFT JOIN style s ON s.StyleID = o.StyleID WHERE o.POID = '$po'";
     $result = mysqli_query($conn, $sql);
-    echo '<option>------</option>';
+    echo '<option>Select Style</option>';
     while($row = mysqli_fetch_assoc($result)){
         echo '<option value="' . $row['StyleID'] . '">' . $row['StyleNumber'] . '</option>';
     }
@@ -23,6 +22,7 @@ if (get_ses('token') === $token && $_POST["form"] == 'get_style') {
 
 if (get_ses('token') === $token && $_POST["form"] == 'get_qty') {
 
+
     $style = mysqli_real_escape_string($conn, $_POST["style"]);
     $po    = mysqli_real_escape_string($conn, $_POST["po"]);
 
@@ -30,7 +30,7 @@ if (get_ses('token') === $token && $_POST["form"] == 'get_qty') {
     $result = mysqli_query($conn, $sql);
     $row    = mysqli_fetch_assoc($result);
     echo $row['SUM(d.Units)'];
-    
+
 }
 
 
@@ -44,5 +44,17 @@ if (get_ses('token') === $token && $_POST["form"] == 'get_line') {
     while($row = mysqli_fetch_assoc($result)){
         echo '<option value="' . $row['id'] . '">' . $row['line'] . '</option>';
     }
-    
+  }
+
+if (get_ses('token') === $token && $_POST["form"] == 'get_po_size_wise') {
+
+    $buyer_id = mysqli_real_escape_string($conn, $_POST["buyer_id"]);
+
+    $sql = "SELECT md.POID,p.PONumber FROM masterlc m LEFT JOIN masterlc_description md ON m.MasterLCID=md.MasterLCID LEFT JOIN po p ON p.POID = md.POID WHERE m.MasterLCBuyer = '$buyer_id'";
+    $result = mysqli_query($conn, $sql);
+    echo '<option>Select PO Number</option>';
+     while($row = mysqli_fetch_assoc($result)){
+         echo '<option value="' . $row['POID'] . '">' . $row['PONumber'] . '</option>';
+     }
+
 }

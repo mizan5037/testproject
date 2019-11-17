@@ -49,35 +49,33 @@ $conn = db_connection();
                                       $buyers = mysqli_query($conn,$buyers);
 
 
-                                      $poid ="SELECT PONumber,POID FROM po WHERE Status ='1'";
-                                      $poid = mysqli_query($conn,$poid);
+                                      $poid   ="SELECT PONumber,POID FROM po WHERE Status ='1'";
+                                      $poid   = mysqli_query($conn,$poid);
 
 
                                      ?>
                                     <div class="form-group">
                                         <label for="">Buyer</label>
-                                        <select class="form-control form-control-sm" name="buyer" required>
+                                        <select id="buyer" class="form-control form-control-sm" name="buyer" required>
                                           <option value="">Select Buyer</option>
                                           <?php foreach ($buyers as $buyer) {
-                                            echo "<option value=".$buyer['BuyerID'].">".$buyer['BuyerName']."</option>";
+                                            echo '<option value="'.$buyer['BuyerID'].'">'.$buyer['BuyerName'].'</option>';
                                           } ?>
                                         </select>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="">PO</label>
-                                        <select name="poid" id="" class="form-control form-control-sm" required>
-                                          <option value="">Select PO</option>
-                                          <?php foreach ($poid as $po) {
-                                            echo "<option value=".$po['POID'].">".$po['PONumber']."</option>";
-                                          } ?>
+                                        <select name="poid" id="po" class="form-control form-control-sm" required>
+                                          <option value="">---</option>
+
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Type</label>
                                         <select name="type" id="" class="form-control form-control-sm">
-                                            <option value="view">View</option>
-                                            <option value="download">Download</option>
+                                            <option value ="view">View</option>
+                                            <option value ="download">Download</option>
                                         </select>
                                     </div>
 
@@ -101,9 +99,36 @@ $conn = db_connection();
 <?php
 function customPagefooter()
 {
+  global $path;
     ?>
 
     <!-- Extra Script Here -->
+    <script type="text/javascript">
+    $(document).ready(function() {
+        //get styles
+        $("#buyer").change(function() {
+            let buyer_id = this.value;
+            if (buyer_id != '') {
+                $.ajax({
+                    url: "<?= $path ?>/controller/api.php",
+                    method: "POST",
+                    data: {
+                        buyer_id: buyer_id,
+                        form: 'get_po_size_wise',
+                        token: '<?= get_ses('token') ?>'
+                    },
+                    dataType: "text",
+                    success: function(data) {
+                        $("#po").html(data);
+                    }
+                });
+            } else {
+                $("#po").html("<option>-----</option>");
+            }
+
+        });
+      });
+    </script>
 
 <?php }
 include_once "includes/footer.php";
