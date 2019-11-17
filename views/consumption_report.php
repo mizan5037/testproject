@@ -46,64 +46,36 @@ include_once "includes/header.php";
                                         <label for="">Date</label>
                                         <input type="date" class="form-control form-control-sm" name="date" id="" required>
                                     </div>
-                                    
 
                                     <div class="form-group">
-                                        <label for="">Buyer</label>
-                                        <select name="buyer" class="style mb-2 form-control-sm form-control" required>
-                                            <option></option>
-                                            <?php
-                                            $conn = db_connection();
-                                            $sql = "SELECT * FROM buyer WHERE status = 1";
-                                            $results = mysqli_query($conn, $sql);
-                                            while ($result = mysqli_fetch_assoc($results)) {
-                                                echo '<option value="' . $result['BuyerID'] . '">' . $result['BuyerName'] . '</option>';
-                                            }
-                                            ?>
-                                        </select>
+                                      <label for="">Buyer</label>
+                                      <select name="buyer" id="buyer" class="style mb-2 form-control-sm form-control" required>
+                                        <option value="">Select Buyer</option>
+                                        <?php
+                                        $conn    = db_connection();
+                                        $sql     = "SELECT * FROM buyer WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['BuyerID'] . '">' . $result['BuyerName'] . '</option>';
+                                        }
+                                        ?>
+                                      </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Style</label>
-                                        <select name="style" class="style mb-2 form-control-sm form-control" required>
-                                            <option></option>
-                                            <?php
-                                            $conn = db_connection();
-                                            $sql = "SELECT * FROM style WHERE status = 1";
-                                            $results = mysqli_query($conn, $sql);
-                                            while ($result = mysqli_fetch_assoc($results)) {
-                                                echo '<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
-                                            }
-                                            ?>
-                                        </select>
+                                      <label for="">PO</label>
+                                      <select name="po" id="po" class="style mb-2 form-control-sm form-control" required>
+                                        <option value=""></option>
+
+                                      </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">PO</label>
-                                        <select name="po" class="style mb-2 form-control-sm form-control" required>
-                                            <option></option>
-                                            <?php
-                                            $conn = db_connection();
-                                            $sql = "SELECT * FROM po WHERE status = 1";
-                                            $results = mysqli_query($conn, $sql);
-                                            while ($result = mysqli_fetch_assoc($results)) {
-                                                echo '<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
-                                            }
-                                            ?>
-                                        </select>
+                                      <label for="">Style</label>
+                                      <select name="style" id="style" class="style mb-2 form-control-sm form-control" required>
+                                        <option value=""></option>
+
+                                      </select>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="">Item</label>
-                                        <select name="item" class="style mb-2 form-control-sm form-control" required>
-                                            <option></option>
-                                            <?php
-                                            $conn = db_connection();
-                                            $sql = "SELECT * FROM item WHERE status = 1";
-                                            $results = mysqli_query($conn, $sql);
-                                            while ($result = mysqli_fetch_assoc($results)) {
-                                                echo '<option value="' . $result['ItemID'] . '">' . $result['ItemName'] . '</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
+
 
                                     <div class="form-group">
                                         <label for="">Type</label>
@@ -132,9 +104,58 @@ include_once "includes/header.php";
 <?php
 function customPagefooter()
 {
+  global $path;
     ?>
 
     <!-- Extra Script Here -->
+    <script type="text/javascript">
+    $(document).ready(function() {
+        //get buyer to PO
+        $("#buyer").change(function() {
+            let buyer_id = this.value;
+            if (buyer_id != '') {
+                $.ajax({
+                    url: "<?= $path ?>/controller/api.php",
+                    method: "POST",
+                    data: {
+                        buyer_id: buyer_id,
+                        form: 'get_po_size_wise',
+                        token: '<?= get_ses('token') ?>'
+                    },
+                    dataType: "text",
+                    success: function(data) {
+                        $("#po").html(data);
+                    }
+                });
+            } else {
+                $("#po").html("<option>-----</option>");
+            }
+
+        });
+        // po to style
+        $("#po").change(function() {
+            let po = this.value;
+            if (po != '') {
+                $.ajax({
+                    url: "<?= $path ?>/controller/api.php",
+                    method: "POST",
+                    data: {
+                        po: po,
+                        form: 'get_style',
+                        token: '<?= get_ses('token') ?>'
+                    },
+                    dataType: "text",
+                    success: function(data) {
+                        $("#style").html(data);
+                    }
+                });
+            } else {
+                $("#style").html("<option>-----</option>");
+            }
+
+        });
+      });
+    </script>
 
 <?php }
 include_once "includes/footer.php";
