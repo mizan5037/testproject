@@ -49,12 +49,12 @@ if (
 		notice('error', $sql . "<br>" . mysqli_error($conn));
 	}
 
-	
+
 	//prepack table
-	$PrePackID = mysqli_real_escape_string($conn, $_POST['PrePackID']);
-	$size      = mysqli_real_escape_string($conn, $_POST['size']);
-	$ppk       = mysqli_real_escape_string($conn, $_POST['ppk']);
-	$qty       = mysqli_real_escape_string($conn, $_POST['qty']);
+	$PrePackID = ($_POST['PrePackID']);
+	$size      = ($_POST['size']);
+	$ppk       = ($_POST['ppk']);
+	$qty       = ($_POST['qty']);
 
 	for ($i = 0; $i < sizeof($PrePackID); $i++) {
 

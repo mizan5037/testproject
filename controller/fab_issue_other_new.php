@@ -16,13 +16,13 @@ $conn = db_connection();
       $user_id = get_ses('user_id');
 
       // Arrays
-      $particulars = mysqli_real_escape_string($conn, $_POST['particulars']);
-      $color       = mysqli_real_escape_string($conn, $_POST['color']);
-      $qtz         = mysqli_real_escape_string($conn, $_POST['qtz']);
-      $consuption  = mysqli_real_escape_string($conn, $_POST['consuption']);
-      $rqd         = mysqli_real_escape_string($conn, $_POST['rqd']);
-      $issue       = mysqli_real_escape_string($conn, $_POST['issue']);
-      $roll        = mysqli_real_escape_string($conn, $_POST['roll']);
+      $particulars = ($_POST['particulars']);
+      $color       = ($_POST['color']);
+      $qtz         = ($_POST['qtz']);
+      $consuption  = ($_POST['consuption']);
+      $rqd         = ($_POST['rqd']);
+      $issue       = ($_POST['issue']);
+      $roll        = ($_POST['roll']);
 
       for ($i = 0; $i < sizeof($color); $i++) {
 

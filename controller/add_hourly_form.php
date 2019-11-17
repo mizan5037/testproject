@@ -9,12 +9,12 @@ if (isset($_POST['date']) && isset($_POST['floor']) && isset($_POST['line']) && 
     $user_id = mysqli_real_escape_string($conn, get_ses('user_id'));
 
     //hourly production datails
-    $line     = mysqli_real_escape_string($conn, $_POST['line']);
-    $po       = mysqli_real_escape_string($conn, $_POST['po']);
-    $style    = mysqli_real_escape_string($conn, $_POST['style']);
-    $color    = mysqli_real_escape_string($conn, $_POST['color']);
-    $hour     = mysqli_real_escape_string($conn, $_POST['hour']);
-    $quantity = mysqli_real_escape_string($conn, $_POST['quantity']);
+    $line     = ($_POST['line']);
+    $po       = ($_POST['po']);
+    $style    = ($_POST['style']);
+    $color    = ($_POST['color']);
+    $hour     = ($_POST['hour']);
+    $quantity = ($_POST['quantity']);
 
 
     for ($i = 0; $i < sizeof($color); $i++) {

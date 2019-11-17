@@ -22,22 +22,22 @@ if (isset($_POST['buyer']) && isset($_POST['style']) && isset($_POST['color'])  
     }
 
     //fab relaxation details
-    $date       = mysqli_real_escape_string($conn, $_POST['date']);
-    $shade      = mysqli_real_escape_string($conn, $_POST['shade']);
-    $shrinkage  = mysqli_real_escape_string($conn, $_POST['shrinkage']);
-    $rollno     = mysqli_real_escape_string($conn, $_POST['rollno']);
-    $yds        = mysqli_real_escape_string($conn, $_POST['yds']);
-    $shade2     = mysqli_real_escape_string($conn, $_POST['shade2']);
-    $shrinkage2 = mysqli_real_escape_string($conn, $_POST['shrinkage2']);
-    $rollno2    = mysqli_real_escape_string($conn, $_POST['rollno2']);
-    $yds2       = mysqli_real_escape_string($conn, $_POST['yds2']);
-    $ttlyds     = mysqli_real_escape_string($conn, $_POST['ttlyds']);
-    $fot        = mysqli_real_escape_string($conn, $_POST['fot']);
-    $fld        = mysqli_real_escape_string($conn, $_POST['fld']);
-    $flt        = mysqli_real_escape_string($conn, $_POST['flt']);
-    $ttlhrs     = mysqli_real_escape_string($conn, $_POST['ttlhrs']);
-    $remark     = mysqli_real_escape_string($conn, $_POST['remark']);
-    $fabDesID   = mysqli_real_escape_string($conn, $_POST['fabDesID']);
+    $date       = ($_POST['date']);
+    $shade      = ($_POST['shade']);
+    $shrinkage  = ($_POST['shrinkage']);
+    $rollno     = ($_POST['rollno']);
+    $yds        = ($_POST['yds']);
+    $shade2     = ($_POST['shade2']);
+    $shrinkage2 = ($_POST['shrinkage2']);
+    $rollno2    = ($_POST['rollno2']);
+    $yds2       = ($_POST['yds2']);
+    $ttlyds     = ($_POST['ttlyds']);
+    $fot        = ($_POST['fot']);
+    $fld        = ($_POST['fld']);
+    $flt        = ($_POST['flt']);
+    $ttlhrs     = ($_POST['ttlhrs']);
+    $remark     = ($_POST['remark']);
+    $fabDesID   = ($_POST['fabDesID']);
 
     for($i = 0 ; $i<sizeof($date); $i++){
     $sql = "UPDATE fab_relaxation_description SET Date ='$date[$i]', Shade='$shade[$i]', Shrinkage='$shrinkage[$i]', RollNo='$rollno[$i]',  Yds='$yds[$i]', Shade2='$shade2[$i]', Shrinkage2='$shrinkage2[$i]', RollNo2='$rollno2[$i]', Yds2='$yds2[$i]', TotalYds='$ttlyds[$i]', fabricOpenTime='$fot[$i]', FabricLayDate='$fld[$i]', FabricLayTime='$flt[$i]', TotalHours='$ttlhrs[$i]', Remarks='$remark[$i]', AddedBy='$user_id' WHERE ID='$fabDesID[$i]'";

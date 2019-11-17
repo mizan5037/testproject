@@ -51,9 +51,9 @@ if (
 	}
 
 	//prepack table
-	$size = mysqli_real_escape_string($conn, $_POST['size']);
-	$ppk  = mysqli_real_escape_string($conn, $_POST['ppk']);
-	$qty  = mysqli_real_escape_string($conn, $_POST['qty']);
+	$size = ($_POST['size']);
+	$ppk  = ($_POST['ppk']);
+	$qty  = ($_POST['qty']);
 
 
 
@@ -74,12 +74,12 @@ if (
 
 	// ORDER DESCRIPTION
 
-	$style  = mysqli_real_escape_string($conn, $_POST['style']);
-	$color  = mysqli_real_escape_string($conn, $_POST['color']);
-	$clr_no = mysqli_real_escape_string($conn, $_POST['clr_no']);
-	$dzs    = mysqli_real_escape_string($conn, $_POST['dzs']);
-	$ppack  = mysqli_real_escape_string($conn, $_POST['ppack']);
-	$units  = mysqli_real_escape_string($conn, $_POST['units']);
+	$style  = ($_POST['style']);
+	$color  = ($_POST['color']);
+	$clr_no = ($_POST['clr_no']);
+	$dzs    = ($_POST['dzs']);
+	$ppack  = ($_POST['ppack']);
+	$units  = ($_POST['units']);
 
 
 

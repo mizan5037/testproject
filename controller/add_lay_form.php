@@ -27,16 +27,16 @@ if (isset($_POST['buyer']) && isset($_POST['style']) && isset($_POST['po'])  && 
     }
 
     //lay from datails
-    $color     = mysqli_real_escape_string($conn, $_POST['color']);
-    $lotno     = mysqli_real_escape_string($conn, $_POST['lotno']);
-    $slno      = mysqli_real_escape_string($conn, $_POST['slno']);
-    $rollno    = mysqli_real_escape_string($conn, $_POST['rollno']);
-    $ttlfab    = mysqli_real_escape_string($conn, $_POST['ttlfab']);
-    $lay       = mysqli_real_escape_string($conn, $_POST['lay']);
-    $usedfab   = mysqli_real_escape_string($conn, $_POST['usedfab']);
-    $ramaining = mysqli_real_escape_string($conn, $_POST['ramaining']);
-    $exsshort  = mysqli_real_escape_string($conn, $_POST['exsshort']);
-    $sticker   = mysqli_real_escape_string($conn, $_POST['sticker']);
+    $color     = ($_POST['color']);
+    $lotno     = ($_POST['lotno']);
+    $slno      = ($_POST['slno']);
+    $rollno    = ($_POST['rollno']);
+    $ttlfab    = ($_POST['ttlfab']);
+    $lay       = ($_POST['lay']);
+    $usedfab   = ($_POST['usedfab']);
+    $ramaining = ($_POST['ramaining']);
+    $exsshort  = ($_POST['exsshort']);
+    $sticker   = ($_POST['sticker']);
 
 
 
@@ -45,7 +45,7 @@ if (isset($_POST['buyer']) && isset($_POST['style']) && isset($_POST['po'])  && 
         $sql = "INSERT INTO lay_form_details (layFormID,Color,LotNo,SlNo,RollNo,TTLFabricsYds,Lay,UsedFabricYds,RemainingYds,Shortage,Sticker,AddedBy)
 
         values('$last_id','$color[$i]','$lotno[$i]','$slno[$i]', '$rollno[$i]','$ttlfab[$i]','$lay[$i]','$usedfab[$i]','$ramaining[$i]','$exsshort[$i]','$sticker[$i]','$user_id') ";
-        
+
         if (mysqli_query($conn, $sql)) {
             notice('success', 'New Lay Form added Successfully');
         } else {

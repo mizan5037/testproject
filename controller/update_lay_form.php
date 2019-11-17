@@ -14,8 +14,8 @@ if (isset($_POST['buyer']) && isset($_POST['layid']) && isset($_POST['style']) &
     $marker_length = mysqli_real_escape_string($conn, $_POST['marker_length']);
     $specialaction = mysqli_real_escape_string($conn, $_POST['specialaction']);
     $user_id       = get_ses('user_id');
-    
-    $sql = "UPDATE lay_form SET 
+
+    $sql = "UPDATE lay_form SET
                                   BuyerID       = '$buyer',
                                   StyleID       = '$style',
                                   POID          = '$po',
@@ -36,22 +36,22 @@ if (isset($_POST['buyer']) && isset($_POST['layid']) && isset($_POST['style']) &
     }
 
     //lay from datails
-    $id        = mysqli_real_escape_string($conn, $_POST['layid']);
-    $color     = mysqli_real_escape_string($conn, $_POST['color']);
-    $lotno     = mysqli_real_escape_string($conn, $_POST['lotno']);
-    $slno      = mysqli_real_escape_string($conn, $_POST['slno']);
-    $rollno    = mysqli_real_escape_string($conn, $_POST['rollno']);
-    $ttlfab    = mysqli_real_escape_string($conn, $_POST['ttlfab']);
-    $lay       = mysqli_real_escape_string($conn, $_POST['lay']);
-    $usedfab   = mysqli_real_escape_string($conn, $_POST['usedfab']);
-    $ramaining = mysqli_real_escape_string($conn, $_POST['ramaining']);
-    $exsshort  = mysqli_real_escape_string($conn, $_POST['exsshort']);
-    $sticker   = mysqli_real_escape_string($conn, $_POST['sticker']);
+    $id        = ($_POST['layid']);
+    $color     = ($_POST['color']);
+    $lotno     = ($_POST['lotno']);
+    $slno      = ($_POST['slno']);
+    $rollno    = ($_POST['rollno']);
+    $ttlfab    = ($_POST['ttlfab']);
+    $lay       = ($_POST['lay']);
+    $usedfab   = ($_POST['usedfab']);
+    $ramaining = ($_POST['ramaining']);
+    $exsshort  = ($_POST['exsshort']);
+    $sticker   = ($_POST['sticker']);
 
     for($i=0; $i<sizeof($color);$i++){
 
-    
-        $sql = "UPDATE lay_form_details SET 
+
+        $sql = "UPDATE lay_form_details SET
                                           layFormID     = '$layid',
                                           Color         = '$color[$i]',
                                           LotNo         = '$lotno[$i]',
@@ -65,17 +65,17 @@ if (isset($_POST['buyer']) && isset($_POST['layid']) && isset($_POST['style']) &
                                           Sticker       = '$sticker[$i]',
                                           AddedBy       = '$user_id'
                                     where ID            = ".$id[$i];
-        
+
         if (mysqli_query($conn, $sql)) {
             notice('success', 'Lay Form Updated Successfully');
         } else {
             notice('error', $sql . "<br>" . mysqli_error($conn));
         }
-       
+
     }
 	nowgo('/index.php?page=all_lay');
 
 
-    
+
 
 }

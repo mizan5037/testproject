@@ -53,12 +53,12 @@ $blc = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
 if (isset($_POST['pono']) && isset($_POST['style']) && isset($_POST['qty']) && isset($_POST['unitname']) && isset($_POST['price']) && isset($_POST['lsdate'])) {
     //array MasterLC Description
-    $pono       = mysqli_real_escape_string($conn, $_POST['pono']);
-    $style      = mysqli_real_escape_string($conn, $_POST['style']);
-    $qty        = mysqli_real_escape_string($conn, $_POST['qty']);
-    $unitname   = mysqli_real_escape_string($conn, $_POST['unitname']);
-    $price      = mysqli_real_escape_string($conn, $_POST['price']);
-    $lsdate     = mysqli_real_escape_string($conn, $_POST['lsdate']);
+    $pono       = ($_POST['pono']);
+    $style      = ($_POST['style']);
+    $qty        = ($_POST['qty']);
+    $unitname   = ($_POST['unitname']);
+    $price      = ($_POST['price']);
+    $lsdate     = ($_POST['lsdate']);
     $user_id    = get_ses('user_id');
 
     for ($i = 0; $i < sizeof($pono); $i++) {

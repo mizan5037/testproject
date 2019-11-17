@@ -3,14 +3,14 @@
 if (isset($_POST['unit_name']) && isset($_POST['issue'])  && isset($_POST['item']) && isset($_POST['qty']) && isset($_POST['remark'])) {
     $conn = db_connection();
 
-    $name    = mysqli_real_escape_string($conn, $_POST['unit_name']);
-    $issue   = mysqli_real_escape_string($conn, $_POST['issue']);
-    $item    = mysqli_real_escape_string($conn, $_POST['item']);
-    $qty     = mysqli_real_escape_string($conn, $_POST['qty']);
-    $remark  = mysqli_real_escape_string($conn, $_POST['remark']);
-    $user_id = mysqli_real_escape_string($conn, get_ses('user_id'));
+    $name    = ( $_POST['unit_name']);
+    $issue   = ( $_POST['issue']);
+    $item    = ( $_POST['item']);
+    $qty     = ( $_POST['qty']);
+    $remark  = ( $_POST['remark']);
+    $user_id = ( get_ses('user_id'));
 
-    for ($i = 0; $i < sizeof($item); $i++) { 
+    for ($i = 0; $i < sizeof($item); $i++) {
 
 		$sql = "INSERT INTO stationary_issue (UnitName,IssueBy,ItemID,Qty,Remark,AddedBy)
 		values('$name','$issue','$item[$i]','$qty[$i]','$remark[$i]','$user_id')";
