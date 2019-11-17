@@ -41,7 +41,7 @@ if (isset($_GET['color_delete']) && $_GET['color_delete'] != '') {
 
 //size delete 
 if (isset($_GET['size_delete']) && $_GET['size_delete'] != '') {
-  $sql = "UPDATE color SET status = 0 WHERE id = " . mysqli_real_escape_string($conn, $_GET['size_delete']);
+  $sql = "UPDATE size SET status = 0 WHERE id = " . mysqli_real_escape_string($conn, $_GET['size_delete']);
   if (mysqli_query($conn, $sql)) {
     notice('success', 'Color Deleted Successfully');
     nowgo('/index.php?page=color_size');

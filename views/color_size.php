@@ -122,7 +122,7 @@ include_once "includes/header.php";
                                     <tr>
                                         <td><?= $count++ ?></td>
                                         <td><?= $row['size'] ?></td>
-                                        <td><a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=color_size&color_delete=<?= $row['id'] ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
+                                        <td><a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=color_size&size_delete=<?= $row['id'] ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
                                                 <i class="fas fa-trash-alt" style="color: white;"></i>
                                             </a>
                                         </td>
