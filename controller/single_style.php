@@ -1,6 +1,6 @@
 <?php
 
-$conn = db_connection();
+$conn    = db_connection();
 $user_id = get_ses('user_id');
 
 //edit table by ajax
@@ -10,9 +10,9 @@ if (isset($_POST['form']) && $_POST['form'] = "editDetails") {
 
     if (get_ses('token') === $token) {
 
-        $eid = mysqli_real_escape_string($conn, $_POST["id"]);
+        $eid   = mysqli_real_escape_string($conn, $_POST["id"]);
         $cname = mysqli_real_escape_string($conn, $_POST['cname']);
-        $text = mysqli_real_escape_string($conn, $_POST["text"]);
+        $text  = mysqli_real_escape_string($conn, $_POST["text"]);
 
 
         $sql = "UPDATE style SET " . $cname . "='" . $text . "' WHERE StyleID = '" . $eid . "'";
@@ -28,8 +28,8 @@ if (isset($_POST['form']) && $_POST['form'] = "editDetails") {
 //Delete item requiremwnts
 if (isset($_GET['delete'])) {
     $itemid = mysqli_real_escape_string($conn, $_GET['delete']);
-    $id = mysqli_real_escape_string($conn, $_GET['id']);
-    $sql = "DELETE FROM itemrequirment WHERE ItemRequirmentID=" . $itemid;
+    $id     = mysqli_real_escape_string($conn, $_GET['id']);
+    $sql    = "DELETE FROM itemrequirment WHERE ItemRequirmentID=" . $itemid;
 
     if (mysqli_query($conn, $sql)) {
         notice('success', 'Item Deleted Successfully');
@@ -42,7 +42,7 @@ if (isset($_GET['delete'])) {
 //delete trims & Accessories
 if (isset($_GET['deletet'])) {
     $tid = mysqli_real_escape_string($conn, $_GET['deletet']);
-    $id = mysqli_real_escape_string($conn, $_GET['id']);
+    $id  = mysqli_real_escape_string($conn, $_GET['id']);
     $sql = "DELETE FROM trimsaccess where TrimsAccessID=" . $tid;
 
     if (mysqli_query($conn, $sql)) {
@@ -63,7 +63,7 @@ if (isset($_POST['size']) && isset($_POST['item']) && isset($_POST['qty'])) {
     //array Item Requirments
     $size = mysqli_real_escape_string($conn, $_POST['size']);
     $item = mysqli_real_escape_string($conn, $_POST['item']);
-    $qty = mysqli_real_escape_string($conn, $_POST['qty']);
+    $qty  = mysqli_real_escape_string($conn, $_POST['qty']);
 
 
     for ($i = 0; $i < sizeof($size); $i++) {
@@ -86,7 +86,7 @@ if (isset($_POST['size']) && isset($_POST['item']) && isset($_POST['qty'])) {
 
 if (isset($_POST['trim_name']) && isset($_POST['trim_description'])) {
     //array TRIMS & ACCESSORIES
-    $trim_name = mysqli_real_escape_string($conn, $_POST['trim_name']);
+    $trim_name        = mysqli_real_escape_string($conn, $_POST['trim_name']);
     $trim_description = mysqli_real_escape_string($conn, $_POST['trim_description']);
 
     for ($i = 0; $i < sizeof($trim_name); $i++) {
@@ -118,7 +118,7 @@ $item = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 function getDivision($ssid)
 {
     global $conn;
-    $sql = "SELECT po.Division FROM po LEFT JOIN order_description ON  po.POID = order_description.POID WHERE order_description.StyleID = '$ssid'";
+    $sql    = "SELECT po.Division FROM po LEFT JOIN order_description ON  po.POID = order_description.POID WHERE order_description.StyleID = '$ssid'";
     $result = mysqli_fetch_assoc(mysqli_query($conn, $sql));
     if ($result) {
         return $result['Division'];
@@ -130,7 +130,7 @@ function getDivision($ssid)
 function getPrice($ssid)
 {
     global $conn;
-    $sql = "SELECT masterlc_description.Price, masterlc_description.StyleID, masterlc.MasterLCCurrency FROM masterlc_description LEFT JOIN masterlc ON masterlc_description.MasterLCID = masterlc.MasterLCID WHERE masterlc_description.StyleID = '$ssid'";
+    $sql    = "SELECT masterlc_description.Price, masterlc_description.StyleID, masterlc.MasterLCCurrency FROM masterlc_description LEFT JOIN masterlc ON masterlc_description.MasterLCID = masterlc.MasterLCID WHERE masterlc_description.StyleID = '$ssid'";
     $result = mysqli_fetch_assoc(mysqli_query($conn, $sql));
     if ($result) {
         return $result['MasterLCCurrency'] . " " . $result['Price'];
@@ -144,8 +144,8 @@ if (isset($_POST['style_id']) && $_POST['style_id'] != '' && $_FILES['img']['siz
 
     $error = '';
 
-    $target_file = basename($_FILES["img"]["name"]);
-    $uploadOk = 1;
+    $target_file   = basename($_FILES["img"]["name"]);
+    $uploadOk      = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     $imageFilename = rand(100000, 1000000000) . '_' . date("Y_M_d") . '_' . time() . '_' . get_ses('user_id') . '.' . $imageFileType;
 
@@ -156,24 +156,24 @@ if (isset($_POST['style_id']) && $_POST['style_id'] != '' && $_FILES['img']['siz
         $uploadOk = 1;
     } else {
         $error .= "File is not an image. <br>";
-        $uploadOk = 0;
+               $uploadOk = 0;
     }
 
     // Check if file already exists
     if (file_exists($imageFilename)) {
         $error .= "Sorry, file already exists. <br>";
-        $uploadOk = 0;
+               $uploadOk = 0;
     }
     // Check file size
     if ($_FILES["img"]["size"] > 2000000) {
         $error .= "Sorry, your file is too large. Maximum File size Allowed 2MB. <br>";
-        $uploadOk = 0;
+               $uploadOk = 0;
     }
 
     // Allow certain file formats
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
         $error .= "Sorry, only JPG, JPEG, PNG & GIF files are allowed. <br>";
-        $uploadOk = 0;
+               $uploadOk = 0;
     }
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
@@ -185,8 +185,8 @@ if (isset($_POST['style_id']) && $_POST['style_id'] != '' && $_FILES['img']['siz
 
 
             // now remove image from server
-            $id = $_POST['style_id'];
-            $sql = "SELECT StyleImage FROM style WHERE StyleID = '$id'";
+            $id       = $_POST['style_id'];
+            $sql      = "SELECT StyleImage FROM style WHERE StyleID = '$id'";
             $preimage = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
             $remove = $_SERVER['DOCUMENT_ROOT'] . $path . $uploadpath . $preimage['StyleImage'];

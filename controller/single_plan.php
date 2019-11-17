@@ -17,7 +17,7 @@ $plan_details = mysqli_query($conn, $sql);
 
 if (isset($_GET['delete']) && $_GET['delete'] != '') {
     $delete = mysqli_real_escape_string($conn, $_GET['delete']);
-    $sql = "UPDATE plan_details SET status = 0 WHERE id= '$delete'";
+    $sql    = "UPDATE plan_details SET status = 0 WHERE id= '$delete'";
     if (mysqli_query($conn, $sql)) {
         notice('success', 'Day Plan Deleted Successfully');
         nowgo('/index.php?page=single_plan&id=' . $id);

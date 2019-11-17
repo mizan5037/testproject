@@ -8,29 +8,29 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
 }
 
 
-$sqlp = "SELECT POID, PONumber FROM po";
+$sqlp     = "SELECT POID, PONumber FROM po";
 $resultps = mysqli_query($conn, $sqlp);
-$poArr = array();
+$poArr    = array();
 while ($resultp = mysqli_fetch_assoc($resultps)) {
     $poArr[] = $resultp;
 }
 
-$sqls = "SELECT StyleID, StyleNumber FROM style";
+$sqls     = "SELECT StyleID, StyleNumber FROM style";
 $resultss = mysqli_query($conn, $sqls);
 $styleArr = array();
 while ($results = mysqli_fetch_assoc($resultss)) {
     $styleArr[] = $results;
 }
 
-$sqli = "SELECT ItemID, ItemName FROM item";
+$sqli     = "SELECT ItemID, ItemName FROM item";
 $resultis = mysqli_query($conn, $sqli);
-$itemArr = array();
+$itemArr  = array();
 while ($resulti = mysqli_fetch_assoc($resultis)) {
     $itemArr[] = $resulti;
 }
 
-$sqlm = "SELECT MasterLCID, MasterLCNumber FROM masterlc";
-$resultms = mysqli_query($conn, $sqlm);
+$sqlm        = "SELECT MasterLCID, MasterLCNumber FROM masterlc";
+$resultms    = mysqli_query($conn, $sqlm);
 $masterlcArr = array();
 while ($resultm = mysqli_fetch_assoc($resultms)) {
     $masterlcArr[] = $resultm;
@@ -100,15 +100,15 @@ if (
     $address            = mysqli_real_escape_string($conn, $_POST['address']);
 
     $sql = "UPDATE b2blc SET
-    B2BLCNumber = '$blcnumber',
-    MasterLCID = '$masterlc',
-    SupplierName = '$supplier',
-    ContactPerson = '$person',
-    ContactNumber = '$number',
-    SupplierAddress = '$address',
-    Issuedate = '$blcissuedate',
-    Maturitydate = '$blcmaturitydate'
-    WHERE B2BLCID = '$id'";
+          B2BLCNumber     = '$blcnumber',
+          MasterLCID      = '$masterlc',
+          SupplierName    = '$supplier',
+          ContactPerson   = '$person',
+          ContactNumber   = '$number',
+          SupplierAddress = '$address',
+          Issuedate       = '$blcissuedate',
+          Maturitydate    = '$blcmaturitydate'
+    WHERE B2BLCID         = '$id'";
 
     if (mysqli_query($conn, $sql)) {
         notice('success', 'B2B LC Updated Successfully.');
@@ -119,7 +119,7 @@ if (
 }
 
 if (isset($_GET['delete'])) {
-    $id = mysqli_real_escape_string($conn, $_GET['delete']);
+    $id  = mysqli_real_escape_string($conn, $_GET['delete']);
     $sid = mysqli_real_escape_string($conn, $_GET['id']);
     $sql = "DELETE FROM b2b_item  WHERE ID=" . $id;
 

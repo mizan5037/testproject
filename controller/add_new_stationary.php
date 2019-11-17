@@ -2,10 +2,10 @@
 $conn = db_connection();
 if (isset($_POST['item_name']) && $_POST['specification'] != '' && isset($_POST['unit']) && isset($_POST['unit'])) {
 
-    $name = mysqli_real_escape_string($conn, $_POST['item_name']);
+    $name          = mysqli_real_escape_string($conn, $_POST['item_name']);
     $specification = mysqli_real_escape_string($conn, $_POST['specification']);
-    $unit = mysqli_real_escape_string($conn, $_POST['unit']);
-    $user_id = mysqli_real_escape_string($conn, get_ses('user_id'));
+    $unit          = mysqli_real_escape_string($conn, $_POST['unit']);
+    $user_id       = mysqli_real_escape_string($conn, get_ses('user_id'));
 
     $sql = "INSERT INTO stationary_item (Name,Description,MeasurmentUnit,AddedBy)
 
@@ -33,5 +33,5 @@ if (isset($_GET['delete'])) {
 }
 
 
-$sql = "SELECT DISTINCT si.*, ir.ItemID FROM stationary_item si LEFT JOIN stationary_receive ir ON si.ID = ir.ItemID";
+$sql    = "SELECT DISTINCT si.*, ir.ItemID FROM stationary_item si LEFT JOIN stationary_receive ir ON si.ID = ir.ItemID";
 $result = mysqli_query($conn, $sql);

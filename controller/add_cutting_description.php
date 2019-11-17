@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_GET['cutid']) && $_GET['cutid'] != '' && isset($_GET['cuttingid'])) {
-    $cutid = mysqli_real_escape_string($conn, $_GET['cutid']);
+    $cutid     = mysqli_real_escape_string($conn, $_GET['cutid']);
     $cuttingid = mysqli_real_escape_string($conn, $_GET['cuttingid']);
 
     $sql = "DELETE FROM cutting_form_description  where ID=".$cutid;

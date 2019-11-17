@@ -7,8 +7,8 @@ if (isset($_POST['stylenumber']) && $_POST['styledescription'] != '' && isset($_
 
     if ($_FILES['img']['size'] !== 0) {
 
-        $target_file = basename($_FILES["img"]["name"]);
-        $uploadOk = 1;
+        $target_file   = basename($_FILES["img"]["name"]);
+        $uploadOk      = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
         $imageFilename = rand(100000, 1000000000) . '_' . date("Y_M_d") . '_' . time() . '_' . get_ses('user_id') . '.' . $imageFileType;
 
@@ -54,13 +54,13 @@ if (isset($_POST['stylenumber']) && $_POST['styledescription'] != '' && isset($_
         }
     }
 
-    $conn               = db_connection();
-    $stylenumber        = mysqli_real_escape_string($conn, $_POST['stylenumber']);
-    $styledescription   = mysqli_real_escape_string($conn, $_POST['styledescription']);
-    $fabricdetails      = mysqli_real_escape_string($conn, $_POST['fabricdetails']);
-    $protono            = mysqli_real_escape_string($conn, $_POST['protono']);
-    $wash               = mysqli_real_escape_string($conn, $_POST['wash']);
-    $user_id            = get_ses('user_id');
+    $conn             = db_connection();
+    $stylenumber      = mysqli_real_escape_string($conn, $_POST['stylenumber']);
+    $styledescription = mysqli_real_escape_string($conn, $_POST['styledescription']);
+    $fabricdetails    = mysqli_real_escape_string($conn, $_POST['fabricdetails']);
+    $protono          = mysqli_real_escape_string($conn, $_POST['protono']);
+    $wash             = mysqli_real_escape_string($conn, $_POST['wash']);
+    $user_id          = get_ses('user_id');
 
     $sql = "INSERT INTO style (StyleNumber,StyleDescription,StyleWash,StyleProto,StyleImage,StyleFabricDetails,AddedBy)
 
@@ -92,9 +92,9 @@ if (isset($_POST['stylenumber']) && $_POST['styledescription'] != '' && isset($_
     }
 
     //array Item Requirments
-    $size   = mysqli_real_escape_string($conn, $_POST['size']);
-    $item   = mysqli_real_escape_string($conn, $_POST['item']);
-    $qty    = mysqli_real_escape_string($conn, $_POST['qty']);
+    $size = mysqli_real_escape_string($conn, $_POST['size']);
+    $item = mysqli_real_escape_string($conn, $_POST['item']);
+    $qty  = mysqli_real_escape_string($conn, $_POST['qty']);
 
 
     for ($i = 0; $i < sizeof($size); $i++) {

@@ -3,14 +3,14 @@ $conn = db_connection();
 if (isset($_POST['item']) && $_POST['style'] && isset($_POST['color']) && isset($_POST['po']) && isset($_POST['size']) && isset($_POST['receiveroll']) && isset($_POST['sortexs'])) {
 
 
-	$item = mysqli_real_escape_string($conn, $_POST['item']);
-	$style = mysqli_real_escape_string($conn, $_POST['style']);
-	$color = mysqli_real_escape_string($conn, $_POST['color']);
-	$po = mysqli_real_escape_string($conn, $_POST['po']);
-	$size = mysqli_real_escape_string($conn, $_POST['size']);
+	$item        = mysqli_real_escape_string($conn, $_POST['item']);
+	$style       = mysqli_real_escape_string($conn, $_POST['style']);
+	$color       = mysqli_real_escape_string($conn, $_POST['color']);
+	$po          = mysqli_real_escape_string($conn, $_POST['po']);
+	$size        = mysqli_real_escape_string($conn, $_POST['size']);
 	$receiveroll = mysqli_real_escape_string($conn, $_POST['receiveroll']);
-	$sortexs = mysqli_real_escape_string($conn, $_POST['sortexs']);
-	$user_id = mysqli_real_escape_string($conn, get_ses('user_id'));
+	$sortexs     = mysqli_real_escape_string($conn, $_POST['sortexs']);
+	$user_id     = mysqli_real_escape_string($conn, get_ses('user_id'));
 
 
 	for ($i = 0; $i < sizeof($item); $i++) {

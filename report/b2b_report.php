@@ -15,11 +15,11 @@ if (isset($_POST['date']) && $_POST['date'] != '' && $_POST['type'] != '' && iss
     $mpdf = new \Mpdf\Mpdf();
 
     //Getting Peramiters
-    $date = $_POST['date'];
+    $date    = $_POST['date'];
     $datearr = explode("-", $date);
-    $month = $datearr[1];
-    $year = $datearr[0];
-    $type = $_POST['type'];
+    $month   = $datearr[1];
+    $year    = $datearr[0];
+    $type    = $_POST['type'];
 
     //Getting month name to print in report
     $monthName = date('F', mktime(0, 0, 0, $month, 10));

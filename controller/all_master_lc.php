@@ -1,8 +1,8 @@
 <?php
 $conn = db_connection();
 
-$sqlb = "SELECT BuyerID, BuyerName FROM buyer";
-$results = mysqli_query($conn, $sqlb);
+$sqlb     = "SELECT BuyerID, BuyerName FROM buyer";
+$results  = mysqli_query($conn, $sqlb);
 $buyerArr = array();
 while ($result = mysqli_fetch_assoc($results)) {
     $buyerArr[] = $result;
@@ -20,7 +20,7 @@ function searchForBuyer($id, $array)
 
 
 if (isset($_GET['delete'])) {
-    $id = mysqli_real_escape_string($conn, $_GET['delete']);
+    $id  = mysqli_real_escape_string($conn, $_GET['delete']);
     $sql = "UPDATE masterlc set status=0 where MasterLCID=" . $id;
 
     if (mysqli_query($conn, $sql)) {

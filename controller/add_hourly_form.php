@@ -4,18 +4,16 @@ $conn = db_connection();
 
 if (isset($_POST['date']) && isset($_POST['floor']) && isset($_POST['line']) && isset($_POST['po']) && isset($_POST['style']) && isset($_POST['color']) && isset($_POST['hour']) && isset($_POST['quantity'])  ) {
 
-    $date = mysqli_real_escape_string($conn, $_POST['date']);
+    $date    = mysqli_real_escape_string($conn, $_POST['date']);
     $floorno = mysqli_real_escape_string($conn, $_POST['floor']);
     $user_id = mysqli_real_escape_string($conn, get_ses('user_id'));
 
-
-
     //hourly production datails
-    $line = mysqli_real_escape_string($conn, $_POST['line']);
-    $po = mysqli_real_escape_string($conn, $_POST['po']);
-    $style = mysqli_real_escape_string($conn, $_POST['style']);
-    $color = mysqli_real_escape_string($conn, $_POST['color']);
-    $hour = mysqli_real_escape_string($conn, $_POST['hour']);
+    $line     = mysqli_real_escape_string($conn, $_POST['line']);
+    $po       = mysqli_real_escape_string($conn, $_POST['po']);
+    $style    = mysqli_real_escape_string($conn, $_POST['style']);
+    $color    = mysqli_real_escape_string($conn, $_POST['color']);
+    $hour     = mysqli_real_escape_string($conn, $_POST['hour']);
     $quantity = mysqli_real_escape_string($conn, $_POST['quantity']);
 
 
@@ -24,8 +22,7 @@ if (isset($_POST['date']) && isset($_POST['floor']) && isset($_POST['line']) && 
       $lineCount = "SELECT p.*, d.* FROM hourly_production_details d LEFT JOIN hourly_production p ON p.HourlyProductionID = d.HourlyProductionID WHERE  p.Date = '$date' AND p.FloorNO = '$floorno' AND d.LineNo = '$line[$i]' AND d.POID = '$po[$i]' AND d.StyleID='$style[$i]' AND d.Color = '$color[$i]'";
 
 
-      $hourlyId = mysqli_fetch_assoc(mysqli_query($conn,$lineCount))['ID'];
-
+      $hourlyId  = mysqli_fetch_assoc(mysqli_query($conn,$lineCount))['ID'];
       $lineCount = mysqli_num_rows(mysqli_query($conn, $lineCount));
 
       if($lineCount < 1 ){

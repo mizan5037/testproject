@@ -11,10 +11,10 @@ if (isset($_POST['buyer']) && isset($_POST['style']) && isset($_POST['color'])  
 
     $check_fab_data = "SELECT DISTINCT f.FabRelaxationID,b.BuyerID,b.BuyerName,c.id,c.color,s.StyleID,s.StyleNumber
                       FROM fab_relaxation f
-                      LEFT JOIN buyer b ON f.BuyerID = b.BuyerID
-                      LEFT JOIN color c ON f.Color=c.id
-                      LEFT JOIN style s ON f.StyleID = s.StyleID
-                      WHERE f.Status='1' AND b.Status = '1' AND c.status = '1'AND s.Status ='1'";
+                      LEFT  JOIN buyer b ON f.BuyerID = b.BuyerID
+                      LEFT  JOIN color c ON f.Color   = c.id
+                      LEFT  JOIN style s ON f.StyleID = s.StyleID
+                      WHERE f.Status = '1' AND b.Status = '1' AND c.status = '1'AND s.Status = '1'";
 
     $check_fab_data = mysqli_fetch_assoc(mysqli_query($conn, $check_fab_data));
 

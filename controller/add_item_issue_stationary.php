@@ -3,11 +3,11 @@
 if (isset($_POST['unit_name']) && isset($_POST['issue'])  && isset($_POST['item']) && isset($_POST['qty']) && isset($_POST['remark'])) {
     $conn = db_connection();
 
-    $name = mysqli_real_escape_string($conn, $_POST['unit_name']);
-    $issue = mysqli_real_escape_string($conn, $_POST['issue']);
-    $item = mysqli_real_escape_string($conn, $_POST['item']);
-    $qty = mysqli_real_escape_string($conn, $_POST['qty']);
-    $remark = mysqli_real_escape_string($conn, $_POST['remark']);
+    $name    = mysqli_real_escape_string($conn, $_POST['unit_name']);
+    $issue   = mysqli_real_escape_string($conn, $_POST['issue']);
+    $item    = mysqli_real_escape_string($conn, $_POST['item']);
+    $qty     = mysqli_real_escape_string($conn, $_POST['qty']);
+    $remark  = mysqli_real_escape_string($conn, $_POST['remark']);
     $user_id = mysqli_real_escape_string($conn, get_ses('user_id'));
 
     for ($i = 0; $i < sizeof($item); $i++) { 
