@@ -36,7 +36,7 @@ include_once "includes/header.php";
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Item Name</th>
+                                <th width="15%">Item Name</th>
                                 <th>Supplier Name</th>
                                 <th>Challan No</th>
                                 <th>Received Qty</th>
@@ -48,18 +48,18 @@ include_once "includes/header.php";
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                        <select name="item[]" class="item mb-2 form-control-sm form-control" required>
-                                            <option></option>
-                                            <?php
-                                            $conn = db_connection();
-                                            $sql = "SELECT * FROM stationary_item WHERE status = 1";
-                                            $results = mysqli_query($conn, $sql);
-                                            while ($result = mysqli_fetch_assoc($results)) {
-                                                echo '<option value="' . $result['ID'] . '">' . $result['Name'] . '</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                    </td>
+                                    <select name="item[]" class="item mb-2 form-control-sm form-control search_select" required>
+                                        <option></option>
+                                        <?php
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM stationary_item WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['ID'] . '">' . $result['Name'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
                                 <td>
                                     <input placeholder="Supplier Name" type="text" name="suppliername[]" class="mb-2 form-control-sm form-control">
                                 </td>
@@ -100,6 +100,15 @@ include_once "includes/header.php";
 function customPagefooter()
 {
     ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+        $('.search_select').select2({
+            placeholder: 'Select Card Numbers'
+        });
+
+        $("select").select2();
+    </script>
     <script>
         $(document).ready(function() {
             var counter = 0;
@@ -113,7 +122,7 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th>' + counter + '</th>';
-                cols += '<td><select name="item[]" class="item mb-2 form-control-sm form-control" required><option></option>';
+                cols += '<td><select name="item[]" class="item mb-2 form-control-sm form-control search_select" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM stationary_item WHERE status = 1";
@@ -133,6 +142,9 @@ function customPagefooter()
                 if (counter >= limit) $('#addrow').attr('disabled', true).prop('value', "You've reached the limit");
                 $("table.order-list").append(newRow);
                 counter++;
+                setTimeout(function() {
+                    $('.search_select').select2();
+                }, 100);
             });
 
             $("table.order-list").on("change", 'input[name^="price"]', function(event) {

@@ -303,6 +303,8 @@ $html .= '
 			
 		
 			<td style = " font-size:16px; border: 1px solid #000000;">
+			</td>
+			<td style = " font-size:16px; border: 1px solid #000000;">
 		     <b>'.$total_today_fab_receive.'</b>
 			</td>
             <td style = " font-size:16px; border: 1px solid #000000;">

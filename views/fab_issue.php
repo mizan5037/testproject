@@ -35,7 +35,7 @@ include_once "includes/header.php";
                     <div class="form-row">
                         <div class="col-md-4">
                             <label for="validationTooltip02">Buyer Name</label>
-                            <select name="buyer[]" class="buyer mb-2 form-control-sm form-control" required>
+                            <select name="buyer[]" class="buyer mb-2 form-control-sm form-control search_select" required>
                                 <option></option>
                                 <?php
                                 $conn = db_connection();
@@ -48,22 +48,8 @@ include_once "includes/header.php";
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="validationTooltip02">Style No</label>
-                            <select name="style[]" class="style mb-2 form-control-sm form-control" required>
-                                <option></option>
-                                <?php
-                                $conn = db_connection();
-                                $sql = "SELECT * FROM style WHERE status = 1";
-                                $results = mysqli_query($conn, $sql);
-                                while ($result = mysqli_fetch_assoc($results)) {
-                                    echo '<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
                             <label for="validationTooltip02">P.O. No</label>
-                            <select name="po[]" class="po mb-2 form-control-sm form-control" required>
+                            <select name="po[]" class="po mb-2 form-control-sm form-control search_select" required>
                                 <option></option>
                                 <?php
                                 $conn = db_connection();
@@ -75,6 +61,21 @@ include_once "includes/header.php";
                                 ?>
                             </select>
                         </div>
+                        <div class="col-md-4">
+                            <label for="validationTooltip02">Style No</label>
+                            <select name="style[]" class="style mb-2 form-control-sm form-control search_select" required>
+                                <option></option>
+                                <?php
+                                $conn = db_connection();
+                                $sql = "SELECT * FROM style WHERE status = 1";
+                                $results = mysqli_query($conn, $sql);
+                                while ($result = mysqli_fetch_assoc($results)) {
+                                    echo '<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+
                     </div>
                     <br>
                     <div class="form-row">
@@ -83,7 +84,7 @@ include_once "includes/header.php";
                                 <tr>
                                     <th>#</th>
                                     <th>Particulars</th>
-                                    <th>Color</th>
+                                    <th width="15%">Color</th>
                                     <th>QTZ (DZ)</th>
                                     <th>Consuption (yds)</th>
                                     <th>RQD QTY (yds)</th>
@@ -158,7 +159,15 @@ include_once "includes/header.php";
 function customPagefooter()
 {
     ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 
+    <script type="text/javascript">
+        $('.search_select').select2({
+            placeholder: 'Select Card Numbers'
+        });
+
+        $("select").select2();
+    </script>
     <script>
         $(document).ready(function() {
             var counter = 0;
@@ -171,14 +180,14 @@ function customPagefooter()
                 var cols = "";
                 cols += '<th>' + counter + '</th>';
                 cols += '<td><input class="mb-2 form-control-sm form-control" type="text" placeholder="Particulars" name="particulars[]" /></td>';
-                cols += '<td><select name="color[]" class="style mb-2 form-control-sm form-control" required><option></option><?php
-                    $conn = db_connection();
-                    $sql = "SELECT * FROM color WHERE status = 1";
-                    $results = mysqli_query($conn, $sql);
-                    while ($result = mysqli_fetch_assoc($results)) {
-                        echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
-                    }
-                    ?></select></td>';
+                cols += '<td><select name="color[]" class="style mb-2 form-control-sm form-control search_select" required><option></option><?php
+                                                                                                                                                $conn = db_connection();
+                                                                                                                                                $sql = "SELECT * FROM color WHERE status = 1";
+                                                                                                                                                $results = mysqli_query($conn, $sql);
+                                                                                                                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                                                                                                                    echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                                                                                                                                }
+                                                                                                                                                ?></select></td>';
                 cols += '<td><input class="mb-2 form-control-sm form-control" type="number" placeholder="QTZ (DZ)" name="qtz[]"/></td>';
                 cols += '<td><input class="mb-2 form-control-sm form-control" type="number" placeholder="Consuption" name="consuption[]"/></td>';
                 cols += '<td><input class="mb-2 form-control-sm form-control" type="number" placeholder="RQD QTY" name="rqd[]"/></td>';
@@ -190,6 +199,9 @@ function customPagefooter()
                 if (counter >= limit) $('#addrow').attr('disabled', true).prop('value', "You've reached the limit");
                 $("table.order-list").append(newRow);
                 counter++;
+                setTimeout(function() {
+                    $('.search_select').select2();
+                }, 100);
             });
 
             $("table.order-list").on("change", 'input[name^="price"]', function(event) {
@@ -208,6 +220,7 @@ function customPagefooter()
 
 
         });
+
         function calculateRow(row) {
             var price = +row.find('input[name^="price"]').val();
 

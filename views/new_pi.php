@@ -50,19 +50,19 @@ include_once "includes/header.php";
                         <thead>
                             <tr>
                                 <th width="5%">#</th>
-                                <th width="10%">PO No</th>
-                                <th width="10%">Item</th>
+                                <th width="18%">PO No</th>
+                                <th width="18%">Item</th>
                                 <th width="30%">Description</th>
                                 <th width="10%">Qty</th>
                                 <th width="10%">Price Per Unit</th>
-                                <th width="15%"></th>
+                                <th width="9%"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <select name="po[]" class="po mb-2 form-control-sm form-control" required>
+                                    <select name="po[]" class="po mb-2 form-control-sm form-control search_select" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
@@ -75,7 +75,7 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="item[]" class="item mb-2 form-control-sm form-control" required>
+                                    <select name="item[]" class="item mb-2 form-control-sm form-control search_select" required>
                                         <option></option>
                                         <?php
                                         $sql = "SELECT * FROM item WHERE status = 1";
@@ -87,10 +87,10 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                    <textarea placeholder="Description" name="description[]"  type="text" class="mb-2 form-control-sm form-control"></textarea>
+                                    <textarea placeholder="Description" name="description[]" type="text" class="mb-2 form-control-sm form-control"></textarea>
                                 </td>
                                 <td>
-                                    <input placeholder="Qty" id="qty" name="qty[]" type="number" class="mb-2 form-control-sm form-control" >
+                                    <input placeholder="Qty" id="qty" name="qty[]" type="number" class="mb-2 form-control-sm form-control">
                                 </td>
                                 <td>
                                     <input placeholder="PPU" id="ppu" name="ppu[]" type="number" class="mb-2 form-control-sm form-control" step="0.01" required>
@@ -126,6 +126,15 @@ include_once "includes/header.php";
 function customPagefooter()
 {
     ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+        $('.search_select').select2({
+            placeholder: 'Select Card Numbers'
+        });
+
+        $("select").select2();
+    </script>
     <script>
         // Add new row code
 
@@ -141,8 +150,8 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th>' + counter + '</th>';
-                
-                cols += '<td><select name="po[]" class="po mb-2 form-control-sm form-control" required><option></option>';
+
+                cols += '<td><select name="po[]" class="po mb-2 form-control-sm form-control search_select" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM po WHERE status = 1";
@@ -152,7 +161,7 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
-                cols += '<td><select name="item[]" class="item mb-2 form-control-sm form-control" required><option></option>';
+                cols += '<td><select name="item[]" class="item mb-2 form-control-sm form-control search_select" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM item WHERE status = 1";
@@ -171,6 +180,9 @@ function customPagefooter()
                 if (counter >= limit) $('#addrow').attr('disabled', true).prop('value', "You've reached the limit");
                 $("table.order-list").append(newRow);
                 counter++;
+                setTimeout(function() {
+                    $('.search_select').select2();
+                }, 100);
             });
 
             $("table.order-list").on("change", 'input[name^="price"]', function(event) {
@@ -187,7 +199,7 @@ function customPagefooter()
                 $('#addrow').attr('disabled', false).prop('value', "Add Row");
             });
 
-            var theResult =  $("#qty").value+ $("#ppu").value; 
+            var theResult = $("#qty").value + $("#ppu").value;
             $('#totalprice').text(theResult);
 
 
@@ -227,8 +239,6 @@ function customPagefooter()
                 });
             }, false);
         })();
-
-
     </script>
 <?php }
 include_once "includes/footer.php";

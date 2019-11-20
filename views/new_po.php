@@ -51,25 +51,25 @@ include_once "includes/header.php";
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label>CMP</label>
-                        <input type="number" id="cmp" onchange="totalcost()" onkeyup="totalcost()" name="cmp" class="form-control" placeholder="CMP"  step="0.01">
+                        <input type="number" id="cmp" onchange="totalcost()" onkeyup="totalcost()" name="cmp" class="form-control" placeholder="CMP" step="0.01">
                     </div>
                     <div class="col-md-3 mb-3">
                         <label>Wash Cost</label>
-                        <input type="number" id="wash" onchange="totalcost()" onkeyup="totalcost()" name="wash_cost" class="form-control" placeholder="Wash Cost"  step="0.01">
+                        <input type="number" id="wash" onchange="totalcost()" onkeyup="totalcost()" name="wash_cost" class="form-control" placeholder="Wash Cost" step="0.01">
                     </div>
                     <div class="col-md-3 mb-3">
                         <label>Hanger Cost</label>
-                        <input type="number" id="hanger" onchange="totalcost()" onkeyup="totalcost()" name="hanger_cost" class="form-control" placeholder="Hanger Cost"  step="0.01">
+                        <input type="number" id="hanger" onchange="totalcost()" onkeyup="totalcost()" name="hanger_cost" class="form-control" placeholder="Hanger Cost" step="0.01">
                     </div>
                     <div class="col-md-3 mb-3">
                         <label>CMP+W+Hanger</label>
-                        <input type="number" id="total" name="cmp_w_wanger" class="form-control" placeholder="CMP+W+Hanger"  step="0.01">
+                        <input type="number" id="total" name="cmp_w_wanger" class="form-control" placeholder="CMP+W+Hanger" step="0.01">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label>FOB</label>
-                        <input type="number" name="fob" class="form-control" placeholder="FOB"  step="0.01">
+                        <input type="number" name="fob" class="form-control" placeholder="FOB" step="0.01">
                     </div>
                     <div class="col-md-3 mb-3">
                         <label>Final Destination</label>
@@ -107,8 +107,8 @@ include_once "includes/header.php";
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>
-                                        <select name="style[]" class="style mb-2 form-control-sm form-control" required>
-                                            <option></option>
+                                        <select name="style[]" class="style mb-2 form-control-sm form-control search_select" required>
+                                            <option>Select Style</option>
                                             <?php
                                             $conn = db_connection();
                                             $sql = "SELECT * FROM style WHERE status = 1";
@@ -120,8 +120,8 @@ include_once "includes/header.php";
                                         </select>
                                     </td>
                                     <td>
-                                        <select name="color[]" class="style mb-2 form-control-sm form-control" required>
-                                            <option></option>
+                                        <select name="color[]" class="style mb-2 form-control-sm form-control search_select" required>
+                                            <option>Select Color</option>
                                             <?php
                                             $conn = db_connection();
                                             $sql = "SELECT * FROM color WHERE status = 1";
@@ -194,8 +194,8 @@ include_once "includes/header.php";
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>
-                                        <select name="size[]" class="style mb-2 form-control-sm form-control" required>
-                                            <option></option>
+                                        <select name="size[]" class="style mb-2 form-control-sm form-control search_select" required>
+                                            <option>Select Size</option>
                                             <?php
                                             $conn = db_connection();
                                             $sql = "SELECT * FROM size WHERE status = 1";
@@ -246,10 +246,19 @@ include_once "includes/header.php";
 function customPagefooter()
 {
     ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+        $('.search_select').select2({
+            placeholder: 'Select Card Numbers'
+        });
+
+        $("select").select2();
+    </script>
     <script>
         //table top
 
-        function totalcost(){
+        function totalcost() {
             let cmp = $('#cmp').val();
             let wash = $('#wash').val();
             let hanger = $('#hanger').val();
@@ -269,7 +278,7 @@ function customPagefooter()
                 var cols1 = "";
 
                 cols1 += '<th scope="row">' + counter1 + '</th>';
-                cols1 += '<td><select name="style[]" class="style mb-2 form-control-sm form-control" required><option></option>';
+                cols1 += '<td><select name="style[]" class="style mb-2 form-control-sm form-control search_select" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM style WHERE status = 1";
@@ -279,14 +288,14 @@ function customPagefooter()
                     }
                     ?>
                 cols1 += '</select></td>';
-                cols1 += '<td><select name="color[]" class="style mb-2 form-control-sm form-control" required> <option></option> <?php
-                                                                                                                                        $conn = db_connection();
-                                                                                                                                        $sql = "SELECT * FROM color WHERE status = 1";
-                                                                                                                                        $results = mysqli_query($conn, $sql);
-                                                                                                                                        while ($result = mysqli_fetch_assoc($results)) {
-                                                                                                                                            echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
-                                                                                                                                        }
-                                                                                                                                        ?>  </select></td>';
+                cols1 += '<td><select name="color[]" class="style mb-2 form-control-sm form-control search_select" required> <option></option> <?php
+                                                                                                                                                    $conn = db_connection();
+                                                                                                                                                    $sql = "SELECT * FROM color WHERE status = 1";
+                                                                                                                                                    $results = mysqli_query($conn, $sql);
+                                                                                                                                                    while ($result = mysqli_fetch_assoc($results)) {
+                                                                                                                                                        echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                                                                                                                                    }
+                                                                                                                                                    ?>  </select></td>';
                 cols1 += '<td><input type="text" placeholder="CLR No" class="mb-2 form-control-sm form-control" name="clrno[]"/></td>';
                 cols1 += '<td><input type="number" placeholder="DZS" class="mb-2 form-control-sm form-control" name="dzs[]"/></td>';
                 cols1 += '<td><input type="number" placeholder="P/Pack" class="mb-2 form-control-sm form-control" name="ppack[]"/></td>';
@@ -297,6 +306,9 @@ function customPagefooter()
                 if (counter1 >= limit1) $('#addrow1').attr('disabled', true).prop('value', "You've reached the limit");
                 $("table.order-list1").append(newRow1);
                 counter1++;
+                setTimeout(function() {
+                    $('.search_select').select2();
+                }, 100);
             });
 
             $("table.order-list1").on("change", 'input[name^="dzs"]', function(event) {
@@ -362,12 +374,12 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><select name="size[]" class="style mb-2 form-control-sm form-control" required> <option></option> <?php $conn = db_connection();
-                                                                                                                                    $sql = "SELECT * FROM size WHERE status = 1";
-                                                                                                                                    $results = mysqli_query($conn, $sql);
-                                                                                                                                    while ($result = mysqli_fetch_assoc($results)) {
-                                                                                                                                        echo '<option value="' . $result['id'] . '">' . $result['size'] . '</option>';
-                                                                                                                                    } ?>  </select></td>';
+                cols += '<td><select name="size[]" class="style mb-2 form-control-sm form-control search_select" required> <option></option> <?php $conn = db_connection();
+                                                                                                                                                    $sql = "SELECT * FROM size WHERE status = 1";
+                                                                                                                                                    $results = mysqli_query($conn, $sql);
+                                                                                                                                                    while ($result = mysqli_fetch_assoc($results)) {
+                                                                                                                                                        echo '<option value="' . $result['id'] . '">' . $result['size'] . '</option>';
+                                                                                                                                                    } ?>  </select></td>';
                 cols += '<td><input type="text" placeholder="PrePack Code" class="mb-2 form-control-sm form-control" name="ppk[]" required/></td>';
                 cols += '<td><input type="number" placeholder="Qty" class="mb-2 form-control-sm form-control" name="qty[]"/></td>';
 
@@ -376,6 +388,9 @@ function customPagefooter()
                 if (counter >= limit) $('#addrow').attr('disabled', true).prop('value', "You've reached the limit");
                 $("table.order-list").append(newRow);
                 counter++;
+                setTimeout(function() {
+                    $('.search_select').select2();
+                }, 100);
             });
 
             $("table.order-list").on("change", 'input[name^="qty"]', function(event) {
@@ -394,6 +409,7 @@ function customPagefooter()
 
 
         });
+
 
 
 

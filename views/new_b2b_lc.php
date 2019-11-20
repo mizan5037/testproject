@@ -54,8 +54,8 @@ include_once "includes/header.php";
                         <input type="text" name="suppliername" class="form-control form-control-sm" placeholder="Supplier Name" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                      <label>Issue Date</label>
-                      <input type="date" name="issuedate" class="form-control form-control-sm" placeholder="Supplier" required>
+                        <label>Issue Date</label>
+                        <input type="date" name="issuedate" class="form-control form-control-sm" placeholder="Supplier" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label>Supplier Contact Person</label>
@@ -78,14 +78,14 @@ include_once "includes/header.php";
                     <table class="mb-0 table table-bordered order-list">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Item</th>
-                                <th>Style</th>
-                                <th>PO</th>
-                                <th>Qty</th>
-                                <th>Price Per Unit</th>
-                                <th>Total Price</th>
-                                <th></th>
+                                <th width="1%">#</th>
+                                <th width="15%">Item</th>
+                                <th width="15%">Style</th>
+                                <th width="15%">PO</th>
+                                <th width="15%">Qty</th>
+                                <th width="15%">Price Per Unit</th>
+                                <th width="15%">Total Price</th>
+                                <th width="9%"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -165,6 +165,15 @@ function customPagefooter()
     global $itemArr;
     global $poArr;
     ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+        $('.search_select').select2({
+            placeholder: 'Select Card Numbers'
+        });
+
+        $("select").select2();
+    </script>
     <script>
         // Add new row code
 
@@ -176,9 +185,15 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><select class="form-control form-control-sm" name="item[]" required> <option></option>  <?php foreach ($itemArr as $key) { echo '<option value="' . $key['ItemID'] . '">' . $key['ItemName'] . '</option>'; } ?></select></td>';
-                cols += '<td><select class="form-control form-control-sm" name="style[]" required> <option></option> <?php foreach ($styleArr as $key) { echo '<option value="' . $key['StyleID'] . '">' . $key['StyleNumber'] . '</option>'; } ?> </select></td>';
-                cols += '<td><select class="form-control form-control-sm" name="po[]" required> <option></option>  <?php foreach ($poArr as $key) { echo '<option value="' . $key['POID'] . '">' . $key['PONumber'] . '</option>';  }  ?> </select></td>';
+                cols += '<td><select class="form-control form-control-sm search_select" name="item[]" required> <option></option>  <?php foreach ($itemArr as $key) {
+                                                                                                                                            echo '<option value="' . $key['ItemID'] . '">' . $key['ItemName'] . '</option>';
+                                                                                                                                        } ?></select></td>';
+                cols += '<td><select class="form-control form-control-sm search_select" name="style[]" required> <option></option> <?php foreach ($styleArr as $key) {
+                                                                                                                                            echo '<option value="' . $key['StyleID'] . '">' . $key['StyleNumber'] . '</option>';
+                                                                                                                                        } ?> </select></td>';
+                cols += '<td><select class="form-control form-control-sm search_select" name="po[]" required> <option></option>  <?php foreach ($poArr as $key) {
+                                                                                                                                            echo '<option value="' . $key['POID'] . '">' . $key['PONumber'] . '</option>';
+                                                                                                                                        }  ?> </select></td>';
                 cols += '<td><input placeholder="Qty" name="qty[]" type="number" class="mb-2 form-control-sm form-control" required></td>';
                 cols += '<td><input placeholder="Price Per Unit" name="ppu[]" type="number" class="mb-2 form-control-sm form-control" required></td>';
                 cols += '<td><input placeholder="Total Price" name="tp[]" type="number" class="mb-2 form-control-sm form-control" required></td>';
@@ -188,6 +203,9 @@ function customPagefooter()
                 newRow.append(cols);
                 $("table.order-list").append(newRow);
                 counter++;
+                setTimeout(function() {
+                    $('.search_select').select2();
+                }, 100);
             });
 
 

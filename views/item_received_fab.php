@@ -35,24 +35,24 @@ include_once "includes/header.php";
                     <table class="mb-0 table table-bordered order-list" id="myTable">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>PO</th>
-                                <th>Style</th>
-                                <th>Color</th>
-                                <th>Shade</th>
-                                <th>Shrinkage</th>
-                                <th>Width</th>
-                                <th>Received Yds</th>
-                                <th>Received Roll</th>
-                                <th>Shortage/Excess Yds</th>
-                                <th>Action</th>
+                                <th width="1%">#</th>
+                                <th width="10%">PO</th>
+                                <th width="20%">Style</th>
+                                <th width="10%">Color</th>
+                                <th width="7%">Shade</th>
+                                <th width="8%">Shrinkage</th>
+                                <th width="10%">Width</th>
+                                <th width="10%">Received Yds</th>
+                                <th width="10%">Received Roll</th>
+                                <th width="10%">Shortage/Excess Yds</th>
+                                <th width="4%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <select name="po[]" class="po form-control-sm" required>
+                                    <select name="po[]" class="po form-control-sm search_select" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
@@ -65,7 +65,7 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="style[]" class="style form-control-sm" required>
+                                    <select name="style[]" class="style form-control-sm search_select" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
@@ -78,7 +78,7 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="color[]" class="style form-control-sm" required>
+                                    <select name="color[]" class="style form-control-sm search_select" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
@@ -91,7 +91,7 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="shade[]" class="form-control-sm">
+                                    <select name="shade[]" class="form-control-sm ">
                                         <option value="A">A</option>
                                         <option value="B">B</option>
                                         <option value="C">C</option>
@@ -149,6 +149,15 @@ include_once "includes/header.php";
 function customPagefooter()
 {
     ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+        $('.search_select').select2({
+            placeholder: 'Select Card Numbers'
+        });
+
+        $("select").select2();
+    </script>
     <script>
         $(document).ready(function() {
             var counter = 0;
@@ -162,7 +171,7 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th>' + counter + '</th>';
-                cols += '<td><select name="po[]" class="po form-control-sm" required><option></option>';
+                cols += '<td><select name="po[]" class="po form-control-sm search_select" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM po WHERE status = 1";
@@ -172,7 +181,7 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
-                cols += '<td><select name="style[]" class="style form-control-sm" required><option></option>';
+                cols += '<td><select name="style[]" class="style form-control-sm search_select" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM style WHERE status = 1";
@@ -182,15 +191,15 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
-                cols += '<td><select name="color[]" class="style form-control-sm" required> <option></option> <?php
-                                        $conn = db_connection();
-                                        $sql = "SELECT * FROM color WHERE status = 1";
-                                        $results = mysqli_query($conn, $sql);
-                                        while ($result = mysqli_fetch_assoc($results)) {
-                                            echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
-                                        }
-                                        ?> </select></td>';
-                cols += '<td><select name="shade[]" class="form-control-sm"> <option value="A">A</option> <option value="B">B</option> <option value="C">C</option> <option value="D">D</option> <option value="E">E</option> <option value="F">F</option> <option value="G">G</option> <option value="H">H</option> </select></td>';
+                cols += '<td><select name="color[]" class="style form-control-sm search_select" required> <option></option> <?php
+                                                                                                                                $conn = db_connection();
+                                                                                                                                $sql = "SELECT * FROM color WHERE status = 1";
+                                                                                                                                $results = mysqli_query($conn, $sql);
+                                                                                                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                                                                                                    echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                                                                                                                }
+                                                                                                                                ?> </select></td>';
+                cols += '<td><select name="shade[]" class="form-control-sm search_select"> <option value="A">A</option> <option value="B">B</option> <option value="C">C</option> <option value="D">D</option> <option value="E">E</option> <option value="F">F</option> <option value="G">G</option> <option value="H">H</option> </select></td>';
                 cols += '<td><input placeholder="Shrinkage" type="text" name="shrinkage[]" class="form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Width" type="number" name="width[]" class="form-control-sm form-control" step="0.01"></td>';
                 cols += '<td><input placeholder="Received Fabric Yds" type="number" name="receivefab[]" class="form-control-sm form-control"  step="0.01"></td>';
@@ -202,6 +211,9 @@ function customPagefooter()
                 if (counter >= limit) $('#addrow').attr('disabled', true).prop('value', "You've reached the limit");
                 $("table.order-list").append(newRow);
                 counter++;
+                setTimeout(function() {
+                    $('.search_select').select2();
+                }, 100);
             });
 
             $("table.order-list").on("change", 'input[name^="price"]', function(event) {
