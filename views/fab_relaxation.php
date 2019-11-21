@@ -130,7 +130,7 @@ include_once "includes/header.php";
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>
-                                        <input type="date" name="date[]"  required>
+                                        <input type="date" name="date[]" required>
                                     </td>
                                     <td>
                                         <input placeholder="Shade" type="text" name="shade[]">
@@ -203,6 +203,15 @@ include_once "includes/header.php";
 function customPagefooter()
 {
     ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+        $('.search_select').select2({
+            placeholder: 'Select Card Numbers'
+        });
+
+        $("select").select2();
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
     <script>
         $(function() {

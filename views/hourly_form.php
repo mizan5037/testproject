@@ -30,7 +30,7 @@ include_once "includes/header.php";
     </div>
     <div class="main-card mb-3 card">
         <div class="card-body">
-            <form class="needs-validation" method="POST"novalidate>
+            <form class="needs-validation" method="POST" novalidate>
                 <div class="form-row">
                     <div class="col-md-4 mb-4">
                         <label for="validationTooltip01">Date</label>
@@ -39,15 +39,15 @@ include_once "includes/header.php";
 
                     <div class="col-md-4 mb-4">
                         <label for="validationTooltip02">Floor No.</label>
-                        <select name="floor" class="po  form-control form-control-sm" required>
-                          <option>Choose </option>
-                          <?php
-                          $sql = "SELECT * FROM floor WHERE status = 1";
-                          $results = mysqli_query($conn, $sql);
-                          while ($result = mysqli_fetch_assoc($results)) {
-                              echo '<option value="' . $result['floor_id'] . '">' . $result['floor_name'] . '</option>';
-                          }
-                          ?>
+                        <select name="floor" class="po  form-control form-control-sm search_select" required>
+                            <option>Choose </option>
+                            <?php
+                            $sql = "SELECT * FROM floor WHERE status = 1";
+                            $results = mysqli_query($conn, $sql);
+                            while ($result = mysqli_fetch_assoc($results)) {
+                                echo '<option value="' . $result['floor_id'] . '">' . $result['floor_name'] . '</option>';
+                            }
+                            ?>
                         </select>
                     </div>
 
@@ -71,7 +71,7 @@ include_once "includes/header.php";
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <select name="line[]" class="po  form-control form-control-sm" required>
+                                    <select name="line[]" class="po  form-control form-control-sm search_select" required>
                                         <option></option>
                                         <?php
                                         $sql = "SELECT * FROM line WHERE status = 1";
@@ -83,7 +83,7 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="po[]" class="po  form-control form-control-sm" required>
+                                    <select name="po[]" class="po  form-control form-control-sm search_select" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
@@ -96,7 +96,7 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="style[]" class="style  form-control form-control-sm" required>
+                                    <select name="style[]" class="style  form-control form-control-sm search_select" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
@@ -109,7 +109,7 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="color[]" class="color  form-control form-control-sm" required>
+                                    <select name="color[]" class="color  form-control form-control-sm search_select" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
@@ -123,7 +123,7 @@ include_once "includes/header.php";
                                 </td>
                                 <td>
                                     <select name="hour[]" class="form-control form-control-sm" required>
-                                        <option >Choose Hour</option>
+                                        <option>Choose Hour</option>
                                         <option value="9">9</option>
                                         <option value="10">10</option>
                                         <option value="11">11</option>
@@ -167,6 +167,13 @@ include_once "includes/header.php";
 function customPagefooter()
 {
     ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+        $('.search_select').select2({
+            placeholder: 'Select Card Numbers'
+        });
+    </script>
     <script>
         // Add new row code
 
@@ -178,15 +185,15 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><select name="line[]" class="po form-control form-control-sm" required><option></option><?php
-                    $conn = db_connection();
-                    $sql = "SELECT * FROM line WHERE status = 1";
-                    $results = mysqli_query($conn, $sql);
-                    while ($result = mysqli_fetch_assoc($results)) {
-                        echo '<option value="' . $result['id'] . '">' . $result['line'] . '</option>';
-                    }
-                    ?></select></td>';
-                cols += '<td><select name="po[]" class="po form-control form-control-sm" required><option></option>';
+                cols += '<td><select name="line[]" class="po form-control form-control-sm search_select" required><option></option><?php
+                                                                                                                                        $conn = db_connection();
+                                                                                                                                        $sql = "SELECT * FROM line WHERE status = 1";
+                                                                                                                                        $results = mysqli_query($conn, $sql);
+                                                                                                                                        while ($result = mysqli_fetch_assoc($results)) {
+                                                                                                                                            echo '<option value="' . $result['id'] . '">' . $result['line'] . '</option>';
+                                                                                                                                        }
+                                                                                                                                        ?></select></td>';
+                cols += '<td><select name="po[]" class="po form-control form-control-sm search_select" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM po WHERE status = 1";
@@ -196,7 +203,7 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
-                cols += '<td><select name="style[]" class="style  form-control form-control-sm" required><option></option>';
+                cols += '<td><select name="style[]" class="style  form-control form-control-sm search_select" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM style WHERE status = 1";
@@ -206,7 +213,7 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
-                cols += '<td><select name="color[]" class="color form-control form-control-sm" required><option></option>';
+                cols += '<td><select name="color[]" class="color form-control form-control-sm search_select" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM color WHERE status = 1";
@@ -216,12 +223,15 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
-                cols += '<td><select name="hour[]" class="form-control form-control-sm" required><option >Choose Hour</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="1">1</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value=8>8</option></select></td>';
+                cols += '<td><select name="hour[]" class="form-control form-control-sm search_select" required><option >Choose Hour</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="1">1</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value=8>8</option></select></td>';
                 cols += '<td><input placeholder="Quantity" name="quantity[]" type="number" class="form-control form-control-sm"></td>';
                 cols += '<td><input type="button" class="ibtnDel btn btn-sm btn-danger "  value="Delete"></td>';
                 newRow.append(cols);
                 $("table.order-list").append(newRow);
                 counter++;
+                setTimeout(function() {
+                    $('.search_select').select2();
+                }, 100);
             });
 
 

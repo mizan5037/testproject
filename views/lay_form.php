@@ -35,8 +35,8 @@ include_once "includes/header.php";
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip01">Buyer Name</label>
-                        <select name="buyer" class="buyer  form-control js-example-basic-single" required>
-                            
+                        <select name="buyer" class="buyer  form-control search_select" required>
+
                             <?php
                             $conn = db_connection();
                             $sql = "SELECT * FROM buyer WHERE status = 1";
@@ -49,8 +49,8 @@ include_once "includes/header.php";
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip02">Style No</label>
-                        <select name="style" class="  form-control js-example-basic-single" required>
-                            
+                        <select name="style" class="  form-control search_select" required>
+
                             <?php
                             $conn = db_connection();
                             $sql = "SELECT * FROM style WHERE status = 1";
@@ -64,7 +64,7 @@ include_once "includes/header.php";
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltipUsername">P.O. No</label>
                         <select name="po" class="po  form-control" required>
-                           
+
                             <?php
                             $conn = db_connection();
                             $sql = "SELECT * FROM po WHERE status = 1";
@@ -254,7 +254,7 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th>' + counter + '</th>';
-                cols += '<td><select name="color[]" class="color mb-2 form-control-sm form-control" required><option></option>';
+                cols += '<td><select name="color[]" class="color mb-2 form-control-sm form-control search_select" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM color WHERE status = 1";
@@ -279,6 +279,9 @@ function customPagefooter()
                 if (counter >= limit) $('#addrow').attr('disabled', true).prop('value', "You've reached the limit");
                 $("table.order-list").append(newRow);
                 counter++;
+                setTimeout(function() {
+                    $('.search_select').select2();
+                }, 100);
             });
 
             $("table.order-list").on("change", 'input[name^="price"]', function(event) {
@@ -332,20 +335,16 @@ function customPagefooter()
                 });
             }, false);
         })();
-
-        
     </script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 
-<script type="text/javascript">
-    $('.js-example-basic-single').select2({
-          placeholder: 'Select Card Numbers'
+    <script type="text/javascript">
+        $('.search_select').select2({
+            placeholder: 'Select Card Numbers'
         });
 
-     $("select").select2();
-
-     
-</script>
+        $("select").select2();
+    </script>
 
 <?php }
 include_once "includes/footer.php";

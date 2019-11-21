@@ -48,7 +48,7 @@ include_once "includes/header.php";
                 <div class="form-row">
                     <div class="col-md-4">
                         <label>P.O.</label>
-                        <select name="po" id='po' class=" mb-2 form-control-sm form-control" required>
+                        <select name="po" id='po' class=" mb-2 form-control-sm form-control search_select" required>
                             <option></option>
                             <?php
                             $conn = db_connection();
@@ -76,11 +76,11 @@ include_once "includes/header.php";
                     <table id="myTable" class="order-list table table-bordered">
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Floor</th>
-                                <th>Line</th>
-                                <th>Qty</th>
-                                <th>Action</th>
+                                <th width="10%">Date</th>
+                                <th width="20%">Floor</th>
+                                <th width="20%">Line</th>
+                                <th width="20%">Qty</th>
+                                <th width="10%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -89,7 +89,7 @@ include_once "includes/header.php";
                                     <input type="date" name="date[]" class="form-control form-control-sm" />
                                 </td>
                                 <td>
-                                    <select name="floor[]" onchange="getline('floor1','#line1');" id="floor1" class=" mb-2 form-control-sm form-control" required>
+                                    <select name="floor[]" onchange="getline('floor1','#line1');" id="floor1" class=" mb-2 form-control-sm form-control search_select" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
@@ -149,7 +149,15 @@ function customPagefooter()
 {
     global $path;
     ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 
+    <script type="text/javascript">
+        $('.search_select').select2({
+            placeholder: 'Select Card Numbers'
+        });
+
+        $("select").select2();
+    </script>
     <script>
         $(document).ready(function() {
             //get styles
@@ -172,8 +180,8 @@ function customPagefooter()
                 } else {
                     $("#style").html("<option>---</option>");
                 }
-
             });
+
             //get order qty
             $("#style").change(function() {
                 let style = this.value;
@@ -237,15 +245,15 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<td><input type="date" name="date[]" class="form-control form-control-sm" /></td>';
-                cols += '<td><select name="floor[]" onchange="getline(\'floor' + counter + '\',\'#line' + counter + '\');" id="floor' + counter + '" class=" mb-2 form-control-sm form-control" required> <option></option> <?php
-                                                                                                                                                                                                                                $conn = db_connection();
-                                                                                                                                                                                                                                $sql = "SELECT * FROM floor WHERE status = 1";
-                                                                                                                                                                                                                                $results = mysqli_query($conn, $sql);
-                                                                                                                                                                                                                                while ($result = mysqli_fetch_assoc($results)) {
-                                                                                                                                                                                                                                    echo '<option value="' . $result['floor_id'] . '">' . $result['floor_name'] . '</option>';
-                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                                ?> </select></td>';
-                cols += '<td><select id="line' + counter + '" name="line[]" class=" mb-2 form-control-sm form-control" required> <option></option></select></td>';
+                cols += '<td><select name="floor[]" onchange="getline(\'floor' + counter + '\',\'#line' + counter + '\');" id="floor' + counter + '" class=" mb-2 form-control-sm form-control search_select" required> <option></option> <?php
+                                                                                                                                                                                                                                                $conn = db_connection();
+                                                                                                                                                                                                                                                $sql = "SELECT * FROM floor WHERE status = 1";
+                                                                                                                                                                                                                                                $results = mysqli_query($conn, $sql);
+                                                                                                                                                                                                                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                                                                                                                                                                                                                    echo '<option value="' . $result['floor_id'] . '">' . $result['floor_name'] . '</option>';
+                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                ?> </select></td>';
+                cols += '<td><select id="line' + counter + '" name="line[]" class=" mb-2 form-control-sm form-control search_select" required> <option></option></select></td>';
                 cols += '<td><input type="number" name="qty[]" class="form-control form-control-sm" /></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-danger btn-sm"  value="Delete"></td>';
@@ -253,6 +261,9 @@ function customPagefooter()
                 if (counter >= limit) $('#addrow').attr('disabled', true).prop('value', "You've reached the limit");
                 $("table.order-list").append(newRow);
                 counter++;
+                setTimeout(function() {
+                    $('.search_select').select2();
+                }, 100);
             });
 
             $("table.order-list").on("change", 'input[name^="qty"]', function(event) {

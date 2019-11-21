@@ -40,7 +40,7 @@ include_once "includes/header.php";
 
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltip01">Style</label>
-                        <select name="style" class="style  form-control" required>
+                        <select name="style" class="style  form-control search_select" required>
                             <option></option>
                             <?php
                             $conn = db_connection();
@@ -54,11 +54,11 @@ include_once "includes/header.php";
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltip02">Cutting no</label>
-                        <input type="text" class="form-control" id="validationTooltip02" placeholder="Cutting no" name="cutting_no" required>
+                        <input type="text" class="form-control " id="validationTooltip02" placeholder="Cutting no" name="cutting_no" required>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltipUsername">PO no</label>
-                        <select name="po" class="po  form-control" required>
+                        <select name="po" class="po  form-control search_select" required>
                             <option></option>
                             <?php
                             $conn = db_connection();
@@ -76,8 +76,8 @@ include_once "includes/header.php";
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Color</th>
-                                <th>Size</th>
+                                <th width="15%">Color</th>
+                                <th width="15%">Size</th>
                                 <th>Qty</th>
                                 <th>Send to Sewing</th>
                                 <th>Print & EMB Send</th>
@@ -90,7 +90,7 @@ include_once "includes/header.php";
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <select name="color[]" class="color mb-2 form-control-sm form-control" required>
+                                    <select name="color[]" class="color mb-2 form-control-sm form-control search_select" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
@@ -103,7 +103,7 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="size[]" class="size mb-2 form-control-sm form-control" required>
+                                    <select name="size[]" class="size mb-2 form-control-sm form-control search_select" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
@@ -159,6 +159,15 @@ include_once "includes/header.php";
 function customPagefooter()
 {
     ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+        $('.search_select').select2({
+            placeholder: 'Select Card Numbers'
+        });
+
+        $("select").select2();
+    </script>
     <script>
         // Add new row code
 
@@ -170,7 +179,7 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><select name="color[]" class="color mb-2 form-control-sm form-control" required><option></option>';
+                cols += '<td><select name="color[]" class="color mb-2 form-control-sm form-control search_select" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM color WHERE status = 1";
@@ -180,7 +189,7 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
-                cols += '<td><select name="size[]" class="size mb-2 form-control-sm form-control" required><option></option>';
+                cols += '<td><select name="size[]" class="size mb-2 form-control-sm form-control search_select" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM size WHERE status = 1";
@@ -200,6 +209,9 @@ function customPagefooter()
                 newRow.append(cols);
                 $("table.order-list").append(newRow);
                 counter++;
+                setTimeout(function() {
+                    $('.search_select').select2();
+                }, 100);
             });
 
 

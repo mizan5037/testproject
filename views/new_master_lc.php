@@ -61,7 +61,7 @@ include_once "includes/header.php";
                     </div>
                     <div class="col-md-4 mb-3">
                         <label>Buyer</label>
-                        <select class="form-control form-control-sm" name="buyer" required>
+                        <select class="form-control form-control-sm search_select" name="buyer" required>
                             <option></option>
                             <?php
                             $sql = "SELECT BuyerID, BuyerName FROM buyer WHERE Status = 1";
@@ -139,8 +139,8 @@ include_once "includes/header.php";
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <select class="form-control form-control-sm" name="pono[]" required>
-                                        <option></option>
+                                    <select class="form-control form-control-sm search_select" id="po" name="pono[]" required>
+                                        <option>Select PO</option>
                                         <?php
                                         foreach ($poArr as $key) {
                                             echo '<option value="' . $key['POID'] . '">' . $key['PONumber'] . '</option>';
@@ -149,13 +149,9 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                    <select class="form-control form-control-sm" name="style[]" required>
+                                    <select class="form-control form-control-sm search_select" id="style" name="style[]" required>
                                         <option></option>
-                                        <?php
-                                        foreach ($styleArr as $key) {
-                                            echo '<option value="' . $key['StyleID'] . '">' . $key['StyleNumber'] . '</option>';
-                                        }
-                                        ?>
+                                       
                                     </select>
                                 </td>
                                 <td>
@@ -209,9 +205,19 @@ function customPagefooter()
 {
     global $styleArr;
     global $poArr;
+    global $path;
 
     ?>
     <!-- Include the Quill library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+        $('.search_select').select2({
+            placeholder: 'Select Card Numbers'
+        });
+
+        $("select").select2();
+    </script>
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
     <!-- Initialize Quill editor -->
@@ -240,8 +246,10 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><select class="form-control form-control-sm" name="pono[]" required> <option></option> <?php foreach ($poArr as $key) { echo '<option value="' . $key['POID'] . '">' . $key['PONumber'] . '</option>'; } ?> </select></td>';
-                cols += '<td><select class="form-control form-control-sm" name="style[]" required> <option></option> <?php foreach ($styleArr as $key) { echo '<option value="' . $key['StyleID'] . '">' . $key['StyleNumber'] . '</option>'; }?> </select></td>';
+                cols += '<td><select class="form-control form-control-sm search_select" id="po" name="pono[]" required> <option></option> <?php foreach ($poArr as $key) {
+                                                                                                                                            echo '<option value="' . $key['POID'] . '">' . $key['PONumber'] . '</option>';
+                                                                                                                                        } ?> </select></td>';
+                cols += '<td><select class="form-control form-control-sm search_select" id="style" name="style[]" required> <option></option>  </select></td>';
                 cols += '<td><input type="number" placeholder="Qty" class="mb-2 form-control-sm form-control" name="qty[]"/></td>';
                 cols += '<td><input type="text" placeholder="U/Name" class="mb-2 form-control-sm form-control" name="unitname[]"/></td>';
                 cols += '<td><input placeholder="U/Price" type="number" class="mb-2 form-control-sm form-control" name="price[]"/></td>';
@@ -252,6 +260,9 @@ function customPagefooter()
                 if (counter >= limit) $('#addrow').attr('disabled', true).prop('value', "You've reached the limit");
                 $("table.order-list").append(newRow);
                 counter++;
+                setTimeout(function() {
+                    $('.search_select').select2();
+                }, 100);
             });
 
             $("table.order-list").on("change", 'input[name^="qty"]', function(event) {
@@ -272,6 +283,29 @@ function customPagefooter()
 
                 counter -= 1
                 $('#addrow').attr('disabled', false).prop('value', "Add Row");
+            });
+
+            //get styles
+            $("#po").change(function() {
+                let poid = this.value;
+                if (poid != '') {
+                    $.ajax({
+                        url: "<?= $path ?>/controller/api.php",
+                        method: "POST",
+                        data: {
+                            po: poid,
+                            form: 'get_style',
+                            token: '<?= get_ses('token') ?>'
+                        },
+                        dataType: "text",
+                        success: function(data) {
+                            $("#style").html(data);
+                        }
+                    });
+                } else {
+                    $("#style").html("<option>---</option>");
+                }
+
             });
 
 
