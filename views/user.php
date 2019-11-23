@@ -6,6 +6,7 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
+include_once "controller/user.php";
 include_once "includes/header.php";
 
 ?>
@@ -62,37 +63,32 @@ include_once "includes/header.php";
             <div class="main-card mb-3 card">
                 <div class="card-body text-center">
                     <h5 class="card-title">Add New User</h5>
-                    <form class="needs-validation" novalidate>
+                    <form class="needs-validation" novalidate method="post">
                         <div class="form-row">
                             <div class="col-md-12 mb-3">
-                                <input type="text" class="form-control" id="validationTooltip01" placeholder="Name" required>
-                                <div class="invalid-tooltip">
-                                    Please Enter Name.
-                                </div>
+                                <input type="text" class="form-control" placeholder="Name" name="name" required>
                             </div>
                             <div class="col-md-12 mb-3">
-                                <input type="text" class="form-control" id="validationTooltip02" placeholder="Email" required>
-                                <div class="invalid-tooltip">
-                                    Please Enter Email Address.
-                                </div>
+                                <input type="text" class="form-control" email="email" placeholder="Email" required>
                             </div>
                             <div class="col-md-12 mb-3">
-                                <select name="select" id="exampleSelect" class="form-control" required>
+                                <select name="designation" id="exampleSelect" class="form-control" required>
                                     <option value="">Choose Designation</option>
-                                    <option value="">Super Admin</option>
-                                    <option value="">Admin</option>
-                                    <option value="">User</option>
+                                    <option value="1">Super Admin</option>
+                                    <option value="2">Admin</option>
+                                    <option value="3">Merchandising</option>
+                                    <option value="4">Commercial</option>
+                                    <option value="5">Production</option>
                                 </select>
-                                <div class="invalid-tooltip">
-                                    Please Enter Email Address.
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <div class="input-group">
+                                    <input type="password" class="form-control" name="pass" placeholder="Enter New Password" required>
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <div class="input-group">
-                                    <input type="password" class="form-control" id="validationTooltipUsername" placeholder="Re-Enter New Password" required>
-                                    <div class="invalid-tooltip">
-                                        Please Re-Enter New Password.
-                                    </div>
+                                    <input type="password" class="form-control" name="rpass" placeholder="Re-Enter New Password" required>
                                 </div>
                             </div>
                         </div>
