@@ -59,17 +59,19 @@ include_once "includes/header.php";
                     <?php
                     $paginate = paginate('item');
                     $add_sql = $paginate['sql'];
+                    $page_no = $paginate['page_no'];
+                    $total_pages = $paginate['total_pages'];
                     $sql = "SELECT * FROM item WHERE status = 1 " . $add_sql;
                     $item = mysqli_query($conn, $sql);
 
-                    $count = 1;
+                    $count = ($page_no * 10) - 9;
                     while ($key = mysqli_fetch_assoc($item)) {
 
 
                         ?>
 
                         <tr>
-                            <th scope="row"><?= $key["ItemID"]; ?></th>
+                            <th scope="row"><?= $count++ ?></th>
                             <td><?php echo $key["ItemName"]; ?></td>
                             <td><?php echo $key["ItemMeasurementUnit"]; ?></td>
                             <td><?php echo $key["ItemDescription"]; ?></td>
@@ -90,8 +92,6 @@ include_once "includes/header.php";
             <div class="row">
                 <div class="col-md-12">
                     <?php 
-                    $page_no = $paginate['page_no'];
-                    $total_pages = $paginate['total_pages'];
                     links($page_no, $total_pages);
                     ?>
                 </div>

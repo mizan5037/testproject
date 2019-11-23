@@ -45,10 +45,12 @@ include_once "includes/header.php";
                     $conn = db_connection();
                     $paginate = paginate('b2blc');
                     $add_sql = $paginate['sql'];
+                    $page_no = $paginate['page_no'];
+                    $total_pages = $paginate['total_pages'];
                     $sql = "SELECT B2BLCNumber, Maturitydate, SupplierName, Issuedate, B2BLCID FROM b2blc WHERE Status = 1" . $add_sql;
                     $buyer = mysqli_query($conn, $sql);
 
-                    $count = 1;
+                    $count = ($page_no * 10) - 9;
                     while ($key = mysqli_fetch_assoc($buyer)) {
 
 
@@ -72,8 +74,6 @@ include_once "includes/header.php";
             <div class="row">
                 <div class="col-md-12">
                     <?php
-                    $page_no = $paginate['page_no'];
-                    $total_pages = $paginate['total_pages'];
                     links($page_no, $total_pages);
                     ?>
                 </div>

@@ -44,10 +44,12 @@ $conn = db_connection();
                     <?php
                     $paginate = paginate('buyer');
                     $add_sql = $paginate['sql'];
+                    $page_no = $paginate['page_no'];
+                    $total_pages = $paginate['total_pages'];
                     $sql = "SELECT * FROM buyer WHERE status = 1" . $add_sql;
                     $buyer = mysqli_query($conn, $sql);
 
-                    $count = 1;
+                    $count = ($page_no * 10) - 9;
                     while ($key = mysqli_fetch_assoc($buyer)) {
 
 
@@ -73,8 +75,6 @@ $conn = db_connection();
             <div class="row">
                 <div class="col-md-12">
                     <?php
-                    $page_no = $paginate['page_no'];
-                    $total_pages = $paginate['total_pages'];
                     links($page_no, $total_pages);
                     ?>
                 </div>
