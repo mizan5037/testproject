@@ -29,24 +29,28 @@ include_once "includes/header.php";
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">LC List</h5>
-            <table class="mb-0 table table-striped table-hover">
+            <table class="mb-0 table table-striped table-hover table-bordered">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>B2B LC Number</th>
                         <th>Supplier Name</th>
                         <th>Issue Date</th>
-                        <th>Maturity  Date</th>
+                        <th>Maturity Date</th>
                         <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     $conn = db_connection();
-                    $sql = "SELECT B2BLCNumber, Maturitydate, SupplierName, Issuedate, B2BLCID FROM b2blc WHERE Status = 1";
+                    $paginate = paginate('b2blc');
+                    $add_sql = $paginate['sql'];
+                    $page_no = $paginate['page_no'];
+                    $total_pages = $paginate['total_pages'];
+                    $sql = "SELECT B2BLCNumber, Maturitydate, SupplierName, Issuedate, B2BLCID FROM b2blc WHERE Status = 1" . $add_sql;
                     $buyer = mysqli_query($conn, $sql);
 
-                    $count = 1;
+                    $count = ($page_no * 10) - 9;
                     while ($key = mysqli_fetch_assoc($buyer)) {
 
 
@@ -58,7 +62,7 @@ include_once "includes/header.php";
                             <td><?= $key['Issuedate'] ?></td>
                             <td><?= $key['Maturitydate'] ?></td>
                             <td>
-                                <a href="<?=$path?>/index.php?page=single_b2b_lc&id=<?=$key['B2BLCID']?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
+                                <a href="<?= $path ?>/index.php?page=single_b2b_lc&id=<?= $key['B2BLCID'] ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
                                     Details
                                 </a>
                             </td>
@@ -66,6 +70,14 @@ include_once "includes/header.php";
                     <?php } ?>
                 </tbody>
             </table>
+            <br><br>
+            <div class="row">
+                <div class="col-md-12">
+                    <?php
+                    links($page_no, $total_pages);
+                    ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>

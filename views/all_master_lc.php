@@ -30,7 +30,7 @@ include_once "includes/header.php";
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">LC List</h5>
-            <table class="mb-0 table table-striped table-hover">
+            <table class="mb-0 table table-striped table-hover table-bordered">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -42,10 +42,14 @@ include_once "includes/header.php";
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT MasterLCID, MasterLCBuyer, MasterLCIssueDate, MasterLCNumber FROM masterlc WHERE status = 1";
+                    $paginate = paginate('masterlc');
+                    $add_sql = $paginate['sql'];
+                    $page_no = $paginate['page_no'];
+                    $total_pages = $paginate['total_pages'];
+                    $sql = "SELECT MasterLCID, MasterLCBuyer, MasterLCIssueDate, MasterLCNumber FROM masterlc WHERE status = 1" . $add_sql;
                     $po = mysqli_query($conn, $sql);
 
-                    $count = 1;
+                    $count = ($page_no * 10) - 9;
                     while ($key = mysqli_fetch_assoc($po)) {
                         ?>
                         <tr>
@@ -61,7 +65,7 @@ include_once "includes/header.php";
                                     Details
                                 </a>
                                 /
-                                <a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=all_master_lc&delete=<?=$key['MasterLCID']?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
+                                <a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=all_master_lc&delete=<?= $key['MasterLCID'] ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
                                     <i class="fas fa-trash-alt" style="color: white;"></i>
                                 </a>
                             </td>
@@ -69,6 +73,14 @@ include_once "includes/header.php";
                     <?php } ?>
                 </tbody>
             </table>
+            <br><br>
+            <div class="row">
+                <div class="col-md-12">
+                    <?php
+                    links($page_no, $total_pages);
+                    ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>

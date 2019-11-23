@@ -1,6 +1,5 @@
 <?php
 $conn = db_connection();
-
 if (isset($_GET['id']) && $_GET['id'] != '') {
     $id = mysqli_real_escape_string($conn, $_GET['id']);
 } else {

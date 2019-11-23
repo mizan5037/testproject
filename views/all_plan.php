@@ -48,9 +48,13 @@ $conn = db_connection();
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT p.id, p.title, p.poid, p.styleid, o.PONumber, s.StyleNumber FROM plan p LEFT JOIN po o ON o.POID = p.poid LEFT JOIN style s ON s.StyleID = p.styleid WHERE p.status = 1";
+                    $paginate = paginate('plan');
+                    $add_sql = $paginate['sql'];
+                    $page_no = $paginate['page_no'];
+                    $total_pages = $paginate['total_pages'];
+                    $sql = "SELECT p.id, p.title, p.poid, p.styleid, o.PONumber, s.StyleNumber FROM plan p LEFT JOIN po o ON o.POID = p.poid LEFT JOIN style s ON s.StyleID = p.styleid WHERE p.status = 1" . $add_sql;
                     $result = mysqli_query($conn, $sql);
-                    $count = 1;
+                    $count = ($page_no * 10) - 9;
                     while ($row = mysqli_fetch_assoc($result)) {
                         ?>
                         <tr>
@@ -77,6 +81,14 @@ $conn = db_connection();
                     ?>
                 </tbody>
             </table>
+            <br><br>
+            <div class="row">
+                <div class="col-md-12">
+                    <?php
+                    links($page_no, $total_pages);
+                    ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>

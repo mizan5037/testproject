@@ -6,7 +6,7 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
-
+ 
 $conn = db_connection();
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
@@ -14,10 +14,14 @@ if (isset($_GET['delete'])) {
 
     if (mysqli_query($conn, $sql)) {
         notice('success', 'Deleted Successfully');
+        nowgo('/index.php?page=all_item');
     } else {
         notice('error', $sql . "<br>" . mysqli_error($conn));
     }
 }
+
+
+
 
 include_once "includes/header.php";
 ?>
@@ -53,16 +57,16 @@ include_once "includes/header.php";
                 </thead>
                 <tbody>
                     <?php
-
-                    $sql = "SELECT * FROM item WHERE status = 1";
+                    $paginate = paginate('item');
+                    $add_sql = $paginate['sql'];
+                    $page_no = $paginate['page_no'];
+                    $total_pages = $paginate['total_pages'];
+                    $sql = "SELECT * FROM item WHERE status = 1 " . $add_sql;
                     $item = mysqli_query($conn, $sql);
 
-                    $count = 1;
+                    $count = ($page_no * 10) - 9;
                     while ($key = mysqli_fetch_assoc($item)) {
-
-
                         ?>
-
                         <tr>
                             <th scope="row"><?= $count++ ?></th>
                             <td><?php echo $key["ItemName"]; ?></td>
@@ -81,6 +85,14 @@ include_once "includes/header.php";
                     <?php }  ?>
                 </tbody>
             </table>
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <?php 
+                    links($page_no, $total_pages);
+                    ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>
