@@ -156,7 +156,6 @@ function customPagefooter()
             placeholder: 'Select Card Numbers'
         });
 
-        $("select").select2();
     </script>
     <script>
         $(document).ready(function() {

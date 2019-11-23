@@ -34,28 +34,28 @@ include_once "includes/header.php";
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltip01">Date</label>
-                        <input type="date" name="date"  class="form-control" id="validationTooltip01" placeholder="Style" required>
+                        <input type="date" name="date" class="form-control" id="validationTooltip01" placeholder="Style" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <table class="mb-0 table table-bordered order-list" id="myTable">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>PO</th>
-                                <th>Style</th>
-                                <th>Color</th>
-                                <th>Shipment</th>
-                                <th>Sample</th>
-                                <th>Remark</th>
-                                <th>Action</th>
+                                <th width="1%">#</th>
+                                <th width="15%">PO</th>
+                                <th width="15%">Style</th>
+                                <th width="15%">Color</th>
+                                <th width="15%">Shipment</th>
+                                <th width="15%">Sample</th>
+                                <th width="15%">Remark</th>
+                                <th width="9%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                <select name="po[]" class="po  form-control" required>
+                                    <select name="po[]" class="po  form-control search_select" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
@@ -68,7 +68,7 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                <select name="style[]" class="style  form-control" required>
+                                    <select name="style[]" class="style  form-control search_select" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
@@ -81,7 +81,7 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                <select name="color[]" class="color  form-control" required>
+                                    <select name="color[]" class="color  form-control search_select" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
@@ -132,6 +132,13 @@ include_once "includes/header.php";
 function customPagefooter()
 {
     ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+        $('.search_select').select2({
+            placeholder: 'Select Your Option'
+        });
+    </script>
     <script>
         $(document).ready(function() {
             var counter = 0;
@@ -145,7 +152,7 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th>' + counter + '</th>';
-                cols += '<td><select name="po[]" class="po mb-2 form-control-sm form-control" required><option></option>';
+                cols += '<td><select name="po[]" class="po mb-2 form-control-sm form-control search_select" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM po WHERE status = 1";
@@ -155,7 +162,7 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
-                cols += '<td><select name="style[]" class="style mb-2 form-control-sm form-control" required><option></option>';
+                cols += '<td><select name="style[]" class="style mb-2 form-control-sm form-control search_select" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM style WHERE status = 1";
@@ -165,7 +172,7 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
-                cols += '<td><select name="color[]" class="color mb-2 form-control-sm form-control" required><option></option>';
+                cols += '<td><select name="color[]" class="color mb-2 form-control-sm form-control search_select" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM color WHERE status = 1";
@@ -184,6 +191,9 @@ function customPagefooter()
                 if (counter >= limit) $('#addrow').attr('disabled', true).prop('value', "You've reached the limit");
                 $("table.order-list").append(newRow);
                 counter++;
+                setTimeout(function() {
+                    $('.search_select').select2();
+                }, 100);
             });
 
             $("table.order-list").on("change", 'input[name^="price"]', function(event) {
