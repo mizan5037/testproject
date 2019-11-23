@@ -82,7 +82,7 @@ include_once "includes/header.php";
                     if(isset($_POST['hourlyDate']) && $_POST['date']!= ''){
                       $date = $_POST['date'];
 
-                      $sql = "SELECT hp.*,hpd.* FROM hourly_production hp LEFT JOIN hourly_production_details hpd ON hp.HourlyProductionID = hpd.HourlyProductionID WHERE hp.Status = 1 AND hpd.status = 1 AND hp.Date='$date' ORDER BY hp.Date DESC";
+                      $sql = "SELECT hp.Date,f.floor_name,l.line,p.PONumber,s.StyleNumber,c.color,hpd.* FROM hourly_production hp LEFT JOIN hourly_production_details hpd ON hp.HourlyProductionID = hpd.HourlyProductionID LEFT JOIN po p ON hpd.POID = p.POID LEFT JOIN Floor f ON f.floor_id = hp.FloorNO LEFT JOIN line l ON l.id = hpd.LineNo LEFT JOIN style s ON s.StyleID = hpd.StyleID LEFT JOIN color c ON c.id=hpd.Color  WHERE hp.Status = 1 AND hpd.status = 1 AND f.status = 1 AND p.Status = 1 AND c.status = 1 AND s.Status = 1 AND hp.Date = '$date' ORDER BY hp.Date DESC";
 
                       $results = mysqli_query($conn, $sql);
                       $total_nine=0;
@@ -112,11 +112,11 @@ include_once "includes/header.php";
                         ?>
                         <tr>
                           <td><?= $result['Date']; ?></td>
-                          <td><?= $result['FloorNO']; ?></td>
-                          <td><?= $result['LineNo']; ?></td>
-                          <td><?= $result['POID']; ?></td>
-                          <td><?= $result['Color']; ?></td>
-                          <td><?= $result['StyleID']; ?></td>
+                          <td><?= $result['floor_name']; ?></td>
+                          <td><?= $result['line']; ?></td>
+                          <td><?= $result['PONumber']; ?></td>
+                          <td><?= $result['color']; ?></td>
+                          <td><?= $result['StyleNumber']; ?></td>
                           <td><?= $result['nine'];?></td>
                           <td><?= $result['ten'];?></td>
                           <td><?= $result['eleven'];?></td>

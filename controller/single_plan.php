@@ -6,7 +6,6 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
     nowgo('/index.php?page=all_plan');
 }
 
-
 $sql = "SELECT p.id, p.title, SUM(od.Units) as quantity, p.poid, p.styleid, o.PONumber, s.StyleNumber FROM plan p LEFT JOIN po o ON o.POID = p.poid LEFT JOIN style s ON s.StyleID = p.styleid LEFT JOIN order_description od ON od.POID = o.POID WHERE p.status = 1 AND p.id  = '$id' GROUP BY od.Color";
 
 $row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
