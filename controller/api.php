@@ -52,7 +52,7 @@ if (get_ses('token') === $token && $_POST["form"] == 'get_po_size_wise') {
 
     $sql = "SELECT md.POID,p.PONumber FROM masterlc m LEFT JOIN masterlc_description md ON m.MasterLCID=md.MasterLCID LEFT JOIN po p ON p.POID = md.POID WHERE m.MasterLCBuyer = '$buyer_id'";
     $result = mysqli_query($conn, $sql);
-    echo '<option>Select PO Number</option>';
+    echo '<option>=======</option>';
      while($row = mysqli_fetch_assoc($result)){
          echo '<option value="' . $row['POID'] . '">' . $row['PONumber'] . '</option>';
      }

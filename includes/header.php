@@ -345,7 +345,7 @@
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
                                 <ul>
-                                <li>
+                                    <li>
                                         <a href="#">
                                             <i class="metismenu-icon"></i>
                                             Reports
@@ -356,6 +356,13 @@
                                                 <a target="_blank" href="<?= $path ?>/index.php?page=fabric_store">
                                                     <i class="metismenu-icon">
                                                     </i>Fabric Store
+                                                </a>
+                                            </li>
+
+                                            <li <?php active('accessories_report'); ?>>
+                                                <a target="_blank" href="<?= $path ?>/index.php?page=accessories_report">
+                                                    <i class="metismenu-icon">
+                                                    </i>Accessories Report
                                                 </a>
                                             </li>
 
@@ -402,12 +409,12 @@
                                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                                 </a>
                                                 <ul>
-                                                  <li <?php active('fab_issue_stock'); ?>>
-                                                      <a href="<?= $path ?>/index.php?page=fab_issue_stock">
-                                                          <i class="metismenu-icon">
-                                                          </i>Fabric Issue Register
-                                                      </a>
-                                                  </li>
+                                                    <li <?php active('fab_issue_stock'); ?>>
+                                                        <a href="<?= $path ?>/index.php?page=fab_issue_stock">
+                                                            <i class="metismenu-icon">
+                                                            </i>Fabric Issue Register
+                                                        </a>
+                                                    </li>
                                                     <li <?php active('fab_issue'); ?>>
                                                         <a href="<?= $path ?>/index.php?page=fab_issue">
                                                             <i class="metismenu-icon">
@@ -520,12 +527,7 @@
                                                     </i>Store Statement Report
                                                 </a>
                                             </li>
-                                            <li <?php active('cutting_report'); ?>>
-                                                <a target="_blank" href="<?= $path ?>/index.php?report=cutting_report">
-                                                    <i class="metismenu-icon">
-                                                    </i>Cutting Report
-                                                </a>
-                                            </li>
+
                                             <li <?php active('fab_relaxation_report'); ?>>
                                                 <a target="_blank" href="<?= $path ?>/index.php?page=fab_relaxation_report">
                                                     <i class="metismenu-icon">
@@ -661,6 +663,12 @@
                                         <a href="<?= $path ?>/index.php?page=hourly_form_finishing">
                                             <i class="metismenu-icon">
                                             </i>Hourly Finishing Form
+                                        </a>
+                                    </li>
+                                    <li <?php active('all_finishing_form'); ?>>
+                                        <a href="<?= $path ?>/index.php?page=all_finishing_form">
+                                            <i class="metismenu-icon">
+                                            </i>All Finishing Form
                                         </a>
                                     </li>
                                 </ul>
