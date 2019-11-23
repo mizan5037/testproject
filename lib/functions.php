@@ -138,6 +138,24 @@ function add_query_to_url($query, $value)
     return $actual_link;
 }
 
+/*
+========================================
+Pagination Implementation
+first call pagination()
+
+$paginate = paginate('TableName');
+$add_sql = $paginate['sql'];
+$sql = "Some sql" . $add_sql;
+
+-------------------------------------------------
+
+now place this code where the page link should show
+
+$page_no = $paginate['page_no'];
+$total_pages = $paginate['total_pages'];
+links($page_no, $total_pages);
+=========================================
+*/
 
 function links($pageno, $total_pages)
 {

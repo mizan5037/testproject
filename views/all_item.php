@@ -58,7 +58,6 @@ include_once "includes/header.php";
                 <tbody>
                     <?php
                     $paginate = paginate('item');
-                    
                     $add_sql = $paginate['sql'];
                     $sql = "SELECT * FROM item WHERE status = 1 " . $add_sql;
                     $item = mysqli_query($conn, $sql);
