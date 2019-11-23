@@ -40,7 +40,7 @@ include_once "includes/header.php";
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">Style List</h5>
-            <table class="mb-0 table table-striped table-hover">
+            <table class="mb-0 table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -51,7 +51,9 @@ include_once "includes/header.php";
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT StyleNumber, StyleDescription, StyleID FROM style WHERE status = 1";
+                    $paginate = paginate('style');
+                    $add_sql = $paginate['sql'];
+                    $sql = "SELECT StyleNumber, StyleDescription, StyleID FROM style WHERE status = 1 " . $add_sql;
                     $item = mysqli_query($conn, $sql);
 
                     $count = 1;
@@ -73,9 +75,21 @@ include_once "includes/header.php";
                                 </a>
                             </td>
                         </tr>
-                    <?php $count++; }  ?>
+                    <?php $count++;
+                    }  ?>
                 </tbody>
             </table>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <?php
+                    $page_no = $paginate['page_no'];
+                    $total_pages = $paginate['total_pages'];
+                    links($page_no, $total_pages);
+                    ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>
