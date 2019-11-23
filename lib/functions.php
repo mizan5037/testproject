@@ -194,7 +194,7 @@ function links($pageno, $total_pages)
                                 echo ("<input type='hidden' name='$key' value='$value'/>");
                             }
                         } ?>
-                    <input type="text" name="pageno" style="width:100px !important; height:35px; border: none; border:1px solid #dee2e6; padding: 8px 12px;" placeholder="Page No">
+                    <input type="number" name="pageno" max="<?=$total_pages?>" min="1" style="width:100px !important; height:35px; border: none; border:1px solid #dee2e6; padding: 8px 12px;" placeholder="Page No">
                     <input type="submit" style=" height:35px; margin-top:-3px; padding: 8px 12px;" class="btn btn-sm btn-outline-success" value="GO">
                 </form>
             </li>
