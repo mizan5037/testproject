@@ -645,6 +645,20 @@
                                             </i>All Wash
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="#">
+                                            Reports
+                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                        </a>
+                                        <ul>
+                                            <li <?php active('hourly_swing_form'); ?>>
+                                                <a href="<?= $path ?>/index.php?page=hourly_swing_form">
+                                                    <i class="metismenu-icon">
+                                                    </i>Hourly Reports
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
                             <li>
