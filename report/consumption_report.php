@@ -268,6 +268,6 @@ $mpdf->SetHTMLHeader('
         </tr>
 
     </table>');
-echo $html;
-// $mpdf->WriteHTML($html);
-// $mpdf->Output();
+// echo $html;
+$mpdf->WriteHTML($html);
+$mpdf->Output();

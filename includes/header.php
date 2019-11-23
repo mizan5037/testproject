@@ -521,12 +521,7 @@
                                                     </i>Cunsumption Report
                                                 </a>
                                             </li>
-                                            <li <?php active('store_statements'); ?>>
-                                                <a target="_blank" href="<?= $path ?>/index.php?report=store_statements">
-                                                    <i class="metismenu-icon">
-                                                    </i>Store Statement Report
-                                                </a>
-                                            </li>
+
 
                                             <li <?php active('fab_relaxation_report'); ?>>
                                                 <a target="_blank" href="<?= $path ?>/index.php?page=fab_relaxation_report">
@@ -692,10 +687,10 @@
                                             </i>All Carton
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#">
+                                    <li <?php active('packet_goods'); ?>>
+                                        <a href="<?= $path ?>/index.php?page=packet_goods" target="_black">
                                             <i class="metismenu-icon">
-                                            </i>Packed Goods (report)
+                                            </i>Packet Goods (Reports)
                                         </a>
                                     </li>
                                 </ul>
@@ -717,6 +712,12 @@
                                         <a href="<?= $path ?>/index.php?page=all_shipment">
                                             <i class="metismenu-icon">
                                             </i>ALL Shipment
+                                        </a>
+                                    </li>
+                                    <li <?php active('shipment_report'); ?>>
+                                        <a href="<?= $path ?>/index.php?page=shipment_report" target="_blanck">
+                                            <i class="metismenu-icon">
+                                            </i>Shipment (Report)
                                         </a>
                                     </li>
                                 </ul>
