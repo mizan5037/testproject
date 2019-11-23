@@ -6,7 +6,7 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
-
+ 
 $conn = db_connection();
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
@@ -14,10 +14,14 @@ if (isset($_GET['delete'])) {
 
     if (mysqli_query($conn, $sql)) {
         notice('success', 'Deleted Successfully');
+        nowgo('/index.php?page=all_item');
     } else {
         notice('error', $sql . "<br>" . mysqli_error($conn));
     }
 }
+
+
+
 
 include_once "includes/header.php";
 ?>
@@ -53,8 +57,10 @@ include_once "includes/header.php";
                 </thead>
                 <tbody>
                     <?php
-
-                    $sql = "SELECT * FROM item WHERE status = 1";
+                    $paginate = paginate('item');
+                    
+                    $add_sql = $paginate['sql'];
+                    $sql = "SELECT * FROM item WHERE status = 1 " . $add_sql;
                     $item = mysqli_query($conn, $sql);
 
                     $count = 1;
@@ -64,7 +70,7 @@ include_once "includes/header.php";
                         ?>
 
                         <tr>
-                            <th scope="row"><?= $count++ ?></th>
+                            <th scope="row"><?= $key["ItemID"]; ?></th>
                             <td><?php echo $key["ItemName"]; ?></td>
                             <td><?php echo $key["ItemMeasurementUnit"]; ?></td>
                             <td><?php echo $key["ItemDescription"]; ?></td>
@@ -81,6 +87,16 @@ include_once "includes/header.php";
                     <?php }  ?>
                 </tbody>
             </table>
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <?php 
+                    $page_no = $paginate['page_no'];
+                    $total_pages = $paginate['total_pages'];
+                    links($page_no, $total_pages);
+                    ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>
