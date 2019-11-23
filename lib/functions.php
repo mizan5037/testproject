@@ -140,13 +140,17 @@ function add_query_to_url($query, $value)
 
 /*
 ========================================
-Pagination Implementation
+##Pagination Implementation##
 first call pagination()
 
 $paginate = paginate('TableName');
 $add_sql = $paginate['sql'];
+$page_no = $paginate['page_no'];
+$total_pages = $paginate['total_pages'];
 $sql = "Some sql" . $add_sql;
 
+-------------------------------------------------
+$count = ($page_no * 10) - 9;
 -------------------------------------------------
 
 now place this code where the page link should show
@@ -154,8 +158,6 @@ now place this code where the page link should show
 <div class="row">
     <div class="col-md-12">
         <?php
-        $page_no = $paginate['page_no'];
-        $total_pages = $paginate['total_pages'];
         links($page_no, $total_pages);
         ?>
     </div>

@@ -66,10 +66,7 @@ include_once "includes/header.php";
 
                     $count = ($page_no * 10) - 9;
                     while ($key = mysqli_fetch_assoc($item)) {
-
-
                         ?>
-
                         <tr>
                             <th scope="row"><?= $count++ ?></th>
                             <td><?php echo $key["ItemName"]; ?></td>
