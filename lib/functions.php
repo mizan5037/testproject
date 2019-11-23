@@ -117,7 +117,7 @@ function paginate($table)
 
     $out['page_no'] = $pageno;
     $out['total_pages'] = $total_pages;
-    $out['sql'] = "LIMIT " . $offset . ", " . $no_of_records_per_page;
+    $out['sql'] = " LIMIT " . $offset . ", " . $no_of_records_per_page;
     return $out;
 }
 

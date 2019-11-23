@@ -15,12 +15,10 @@ if (isset($_GET['delete_po'])) {
 
 
     if (mysqli_query($conn, $sql)) {
-		notice('danger', ' PO Deleted Successfully');
-
-	} else {
-		notice('error', $sql . "<br>" . mysqli_error($conn));
+        notice('danger', ' PO Deleted Successfully');
+    } else {
+        notice('error', $sql . "<br>" . mysqli_error($conn));
     }
-
 }
 
 include_once "includes/header.php";
@@ -46,7 +44,7 @@ include_once "includes/header.php";
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">LC List</h5>
-            <table class="mb-0 table table-striped table-hover">
+            <table class="mb-0 table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -58,43 +56,54 @@ include_once "includes/header.php";
                 </thead>
                 <tbody>
                     <?php
-
-                    $sql = "SELECT * FROM po WHERE status = 1";
+                    $paginate = paginate('po');
+                    $add_sql = $paginate['sql'];
+                    $sql = "SELECT * FROM po WHERE status = 1 " . $add_sql;
                     $po = mysqli_query($conn, $sql);
 
                     $count = 1;
                     while ($key = mysqli_fetch_assoc($po)) {
-                            $poid = $key['POID'];
+                        $poid = $key['POID'];
 
-                            $sql1 = "SELECT * FROM order_description WHERE POID = ".$poid." and status = 1 ";
+                        $sql1 = "SELECT * FROM order_description WHERE POID = " . $poid . " and status = 1 ";
 
-                            $style = mysqli_query($conn, $sql1);
+                        $style = mysqli_query($conn, $sql1);
 
-                      ?>
-                    <tr>
-                        <th scope="row"><?php echo $count++; ?></th>
-                        <td><?php echo $key['PONumber']; ?></td>
-                        <td><?php echo $key['PODate']; ?></td>
+                        ?>
+                        <tr>
+                            <th scope="row"><?php echo $count++; ?></th>
+                            <td><?php echo $key['PONumber']; ?></td>
+                            <td><?php echo $key['PODate']; ?></td>
 
-                        <td>
-                            <a href="<?= $path ?>/index.php?page=po_single&poid=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                Details
-                            </a>                            
-                            <a href="<?= $path ?>/index.php?page=new_time_action&POID=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                View Time/Action Calender
-                            </a>
-                            <a href="<?= $path ?>/index.php?page=all_po&delete_po=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-danger">
-                                DELETE
-                            </a>
-                            <a href="<?= $path ?>/index.php?page=po_edit&id=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-danger">
-                                EDIT
-                            </a>
-                        </td>
-                    </tr>
-                <?php } ?>
+                            <td>
+                                <a href="<?= $path ?>/index.php?page=po_single&poid=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
+                                    Details
+                                </a>
+                                <a href="<?= $path ?>/index.php?page=new_time_action&POID=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
+                                    View Time/Action Calender
+                                </a>
+                                <a href="<?= $path ?>/index.php?page=all_po&delete_po=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-danger">
+                                    DELETE
+                                </a>
+                                <a href="<?= $path ?>/index.php?page=po_edit&id=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-danger">
+                                    EDIT
+                                </a>
+                            </td>
+                        </tr>
+                    <?php } ?>
 
                 </tbody>
             </table>
+            <br><br>
+            <div class="row">
+                <div class="col-md-12">
+                    <?php
+                    $page_no = $paginate['page_no'];
+                    $total_pages = $paginate['total_pages'];
+                    links($page_no, $total_pages);
+                    ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>
