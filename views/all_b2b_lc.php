@@ -1,5 +1,8 @@
 <?php
 
+$page_privilege = 4;
+hasAccess();
+
 $PageTitle = "All B2B LC | Optima Inventory";
 function customPageHeader()
 {

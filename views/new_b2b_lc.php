@@ -1,4 +1,8 @@
 <?php
+
+$page_privilege = 4;
+hasAccess();
+
 $conn = db_connection();
 $PageTitle = "New B2B LC | Optima Inventory";
 
