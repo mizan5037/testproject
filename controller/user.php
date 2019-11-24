@@ -47,6 +47,13 @@ if(isset($_POST['new_user'])){
     $pass = mysqli_real_escape_string($conn, $_POST['pass']);
     $rpass = mysqli_real_escape_string($conn, $_POST['rpass']);
 
+    $sql = "SELECT Username FROM users WHERE Username = '$username'";
+    $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        notice('error', 'Username Not Available! Please try another username!!');
+        nowgo('/index.php?page=user');
+    }
+
     if($pass == $rpass){
         $pass = md5($pass);
         $sql = "INSERT INTO users(Name, Username, email, Designation, Pass, AddedBy) VALUES ('$name','$username','$email','$designation','$pass','$user_id')";
