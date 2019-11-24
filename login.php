@@ -12,10 +12,10 @@ if (isset($_POST['submit'])) {
 
     $conn = db_connection();
     $user = $_POST['user'];
-    $sql = "SELECT * FROM users WHERE Username = $user AND Status = 1";
+    $sql = "SELECT * FROM users WHERE Username = '$user' AND Status = 1";
     $result = mysqli_query($conn, $sql);
     $attempt = 'Failed';
-    if ($result) {
+    if (mysqli_num_rows($result) > 0) {
         $result = mysqli_fetch_assoc($result);
         //echo $sql;
         //print_r($result);
