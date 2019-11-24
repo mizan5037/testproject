@@ -1,5 +1,8 @@
 <?php
 
+$page_privilege = 3;
+hasAccess();
+
 $PageTitle = "Fabric Color | Optima Inventory";
 function customPageHeader()
 {

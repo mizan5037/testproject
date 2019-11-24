@@ -1,5 +1,5 @@
 <?php
-$page_privilege = 1;
+$page_privilege = 3;
 hasAccess();
 
 $PageTitle = "ALL PO | Optima Inventory";
