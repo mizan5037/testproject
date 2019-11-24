@@ -1,6 +1,6 @@
 <?php
 
-$PageTitle = "Shipment Report | Optima Inventory";
+$PageTitle = "Finishing Report | Optima Inventory";
 function customPageHeader()
 {
     ?>
@@ -26,9 +26,9 @@ include_once "includes/header.php";
                     <i class="pe-7s-note icon-gradient bg-mean-fruit">
                     </i>
                 </div>
-                <div>Hourly Swing Report
+                <div>Finishing Report Panel
                     <div class="page-title-subheading">
-                        Every Day Report
+                        Generate Daily Report
                     </div>
                 </div>
             </div>
@@ -39,16 +39,17 @@ include_once "includes/header.php";
             <div class="col-md-5">
                 <div class="main-card mb-3 card">
                     <div class="card-body">
-                        <form action="<?= $path ?>/index.php?report=hourly_swing_form" method="post">
+                        <form action="<?= $path ?>/index.php?report=finishing_report" method="post">
                             <div class="form-row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="month">Date</label>
-                                        <input type="date" class="form-control form-control-sm" name="date" required>
+                                        <label for="">Date</label>
+                                        <input type="date" class="form-control form-control-sm" name="date" id="" required>
                                     </div>
+
                                     <div class="form-group">
                                         <label for="">Type</label>
-                                        <select name="type" class="form-control form-control-sm">
+                                        <select name="type" id="" class="form-control form-control-sm">
                                             <option value="view">View</option>
                                             <option value="download">Download</option>
                                         </select>
@@ -64,6 +65,7 @@ include_once "includes/header.php";
             </div>
         </div>
     </div>
+
 </div>
 
 

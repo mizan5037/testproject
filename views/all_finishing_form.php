@@ -59,7 +59,6 @@ include_once "includes/header.php";
                     <tr>
                         <th>Date</th>
                         <th>FloorNO</th>
-                        <th>Line</th>
                         <th>Buyer/PO</th>
                         <th>Color</th>
                         <th>Style</th>
@@ -112,7 +111,6 @@ include_once "includes/header.php";
                             <tr>
                                 <td><?= $result['date']; ?></td>
                                 <td><?= $result['floor_name']; ?></td>
-                                <td><?= $result['line']; ?></td>
                                 <td><?= $result['PONumber']; ?></td>
                                 <td><?= $result['color']; ?></td>
                                 <td><?= $result['StyleNumber']; ?></td>
@@ -136,7 +134,7 @@ include_once "includes/header.php";
                             </tr>
                         <?php } ?>
                         <tr>
-                            <td colspan="6"><strong>Total</strong></td>
+                            <td colspan="5"><strong>Total</strong></td>
                             <td><?= $total_nine; ?></td>
                             <td><?= $total_ten; ?></td>
                             <td><?= $total_eleven; ?></td>
@@ -164,93 +162,8 @@ include_once "includes/header.php";
 function customPagefooter()
 {
     ?>
-    <script>
-        // Add new row code
-
-        $(document).ready(function() {
-            var counter = 2;
-
-            $("#addrow").on("click", function() {
-                var newRow = $("<tr>");
-                var cols = "";
-
-                cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><select name="line[]" class="po form-control form-control-sm" required><option></option><?php
-                                                                                                                            $conn = db_connection();
-                                                                                                                            $sql = "SELECT * FROM line WHERE status = 1";
-                                                                                                                            $results = mysqli_query($conn, $sql);
-                                                                                                                            while ($result = mysqli_fetch_assoc($results)) {
-                                                                                                                                echo '<option value="' . $result['id'] . '">' . $result['line'] . '</option>';
-                                                                                                                            }
-                                                                                                                            ?></select></td>';
-                cols += '<td><select name="po[]" class="po form-control form-control-sm" required><option></option>';
-                <?php
-                    $conn = db_connection();
-                    $sql = "SELECT * FROM po WHERE status = 1";
-                    $results = mysqli_query($conn, $sql);
-                    while ($result = mysqli_fetch_assoc($results)) {
-                        echo 'cols += \'<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>\'; ';
-                    }
-                    ?>
-                cols += '</select></td>';
-                cols += '<td><select name="style[]" class="style  form-control form-control-sm" required><option></option>';
-                <?php
-                    $conn = db_connection();
-                    $sql = "SELECT * FROM style WHERE status = 1";
-                    $results = mysqli_query($conn, $sql);
-                    while ($result = mysqli_fetch_assoc($results)) {
-                        echo 'cols += \'<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>\'; ';
-                    }
-                    ?>
-                cols += '</select></td>';
-                cols += '<td><select name="color[]" class="color form-control form-control-sm" required><option></option>';
-                <?php
-                    $conn = db_connection();
-                    $sql = "SELECT * FROM color WHERE status = 1";
-                    $results = mysqli_query($conn, $sql);
-                    while ($result = mysqli_fetch_assoc($results)) {
-                        echo 'cols += \'<option value="' . $result['id'] . '">' . $result['color'] . '</option>\'; ';
-                    }
-                    ?>
-                cols += '</select></td>';
-                cols += '<td><select name="hour[]" class="form-control form-control-sm" required><option >Choose Hour</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="1">1</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value=8>8</option></select></td>';
-                cols += '<td><input placeholder="Quantity" name="quantity[]" type="number" class="form-control form-control-sm"></td>';
-                cols += '<td><input type="button" class="ibtnDel btn btn-sm btn-danger "  value="Delete"></td>';
-                newRow.append(cols);
-                $("table.order-list").append(newRow);
-                counter++;
-            });
-
-
-
-            $("table.order-list").on("click", ".ibtnDel", function(event) {
-                $(this).closest("tr").remove();
-                counter -= 1
-            });
-
-
-        });
-
-
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function() {
-            'use strict';
-            window.addEventListener('load', function() {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
-    </script>
+    <!-- Secript Here -->
+    
 <?php }
 include_once "includes/footer.php";
 ?>

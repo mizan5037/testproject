@@ -657,6 +657,12 @@
                                                     </i>Hourly Reports
                                                 </a>
                                             </li>
+                                            <li <?php active('wash_report'); ?>>
+                                                <a href="<?= $path ?>/index.php?page=wash_report">
+                                                    <i class="metismenu-icon">
+                                                    </i>Wash Reports
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -678,6 +684,12 @@
                                         <a href="<?= $path ?>/index.php?page=all_finishing_form">
                                             <i class="metismenu-icon">
                                             </i>All Finishing Form
+                                        </a>
+                                    </li>
+                                    <li <?php active('finishing_report'); ?>>
+                                        <a href="<?= $path ?>/index.php?page=finishing_report">
+                                            <i class="metismenu-icon">
+                                            </i>Finishing(Report)
                                         </a>
                                     </li>
                                 </ul>

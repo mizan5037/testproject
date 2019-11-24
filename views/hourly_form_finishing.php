@@ -57,31 +57,18 @@ include_once "includes/header.php";
                     <table class="mb-0 table table-bordered table-hover order-list" id="mytable">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th width="15%">Line</th>
-                                <th width="15%">PO</th>
-                                <th width="15%">Style</th>
+                                <th width="1%">#</th>
+                                <th width="20%">PO</th>
+                                <th width="25%">Style</th>
                                 <th width="15%">Color</th>
-                                <th>Hour</th>
-                                <th>Quantity</th>
-                                <th>Action</th>
+                                <th width="10%">Hour</th>
+                                <th width="10%">Quantity</th>
+                                <th width="9%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
-                                <td>
-                                    <select name="line[]" class="po  form-control form-control-sm search_select" required>
-                                        <option></option>
-                                        <?php
-                                        $sql = "SELECT * FROM line WHERE status = 1";
-                                        $results = mysqli_query($conn, $sql);
-                                        while ($result = mysqli_fetch_assoc($results)) {
-                                            echo '<option value="' . $result['id'] . '">' . $result['line'] . '</option>';
-                                        }
-                                        ?>
-                                    </select>
-                                </td>
                                 <td>
                                     <select name="po[]" class="po  form-control form-control-sm search_select" required>
                                         <option></option>
@@ -171,7 +158,7 @@ function customPagefooter()
 
     <script type="text/javascript">
         $('.search_select').select2({
-            placeholder: 'Select Card Numbers'
+            placeholder: 'Choose Your Option'
         });
     </script>
     <script>
@@ -185,14 +172,6 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><select name="line[]" class="po form-control form-control-sm search_select" required><option></option><?php
-                                                                                                                                        $conn = db_connection();
-                                                                                                                                        $sql = "SELECT * FROM line WHERE status = 1";
-                                                                                                                                        $results = mysqli_query($conn, $sql);
-                                                                                                                                        while ($result = mysqli_fetch_assoc($results)) {
-                                                                                                                                            echo '<option value="' . $result['id'] . '">' . $result['line'] . '</option>';
-                                                                                                                                        }
-                                                                                                                                        ?></select></td>';
                 cols += '<td><select name="po[]" class="po form-control form-control-sm search_select" required><option></option>';
                 <?php
                     $conn = db_connection();
@@ -230,7 +209,10 @@ function customPagefooter()
                 $("table.order-list").append(newRow);
                 counter++;
                 setTimeout(function() {
-                    $('.search_select').select2();
+                    $('.search_select').select2({
+                        placeholder: 'Choose Your Option'
+                    });
+
                 }, 100);
             });
 
