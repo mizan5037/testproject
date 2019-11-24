@@ -1,6 +1,6 @@
 <?php
 
-$PageTitle = "Shipment Report | Optima Inventory";
+$PageTitle = "Wash Report | Optima Inventory";
 function customPageHeader()
 {
     ?>
@@ -26,7 +26,7 @@ include_once "includes/header.php";
                     <i class="pe-7s-note icon-gradient bg-mean-fruit">
                     </i>
                 </div>
-                <div>Hourly Swing Report
+                <div>Wash Report
                     <div class="page-title-subheading">
                         Every Day Report
                     </div>
@@ -39,7 +39,7 @@ include_once "includes/header.php";
             <div class="col-md-5">
                 <div class="main-card mb-3 card">
                     <div class="card-body">
-                        <form action="<?= $path ?>/index.php?report=hourly_swing_form" method="post">
+                        <form action="<?= $path ?>/index.php?report=wash_report" method="post">
                             <div class="form-row">
                                 <div class="col-md-12">
                                     <div class="form-group">

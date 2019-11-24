@@ -12,7 +12,7 @@ if (isset($_POST['date']) && $_POST['date'] != '' && isset($_POST['type'])) {
     //Dependency
 
     $conn = db_connection();
-    $mpdf = new \Mpdf\Mpdf(['orientation' => 'L']);
+    $mpdf = new \Mpdf\Mpdf();
 
     //Getting Peramiters
     $date    = $_POST['date'];
@@ -21,12 +21,12 @@ if (isset($_POST['date']) && $_POST['date'] != '' && isset($_POST['type'])) {
 
 
     //sql to get the data
-    $sql = "SELECT hp.Date,f.floor_name,l.line,p.PONumber,p.POCMPWH,p.FOB,s.StyleNumber,c.color,hpd.* FROM hourly_production hp LEFT JOIN hourly_production_details hpd ON hp.HourlyProductionID = hpd.HourlyProductionID LEFT JOIN po p ON hpd.POID = p.POID LEFT JOIN Floor f ON f.floor_id = hp.FloorNO LEFT JOIN line l ON l.id = hpd.LineNo LEFT JOIN style s ON s.StyleID = hpd.StyleID LEFT JOIN color c ON c.id=hpd.Color  WHERE hp.Status = 1 AND hpd.status = 1 AND f.status = 1 AND p.Status = 1 AND c.status = 1 AND s.Status = 1 AND hp.Date = '$date' ORDER BY hp.Date DESC";
+    $sql = "SELECT f.*,c.color,p.PONumber,p.POID,s.StyleNumber,s.StyleID FROM wash_form f LEFT JOIN po p on p.POID=f.POID LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN color c ON c.id=f.Color WHERE f.Status=1 AND f.Date = '$date'";
     $results = mysqli_query($conn, $sql);
 
     //buffer Started
     ob_start();
-    include "hourly_swing_form_r.php";
+    include "wash_report_r.php";
     $template = ob_get_contents();
     ob_end_clean();
     //buffer cleaned
