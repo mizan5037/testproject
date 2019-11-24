@@ -1,5 +1,8 @@
 <?php
 
+$page_privilege = 5;
+hasAccess();
+
 $PageTitle = "Fabric Register (Store) | Optima Inventory";
 $conn = db_connection();
 

@@ -1,5 +1,8 @@
 <?php
 
+$page_privilege = 5;
+hasAccess();
+
 $PageTitle = "Lay Form | Optima Inventory";
 function customPageHeader()
 {

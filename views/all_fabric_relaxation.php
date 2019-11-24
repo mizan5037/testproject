@@ -1,5 +1,8 @@
 <?php
 
+$page_privilege = 5;
+hasAccess();
+
 $PageTitle = "All Fabric Relaxation | Optima Inventory";
 function customPageHeader()
 {

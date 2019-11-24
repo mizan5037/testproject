@@ -558,13 +558,6 @@
                                                     All Lay
                                                 </a>
                                             </li>
-
-                                            <li <?php active('daily_cutting'); ?>>
-                                                <a href="<?= $path ?>/index.php?report=daily_cutting">
-                                                    <i class="metismenu-icon"></i>
-                                                    Daily Cutting
-                                                </a>
-                                            </li>
                                         </ul>
                                     </li>
 

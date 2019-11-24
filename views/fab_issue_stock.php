@@ -1,5 +1,8 @@
 <?php
 
+$page_privilege = 5;
+hasAccess();
+
 $PageTitle = "Fabic Stock | Optima Inventory";
 function customPageHeader()
 {
