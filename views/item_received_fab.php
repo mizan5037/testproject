@@ -160,7 +160,7 @@ function customPagefooter()
 
     <script type="text/javascript">
         $('.search_select').select2({
-            placeholder: 'Select Card Numbers'
+            placeholder: 'Please Select'
         });
     </script>
     <script>

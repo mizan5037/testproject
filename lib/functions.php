@@ -2,7 +2,13 @@
 
 function isLoggedIn()
 {
-    if (!isset($_SESSION["isLogged"]) || $_SESSION["isLogged"] != true) {
+    $conn = db_connection();
+    $user_id = get_ses('user_id');
+    $sql = "SELECT u.Status FROM users u WHERE u.UserID = $user_id";
+    $status = mysqli_fetch_assoc(mysqli_query($conn, $sql))['Status'];
+    // if($status){echo 'okk';}
+    // die();
+    if (!isset($_SESSION["isLogged"]) || $_SESSION["isLogged"] != true || !$status) {
         if (isset($_GET['page'])) {
             header('location: login.php?page=' . $_GET['page']);
             die();

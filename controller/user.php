@@ -18,7 +18,7 @@ if (isset($_POST['update'])) {
     } elseif (isset($_POST['old']) && $_POST['new'] != $_POST['rnew']) {
         notice('error', 'Both Password not matched!');
         nowgo('/index.php?page=user');
-    } elseif (isset($_POST['old']) && $_POST['new'] == $_POST['rnew'] && $_POST['old'] != $row['Pass']) {
+    } elseif (isset($_POST['old']) && $_POST['old'] != '' && $_POST['new'] == $_POST['rnew'] && $_POST['old'] != $row['Pass']) {
         notice('error', 'Old Password not matched!');
         nowgo('/index.php?page=user');
     }
@@ -46,6 +46,13 @@ if(isset($_POST['new_user'])){
     $designation = mysqli_real_escape_string($conn, $_POST['designation']);
     $pass = mysqli_real_escape_string($conn, $_POST['pass']);
     $rpass = mysqli_real_escape_string($conn, $_POST['rpass']);
+
+    $sql = "SELECT Username FROM users WHERE Username = '$username'";
+    $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        notice('error', 'Username Not Available! Please try another username!!');
+        nowgo('/index.php?page=user');
+    }
 
     if($pass == $rpass){
         $pass = md5($pass);
