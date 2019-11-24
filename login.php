@@ -11,30 +11,35 @@ require_once 'lib/functions.php';
 if (isset($_POST['submit'])) {
 
     $conn = db_connection();
-    $sql = "SELECT * FROM users WHERE Username = '" . $_POST['user'] . "'";
+    $user = $_POST['user'];
+    $sql = "SELECT * FROM users WHERE Username = $user AND Status = 1";
     $result = mysqli_query($conn, $sql);
-    $result = mysqli_fetch_assoc($result);
-    //echo $sql;
-    //print_r($result);
     $attempt = 'Failed';
-    if (md5($_POST['pass']) == $result['Pass']) {
-        $attempt = 'Success';
-        set_ses('isLogged', true);
-        set_ses('logInTime', time());
-        set_ses('user', $result['Username']);
-        set_ses('name', $result['Name']);
-        set_ses('user_id', $result['UserID']);
-        set_ses('designation', $result['Designation']);
-        $token = md5(uniqid(rand(), true));
-        set_ses('token', $token);
-        loginlog('User: ' . $_POST['user'] . PHP_EOL . 'Attempt: ' . $attempt);
-        nowlog('Login');
-        if (isset($_GET['page'])) {
-            nowgo('/index.php?page=' . $_GET['page']);
-        } else {
-            nowgo('/index.php');
+    if ($result) {
+        $result = mysqli_fetch_assoc($result);
+        //echo $sql;
+        //print_r($result);
+
+        if (md5($_POST['pass']) == $result['Pass']) {
+            $attempt = 'Success';
+            set_ses('isLogged', true);
+            set_ses('logInTime', time());
+            set_ses('user', $result['Username']);
+            set_ses('name', $result['Name']);
+            set_ses('user_id', $result['UserID']);
+            set_ses('designation', $result['Designation']);
+            $token = md5(uniqid(rand(), true));
+            set_ses('token', $token);
+            loginlog('User: ' . $_POST['user'] . PHP_EOL . 'Attempt: ' . $attempt);
+            nowlog('Login');
+            if (isset($_GET['page'])) {
+                nowgo('/index.php?page=' . $_GET['page']);
+            } else {
+                nowgo('/index.php');
+            }
         }
     }
+
 
     loginlog('User: ' . $_POST['user'] . PHP_EOL . 'Attempt: ' . $attempt . PHP_EOL . 'Tried Pass: ' . $_POST['pass']);
 }
@@ -84,14 +89,14 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="row justify-content-md-center">
                         <div class="col-md-4">
-                            <?php if( isset($attempt) && $attempt === 'Failed'){ ?>
-                            <div class="alert alert-danger alert-dismissible fade show main-card mb-3 card" role="alert">
-                                <strong>Ops!</strong> You should enter valid details to login. <br>
-                                <small>Please Try Again!!</small>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
+                            <?php if (isset($attempt) && $attempt === 'Failed') { ?>
+                                <div class="alert alert-danger alert-dismissible fade show main-card mb-3 card" role="alert">
+                                    <strong>Ops!</strong> You should enter valid details to login. <br>
+                                    <small>Please Try Again or Contact Admin!!</small>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
                             <?php } ?>
                             <div class="main-card mb-3 card">
                                 <div class="card-body text-center">

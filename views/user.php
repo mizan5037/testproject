@@ -1,12 +1,12 @@
 <?php
-
-$PageTitle = "User | Optima Inventory";
+include_once "controller/user.php";
+$PageTitle = $row['Name'] . " | Optima Inventory";
 function customPageHeader()
 {
     ?>
     <!--Arbitrary HTML Tags-->
 <?php }
-include_once "controller/user.php";
+
 include_once "includes/header.php";
 
 ?>
@@ -27,8 +27,8 @@ include_once "includes/header.php";
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6">
+    <div class="row <?= $row['Designation'] == 1 ? '' : 'justify-content-center'?>">
+        <div class="col-md-6 ">
             <div class="main-card mb-3 card">
                 <div class="card-body text-center">
                     <h5 class="card-title">Update Profile</h5>
@@ -69,6 +69,7 @@ include_once "includes/header.php";
                 </div>
             </div>
         </div>
+        <?php if($row['Designation'] == 1){ ?>
         <div class="col-md-6">
             <div class="main-card mb-3 card">
                 <div class="card-body text-center">
@@ -110,7 +111,9 @@ include_once "includes/header.php";
                 </div>
             </div>
         </div>
+        <?php } ?>
     </div>
+    <?php if($row['Designation'] == 1 || $row['Designation'] == 2){ ?>
     <div class="row">
         <div class="col-md-12">
             <div class="main-card mb-3 card">
@@ -131,7 +134,7 @@ include_once "includes/header.php";
                                 <tr>
                                     <th scope="row"><?= $user['UserID'] ?></th>
                                     <td><?= $user['Name'] ?> </td>
-                                    <td><?= $user['Username'] ?> &nbsp;&nbsp; <?= $user['Status'] ? '' : '<span class="badge badge-danger">Banned User</span>' ?></td>
+                                    <td><?= $user['Username'] ?> &nbsp; &nbsp; <?= $user['Status'] ? '' : '<span class="badge badge-danger">Banned User</span>' ?></td>
                                     <td><?= $user['email'] ?></td>
                                     <td>
                                         <a onclick="return confirm('Are You sure want to <?= $user['Status'] ? 'Ban' : 'Assign' ?> this user?')" href="<?= $path ?>/index.php?page=user&status=<?= $user['Status'] ?>&id=<?= $user['UserID'] ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-<?= $user['Status'] ? 'danger' : 'success' ?>">
@@ -146,6 +149,7 @@ include_once "includes/header.php";
             </div>
         </div>
     </div>
+    <?php } ?>
 </div>
 
 
