@@ -48,7 +48,7 @@
     <p>
         <span class="h1"> Back to Back LC</span>
         <br>
-        <span class="h2"> Maturity in <?= $monthName . '' . $year ?></span>
+        <span class="h2"> Maturity in <?= $monthName . ' ' . $year ?></span>
     </p>
     <table>
         <thead>
