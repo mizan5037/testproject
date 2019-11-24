@@ -31,6 +31,7 @@ if (isset($_POST['date']) && isset($_POST['po'])  && isset($_POST['style']) && i
 
 
 }
+
 if(isset($_GET['delete']) && $_GET['delete'] !=''){
     $delete = mysqli_real_escape_string($conn, $_GET['delete']);
     $sql    = "UPDATE wash_form SET Status=0 where WashFormID='$delete'";

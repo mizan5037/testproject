@@ -1,5 +1,8 @@
 <?php
 
+$page_privilege = 5;
+hasAccess();
+
 $PageTitle = "Hourly Finishing Form | Optima Inventory";
 $conn = db_connection();
 function customPageHeader()

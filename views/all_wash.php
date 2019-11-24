@@ -1,5 +1,8 @@
 <?php
 
+$page_privilege = 5;
+hasAccess();
+
 $PageTitle = "All Wash | Optima Inventory";
 function customPageHeader()
 {
@@ -7,16 +10,7 @@ function customPageHeader()
     <!--Arbitrary HTML Tags-->
 <?php }
 $conn = db_connection();
-// if (isset($_GET['delete'])) {
-//     $id = $_GET['delete'];
-//     $sql = "UPDATE style set status=0 where StyleID=" . $id;
 
-//     if (mysqli_query($conn, $sql)) {
-//         notice('success', 'Deleted Successfully');
-//     } else {
-//         notice('error', $sql . "<br>" . mysqli_error($conn));
-//     }
-// }
 include_once "controller/update_wash_form.php";
 include_once "includes/header.php";
 

@@ -1,5 +1,8 @@
 <?php
 
+$page_privilege = 5;
+hasAccess();
+
 $PageTitle = "Shipment Report | Optima Inventory";
 function customPageHeader()
 {

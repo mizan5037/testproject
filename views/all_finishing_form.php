@@ -1,4 +1,8 @@
 <?php
+
+$page_privilege = 5;
+hasAccess();
+
 $PageTitle = "Hourly Production | Optima Inventory";
 $conn = db_connection();
 function customPageHeader()
