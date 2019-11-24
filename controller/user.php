@@ -18,7 +18,7 @@ if (isset($_POST['update'])) {
     } elseif (isset($_POST['old']) && $_POST['new'] != $_POST['rnew']) {
         notice('error', 'Both Password not matched!');
         nowgo('/index.php?page=user');
-    } elseif (isset($_POST['old']) && $_POST['new'] == $_POST['rnew'] && $_POST['old'] != $row['Pass']) {
+    } elseif (isset($_POST['old']) && $_POST['old'] != '' && $_POST['new'] == $_POST['rnew'] && $_POST['old'] != $row['Pass']) {
         notice('error', 'Old Password not matched!');
         nowgo('/index.php?page=user');
     }
