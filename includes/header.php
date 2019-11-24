@@ -21,7 +21,9 @@
 </head>
 
 <body>
-    <?php if (function_exists('modal')) {
+    <?php
+    
+    if (function_exists('modal')) {
         modal();
     } ?>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -62,11 +64,11 @@
                         <div class="col-md-12 text-lg-right text-md-center text-sm-center">
                             <div class="btn-group">
                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                    User:
-                                    <?php echo get_ses('user'); ?>
+                                    
+                                    <?php echo get_ses('name'); ?>
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
-                                    <div class="widget-subheading"> Login Time:
-                                        <?php echo date("h:i a", get_ses('logInTime')); ?>
+                                    <div class="widget-subheading">
+                                    <?= get_designation(get_ses('designation')) ?>
                                     </div>
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
@@ -122,7 +124,11 @@
                                     Dashboard
                                 </a>
                             </li>
-                            <li>
+                            <?php
+                            $previlige = get_ses('designation');
+                            if($previlige == 1 || $previlige == 2 || $previlige == 3){ ?>
+                            <!-- Merchandising -->
+                            <li> 
                                 <a href="#">
                                     <i class="metismenu-icon pe-7s-hourglass"></i>
                                     Merchandising
@@ -254,6 +260,11 @@
                                     </li>
                                 </ul>
                             </li>
+                            <?php 
+                            }
+                            if($previlige == 1 || $previlige == 2 || $previlige == 4){
+                            ?>
+                            <!-- Commercial -->
                             <li>
                                 <a href="#">
                                     <i class="metismenu-icon pe-7s-mail-open-file"></i>
@@ -311,6 +322,11 @@
                                     </li>
                                 </ul>
                             </li>
+                            <?php
+                            }
+                            if($previlige == 1 || $previlige == 2 || $previlige == 5){
+                                 ?>
+                            <!-- Production -->
                             <li>
                                 <a href="#">
                                     <i class="metismenu-icon pe-7s-network"></i>
@@ -741,6 +757,7 @@
                                     </li>
                                 </ul>
                             </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>

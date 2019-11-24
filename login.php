@@ -22,6 +22,7 @@ if (isset($_POST['submit'])) {
         set_ses('isLogged', true);
         set_ses('logInTime', time());
         set_ses('user', $result['Username']);
+        set_ses('name', $result['Name']);
         set_ses('user_id', $result['UserID']);
         set_ses('designation', $result['Designation']);
         $token = md5(uniqid(rand(), true));
