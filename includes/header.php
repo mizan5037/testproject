@@ -381,6 +381,12 @@
                                                     </i>Accessories Report
                                                 </a>
                                             </li>
+                                            <li <?php active('stationery_report'); ?>>
+                                                <a target="_blank" href="<?= $path ?>/index.php?page=stationery_report">
+                                                    <i class="metismenu-icon">
+                                                    </i>Stationery Report
+                                                </a>
+                                            </li>
 
                                         </ul>
                                     </li>
