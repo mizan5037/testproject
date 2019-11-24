@@ -34,103 +34,107 @@ include_once "includes/header.php";
         <div class="card-body">
             <!-- <h5 class="card-title">PO</h5> -->
             <form class="needs-validation" method="POST" novalidate>
-                <div class="form-row">
-                    <table class="mb-0 table table-bordered order-list" id="myTable">
-                        <thead>
-                            <tr>
-                                <th width="1%">#</th>
-                                <th width="10%">PO</th>
-                                <th width="20%">Style</th>
-                                <th width="10%">Color</th>
-                                <th width="7%">Shade</th>
-                                <th width="8%">Shrinkage</th>
-                                <th width="10%">Width</th>
-                                <th width="10%">Received Yds</th>
-                                <th width="10%">Received Roll</th>
-                                <th width="10%">Shortage/Excess Yds</th>
-                                <th width="4%">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>
-                                    <select name="po[]" class="po form-control-sm search_select" required>
-                                        <option></option>
-                                        <?php
-                                        $conn = db_connection();
-                                        $sql = "SELECT * FROM po WHERE status = 1";
-                                        $results = mysqli_query($conn, $sql);
-                                        while ($result = mysqli_fetch_assoc($results)) {
-                                            echo '<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
-                                        }
-                                        ?>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select name="style[]" class="style form-control-sm search_select" required>
-                                        <option></option>
-                                        <?php
-                                        $conn = db_connection();
-                                        $sql = "SELECT * FROM style WHERE status = 1";
-                                        $results = mysqli_query($conn, $sql);
-                                        while ($result = mysqli_fetch_assoc($results)) {
-                                            echo '<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
-                                        }
-                                        ?>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select name="color[]" class="style form-control-sm search_select" required>
-                                        <option></option>
-                                        <?php
-                                        $conn = db_connection();
-                                        $sql = "SELECT * FROM color WHERE status = 1";
-                                        $results = mysqli_query($conn, $sql);
-                                        while ($result = mysqli_fetch_assoc($results)) {
-                                            echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
-                                        }
-                                        ?>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select name="shade[]" class="form-control-sm ">
-                                        <option value="A">A</option>
-                                        <option value="B">B</option>
-                                        <option value="C">C</option>
-                                        <option value="D">D</option>
-                                        <option value="E">E</option>
-                                        <option value="F">F</option>
-                                        <option value="G">G</option>
-                                        <option value="H">H</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <input placeholder="Shrinkage" type="text" name="shrinkage[]" class="form-control-sm form-control">
-                                </td>
-                                <td>
-                                    <input placeholder="Width" type="number" name="width[]" class="form-control-sm form-control" step="0.01">
-                                </td>
-                                <td>
-                                    <input placeholder="Received Yds" type="number" name="receivefab[]" class="form-control-sm form-control" step="0.01">
-                                </td>
-                                <td>
-                                    <input placeholder="Received Roll" type="number" name="receiveroll[]" class="form-control-sm form-control">
-                                </td>
-                                <td>
-                                    <input placeholder="Shortage/Excess Yds" type="number" name="sortexs[]" class="form-control-sm form-control">
-                                </td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="11" style="text-align:center">
-                                    <input type="button" id="addrow" class="btn btn-sm btn-success" value="Add Row" />
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="mb-0 table table-bordered order-list" id="myTable" width="100%">
+                                <thead>
+                                    <tr width="100%">
+                                        <th width="5%">#</th>
+                                        <th width="10%">PO</th>
+                                        <th width="15%">Style</th>
+                                        <th width="10%">Color</th>
+                                        <th width="7%">Shade</th>
+                                        <th width="8%">Shrinkage</th>
+                                        <th width="10%">Width</th>
+                                        <th width="10%">Received Yds</th>
+                                        <th width="10%">Received Roll</th>
+                                        <th width="10%">Shortage/Excess Yds</th>
+                                        <th width="5%">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>
+                                            <select name="po[]" class="po form-control-sm search_select" required>
+                                                <option></option>
+                                                <?php
+                                                $conn = db_connection();
+                                                $sql = "SELECT * FROM po WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    echo '<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="style[]" class="style form-control-sm search_select" required>
+                                                <option></option>
+                                                <?php
+                                                $conn = db_connection();
+                                                $sql = "SELECT * FROM style WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    echo '<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="color[]" class="style form-control-sm search_select" required>
+                                                <option></option>
+                                                <?php
+                                                $conn = db_connection();
+                                                $sql = "SELECT * FROM color WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="shade[]" class="form-control-sm ">
+                                                <option value="A">A</option>
+                                                <option value="B">B</option>
+                                                <option value="C">C</option>
+                                                <option value="D">D</option>
+                                                <option value="E">E</option>
+                                                <option value="F">F</option>
+                                                <option value="G">G</option>
+                                                <option value="H">H</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input placeholder="Shrinkage" type="text" name="shrinkage[]" class="form-control-sm form-control">
+                                        </td>
+                                        <td>
+                                            <input placeholder="Width" type="number" name="width[]" class="form-control-sm form-control" step="0.01">
+                                        </td>
+                                        <td>
+                                            <input placeholder="Received Yds" type="number" name="receivefab[]" class="form-control-sm form-control" step="0.01">
+                                        </td>
+                                        <td>
+                                            <input placeholder="Received Roll" type="number" name="receiveroll[]" class="form-control-sm form-control">
+                                        </td>
+                                        <td>
+                                            <input placeholder="Shortage/Excess Yds" type="number" name="sortexs[]" class="form-control-sm form-control">
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="11" style="text-align:center">
+                                            <input type="button" id="addrow" class="btn btn-sm btn-success" value="Add Row" />
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 <br><br>
                 <div class="container">
@@ -158,7 +162,6 @@ function customPagefooter()
         $('.search_select').select2({
             placeholder: 'Select Card Numbers'
         });
-
     </script>
     <script>
         $(document).ready(function() {
