@@ -19,7 +19,10 @@ include_once "includes/header.php";
                     <i class="pe-7s-id icon-gradient bg-mean-fruit">
                     </i>
                 </div>
-                <div><?php echo get_ses('user'); ?>
+                <div><?= $row['Name'] ?>
+                    <div class="page-title-subheading">
+                        <?= get_designation($row['Designation']) ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -28,33 +31,40 @@ include_once "includes/header.php";
         <div class="col-md-6">
             <div class="main-card mb-3 card">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Change Password</h5>
-                    <h6 class="card-subtitle">If You Want to Change the Old Password</h6>
+                    <h5 class="card-title">Update Profile</h5>
+
                     <br>
-                    <form class="needs-validation" novalidate>
+                    <form class="needs-validation" novalidate method="post">
                         <div class="form-row">
                             <div class="col-md-12 mb-3">
-                                <input type="password" class="form-control" id="validationTooltip01" placeholder="Old Password" required>
+                                <input type="text" class="form-control" placeholder="username" value="<?= $row['Name'] ?>" name="name" required>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <input type="text" class="form-control" name="email" value="<?= $row['email'] ?>" placeholder="Email" required>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <h6 class="card-subtitle">If You Want to Change the Old Password</h6>
+                                <input type="password" class="form-control" name="old" placeholder="Old Password">
                                 <div class="invalid-tooltip">
                                     Please Enter Old Password.
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
-                                <input type="password" class="form-control" id="validationTooltip02" placeholder="New Password" required>
+                                <input type="password" class="form-control" name="new" placeholder="New Password">
                                 <div class="invalid-tooltip">
                                     Please Enter the New Password.
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <div class="input-group">
-                                    <input type="password" class="form-control" id="validationTooltipUsername" placeholder="Re-Enter New Password" required>
+                                    <input type="password" class="form-control" name="rnew" placeholder="Re-Enter New Password">
                                     <div class="invalid-tooltip">
                                         Please Re-Enter New Password.
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-primary" type="submit">Change Password</button>
+                        <input class="btn btn-primary" type="submit" name="update" value="Update">
                     </form>
                 </div>
             </div>
@@ -69,11 +79,14 @@ include_once "includes/header.php";
                                 <input type="text" class="form-control" placeholder="Name" name="name" required>
                             </div>
                             <div class="col-md-12 mb-3">
-                                <input type="text" class="form-control" email="email" placeholder="Email" required>
+                                <input type="text" class="form-control" placeholder="username" name="username" required>
                             </div>
                             <div class="col-md-12 mb-3">
-                                <select name="designation" id="exampleSelect" class="form-control" required>
-                                    <option value="">Choose Designation</option>
+                                <input type="text" class="form-control" name="email" placeholder="Email" required>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <select name="designation" class="form-control" required>
+                                    <option>Choose Designation</option>
                                     <option value="1">Super Admin</option>
                                     <option value="2">Admin</option>
                                     <option value="3">Merchandising</option>
@@ -92,7 +105,7 @@ include_once "includes/header.php";
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-primary" type="submit">Add New User</button>
+                        <input class="btn btn-primary" type="submit" name="new_user" value="Add New User">
                     </form>
                 </div>
             </div>
@@ -100,62 +113,37 @@ include_once "includes/header.php";
     </div>
     <div class="row">
         <div class="col-md-12">
-        <div class="main-card mb-3 card">
-        <div class="card-body">
-            <h5 class="card-title">User List</h5>
-            <table class="mb-0 table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>User Name</th>
-                        <th>Email</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mizan</td>
-                        <td>mizan@example.com</td>
-                        <td>
-                            <button class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                Details
-                            </button>
-                            <button class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-danger">
-                                Ban
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Sumon</td>
-                        <td>sumon@example.com</td>
-                        <td>
-                            <button class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                Details
-                            </button>
-                            <button class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-success">
-                                assign
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Shuvo</td>
-                        <td>Shuvo@example.com</td>
-                        <td>
-                            <button class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
-                                Details
-                            </button>
-                            <button class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-danger">
-                                Ban
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <h5 class="card-title">User List</h5>
+                    <table class="mb-0 table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>User Name</th>
+                                <th>Email</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while ($user = mysqli_fetch_assoc($all)) { ?>
+                                <tr>
+                                    <th scope="row"><?= $user['UserID'] ?></th>
+                                    <td><?= $user['Name'] ?> </td>
+                                    <td><?= $user['Username'] ?> &nbsp;&nbsp; <?= $user['Status'] ? '' : '<span class="badge badge-danger">Banned User</span>' ?></td>
+                                    <td><?= $user['email'] ?></td>
+                                    <td>
+                                        <a onclick="return confirm('Are You sure want to <?= $user['Status'] ? 'Ban' : 'Assign' ?> this user?')" href="<?= $path ?>/index.php?page=user&status=<?= $user['Status'] ?>&id=<?= $user['UserID'] ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-<?= $user['Status'] ? 'danger' : 'success' ?>">
+                                            <?= $user['Status'] ? 'Ban' : 'Assign' ?>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

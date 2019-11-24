@@ -17,12 +17,13 @@ if (isset($_POST['submit'])) {
     //echo $sql;
     //print_r($result);
     $attempt = 'Failed';
-    if ($_POST['pass'] == $result['Pass']) {
+    if (md5($_POST['pass']) == $result['Pass']) {
         $attempt = 'Success';
         set_ses('isLogged', true);
         set_ses('logInTime', time());
         set_ses('user', $result['Username']);
         set_ses('user_id', $result['UserID']);
+        set_ses('designation', $result['Designation']);
         $token = md5(uniqid(rand(), true));
         set_ses('token', $token);
         loginlog('User: ' . $_POST['user'] . PHP_EOL . 'Attempt: ' . $attempt);

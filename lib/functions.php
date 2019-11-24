@@ -226,3 +226,41 @@ function getcount($table, $column)
     $row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
     return $row['total'];
 }
+
+
+function get_designation($designation){
+    switch ($designation) {
+        case 1:
+            return "Super Admin";
+            break;
+        case 2:
+            return "Admin";
+            break;
+        case 3:
+            return "Merchandising";
+            break;
+        case 4:
+            return "Commercial";
+            break;
+        case 5:
+            return "Production";
+            break;
+        default:
+            return "Invalid User";
+    }
+}
+
+
+// user privilege
+function hasAccess(){
+    global $page_privilege;
+    $desig = get_ses('designation');
+
+    if($desig == 1 || $desig == 2){
+        return true;
+    }elseif($desig == $page_privilege){
+        return true;
+    }else{
+        nowgo('/index.html');
+    }
+}

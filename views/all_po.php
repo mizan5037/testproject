@@ -1,4 +1,6 @@
 <?php
+$page_privilege = 1;
+hasAccess();
 
 $PageTitle = "ALL PO | Optima Inventory";
 function customPageHeader()
