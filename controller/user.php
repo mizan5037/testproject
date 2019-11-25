@@ -29,6 +29,8 @@ if (isset($_POST['update'])) {
         $sql = "UPDATE users SET Name='$name', email='$email',Pass='$pass' WHERE UserID = $user_id";
     }
 
+    set_ses('name', $name);
+
     if (mysqli_query($conn, $sql)) {
         notice('success', 'User Data Updated Successfully!');
     } else {
