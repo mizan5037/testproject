@@ -24,11 +24,11 @@ if (isset($_GET['fab_Rec_id']) && isset($_GET['buyer_id'])) {
         $sql = "UPDATE fab_receive SET Shade='$shade', Shrinkage='$shrinkage', Width='$width', ReceivedFab='$receivefab', ReceivedRoll='$receiveroll', Shortage='$sortexs', AddedBy='$user_id' WHERE FabReceiveID ='$fab_rec_id'";
 
         if (mysqli_query($conn, $sql)) {
-            notice('success', 'New Fabric Updated Successfully');
+            notice('success', 'Fabric Updated Successfully');
+            nowgo('/index.php?page=single_fab_received&fabRecBuyer=' . $buyer_id . '&fbRecPOID=' . $fab_all['POID'] . '&fbRecStyle=' . $fab_all['StyleID'] . '&fbRecColor=' . $fab_all['Color']);
         } else {
             notice('error', $sql . "<br>" . mysqli_error($conn));
         }
-        nowgo('/index.php?page=single_fab_received&fabRecBuyer=' . $buyer_id . '&fbRecPOID=' . $fab_all['POID'] . '&fbRecStyle=' . $fab_all['StyleID'] . '&fbRecColor=' . $fab_all['Color']);
     }
 } elseif (isset($_GET['fab_Rec_other_id'])) {
     $fab_Rec_other_id = $_GET['fab_Rec_other_id'];
@@ -50,11 +50,11 @@ if (isset($_GET['fab_Rec_id']) && isset($_GET['buyer_id'])) {
 
         if (mysqli_query($conn, $sql)) {
             notice('success', 'Fabric Updated (Contrast,Pocketing) Successfully');
+            nowgo('/index.php?page=single_fab_received&fabRecOtherBuyerid='.$fab_other_all['BuyerID'].'&ContrastPocket='. $fab_other_all['ContrastPocket']);
         } else {
             notice('error', $sql . "<br>" . mysqli_error($conn));
         }
 
-        nowgo('/index.php?page=single_fab_received&fabRecOtherBuyerid='.$fab_other_all['BuyerID'].'&ContrastPocket='. $fab_other_all['ContrastPocket']);
     }
 }
 
