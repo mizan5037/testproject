@@ -2,7 +2,7 @@
 $conn = db_connection();
 if (isset($_POST['style'])) {
     $stylenumber = mysqli_real_escape_string($conn, $_POST['style']);
-    $sql         = "SELECT * FROM style WHERE StyleNumber = '$stylenumber'";
+    $sql         = "SELECT * FROM style WHERE StyleNumber LIKE '%$stylenumber%'";
     $row         = mysqli_query($conn, $sql);
 }
 
