@@ -42,12 +42,12 @@ if (isset($_POST['update'])) {
 
 //Add new User
 if(isset($_POST['new_user'])){
-    $name  = mysqli_real_escape_string($conn, $_POST['name']);
-    $username  = mysqli_real_escape_string($conn, $_POST['username']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $name        = mysqli_real_escape_string($conn, $_POST['name']);
+    $username    = mysqli_real_escape_string($conn, $_POST['username']);
+    $email       = mysqli_real_escape_string($conn, $_POST['email']);
     $designation = mysqli_real_escape_string($conn, $_POST['designation']);
-    $pass = mysqli_real_escape_string($conn, $_POST['pass']);
-    $rpass = mysqli_real_escape_string($conn, $_POST['rpass']);
+    $pass        = mysqli_real_escape_string($conn, $_POST['pass']);
+    $rpass       = mysqli_real_escape_string($conn, $_POST['rpass']);
 
     $sql = "SELECT Username FROM users WHERE Username = '$username'";
     $result = mysqli_query($conn, $sql);
@@ -58,7 +58,7 @@ if(isset($_POST['new_user'])){
 
     if($pass == $rpass){
         $pass = md5($pass);
-        $sql = "INSERT INTO users(Name, Username, email, Designation, Pass, AddedBy) VALUES ('$name','$username','$email','$designation','$pass','$user_id')";
+        $sql  = "INSERT INTO users(Name, Username, email, Designation, Pass, AddedBy) VALUES ('$name','$username','$email','$designation','$pass','$user_id')";
         if (mysqli_query($conn, $sql)) {
             notice('success', 'User Added Successfully!');
         } else {
@@ -71,7 +71,7 @@ if(isset($_POST['new_user'])){
 
 //User status change
 if(isset($_GET['status']) && $_GET['status'] != '' && isset($_GET['id']) && $_GET['id'] != ''){
-    $id = mysqli_real_escape_string($conn, $_GET['id']);
+    $id     = mysqli_real_escape_string($conn, $_GET['id']);
     $status = mysqli_real_escape_string($conn, $_GET['status']) ? '0' : '1';
 
     $sqlu = "UPDATE users SET Status=$status WHERE UserID = $id";
