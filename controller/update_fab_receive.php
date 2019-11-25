@@ -24,7 +24,7 @@ if (isset($_GET['fab_Rec_id']) && isset($_GET['buyer_id'])) {
         $sql = "UPDATE fab_receive SET Shade='$shade', Shrinkage='$shrinkage', Width='$width', ReceivedFab='$receivefab', ReceivedRoll='$receiveroll', Shortage='$sortexs', AddedBy='$user_id' WHERE FabReceiveID ='$fab_rec_id'";
 
         if (mysqli_query($conn, $sql)) {
-            notice('success', 'New Fabric Updated Successfully');
+            notice('success', 'Fabric Updated Successfully');
         } else {
             notice('error', $sql . "<br>" . mysqli_error($conn));
         }
