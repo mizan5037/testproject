@@ -1,6 +1,6 @@
 <?php
 
-$PageTitle = "Fabric Stock Details | Optima Inventory";
+$PageTitle = "Fabric Received Details | Optima Inventory";
 function customPageHeader()
 {
     ?>
@@ -14,7 +14,7 @@ function modal()
 <?php }
 
 // keep the header always last.
-include_once "controller/single_fab_issue_stock.php";
+include_once "controller/single_fab_received.php";
 include_once "includes/header.php";
 
 ?>
@@ -29,45 +29,45 @@ include_once "includes/header.php";
                 </div>
                 <div>Fabric Deatils
                     <div class="page-title-subheading">
-                        All Issued and issue info
+                        All Received and info
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <?php
-    if (isset($fab_issue)) {
+    if (isset($fab_Recd)) {
         ?>
         <div class="main-card mb-3 card text-center">
             <div class="card-body">
                 <h5 class="card-title">
                     Buyer:
-                    <a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=single_buyer&buyer_id=<?= $buyer_id ?>" target="_blank">
-                        <?= getname('buyer', 'BuyerName', 'BuyerID', $fab_issue['BuyerID']) ?>
+                    <a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=single_buyer&buyer_id=<?= getname('buyer', 'BuyerID', 'BuyerID',  $fabRecBuyer) ?>" target="_blank">
+                        <?= getname('buyer', 'BuyerName', 'BuyerID',  $fabRecBuyer) ?>
                     </a>
                     &nbsp; &nbsp; &nbsp;
                     Style:
-                    <a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=single_style&id=<?= $style ?>" target="_blank">
-                        <?= getname('style', 'StyleNumber', 'StyleID', $fab_issue['StyleID']) ?>
+                    <a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=single_style&id=<?= getname('style', 'StyleID', 'StyleID', $fbRecStyle) ?>" target="_blank">
+                        <?= getname('style', 'StyleNumber', 'StyleID', $fbRecStyle) ?>
                     </a>
                 </h5>
             </div>
         </div>
     <?php
     }
-    if (isset($fab_issue_other)) {
+    if (isset($fab_Rec_other)) {
         ?>
         <div class="main-card mb-3 card text-center">
             <div class="card-body">
                 <h5 class="card-title">
                     Buyer:
-                    <a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=single_buyer&buyer_id=<?= $buyer_id ?>" target="_blank">
-                        <?= getname('buyer', 'BuyerName', 'BuyerID', $fab_issue_other['BuyerID']) ?>
+                    <a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=single_buyer&buyer_id=<?= getname('buyer', 'BuyerID', 'BuyerID', $BuyerID) ?>" target="_blank">
+                        <?= getname('buyer', 'BuyerName', 'BuyerID', $BuyerID) ?>
                     </a>
                     &nbsp; &nbsp; &nbsp;
                     Style:
                     <a class="btn btn-sm btn-outline-success">
-                        <?= $fab_issue_other['ContrastPocket'] ?>
+                        <?= $ContrastPocket ?>
                     </a>
                 </h5>
 
@@ -81,60 +81,54 @@ include_once "includes/header.php";
                 <thead>
                     <tr>
                         <?php
-                        if (isset($fab_issue_d)) {
-                            echo "<th colspan='9'>Fabric Issued</th>";
-                            ?>
-                            <th><a type="button" class="btn btn-primary btn-sm" href="<?= $path ?>/index.php?page=fab_issue_new&&fab_issue_id=<?= $fab_issue['FabIssueID']; ?>">Add New</a></th>
-                        <?php
+                        if (isset($fab_Rec)) {
+                            echo "<th colspan='12'>Fabric Recevied</th>";
                         }
-                        if (isset($fab_issue_other_d)) {
-                            echo "<th colspan='9'>Fabric Issued Other</th>";
-                            ?>
-                            <th class=""><a type="button" class="btn btn-primary btn-sm" href="<?= $path ?>/index.php?page=fab_issue_other_new&&fab_issue_other_id=<?= $fab_issue_other['ID'] ?>">Add New</a></th>
-                        <?php
+                        if (isset($fab_Rec_other)) {
+                            echo "<th colspan='12'>Fabric Recevied Other</th>";
                         }
                         ?>
-
-
                     </tr>
                     <tr>
                         <th>#</th>
-                        <th>Particulars</th>
                         <th>Color</th>
-                        <th>QTZ (DZ)</th>
-                        <th>Consuption (yds)</th>
-                        <th>RQD QTY (yds)</th>
-                        <th>ISSUE QTY (yds)</th>
-                        <th>Roll</th>
-                        <th>Issue Date</th>
+                        <th>Shade</th>
+                        <th>Shirkage</th>
+                        <th>Width</th>
+                        <th>Received Fab</th>
+                        <th>Received Roll</th>
+                        <th>Shortage</th>
+                        <th>Received Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
 
-                    if (isset($fab_issue_d)) {
-
+                    if (isset($fab_Recd)) {
                         $count = 1;
-                        while ($row = mysqli_fetch_assoc($fab_issue_d)) {
+
+                        while ($fab_Rec = mysqli_fetch_assoc($fab_Recd)) {
+
+
                             ?>
                             <tr>
                                 <td><?= $count++ ?></td>
-                                <td><?= $row['Particulars'] ?></td>
-                                <td><?= getname('color', 'color', 'id', $row['Color']) ?></td>
-                                <td><?= $row['Qtz'] ?></td>
-                                <td><?= $row['Consumption'] ?></td>
-                                <td><?= $row['RqdQty'] ?></td>
-                                <td><?= $row['IssueQty'] ?></td>
-                                <td><?= $row['Roll'] ?></td>
-                                <td><?= date('j-M-Y', strtotime($row['timestamp'])) ?></td>
+                                <td><?= getname('color', 'color', 'id', $fab_Rec['Color']) ?></td>
+                                <td><?= $fab_Rec['Shade'] ?></td>
+                                <td><?= $fab_Rec['Shrinkage'] ?></td>
+                                <td><?= $fab_Rec['Width'] ?></td>
+                                <td><?= $fab_Rec['ReceivedFab'] ?></td>
+                                <td><?= $fab_Rec['ReceivedRoll'] ?></td>
+                                <td><?= $fab_Rec['Shortage'] ?></td>
+                                <td><?= date('j-M-Y', strtotime($fab_Rec['timestamp'])) ?></td>
                                 <td>
-                                    <a href="<?= $path ?>/index.php?page=update_fab_issue&fabissue_d_id=<?= $row['ID'] ?>&fabissueid=<?= $fab_issue['FabIssueID'] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="<?= $path ?>/index.php?page=update_fab_receive&fab_Rec_id=<?= $fab_Rec['FabReceiveID'] ?>&buyer_id=<?= $fabRecBuyer?>" class="btn btn-sm btn-primary">Edit</a>
 
 
                                     <form class="" method="post">
-                                        <input type="hidden" name="id" value="<?= $row['ID'] ?>">
-                                        <input type="hidden" name="fab_id" value="<?= $fab_issue['FabIssueID'] ?>">
+                                        <input type="hidden" name="id" value="<?= $fab_Rec['FabReceiveID'] ?>">
+                                        <input type="hidden" name="fab_id" value="<?= $fab_Rec_id['FabIssueID'] ?>">
                                         <button class="btn btn-danger" type="submit" onclick="return confirm('Are You sure want to delete this item permanently?')" name="submit"><i class="fas fa-trash-alt" style="color: white;"></i></button>
                                     </form>
                                 </td>
@@ -142,24 +136,24 @@ include_once "includes/header.php";
                         <?php
                             }
                         }
-                        if (isset($fab_issue_other_d)) {
+                        if (isset($fab_Rec_all)) {
                             $count = 1;
-                            while ($row = mysqli_fetch_assoc($fab_issue_other_d)) {
-                                ?>
+                            while ($fab_Rec_other = mysqli_fetch_assoc($fab_Rec_all)) {
+                            ?>
                             <tr>
                                 <td><?= $count++ ?></td>
-                                <td><?= $row['Particulars'] ?></td>
-                                <td><?= getname('color', 'color', 'id', $row['Color']) ?></td>
-                                <td><?= $row['Qtz'] ?></td>
-                                <td><?= $row['Consumption'] ?></td>
-                                <td><?= $row['RqdQty'] ?></td>
-                                <td><?= $row['IssueQty'] ?></td>
-                                <td><?= $row['Roll'] ?></td>
-                                <td><?= date('j-M-Y', strtotime($row['timestamp'])) ?></td>
+                                <td><?= getname('color', 'color', 'id', $fab_Rec_other['Color']) ?></td>
+                                <td><?= $fab_Rec_other['Shade'] ?></td>
+                                <td><?= $fab_Rec_other['Shrinkage'] ?></td>
+                                <td><?= $fab_Rec_other['Width'] ?></td>
+                                <td><?= $fab_Rec_other['ReceivedFab'] ?></td>
+                                <td><?= $fab_Rec_other['ReceivedRoll'] ?></td>
+                                <td><?= $fab_Rec_other['Shortage'] ?></td>
+                                <td><?= date('j-M-Y', strtotime($fab_Rec_other['timestamp'])) ?></td>
                                 <td>
-                                    <a href="<?= $path ?>/index.php?page=update_fab_issue&fabissue_other_d_id=<?= $row['ID'] ?>&fab_issue_other_id=<?= $fab_issue_other['ID'] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="<?= $path ?>/index.php?page=update_fab_receive&fab_Rec_other_id=<?= $fab_Rec_other['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
                                     <form class="" method="post">
-                                        <input type="hidden" name="id1" value="<?= $row['ID'] ?>">
+                                        <input type="hidden" name="id1" value="<?= $fab_Rec_other['ID'] ?>">
                                         <input type="hidden" name="fab_other_id" value="<?= $fab_issue_other['ID'] ?>">
                                         <button class="btn btn-danger" type="submit" onclick="return confirm('Are You sure want to delete this item permanently?')" name="submit1"><i class="fas fa-trash-alt" style="color: white;"></i></button>
                                     </form>
@@ -168,6 +162,7 @@ include_once "includes/header.php";
                     <?php
                         }
                     }
+
 
                     ?>
 

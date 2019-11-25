@@ -49,7 +49,7 @@ include_once "includes/header.php";
                             <td><?= $count++ ?></td>
                             <td> <a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=single_buyer&buyer_id=<?= $row['BuyerID'] ?>" target="_blank"><?= $row['BuyerName'] ?></a> </td>
                             <td> <a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" target="_blank"><?= $row['StyleNumber'] ?></a> </td>
-                            <td> <a href="<?= $path ?>/index.php?page=single_fab_issue_stock&fabissueid=<?= $row['FabReceiveID'] ?>" class="btn btn-sm btn-primary">Details</a> </td>
+                            <td> <a href="<?= $path ?>/index.php?page=single_fab_received&fabRecBuyer=<?= $row['BuyerID'] ?>&fbRecPOID=<?= $row['POID'] ?>&fbRecStyle=<?= $row['StyleID'] ?>&fbRecColor=<?= $row['Color'] ?>" class="btn btn-sm btn-primary">Details</a> </td>
                         </tr>
                     <?php
                     }
@@ -59,7 +59,7 @@ include_once "includes/header.php";
                             <td><?= $count++ ?></td>
                             <td> <a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=single_buyer&buyer_id=<?= $rowother['BuyerID'] ?>" target="_blank"><?= $rowother['BuyerName'] ?></a> </td>
                             <td style="text-transform:capitalize"><?= $rowother['ContrastPocket'] ?></td>
-                            <td> <a href="<?= $path ?>/index.php?page=single_fab_issue_stock&fab_issue_other_id=<?= $rowother['id']; ?>" class="btn btn-sm btn-primary">Details</a> </td>
+                            <td> <a href="<?= $path ?>/index.php?page=single_fab_received&fabRecOtherBuyerid=<?= $rowother['BuyerID']; ?>&ContrastPocket=<?=$rowother['ContrastPocket']?>" class="btn btn-sm btn-primary">Details</a> </td>
                         </tr>
                     <?php
                     }
