@@ -123,13 +123,12 @@ include_once "includes/header.php";
                                 <td><?= $fab_Rec['Shortage'] ?></td>
                                 <td><?= date('j-M-Y', strtotime($fab_Rec['timestamp'])) ?></td>
                                 <td>
-                                    <a href="<?= $path ?>/index.php?page=update_fab_receive&fab_Rec_id=<?= $fab_Rec['FabReceiveID'] ?>&buyer_id=<?= $fabRecBuyer?>" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="<?= $path ?>/index.php?page=update_fab_receive&fab_Rec_id=<?= $fab_Rec['FabReceiveID'] ?>&buyer_id=<?= $fabRecBuyer ?>" class="btn btn-sm btn-primary">Edit</a>
 
 
-                                    <form class="" method="post">
-                                        <input type="hidden" name="id" value="<?= $fab_Rec['FabReceiveID'] ?>">
-                                        <input type="hidden" name="fab_id" value="<?= $fab_Rec_id['FabIssueID'] ?>">
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are You sure want to delete this item permanently?')" name="submit"><i class="fas fa-trash-alt" style="color: white;"></i></button>
+                                    <form method="post">
+                                        <input type="hidden" name="FabReceiveID" value="<?= $fab_Rec['FabReceiveID'] ?>">
+                                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are You sure want to delete this item permanently?')" name="fabRecDel"><i class="fas fa-trash-alt" style="color: white;"></i></button>
                                     </form>
                                 </td>
                             </tr>
@@ -139,7 +138,7 @@ include_once "includes/header.php";
                         if (isset($fab_Rec_all)) {
                             $count = 1;
                             while ($fab_Rec_other = mysqli_fetch_assoc($fab_Rec_all)) {
-                            ?>
+                                ?>
                             <tr>
                                 <td><?= $count++ ?></td>
                                 <td><?= getname('color', 'color', 'id', $fab_Rec_other['Color']) ?></td>
@@ -153,9 +152,8 @@ include_once "includes/header.php";
                                 <td>
                                     <a href="<?= $path ?>/index.php?page=update_fab_receive&fab_Rec_other_id=<?= $fab_Rec_other['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
                                     <form class="" method="post">
-                                        <input type="hidden" name="id1" value="<?= $fab_Rec_other['ID'] ?>">
-                                        <input type="hidden" name="fab_other_id" value="<?= $fab_issue_other['ID'] ?>">
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are You sure want to delete this item permanently?')" name="submit1"><i class="fas fa-trash-alt" style="color: white;"></i></button>
+                                        <input type="hidden" name="fabRcvOtherID" value="<?= $fab_Rec_other['id'] ?>">
+                                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are You sure want to delete this item permanently?')" name="fabRcvDel"><i class="fas fa-trash-alt" style="color: white;"></i></button>
                                     </form>
                                 </td>
                             </tr>
