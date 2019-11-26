@@ -12,12 +12,13 @@ function customPageHeader()
 $conn = db_connection();
 if (isset($_GET['delete_pi'])) {
     $id = $_GET['delete_pi'];
-    $sql = "UPDATE pi SET Status = 0 where PIID=" . $id;
+    $sql = "UPDATE pi SET Status = '0' where PIID=" . $id;
     if (mysqli_query($conn, $sql)) {
         notice('danger', 'PI Deleted  Successfully');
     } else {
         notice('error', $sql . "<br>" . mysqli_error($conn));
     }
+    nowgo('/index.php?page=all_pi');
 }
 
 include_once "includes/header.php";

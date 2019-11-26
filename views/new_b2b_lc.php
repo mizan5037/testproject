@@ -96,11 +96,11 @@ include_once "includes/header.php";
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <select class="form-control form-control-sm" name="item[]" required>
+                                    <select class="form-control form-control-sm" name="po[]" required>
                                         <option></option>
                                         <?php
-                                        foreach ($itemArr as $key) {
-                                            echo '<option value="' . $key['ItemID'] . '">' . $key['ItemName'] . '</option>';
+                                        foreach ($poArr as $key) {
+                                            echo '<option value="' . $key['POID'] . '">' . $key['PONumber'] . '</option>';
                                         }
                                         ?>
                                     </select>
@@ -116,23 +116,24 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                    <select class="form-control form-control-sm" name="po[]" required>
+                                    <select class="form-control form-control-sm" name="item[]" required>
                                         <option></option>
                                         <?php
-                                        foreach ($poArr as $key) {
-                                            echo '<option value="' . $key['POID'] . '">' . $key['PONumber'] . '</option>';
+                                        foreach ($itemArr as $key) {
+                                            echo '<option value="' . $key['ItemID'] . '">' . $key['ItemName'] . '</option>';
                                         }
                                         ?>
                                     </select>
                                 </td>
+
                                 <td>
                                     <input placeholder="Qty" name="qty[]" type="number" class="mb-2 form-control-sm form-control" required>
                                 </td>
                                 <td>
-                                    <input placeholder="Price Per Unit" name="ppu[]" type="number" class="mb-2 form-control-sm form-control" required>
+                                    <input placeholder="Price Per Unit" name="ppu[]" type="number" class="mb-2 form-control-sm form-control" step="0.01" required>
                                 </td>
                                 <td>
-                                    <input placeholder="Total Price" name="tp[]" type="number" class="mb-2 form-control-sm form-control" required>
+                                    <input placeholder="Total Price" name="tp[]" type="number" class="mb-2 form-control-sm form-control" step="0.01" required>
                                 </td>
                                 <td><a class="deleteRow"></a></td>
                             </tr>
@@ -189,18 +190,20 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><select class="form-control form-control-sm search_select" name="item[]" required> <option></option>  <?php foreach ($itemArr as $key) {
-                                                                                                                                            echo '<option value="' . $key['ItemID'] . '">' . $key['ItemName'] . '</option>';
-                                                                                                                                        } ?></select></td>';
-                cols += '<td><select class="form-control form-control-sm search_select" name="style[]" required> <option></option> <?php foreach ($styleArr as $key) {
-                                                                                                                                            echo '<option value="' . $key['StyleID'] . '">' . $key['StyleNumber'] . '</option>';
-                                                                                                                                        } ?> </select></td>';
                 cols += '<td><select class="form-control form-control-sm search_select" name="po[]" required> <option></option>  <?php foreach ($poArr as $key) {
                                                                                                                                             echo '<option value="' . $key['POID'] . '">' . $key['PONumber'] . '</option>';
                                                                                                                                         }  ?> </select></td>';
+                cols += '<td><select class="form-control form-control-sm search_select" name="style[]" required> <option></option> <?php foreach ($styleArr as $key) {
+                                                                                                                                            echo '<option value="' . $key['StyleID'] . '">' . $key['StyleNumber'] . '</option>';
+                                                                                                                                        } ?> </select></td>';
+                cols += '<td><select class="form-control form-control-sm search_select" name="item[]" required> <option></option>  <?php foreach ($itemArr as $key) {
+                                                                                                                                            echo '<option value="' . $key['ItemID'] . '">' . $key['ItemName'] . '</option>';
+                                                                                                                                        } ?></select></td>';
+
+
                 cols += '<td><input placeholder="Qty" name="qty[]" type="number" class="mb-2 form-control-sm form-control" required></td>';
-                cols += '<td><input placeholder="Price Per Unit" name="ppu[]" type="number" class="mb-2 form-control-sm form-control" required></td>';
-                cols += '<td><input placeholder="Total Price" name="tp[]" type="number" class="mb-2 form-control-sm form-control" required></td>';
+                cols += '<td><input placeholder="Price Per Unit" name="ppu[]" type="number" class="mb-2 form-control-sm form-control" step="0.01" required></td>';
+                cols += '<td><input placeholder="Total Price" name="tp[]" type="number" class="mb-2 form-control-sm form-control" step="0.01" required></td>';
 
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-sm btn-danger "  value="Delete"></td>';

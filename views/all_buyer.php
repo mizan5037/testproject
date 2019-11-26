@@ -112,9 +112,9 @@ function customPagefooter()
                         dataType: "text",
                         success: function(data) {
                             $('#result').html("<div class='alert alert-danger'>" + data + "</div>");
-                            location.reload(true);
+                            setTimeout(function(){ location.reload(true); }, 2000);
 
-
+                            
                         }
                     });
                 }

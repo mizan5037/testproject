@@ -803,6 +803,18 @@ CREATE TABLE `po_time_action` (
   `added_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+--
+-- Dumping data for table `po_time_action`
+--
+
+INSERT INTO `po_time_action` (`po_time_action_id`, `projected_date`, `implement_date`, `1st_revised_implement_date`, `2nd_revised_implement_date`, `3rd_revised_implement_date`, `4th_revised_implement_date`, `remarks`, `POID`, `event_id`, `time_stamp`, `added_by`) VALUES
+(0, '', '', '', '', '', '', '', 0, NULL, '0000-00-00 00:00:00', 1);
+
+--
+-- Indexes for dumped tables
+--
+
 -- --------------------------------------------------------
 
 --

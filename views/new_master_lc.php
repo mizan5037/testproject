@@ -272,7 +272,7 @@ function customPagefooter()
                 cols += '<td><select class="form-control form-control-sm search_select" id="style' + counter + '" name="style[]" required> <option></option>  </select></td>';
                 cols += '<td><input type="number" placeholder="Qty" class="mb-2 form-control-sm form-control" name="qty[]"/></td>';
                 cols += '<td><input type="text" placeholder="U/Name" class="mb-2 form-control-sm form-control" name="unitname[]"/></td>';
-                cols += '<td><input placeholder="U/Price" type="number" class="mb-2 form-control-sm form-control" name="price[]"/></td>';
+                cols += '<td><input placeholder="U/Price" type="number" class="mb-2 form-control-sm form-control" name="price[]" step="0.01"/></td>';
                 cols += '<td><input type="date" class="mb-2 form-control-sm form-control" name="lsdate[]"/></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-sm btn-warning"  value="Delete"></td>';

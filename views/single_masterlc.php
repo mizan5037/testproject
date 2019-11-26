@@ -82,7 +82,7 @@ function modal()
                                         <input placeholder="U/Name" type="text" name="unitname[]" class="mb-2 form-control-sm form-control" required>
                                     </td>
                                     <td>
-                                        <input placeholder="U/Price" type="number" name="price[]" class="mb-2 form-control-sm form-control" required>
+                                        <input placeholder="U/Price" type="number" name="price[]" class="mb-2 form-control-sm form-control" step="0.01" required>
                                     </td>
                                     <td>
                                         <input type="date" name="lsdate[]" class="mb-2 form-control-sm form-control" required>
@@ -117,7 +117,7 @@ function modal()
                                         <input placeholder="U/Name" type="text" name="unitname[]" class="mb-2 form-control-sm form-control">
                                     </td>
                                     <td>
-                                        <input placeholder="U/Price" type="number" name="price[]" class="mb-2 form-control-sm form-control">
+                                        <input placeholder="U/Price" type="number" name="price[]" class="mb-2 form-control-sm form-control" step="0.01">
                                     </td>
                                     <td>
                                         <input type="date" name="lsdate[]" class="mb-2 form-control-sm form-control">
@@ -152,7 +152,7 @@ function modal()
                                         <input placeholder="U/Name" type="text" name="unitname[]" class="mb-2 form-control-sm form-control">
                                     </td>
                                     <td>
-                                        <input placeholder="U/Price" type="number" name="price[]" class="mb-2 form-control-sm form-control">
+                                        <input placeholder="U/Price" type="number" name="price[]" class="mb-2 form-control-sm form-control" step="0.01">
                                     </td>
                                     <td>
                                         <input type="date" name="lsdate[]" class="mb-2 form-control-sm form-control">

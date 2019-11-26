@@ -176,7 +176,7 @@ function customPagefooter()
                 cols += '</select></td>';
                 cols += '<td><textarea placeholder="Description" name="description[]" type="text" class="mb-2 form-control-sm form-control"></textarea></td>';
                 cols += '<td><input name="qty[]" type="number" class="mb-2 form-control-sm form-control"></td>';
-                cols += '<td><input  name="ppu[]" type="number" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td><input  name="ppu[]" type="number" class="mb-2 form-control-sm form-control" step="0.01"></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-danger"  value="Delete"></td>';
                 newRow.append(cols);

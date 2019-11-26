@@ -55,13 +55,14 @@ if (isset($_POST['pono']) && isset($_POST['style']) && isset($_POST['qty']) && i
 
             if (mysqli_query($conn, $sql)) {
                 notice('success', 'Master LC Orders Added Successfully.');
-                nowgo('/index.php?page=single_masterlc&id=' . $id);
             } else {
                 notice('error', $sql . "<br>" . mysqli_error($conn));
                 die();
             }
         }
     }
+    nowgo('/index.php?page=single_masterlc&id=' . $id);
+
 }
 
 
@@ -126,7 +127,7 @@ if (
 if (isset($_GET['delete'])) {
     $id  = mysqli_real_escape_string($conn, $_GET['delete']);
     $sid = mysqli_real_escape_string($conn, $_GET['id']);
-    $sql = "DELETE FROM masterlc_description  WHERE ID=" . $id;
+    $sql = "UPDATE masterlc_description SET status = '0' WHERE ID=" . $id;
 
     if (mysqli_query($conn, $sql)) {
         notice('success', 'Master LC Orders Deleted Successfully');
