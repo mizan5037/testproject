@@ -19,6 +19,7 @@ if (isset($_GET['delete'])) {
     } else {
         notice('error', $sql . "<br>" . mysqli_error($conn));
     }
+    nowgo('/index.php?page=all_style');
 }
 include_once "includes/header.php";
 
