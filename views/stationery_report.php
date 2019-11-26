@@ -55,7 +55,7 @@ include_once "includes/header.php";
                                         $sql = "SELECT Name,ID FROM stationary_item WHERE Status = '1'";
                                         $items = mysqli_query($conn, $sql);
                                         ?>
-                                        <select name="item" class="form-control form-control-sm search_select">
+                                        <select name="item" class="form-control form-control-sm search_select" required>
                                             <option value=""></option>
                                             <?php
                                             foreach ($items as $item) {

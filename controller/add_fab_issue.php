@@ -23,14 +23,14 @@ if ( isset($_POST['buyer']) && $_POST['style'] && isset($_POST['po']) && isset($
 		}
     }
 
-    $particulars = mysqli_real_escape_string($conn, $_POST['particulars']);
-    $color       = mysqli_real_escape_string($conn, $_POST['color']);
-    $qtz         = mysqli_real_escape_string($conn, $_POST['qtz']);
-    $consuption  = mysqli_real_escape_string($conn, $_POST['consuption']);
-    $rqd         = mysqli_real_escape_string($conn, $_POST['rqd']);
-    $issue       = mysqli_real_escape_string($conn, $_POST['issue']);
-    $remark      = mysqli_real_escape_string($conn, $_POST['remark']);
-    $user_id     = mysqli_real_escape_string($conn, get_ses('user_id'));
+    $particulars = ($_POST['particulars']);
+    $color       = ($_POST['color']);
+    $qtz         = ($_POST['qtz']);
+    $consuption  = ($_POST['consuption']);
+    $rqd         = ($_POST['rqd']);
+    $issue       = ($_POST['issue']);
+    $remark      = ($_POST['remark']);
+    $user_id     = (get_ses('user_id'));
 
     for ($i = 0; $i < sizeof($color); $i++) {
 

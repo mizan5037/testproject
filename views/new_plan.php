@@ -297,8 +297,9 @@ function customPagefooter()
             var left = $('#orderQty').val();
             $("table.order-list").find('input[name^="qty"]').each(function() {
                 grandTotal += +$(this).val();
-                left -= +grandTotal;
+
             });
+            left = left - grandTotal;
             $("#grandtotal").text(grandTotal.toFixed(0));
             $("#left").text(left.toFixed(0));
         }

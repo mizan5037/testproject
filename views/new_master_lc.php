@@ -154,7 +154,7 @@ include_once "includes/header.php";
                                 <td>
                                     <select class="form-control form-control-sm search_select" id="style" name="style[]" required>
                                         <option></option>
-                                       
+
                                     </select>
                                 </td>
                                 <td>
@@ -216,10 +216,8 @@ function customPagefooter()
 
     <script type="text/javascript">
         $('.search_select').select2({
-            placeholder: 'Select Card Numbers'
+            placeholder: 'Please Select'
         });
-
-        $("select").select2();
     </script>
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
@@ -236,7 +234,26 @@ function customPagefooter()
     </script>
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
-
+        function getstyle(poid, styleid) {
+            let poids = $(poid).val();
+            if (poids != '') {
+                $.ajax({
+                    url: "<?= $path ?>/controller/api.php",
+                    method: "POST",
+                    data: {
+                        po: poids,
+                        form: 'get_style',
+                        token: '<?= get_ses('token') ?>'
+                    },
+                    dataType: "text",
+                    success: function(data) {
+                        $(styleid).html(data);
+                    }
+                });
+            } else {
+                $(styleid).html("<option>---</option>");
+            }
+        }
         $(document).ready(function() {
             var counter = 0;
             var limit = 100;
@@ -249,10 +266,10 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><select class="form-control form-control-sm search_select" id="po" name="pono[]" required> <option></option> <?php foreach ($poArr as $key) {
-                                                                                                                                            echo '<option value="' . $key['POID'] . '">' . $key['PONumber'] . '</option>';
-                                                                                                                                        } ?> </select></td>';
-                cols += '<td><select class="form-control form-control-sm search_select" id="style" name="style[]" required> <option></option>  </select></td>';
+                cols += '<td><select class="form-control form-control-sm search_select" onchange="getstyle(\'#po' + counter + '\',\'#style' + counter + '\');" id="po' + counter + '" name="pono[]" required> <option></option> <?php foreach ($poArr as $key) {
+                                                                                                                                                                                                                                        echo '<option value="' . $key['POID'] . '">' . $key['PONumber'] . '</option>';
+                                                                                                                                                                                                                                    } ?> </select></td>';
+                cols += '<td><select class="form-control form-control-sm search_select" id="style' + counter + '" name="style[]" required> <option></option>  </select></td>';
                 cols += '<td><input type="number" placeholder="Qty" class="mb-2 form-control-sm form-control" name="qty[]"/></td>';
                 cols += '<td><input type="text" placeholder="U/Name" class="mb-2 form-control-sm form-control" name="unitname[]"/></td>';
                 cols += '<td><input placeholder="U/Price" type="number" class="mb-2 form-control-sm form-control" name="price[]"/></td>';
@@ -310,6 +327,8 @@ function customPagefooter()
                 }
 
             });
+
+
 
 
         });

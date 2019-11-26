@@ -21,5 +21,5 @@ if (isset($_POST['unit_name']) && isset($_POST['issue'])  && isset($_POST['item'
 			notice('error', $sql . "<br>" . mysqli_error($conn));
 		}
   }
-  nowgo('/index.php?page=stationary');
+  // nowgo('/index.php?page=stationary_item&id='.$item);
 }

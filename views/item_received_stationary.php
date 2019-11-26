@@ -55,7 +55,7 @@ include_once "includes/header.php";
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
-                                        $sql = "SELECT * FROM stationary_item WHERE status = 1";
+                                        $sql = "SELECT * FROM stationary_item WHERE status = '1'";
                                         $results = mysqli_query($conn, $sql);
                                         while ($result = mysqli_fetch_assoc($results)) {
                                             echo '<option value="' . $result['ID'] . '">' . $result['Name'] . '</option>';
