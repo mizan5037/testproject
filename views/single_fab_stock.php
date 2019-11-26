@@ -75,8 +75,14 @@ include_once "includes/header.php";
                     </thead>
                     <tbody>
                         <?php
-                            $count = 1;
+                            $count   = 1;
+                            $recFab  = 0;
+                            $recRoll = 0;
+                            $issueFab  = 0;
+                            $issueRoll = 0;
                             while ($row = mysqli_fetch_assoc($hasstyle)) {
+                                $recFab  += $row['ReceivedFab'];
+                                $recRoll += $row['ReceivedRoll'];
                                 ?>
                             <tr>
                                 <td><?= $count++ ?></td>
@@ -117,8 +123,11 @@ include_once "includes/header.php";
                         </thead>
                         <tbody>
                             <?php
-                                    $count = 1;
+                                    $count     = 1;
+
                                     while ($row = mysqli_fetch_assoc($hasstyleissue)) {
+                                        $issueFab  += $row['IssueQty'];
+                                        $issueRoll += $row['Roll'];
                                         ?>
                                 <tr>
                                     <td><?= $count++ ?></td>
@@ -137,10 +146,43 @@ include_once "includes/header.php";
                     </table>
                 </div>
             </div>
-        <?php }
-        }
-        if (isset($hascon)) {
-            ?>
+        <?php } ?>
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <table class="table table-bordered table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th colspan="8">Reaming YDS And Roll</th>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <th>Yds</th>
+                            <th>Roll</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Received</td>
+                            <td><?= $recFab ?></td>
+                            <td><?= $recRoll ?></td>
+                        </tr>
+                        <tr>
+                            <td>Isssued</td>
+                            <td><?= $issueFab ?></td>
+                            <td><?= $issueRoll ?></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <th>Reaming</th>
+                        <th><?= $recFab - $issueFab ?></th>
+                        <th><?= $recRoll - $issueRoll ?></th>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    <?php }
+    if (isset($hascon)) {
+        ?>
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h5 class="card-title text-center">
@@ -177,7 +219,13 @@ include_once "includes/header.php";
                     <tbody>
                         <?php
                             $count = 1;
+                            $recFab = 0;
+                            $recRoll = 0;
+                            $issueFab  = 0;
+                            $issueRoll = 0;
                             while ($row = mysqli_fetch_assoc($hascon)) {
+                                $recFab += $row['ReceivedFab'];
+                                $recRoll += $row['ReceivedRoll'];
                                 ?>
                             <tr>
                                 <td><?= $count++ ?></td>
@@ -218,8 +266,10 @@ include_once "includes/header.php";
                         </thead>
                         <tbody>
                             <?php
-                                    $count = 1;
+                                    $count     = 1;
                                     while ($row = mysqli_fetch_assoc($hasconissue)) {
+                                        $issueFab  += $row['RqdQty'];
+                                        $issueRoll += $row['Roll'];
                                         ?>
                                 <tr>
                                     <td><?= $count++ ?></td>
@@ -239,9 +289,43 @@ include_once "includes/header.php";
                     </table>
                 </div>
             </div>
-    <?php }
-    } ?>
+        <?php } ?>
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <table class="table table-bordered table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th colspan="8">Reaming YDS And Roll</th>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <th>Yds</th>
+                            <th>Roll</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Received</td>
+                            <td><?= $recFab ?></td>
+                            <td><?= $recRoll ?></td>
+                        </tr>
+                        <tr>
+                            <td>Isssued</td>
+                            <td><?= $issueFab ?></td>
+                            <td><?= $issueRoll ?></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <th>Reaming</th>
+                        <th><?= $recFab - $issueFab ?></th>
+                        <th><?= $recRoll - $issueRoll ?></th>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
 </div>
+<?php } ?>
+
 
 <?php
 function customPagefooter()
