@@ -571,7 +571,7 @@ include_once "includes/header.php";
                         </thead>
                         <tbody>
                             <?php
-                            $sql = "SELECT s.size, i.ItemName, i.ItemDescription, ir.ItemRequirmentQty, i.ItemMeasurementUnit FROM itemrequirment ir LEFT JOIN item i ON ir.ItemRequirmentItemID = i.ItemID LEFT JOIN size s ON ir.ItemRequirmentSize = s.id WHERE ir.status = 1 AND ir.ItemRequirmentStyleID ='$id'";
+                            $sql = "SELECT s.size, i.ItemName, i.ItemDescription, ir.ItemRequirmentQty, i.ItemMeasurementUnit,ir.ItemRequirmentID FROM itemrequirment ir LEFT JOIN item i ON ir.ItemRequirmentItemID = i.ItemID LEFT JOIN size s ON ir.ItemRequirmentSize = s.id WHERE ir.status = 1 AND ir.ItemRequirmentStyleID ='$id'";
 
                             $item = mysqli_query($conn, $sql);
                             $count = 1;
@@ -583,7 +583,7 @@ include_once "includes/header.php";
                                     <td><?= $row['ItemDescription'] ?></td>
                                     <td><?= $row['size'] ?></td>
                                     <td><?= $row['ItemRequirmentQty'] . " " . $row['ItemMeasurementUnit'] ?></td>
-                                    <td><a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=single_style&id=<?= $id ?>&delete=<?php echo $row['ItemRequirmentID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
+                                    <td><a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=single_style&id=<?=$id?>&delete=<?php echo $row['ItemRequirmentID']; ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
                                             <i class="fas fa-trash-alt" style="color: white;"></i>
                                         </a>
                                     </td>

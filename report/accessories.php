@@ -47,7 +47,7 @@
     </h2>
     <h3><span>Buyer:<?= $buyer_name ?>
         </span> </h3>
-    <h3><span>Item:  <?= $item_name ?> </span> <span>Size:<?= $size ?></span> </h3>
+    <h3><span>Item: <?= $item_name ?> </span> <span>Size:<?= $size ?></span> </h3>
     <p>
         <span class="h1">Received Items</span>
         <br>
@@ -102,7 +102,7 @@
                 <td>Date</td>
                 <td>PO Number</td>
                 <td>Style</td>
-                <td>Received Itme</td>
+                <td>Issued Itme</td>
             </tr>
         </thead>
         <tbody>
