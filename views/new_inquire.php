@@ -204,7 +204,7 @@ include_once "includes/header.php";
                                 </table>
                             </div>
                             <div class="col-md-6">
-                                <img style="max-height:265px;" onclick="view('<?= $result['StyleImage'] ?>');" id="<?= $result['StyleImage'] ?>" src="<?= $path . $uploadpath . $result['StyleImage'] ?>" class="img-fluid img-thumbnail rounded" alt="Style No: <?= $result['StyleNumber'] ?>">
+                                <img style="max-height:265px;"  onclick="view('<?= $result['StyleImage'] ?>');" id="<?= $result['StyleImage'] ?>" src="<?= getimg($result['StyleImage']) ?>" class="img-fluid img-thumbnail rounded" alt="Style No: <?= $result['StyleNumber'] ?>">
                             </div>
                         </div>
                     </div>

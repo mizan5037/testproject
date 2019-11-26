@@ -218,7 +218,7 @@ function getimg($img)
     global $path;
 
     $image = $path . $uploadpath . $img;
-    if (file_exists($_SERVER['DOCUMENT_ROOT'] . $image)) {
+    if (file_exists($_SERVER['DOCUMENT_ROOT'] . $image) && $img != '') {
         echo $image;
     } else {
         echo $path . $uploadpath . 'noimg.png';
