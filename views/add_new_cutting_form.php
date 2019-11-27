@@ -6,13 +6,12 @@ function customPageHeader()
     ?>
     <!--Arbitrary HTML Tags-->
 <?php
-$conn = db_connection();
-if (isset($_GET['cutting_id'])) {
-    $cuttingid = $_GET['cutting_id'];
-
-} else {
-    nowgo('/index.php?page=all_cutting');
-}
+    $conn = db_connection();
+    if (isset($_GET['cutting_id'])) {
+        $cuttingid = $_GET['cutting_id'];
+    } else {
+        nowgo('/index.php?page=all_cutting');
+    }
 }
 include_once "controller/add_new_cutting_form.php";
 include_once "includes/header.php";
@@ -36,18 +35,18 @@ include_once "includes/header.php";
         </div>
     </div>
     <?php
-      $cuttingid = $_GET['cutting_id'];
-      $sql = "SELECT * FROM cutting_form WHERE Status = '1' and CuttingFormID=" . $cuttingid;
-      $single_cutting = mysqli_fetch_assoc(mysqli_query($conn, $sql));
-     ?>
+    $cuttingid = $_GET['cutting_id'];
+    $sql = "SELECT * FROM cutting_form WHERE Status = '1' and CuttingFormID=" . $cuttingid;
+    $single_cutting = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+    ?>
     <div class="main-card mb-3 card">
         <div class="card-body">
             <form class="needs-validation" method="POST" novalidate>
                 <div class="form-row">
                     <div class="col-md-4 mb-4">
                         <label for="validationTooltip01">Date</label>
-                        <input type="text" class="form-control form-control-sm" name="date" id="validationTooltip01" value="<?=$single_cutting['date'];?>" required disabled>
-                        <input type="hidden" name="last_id" value="<?=$single_cutting['CuttingFormID'];?>">
+                        <input type="text" class="form-control form-control-sm" name="date" id="validationTooltip01" value="<?= $single_cutting['date']; ?>" required disabled>
+                        <input type="hidden" name="last_id" value="<?= $single_cutting['CuttingFormID']; ?>">
                     </div>
                 </div>
                 <div class="form-row">
@@ -206,6 +205,7 @@ function customPagefooter()
                 cols += '<td><input placeholder="Print & EMB Send" type="number" name="embsend[]" class="mb-2 form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Print & EMB Receive" name="embreceive[]" type="number" class="mb-2 form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Remark" name="remark[]" type="text" class="mb-2 form-control-sm form-control"></td>';
+                cols += '<td> <input placeholder = "Remark" type = "text" name = "remark[]" class = "mb-2 form-control-sm form-control" ></td>';
                 cols += '<td><input type="button" class="ibtnDel btn btn-sm btn-danger "  value="Delete"></td>';
                 newRow.append(cols);
                 $("table.order-list").append(newRow);
