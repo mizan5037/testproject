@@ -127,10 +127,10 @@ include_once "includes/header.php";
                                 </td>
 
                                 <td>
-                                    <input placeholder="Qty" name="qty[]" type="number" class="mb-2 form-control-sm form-control" required>
+                                    <input placeholder="Qty" name="qty[]" min="1" type="number" class="mb-2 form-control-sm form-control" required>
                                 </td>
                                 <td>
-                                    <input placeholder="Price Per Unit" name="ppu[]" type="number" class="mb-2 form-control-sm form-control" step="0.01" required>
+                                    <input placeholder="Price Per Unit" min="0.01" name="ppu[]" type="number" class="mb-2 form-control-sm form-control" step="0.01" required>
                                 </td>
                                 <td>
                                     <input placeholder="Total Price" name="tp[]" type="number" class="mb-2 form-control-sm form-control" step="0.01" required>
@@ -201,8 +201,8 @@ function customPagefooter()
                                                                                                                                         } ?></select></td>';
 
 
-                cols += '<td><input placeholder="Qty" name="qty[]" type="number" class="mb-2 form-control-sm form-control" required></td>';
-                cols += '<td><input placeholder="Price Per Unit" name="ppu[]" type="number" class="mb-2 form-control-sm form-control" step="0.01" required></td>';
+                cols += '<td><input placeholder="Qty" name="qty[]" min="1" type="number" class="mb-2 form-control-sm form-control" required></td>';
+                cols += '<td><input placeholder="Price Per Unit" name="ppu[]" min="0.01" type="number" class="mb-2 form-control-sm form-control" step="0.01" required></td>';
                 cols += '<td><input placeholder="Total Price" name="tp[]" type="number" class="mb-2 form-control-sm form-control" step="0.01" required></td>';
 
 

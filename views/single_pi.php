@@ -184,10 +184,10 @@ function modal()
                                         <textarea placeholder="Description" name="description" type="text" class="mb-2 form-control-sm form-control"></textarea>
                                     </td>
                                     <td>
-                                        <input placeholder="Qty" id="qty" name="qty" type="number" class="mb-2 form-control-sm form-control">
+                                        <input placeholder="Qty" id="qty" name="qty" min="1" type="number" class="mb-2 form-control-sm form-control">
                                     </td>
                                     <td>
-                                        <input id="ppu" name="ppu" type="number" class="mb-2 form-control-sm form-control">
+                                        <input id="ppu" name="ppu" type="number" class="mb-2 form-control-sm form-control" min="0.01" step="0.01">
                                     </td>
                                 </tr>
 

@@ -39,7 +39,7 @@ if(isset($_POST['buyer']) && isset($_POST['size']) && isset($_POST['item'])){
 
 
     //sql to get the data
-    $sql = "SELECT i.ItemName ,p.PONumber,b.BuyerName,s.StyleNumber,sz.size,ir.Received,ir.TimeStamp FROM item i LEFT JOIN  item_receive_access ir ON ir.ItemID = i.ItemID LEFT JOIN size sz ON sz.id = ir.Size LEFT JOIN po p ON p.POID = ir.POID LEFT JOIN style s ON s.StyleID = ir.StyleID LEFT JOIN masterlc_description md ON md.POID = p.POID LEFT JOIN masterlc m ON m.MasterLCID = md.MasterLCID LEFT JOIN buyer b ON b.BuyerID = m.MasterLCBuyer WHERE b.BuyerID = '$buyer_id'  AND sz.id = '$size_id' AND i.ItemID = ' $item_id' AND i.status = '1' AND ir.Status = '1'";
+    $sql = "SELECT DISTINCT i.ItemName ,p.PONumber,b.BuyerName,s.StyleNumber,sz.size,ir.Received,ir.TimeStamp FROM item i LEFT JOIN  item_receive_access ir ON ir.ItemID = i.ItemID LEFT JOIN size sz ON sz.id = ir.Size LEFT JOIN po p ON p.POID = ir.POID LEFT JOIN style s ON s.StyleID = ir.StyleID LEFT JOIN masterlc_description md ON md.POID = p.POID LEFT JOIN masterlc m ON m.MasterLCID = md.MasterLCID LEFT JOIN buyer b ON b.BuyerID = m.MasterLCBuyer WHERE b.BuyerID = '$buyer_id'  AND sz.id = '$size_id' AND i.ItemID = ' $item_id' AND i.status = '1' AND ir.Status = '1'";
     $rows = mysqli_query($conn, $sql);
 
 

@@ -71,7 +71,7 @@ include_once "includes/header.php";
                     </div>
                     <div class="col-md-4">
                         <label for="">Orderd Qty</label>
-                        <input type="number" id="orderQty" class="form-control form-control-sm">
+                        <input type="number" id="orderQty" class="form-control form-control-sm" disabled>
                     </div>
                 </div>
                 <br>

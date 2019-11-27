@@ -163,7 +163,7 @@ include_once "includes/header.php";
                             <td><?= $plan['line'] ?></td>
                             <td><?= $plan['qty'] ?></td>
                             <td>
-                                <a href="<?= $path ?>/index.php?page=update_plan&id=<?= $plan['id'] ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary btn-primary" id="details">
+                                <a href="<?= $path ?>/index.php?page=update_plan&id=<?= $plan['id'] ?>&plan_id=<?=$row['id'];?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary btn-primary" id="details">
                                     <i class="fas fa-edit" style="color: white;"></i>
                                 </a>
                                 /

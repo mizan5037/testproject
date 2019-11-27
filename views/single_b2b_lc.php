@@ -76,13 +76,13 @@ function modal()
                                         </select>
                                     </td>
                                     <td>
-                                        <input placeholder="Qty" type="number" name="qty[]" class="mb-2 form-control-sm form-control" required>
+                                        <input placeholder="Qty" type="number" name="qty[]" class="mb-2 form-control-sm form-control" min="1" required>
                                     </td>
                                     <td>
                                         <input placeholder="U/Name" type="text" name="unitname[]" class="mb-2 form-control-sm form-control" required>
                                     </td>
                                     <td>
-                                        <input placeholder="U/Price" type="number" name="price[]" class="mb-2 form-control-sm form-control" required>
+                                        <input placeholder="U/Price" type="number" name="price[]" class="mb-2 form-control-sm form-control" step="0.01" min="0.01" required>
                                     </td>
                                     <td>
                                         <input type="date" name="lsdate[]" class="mb-2 form-control-sm form-control" required>
@@ -111,13 +111,13 @@ function modal()
                                         </select>
                                     </td>
                                     <td>
-                                        <input placeholder="Qty" type="number" name="qty[]" class="mb-2 form-control-sm form-control">
+                                        <input placeholder="Qty" type="number" min="1" name="qty[]" class="mb-2 form-control-sm form-control">
                                     </td>
                                     <td>
                                         <input placeholder="U/Name" type="text" name="unitname[]" class="mb-2 form-control-sm form-control">
                                     </td>
                                     <td>
-                                        <input placeholder="U/Price" type="number" name="price[]" class="mb-2 form-control-sm form-control">
+                                        <input placeholder="U/Price" type="number" min="0.01" name="price[]" step="0.01" class="mb-2 form-control-sm form-control">
                                     </td>
                                     <td>
                                         <input type="date" name="lsdate[]" class="mb-2 form-control-sm form-control">
@@ -146,13 +146,13 @@ function modal()
                                         </select>
                                     </td>
                                     <td>
-                                        <input placeholder="Qty" type="number" name="qty[]" class="mb-2 form-control-sm form-control">
+                                        <input placeholder="Qty" type="number" name="qty[]" min="1" class="mb-2 form-control-sm form-control">
                                     </td>
                                     <td>
                                         <input placeholder="U/Name" type="text" name="unitname[]" class="mb-2 form-control-sm form-control">
                                     </td>
                                     <td>
-                                        <input placeholder="U/Price" type="number" name="price[]" class="mb-2 form-control-sm form-control">
+                                        <input placeholder="U/Price" type="number" min="0.01" name="price[]" step="0.01" class="mb-2 form-control-sm form-control">
                                     </td>
                                     <td>
                                         <input type="date" name="lsdate[]" class="mb-2 form-control-sm form-control">
@@ -222,7 +222,7 @@ include_once "includes/header.php";
                         </tr>
                         <tr>
                             <td>Master LC No:</td>
-                            <td><b> <a class="btn btn-sm btn-outline-success" target="_blank" href="<?=$path?>/index.php?page=single_masterlc&id=<?=$blc['MasterLCID']?>"><?= searchForVal($blc['MasterLCID'], $masterlcArr, 'MasterLCID', 'MasterLCNumber') ?></a> </b></td>
+                            <td><b> <a class="btn btn-sm btn-outline-success" target="_blank" href="<?= $path ?>/index.php?page=single_masterlc&id=<?= $blc['MasterLCID'] ?>"><?= searchForVal($blc['MasterLCID'], $masterlcArr, 'MasterLCID', 'MasterLCNumber') ?></a> </b></td>
                         </tr>
 
                     </table>
