@@ -4,7 +4,7 @@ if (isset($_GET['fabid']) && $_GET['fabid'] !='' && $_GET['fabricid'] != '') {
     $fabid    = mysqli_real_escape_string($conn, $_GET['fabid']);
     $fabricid = mysqli_real_escape_string($conn, $_GET['fabricid']);
 
-    $sql = "DELETE FROM fab_relaxation_description  where ID=".$fabid;
+    $sql = "UPDATE fab_relaxation_description SET Status='0' where ID=".$fabid;
 
     if (mysqli_query($conn, $sql)) {
         notice('success', 'Fabric Relaxation Producted Deleted Successfully');

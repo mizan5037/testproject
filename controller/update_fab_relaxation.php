@@ -43,6 +43,7 @@ if (isset($_POST['buyer']) && isset($_POST['style']) && isset($_POST['color'])  
     $sql = "UPDATE fab_relaxation_description SET Date ='$date[$i]', Shade='$shade[$i]', Shrinkage='$shrinkage[$i]', RollNo='$rollno[$i]',  Yds='$yds[$i]', Shade2='$shade2[$i]', Shrinkage2='$shrinkage2[$i]', RollNo2='$rollno2[$i]', Yds2='$yds2[$i]', TotalYds='$ttlyds[$i]', fabricOpenTime='$fot[$i]', FabricLayDate='$fld[$i]', FabricLayTime='$flt[$i]', TotalHours='$ttlhrs[$i]', Remarks='$remark[$i]', AddedBy='$user_id' WHERE ID='$fabDesID[$i]'";
     if (mysqli_query($conn, $sql)) {
         notice('success', 'Fabric Relaxation Updated Successfully');
+        nowgo('/index.php?page=single_fabric_relaxation');
     } else {
         notice('error', $sql . "<br>" . mysqli_error($conn));
     }

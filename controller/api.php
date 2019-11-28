@@ -50,7 +50,7 @@ if (get_ses('token') === $token && $_POST["form"] == 'get_po_size_wise') {
 
     $buyer_id = mysqli_real_escape_string($conn, $_POST["buyer_id"]);
 
-    $sql = "SELECT md.POID,p.PONumber FROM masterlc m LEFT JOIN masterlc_description md ON m.MasterLCID=md.MasterLCID LEFT JOIN po p ON p.POID = md.POID WHERE m.MasterLCBuyer = '$buyer_id'";
+    $sql = "SELECT DISTINCT md.POID,p.PONumber FROM masterlc m LEFT JOIN masterlc_description md ON m.MasterLCID=md.MasterLCID LEFT JOIN po p ON p.POID = md.POID WHERE m.MasterLCBuyer = '$buyer_id'";
     $result = mysqli_query($conn, $sql);
     echo '<option>=======</option>';
      while($row = mysqli_fetch_assoc($result)){

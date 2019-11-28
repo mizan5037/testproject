@@ -10,9 +10,9 @@ function customPageHeader()
     <!--Arbitrary HTML Tags-->
 <?php }
 $conn = db_connection();
-if (isset($_GET['layid']) && $_GET['layid'] !='') {
+if (isset($_GET['layid']) && $_GET['layid'] != '') {
     $layid = $_GET['layid'];
-    $sql = "SELECT * FROM lay_form f LEFT JOIN buyer b on b.BuyerID=f.BuyerID LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN po p ON p.POID=f.POID WHERE f.Status = 1 and LayFormID=".$layid;
+    $sql = "SELECT * FROM lay_form f LEFT JOIN buyer b on b.BuyerID=f.BuyerID LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN po p ON p.POID=f.POID WHERE f.Status = 1 and LayFormID=" . $layid;
     $single_lay = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 }
 include_once "controller/update_lay_form.php";
@@ -47,18 +47,17 @@ include_once "includes/header.php";
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip01">Buyer Name</label>
-                        <select name="buyer"  class="buyer  form-control" required>
+                        <select name="buyer" class="buyer  form-control" required>
                             <option></option>
                             <?php
                             $conn = db_connection();
                             $sql = "SELECT * FROM buyer WHERE status = 1";
                             $results = mysqli_query($conn, $sql);
                             while ($result = mysqli_fetch_assoc($results)) {
-                                if ($result['BuyerID']==$single_lay['BuyerID']) {
+                                if ($result['BuyerID'] == $single_lay['BuyerID']) {
                                     echo '<option selected value="' . $result['BuyerID'] . '">' . $result['BuyerName'] . '</option>';
                                 }
                                 echo '<option value="' . $result['BuyerID'] . '">' . $result['BuyerName'] . '</option>';
-                                
                             }
                             ?>
                         </select>
@@ -72,12 +71,10 @@ include_once "includes/header.php";
                             $sql = "SELECT * FROM style WHERE status = 1";
                             $results = mysqli_query($conn, $sql);
                             while ($result = mysqli_fetch_assoc($results)) {
-                                if ($result['StyleID']==$single_lay['StyleID']) {
+                                if ($result['StyleID'] == $single_lay['StyleID']) {
                                     echo '<option selected  value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
-                                }
-                                else
-                                     echo '<option  value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
-                                
+                                } else
+                                    echo '<option  value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
                             }
                             ?>
                         </select>
@@ -91,7 +88,7 @@ include_once "includes/header.php";
                             $sql = "SELECT * FROM po WHERE status = 1";
                             $results = mysqli_query($conn, $sql);
                             while ($result = mysqli_fetch_assoc($results)) {
-                                if ($result['POID']==$single_lay['POID']) {
+                                if ($result['POID'] == $single_lay['POID']) {
                                     echo '<option selected  value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
                                 }
                                 echo '<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
@@ -101,39 +98,26 @@ include_once "includes/header.php";
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltipUsername">Cutting No</label>
-                        <input type="text" class="form-control" value="<?= $single_lay['CuttingNo']?>" name="cutting_no" id="validationTooltipUsername" placeholder="Cutting No" required>
+                        <input type="text" class="form-control" value="<?= $single_lay['CuttingNo'] ?>" name="cutting_no" id="validationTooltipUsername" placeholder="Cutting No" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip01">Unit</label>
-                        <input type="text"  value="<?= $single_lay['Unit']?>" class="form-control" name="unit" id="validationTooltip01" placeholder="Unit" required>
+                        <input type="text" value="<?= $single_lay['Unit'] ?>" class="form-control" name="unit" id="validationTooltip01" placeholder="Unit" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip02">Date</label>
-                        <input type="date"  value="<?= $single_lay['Date']?>" class="form-control" name="date" id="validationTooltip02" placeholder="Date" required>
+                        <input type="date" value="<?= $single_lay['Date'] ?>" class="form-control" name="date" id="validationTooltip02" placeholder="Date" required>
                     </div>
-                    <div class="col-md-2 mb-3">
-                        <label for="validationTooltipUsername">Item</label>
-                        <select name="item" class="item  form-control" required>
-                            <option></option>
-                            <?php
-                            $conn = db_connection();
-                            $sql = "SELECT * FROM item WHERE status = 1";
-                            $results = mysqli_query($conn, $sql);
-                            while ($result = mysqli_fetch_assoc($results)) {
-                                echo '<option value="' . $result['ItemID'] . '">' . $result['ItemName'] . '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="col-md-2 mb-3">
+                   
+                    <div class="col-md-3 mb-3">
                         <label for="validationTooltipUsername">M/W</label>
-                        <input type="text" value="<?= $single_lay['MarkerWidth']?>" class="form-control" id="validationTooltipUsername" name="mw" placeholder="M/W" required>
+                        <input type="text" value="<?= $single_lay['MarkerWidth'] ?>" class="form-control" id="validationTooltipUsername" name="mw" placeholder="M/W" required>
                     </div>
-                    <div class="col-md-2 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label for="validationTooltipUsername">Marker Length</label>
-                        <input type="text" name="marker_length" value="<?= $single_lay['MarkerLength']?>" class="form-control" id="validationTooltipUsername" placeholder="Marker Length" required>
+                        <input type="text" name="marker_length" value="<?= $single_lay['MarkerLength'] ?>" class="form-control" id="validationTooltipUsername" placeholder="Marker Length" required>
                     </div>
                 </div>
                 <style>
@@ -182,66 +166,63 @@ include_once "includes/header.php";
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
-                                    $sql = "SELECT * FROM lay_form_details where layFormID=$layid";
-                                     $lay = mysqli_query($conn, $sql);
-                                     $count = 1;
+                                <?php
+                                $sql = "SELECT * FROM lay_form_details where layFormID=$layid";
+                                $lay = mysqli_query($conn, $sql);
+                                $count = 1;
                                 while ($row = mysqli_fetch_assoc($lay)) {
 
-                                ?>
-                                <tr>
-                                    <input type="hidden" name="layid[]" value="<?=$row['ID']?>">
-                                    <th scope="row"><?= $count++ ?></th>
-                                    <td>
-                                        <select name="color[]" class="color  form-control" required>
-                                            <option></option>
-                                            <?php
-                                            $conn = db_connection();
-                                            $sql = "SELECT * FROM color WHERE status = 1";
-                                            $results = mysqli_query($conn, $sql);
-                                            while ($result = mysqli_fetch_assoc($results)) {
-                                                if ($row['Color']==$result['id']) {
-                                                    echo '<option selected value="' . $result['id'] . '">' . $result['color'] . '</option>';
-                                                
-                                                }
-                                                else{
-                                                    echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
-
-                                                }
-                                            }
-                                            ?>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input placeholder="Lot No" value="<?= $row['LotNo'] ?>" type="text" name="lotno[]">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Sl. No" type="text" value="<?= $row['SlNo'] ?>" name="slno[]">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Roll No" value="<?= $row['RollNo'] ?>" name="rollno[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="TTL Fabrics/yds" value="<?= $row['TTLFabricsYds'] ?>" name="ttlfab[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Lay" value="<?= $row['Lay'] ?>" name="lay[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Used Fabrics/yds" value="<?= $row['UsedFabricYds'] ?>" name="usedfab[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Remaining" value="<?= $row['RemainingYds'] ?>" name="ramaining[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Exxess/Short" value="<?= $row['Shortage'] ?>" name="exsshort[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Sticker" value="<?= $row['Sticker'] ?>" name="sticker[]" type="text">
-                                    </td>
-                                    <td><a class="deleteRow"></a></td>
-                                </tr>
-                            <?php } ?>
+                                    ?>
+                                    <tr>
+                                        <input type="hidden" name="layid[]" value="<?= $row['ID'] ?>">
+                                        <th scope="row"><?= $count++ ?></th>
+                                        <td>
+                                            <select name="color[]" class="color  form-control" required>
+                                                <option></option>
+                                                <?php
+                                                    $conn = db_connection();
+                                                    $sql = "SELECT * FROM color WHERE status = 1";
+                                                    $results = mysqli_query($conn, $sql);
+                                                    while ($result = mysqli_fetch_assoc($results)) {
+                                                        if ($row['Color'] == $result['id']) {
+                                                            echo '<option selected value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                                        } else {
+                                                            echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                                        }
+                                                    }
+                                                    ?>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input placeholder="Lot No" value="<?= $row['LotNo'] ?>" type="text" name="lotno[]">
+                                        </td>
+                                        <td>
+                                            <input placeholder="Sl. No" type="text" value="<?= $row['SlNo'] ?>" name="slno[]">
+                                        </td>
+                                        <td>
+                                            <input placeholder="Roll No" value="<?= $row['RollNo'] ?>" name="rollno[]" type="text">
+                                        </td>
+                                        <td>
+                                            <input placeholder="TTL Fabrics/yds" value="<?= $row['TTLFabricsYds'] ?>" name="ttlfab[]" type="text">
+                                        </td>
+                                        <td>
+                                            <input placeholder="Lay" value="<?= $row['Lay'] ?>" name="lay[]" type="text">
+                                        </td>
+                                        <td>
+                                            <input placeholder="Used Fabrics/yds" value="<?= $row['UsedFabricYds'] ?>" name="usedfab[]" type="text">
+                                        </td>
+                                        <td>
+                                            <input placeholder="Remaining" value="<?= $row['RemainingYds'] ?>" name="ramaining[]" type="text">
+                                        </td>
+                                        <td>
+                                            <input placeholder="Exxess/Short" value="<?= $row['Shortage'] ?>" name="exsshort[]" type="text">
+                                        </td>
+                                        <td>
+                                            <input placeholder="Sticker" value="<?= $row['Sticker'] ?>" name="sticker[]" type="text">
+                                        </td>
+                                        <td><a class="deleteRow"></a></td>
+                                    </tr>
+                                <?php } ?>
 
                             </tbody>
                             <tfoot>
@@ -252,7 +233,7 @@ include_once "includes/header.php";
                                     <td></td>
                                     <th>Special Action: </th>
                                     <td colspan="12">
-                                        <textarea name="specialaction" placeholder="Type Here . . ." id="" rows="3"><?=strip_tags(nl2br($single_lay['SpecialAction']))?></textarea>
+                                        <textarea name="specialaction" placeholder="Type Here . . ." id="" rows="3"><?= strip_tags(nl2br($single_lay['SpecialAction'])) ?></textarea>
                                     </td>
                                 </tr>
                             </tfoot>

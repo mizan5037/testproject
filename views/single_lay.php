@@ -1,6 +1,6 @@
 <?php
 
-$PageTitle = "Details PO | Optima Inventory";
+$PageTitle = "Lay Details | Optima Inventory";
 function customPageHeader()
 {
     ?>
@@ -126,95 +126,12 @@ function modal()
 {
     ?>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <form method="post">
-                <div class="modal-content" style="width:300%; margin-left:-5%">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Pre Pack Assorts</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <table class="mb-0 table table-bordered order-list2" id="myTable2" width="100%">
-                            <thead>
-                            <thead>
-                                <tr>
-                                    
-                                    <th  width="10%">Color</th>
-                                    <th  width="10%">Lot No</th>
-                                    <th  width="10%">Sl. NO</th>
-                                    <th  width="10%">Roll No</th>
-                                    <th  width="10%">TTL Fabrics/yds</th>
-                                    <th  width="10%">Lay</th>
-                                    <th  width="10%">Used Fabrics/yds</th>
-                                    <th  width="10%">Remaining</th>
-                                    <th  width="10%">Exxess/Short</th>
-                                    <th  width="10%">Sticker</th>
-                                    
-                                </tr>
-                            </thead>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                    <select name="color[]" class="color  form-control" required>
-                                            <option></option>
-                                            <?php
-                                            $conn = db_connection();
-                                            $sql = "SELECT * FROM color WHERE status = 1";
-                                            $results = mysqli_query($conn, $sql);
-                                            while ($result = mysqli_fetch_assoc($results)) {
-                                                echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input placeholder="Lot No" type="text" name="lotno[]">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Sl. No" type="text" name="slno[]">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Roll No" name="rollno[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="TTL Fabrics/yds" name="ttlfab[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Lay" name="lay[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Used Fabrics/yds" name="usedfab[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Remaining" name="ramaining[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Exxess/Short" name="exsshort[]" type="text">
-                                    </td>
-                                    <td>
-                                        <input placeholder="Sticker" name="sticker[]" type="text">
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+
     <!--  image modal end -->
 
 <?php }
 
-$sql = "SELECT * FROM lay_form f LEFT JOIN buyer b on b.BuyerID=f.BuyerID LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN po p ON p.POID=f.POID WHERE f.Status = 1 and LayFormID=".$layid;
+$sql = "SELECT * FROM lay_form f LEFT JOIN buyer b on b.BuyerID=f.BuyerID LEFT JOIN style s on s.StyleID=f.StyleID LEFT JOIN po p ON p.POID=f.POID WHERE f.Status = 1 and LayFormID=" . $layid;
 $single_lay = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
 include_once "controller/add_lay_description.php";
@@ -260,12 +177,12 @@ include_once "includes/header.php";
                 </thead>
                 <tbody>
                     <tr>
-                        <td><?=$single_lay['BuyerName']?></td>
-                        <td><?=$single_lay['StyleNumber']?></td>
-                        <td><?=$single_lay['PONumber']?></td>
-                        <td><?=$single_lay['CuttingNo']?></td>
+                        <td><?= $single_lay['BuyerName'] ?></td>
+                        <td><?= $single_lay['StyleNumber'] ?></td>
+                        <td><?= $single_lay['PONumber'] ?></td>
+                        <td><?= $single_lay['CuttingNo'] ?></td>
                     </tr>
-                   
+
                 </tbody>
             </table>
             <table class="table table-bordered">
@@ -279,12 +196,12 @@ include_once "includes/header.php";
                 </thead>
                 <tbody>
                     <tr>
-                        <td><?=$single_lay['Unit']?></td>
-                        <td><?=$single_lay['Date']?></td>
-                        <td><?=$single_lay['MarkerWidth']?></td>
-                        <td><?=$single_lay['MarkerLength']?></td>
+                        <td><?= $single_lay['Unit'] ?></td>
+                        <td><?= $single_lay['Date'] ?></td>
+                        <td><?= $single_lay['MarkerWidth'] ?></td>
+                        <td><?= $single_lay['MarkerLength'] ?></td>
                     </tr>
-                   
+
                 </tbody>
             </table>
         </div>
@@ -296,10 +213,8 @@ include_once "includes/header.php";
                     <h5 class="card-title">Lay Description</h5>
                 </div>
                 <div class="col-md-6 text-right">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal1">
-                        Add Lay
-                    </button>
+                    <a href="<?= $path ?>/index.php?page=add_new_lay&lay_id=<?=$layid?>" class="btn btn-primary"> Add Lay</a>
+
                 </div>
             </div>
             <br>
@@ -322,11 +237,11 @@ include_once "includes/header.php";
                         </thead>
                         <tbody>
                             <?php
-                            
+
                             $sqlo = "SELECT f.*,c.color FROM lay_form_details f LEFT JOIN color c ON c.id = f.Color where f.layFormID ='$layid' AND f.Status=1";
                             $count = 1;
                             $order = mysqli_query($conn, $sqlo);
-                            
+
                             while ($rowo = mysqli_fetch_assoc($order)) {
                                 ?>
                                 <tr>
@@ -360,7 +275,7 @@ include_once "includes/header.php";
 
         </div>
     </div>
-    
+
 </div>
 
 

@@ -53,17 +53,17 @@ $conn = db_connection();
                                       WHERE f.Status='1' AND b.Status = '1'";
                                       $fab_relaxation_buyer = mysqli_query($conn,$fab_relaxation_buyer);
 
-                                      $fab_relaxation_color ="SELECT DISTINCT c.id,c.color
-                                      FROM fab_relaxation f
-                                      LEFT JOIN color c ON f.Color=c.id
-                                      WHERE f.Status='1' AND c.status = '1'";
-                                      $fab_relaxation_color = mysqli_query($conn,$fab_relaxation_color);
+                                    //   $fab_relaxation_color ="SELECT DISTINCT c.id,c.color
+                                    //   FROM fab_relaxation f
+                                    //   LEFT JOIN color c ON f.Color=c.id
+                                    //   WHERE f.Status='1' AND c.status = '1'";
+                                    //   $fab_relaxation_color = mysqli_query($conn,$fab_relaxation_color);
 
-                                      $fab_relaxation_style ="SELECT DISTINCT s.StyleID,s.StyleNumber
-                                      FROM fab_relaxation f
-                                      LEFT JOIN style s ON f.StyleID = s.StyleID
-                                      WHERE f.Status='1' AND s.Status ='1'";
-                                      $fab_relaxation_style = mysqli_query($conn,$fab_relaxation_style);
+                                    //   $fab_relaxation_style ="SELECT DISTINCT s.StyleID,s.StyleNumber
+                                    //   FROM fab_relaxation f
+                                    //   LEFT JOIN style s ON f.StyleID = s.StyleID
+                                    //   WHERE f.Status='1' AND s.Status ='1'";
+                                    //   $fab_relaxation_style = mysqli_query($conn,$fab_relaxation_style);
 
 
                                      ?>

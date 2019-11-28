@@ -226,7 +226,7 @@ include_once "includes/header.php";
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <button class="btn btn-primary" type="submit">Save</button>
+                            <button class="btn btn-primary" name="lay_description" type="submit">Save</button>
                         </div>
                     </div>
                 </div>
