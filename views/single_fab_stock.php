@@ -152,7 +152,7 @@ include_once "includes/header.php";
                 <table class="table table-bordered table-hover text-center">
                     <thead>
                         <tr>
-                            <th colspan="8">Reaming YDS And Roll</th>
+                            <th colspan="8">Remaining YDS And Roll</th>
                         </tr>
                         <tr>
                             <th>Description</th>
