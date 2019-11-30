@@ -18,13 +18,13 @@ if (isset($_POST['refno'])  && isset($_POST['date']) && isset($_POST['supplier']
 	}
 
 	//PI Description Table
-	$pidesid 	 	      = ($_POST['pidesid']);
-	$po_number   	    = ($_POST['po']);
-	$item        	    = ($_POST['item']);
-	$description 	    = ($_POST['description']);
-	$qty         	    = ($_POST['qty']);
-	$price_per_unit   = ($_POST['ppu']);
-	$totalprice       = ($_POST['totalprice']);
+	$pidesid        = ($_POST['pidesid']);
+	$po_number      = ($_POST['po']);
+	$item           = ($_POST['item']);
+	$description    = ($_POST['description']);
+	$qty            = ($_POST['qty']);
+	$price_per_unit = ($_POST['ppu']);
+	$totalprice     = ($_POST['totalprice']);
 
 	for ($i = 0; $i < sizeof($item); $i++) {
 

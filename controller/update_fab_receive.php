@@ -3,8 +3,8 @@
 $conn = db_connection();
 
 if (isset($_GET['fab_Rec_id']) && isset($_GET['buyer_id'])) {
-    $fab_rec_id = $_GET['fab_Rec_id'];
-    $buyer_id = $_GET['buyer_id'];
+    $fab_rec_id = mysqli_real_escape_string($conn,$_GET['fab_Rec_id']);
+    $buyer_id = mysqli_real_escape_string($conn,$_GET['buyer_id']);
     $sql = "SELECT * FROM fab_receive WHERE FabReceiveID = '$fab_rec_id' AND Status = '1'";
     $fab_all = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
@@ -31,7 +31,7 @@ if (isset($_GET['fab_Rec_id']) && isset($_GET['buyer_id'])) {
         }
     }
 } elseif (isset($_GET['fab_Rec_other_id'])) {
-    $fab_Rec_other_id = $_GET['fab_Rec_other_id'];
+    $fab_Rec_other_id = mysqli_real_escape_string($conn, $_GET['fab_Rec_other_id']);
     $sql = "SELECT * FROM fab_receive_other WHERE id = '$fab_Rec_other_id' AND Status = '1'";
     $fab_other_all = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 

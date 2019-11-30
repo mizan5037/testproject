@@ -2,7 +2,7 @@
 $conn = db_connection();
 
 if(isset($_GET['fabissueid'])) {
-  $FabIssueID = $_GET['fabissueid'];
+  $FabIssueID = mysqli_real_escape_string($conn,$_GET['fabissueid']);
   $fab_issue  = "SELECT * FROM `fab_issue` WHERE `FabIssueID`='$FabIssueID'";
   $fab_issue  = mysqli_query($conn, $fab_issue);
   $fab_issue  = mysqli_fetch_assoc($fab_issue);
@@ -11,7 +11,7 @@ if(isset($_GET['fabissueid'])) {
   $fab_issue_d= mysqli_query($conn, $fab_issue_d);
 }
 elseif (isset($_GET['fab_issue_other_id'])) {
-  $FabIssueOtherID = $_GET['fab_issue_other_id'];
+  $FabIssueOtherID = mysqli_real_escape_string($conn, $_GET['fab_issue_other_id']);
 
   $fab_issue_other = "SELECT * FROM `fabric_issue_other` WHERE `ID`='$FabIssueOtherID'";
   $fab_issue_other = mysqli_query($conn, $fab_issue_other);

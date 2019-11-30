@@ -24,11 +24,11 @@ if (isset($_POST['refno'])  && isset($_POST['date']) && isset($_POST['supplier']
 
   //PI Description Table
 
-		$po_number   		= ($_POST['po']);
-    $item        		= ($_POST['item']);
-    $description 		= ($_POST['description']);
-    $qty         		= ($_POST['qty']);
-    $price_per_unit = ($_POST['ppu']);
+	$po_number      = ($_POST['po']);
+	$item           = ($_POST['item']);
+	$description    = ($_POST['description']);
+	$qty            = ($_POST['qty']);
+	$price_per_unit = ($_POST['ppu']);
 	for ($i = 0; $i < sizeof($item); $i++) {
 
 		$totalprice  = $qty[$i] * $price_per_unit[$i];
