@@ -15,7 +15,7 @@ if (isset($_POST['month']) && isset($_POST['type']) && isset($_POST['item'])) {
 
     $type       = $_POST['type'];
     $month_year = $_POST['month'];
-    $month_yr      = explode("-", $month_year);
+    $month_yr   = explode("-", $month_year);
     $month      = $month_yr[1];
     $year       = $month_yr[0];
     $item_id    = $_POST['item'];

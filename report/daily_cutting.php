@@ -1,34 +1,29 @@
   <?php
-//Main Page
-if(isset($_POST['date']) && isset($_POST['buyer'])){
+  //Main Page
+  if (isset($_POST['date']) && isset($_POST['buyer'])) {
     $date = $_POST['date'];
     $buyer = $_POST['buyer'];
 
     $conn = db_connection();
-require_once 'config.php';
-require_once 'lib/session.php';
-require_once 'lib/database.php';
-require_once 'lib/functions.php';
-require_once 'lib/vendor/autoload.php';
+    require_once 'lib/vendor/autoload.php';
 
-$logo = $path . '/assets/images/risal.png';
+    $logo = $path . '/assets/images/risal.png';
 
-$mpdf                   = new \Mpdf\Mpdf(['format' => 'A4-L']);
-$mpdf->setAutoTopMargin = 'stretch';
+    $mpdf                   = new \Mpdf\Mpdf(['format' => 'A4-L']);
+    $mpdf->setAutoTopMargin = 'stretch';
 
-$logo = $path . '/assets/images/risal.png';
+    $logo = $path . '/assets/images/risal.png';
 
     $buyer_id   = "SELECT b.BuyerName FROM buyer b WHERE Status = '1' AND b.BuyerID = '$buyer'";
     $buyer_name = mysqli_fetch_assoc(mysqli_query($conn, $buyer_id))['BuyerName'];
 
 
+    $sql = "SELECT s.StyleID,s.StyleNumber,p.POID,p.PONumber,c.id,c.color,od.OrderdescriptionID,od.Units,cd.Qty,(od.Units - cd.Qty) as ExssCut,fid.Consumption,fid.RqdQty,(cd.Qty * fid.Consumption) as FabUsed, fid.IssueQty as fabRecv, (fid.IssueQty - (cd.Qty * fid.Consumption)) as FabBlc FROM cutting_form_description cd LEFT JOIN cutting_form cf ON cf.CuttingFormID = cd.CuttingFormID LEFT JOIN po p ON p.POID = cf.POID LEFT JOIN style s ON s.StyleID = cf.StyleID LEFT JOIN color c ON c.id = cd.Color LEFT JOIN order_description od ON od.POID = p.POID  LEFT JOIN fab_issue fi ON fi.POID = cf.POID AND fi.StyleID = cf.StyleID LEFT JOIN fab_issue_description fid ON fid.FabIssueID = fi.FabIssueID WHERE od.Color = cd.Color AND cf.date = '$date' AND fi.BuyerID = '$buyer' AND cd.Status ='1' AND cf.Status = '1'";
 
-$sql = "SELECT s.StyleID,s.StyleNumber,p.POID,p.PONumber,c.id,c.color,od.OrderdescriptionID,od.Units,cd.Qty,(od.Units - cd.Qty) as ExssCut,fid.Consumption,fid.RqdQty,(cd.Qty * fid.Consumption) as FabUsed, fid.IssueQty as fabRecv, (fid.IssueQty - (cd.Qty * fid.Consumption)) as FabBlc FROM cutting_form_description cd LEFT JOIN cutting_form cf ON cf.CuttingFormID = cd.CuttingFormID LEFT JOIN po p ON p.POID = cf.POID LEFT JOIN style s ON s.StyleID = cf.StyleID LEFT JOIN color c ON c.id = cd.Color LEFT JOIN order_description od ON od.POID = p.POID  LEFT JOIN fab_issue fi ON fi.POID = cf.POID AND fi.StyleID = cf.StyleID LEFT JOIN fab_issue_description fid ON fid.FabIssueID = fi.FabIssueID WHERE od.Color = cd.Color AND cf.date = '$date' AND fi.BuyerID = '$buyer' AND cd.Status ='1' AND cf.Status = '1'";
-
-$cuuting_all = mysqli_query($conn,$sql);
+    $cuuting_all = mysqli_query($conn, $sql);
 
 
-$html = '
+    $html = '
 <!DOCTYPE html>
 <html lang = "en" dir = "ltr">
   <body>
@@ -40,10 +35,10 @@ $html = '
         <p  style   = "line-height:.1;">Plot#m-4/2,                                            Section#14,    Mirpur,            Dhaka-1216</p>
         <p  style   = "text-transform: uppercase; color:white; line-height:.1;"><strong style = "background-color:black;">cUTtING rEPORT</strong></p>
         </th>
-        <th colspan = "2">Date:'.$date.'</th>
+        <th colspan = "2">Date:' . $date . '</th>
       </tr>
       <tr>
-        <th colspan = "12">Buyer Name:'. $buyer_name.'</th>
+        <th colspan = "12">Buyer Name:' . $buyer_name . '</th>
       </tr>
       <tr>
         <th colspan = "12">&nbsp;</th>
@@ -61,27 +56,26 @@ $html = '
       <th style = "border: 1px solid black;">Fabric Received</th>
       <th style = "border: 1px solid black;">Balance Fabric</th>
       </tr>';
-      while($cutting = mysqli_fetch_assoc($cuuting_all)){      
-      $html .='
+    while ($cutting = mysqli_fetch_assoc($cuuting_all)) {
+      $html .= '
       <tr>
-        <td style = "border: 1px solid black;">'. $cutting['StyleNumber'].'</td>
-        <td style = "border: 1px solid black;">'.$cutting['PONumber'].'</td>
-        <td style = "border: 1px solid black;">'.$cutting['color'].'</td>
-        <td style = "border: 1px solid black;">'.$cutting['Units'].'</td>
-        <td style = "border: 1px solid black;">'.$cutting['Qty'].'</td>
-        <td style = "border: 1px solid black;">'.$cutting['ExssCut'].'</td>
-        <td style = "border: 1px solid black;">'.$cutting['Consumption'].'</td>
-        <td style = "border: 1px solid black;">'.$cutting['RqdQty'].'</td>
-        <td style = "border: 1px solid black;">'.$cutting['FabUsed'].'</td>
-        <td style = "border: 1px solid black;">'.$cutting['fabRecv'].'</td>
-        <td style = "border: 1px solid black;">'.$cutting['FabBlc'].'</td>
-      </tr>';}
-      
-      
-      
-      $html .='
+        <td style = "border: 1px solid black;">' . $cutting['StyleNumber'] . '</td>
+        <td style = "border: 1px solid black;">' . $cutting['PONumber'] . '</td>
+        <td style = "border: 1px solid black;">' . $cutting['color'] . '</td>
+        <td style = "border: 1px solid black;">' . $cutting['Units'] . '</td>
+        <td style = "border: 1px solid black;">' . $cutting['Qty'] . '</td>
+        <td style = "border: 1px solid black;">' . $cutting['ExssCut'] . '</td>
+        <td style = "border: 1px solid black;">' . $cutting['Consumption'] . '</td>
+        <td style = "border: 1px solid black;">' . $cutting['RqdQty'] . '</td>
+        <td style = "border: 1px solid black;">' . $cutting['FabUsed'] . '</td>
+        <td style = "border: 1px solid black;">' . $cutting['fabRecv'] . '</td>
+        <td style = "border: 1px solid black;">' . $cutting['FabBlc'] . '</td>
+      </tr>';
+    }
 
-      
+
+
+    $html .= '
       <tr>
         <th colspan = "12">&nbsp;</th>
       </tr>
@@ -95,12 +89,11 @@ $html = '
     </table>
   </body>
 </html>';
-$mpdf->WriteHTML($html);
 
-$mpdf->Output();
+    $mpdf->WriteHTML($html);
 
-}
-else{
-  echo 'Something is wrong!!';
-}
-    ?>
+    $mpdf->Output();
+  } else {
+    echo 'Something is wrong!!';
+  }
+  ?>
