@@ -101,6 +101,6 @@ $mpdf->Output();
 
 }
 else{
-  nowgo('/index.php?page=daily_cutting');
+  echo 'Something is wrong!!';
 }
     ?>
