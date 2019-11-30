@@ -18,6 +18,8 @@ function modal()
 
 // keep the header always last.
 include_once "includes/header.php";
+$conn = db_connection();
+
 
 ?>
 
@@ -48,6 +50,22 @@ include_once "includes/header.php";
                                     <div class="form-group">
                                         <label for="">Date</label>
                                         <input type="date" class="form-control form-control-sm" name="date" id="" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Buyer</label>
+                                        <select id="buyer" class="form-control form-control-sm" name="buyer" required>
+                                            <?php 
+                                            
+                                            $sql = "SELECT b.BuyerID,b.BuyerName FROM buyer b WHERE Status = '1'";
+                                            $all_buyer = mysqli_query($conn,$sql)
+                                            
+                                            ?>
+                                            <option value="">Select Buyer</option>
+                                            <?php foreach ($all_buyer as $buyer) {
+                                                echo "<option value=" . $buyer['BuyerID'] . ">" . $buyer['BuyerName'] . "</option>";
+                                            } ?>
+                                        </select>
                                     </div>
 
                                     <div class="form-group">
