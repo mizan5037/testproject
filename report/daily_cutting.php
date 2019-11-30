@@ -100,4 +100,7 @@ $mpdf->WriteHTML($html);
 $mpdf->Output();
 
 }
+else{
+  nowgo('/index.php?page=daily_cutting');
+}
     ?>
