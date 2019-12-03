@@ -387,6 +387,12 @@
                                                         </i>Stationery Report
                                                     </a>
                                                 </li>
+                                                <li <?php active('item_stock_report'); ?>>
+                                                    <a target="_blank" href="<?= $path ?>/index.php?page=item_stock_report">
+                                                        <i class="metismenu-icon">
+                                                        </i>Item Stock Report
+                                                    </a>
+                                                </li>
 
                                             </ul>
                                         </li>
