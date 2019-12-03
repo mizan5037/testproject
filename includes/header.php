@@ -378,7 +378,7 @@
                                                 <li <?php active('accessories_report'); ?>>
                                                     <a target="_blank" href="<?= $path ?>/index.php?page=accessories_report">
                                                         <i class="metismenu-icon">
-                                                        </i>Accessories Report
+                                                        </i>Acces Report(Item)
                                                     </a>
                                                 </li>
                                                 <li <?php active('stationery_report'); ?>>
@@ -390,7 +390,7 @@
                                                 <li <?php active('item_stock_report'); ?>>
                                                     <a target="_blank" href="<?= $path ?>/index.php?page=item_stock_report">
                                                         <i class="metismenu-icon">
-                                                        </i>Item Stock Report
+                                                        </i>Acces Report(Buyer)
                                                     </a>
                                                 </li>
 
