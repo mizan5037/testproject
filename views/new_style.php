@@ -134,7 +134,7 @@ include_once "includes/header.php";
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>
-                                        <select name="size[]" class="item mb-2 form-control-sm form-control" required>
+                                        <select name="size[]" class="item mb-2 form-control-sm form-control search_select" required>
                                             <option></option>
                                             <?php
                                             $conn = db_connection();
@@ -147,7 +147,7 @@ include_once "includes/header.php";
                                         </select>
                                     </td>
                                     <td>
-                                        <select name="item[]" class="item mb-2 form-control-sm form-control" required>
+                                        <select name="item[]" class="item mb-2 form-control-sm form-control search_select" required>
                                             <option></option>
                                             <?php
                                             $conn = db_connection();
@@ -199,6 +199,16 @@ function customPagefooter()
     global $path;
     ?>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+        $('.search_select').select2({
+            placeholder: 'Select Card Numbers'
+        });
+
+        $("select").select2();
+    </script>
+
     <script>
         // Image Load
         function readURL(input) {
@@ -229,7 +239,7 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><select name="size[]" class="item mb-2 form-control-sm form-control" required><option></option>';
+                cols += '<td><select name="size[]" class="item mb-2 form-control-sm form-control search_select" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM size WHERE status = 1";
@@ -239,7 +249,7 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
-                cols += '<td><select name="item[]" class="item mb-2 form-control-sm form-control" required><option></option>';
+                cols += '<td><select name="item[]" class="item mb-2 form-control-sm form-control search_select" required><option></option>';
                 <?php
                     $conn = db_connection();
                     $sql = "SELECT * FROM item WHERE status = 1";
@@ -256,6 +266,9 @@ function customPagefooter()
                 if (counter >= limit) $('#addrow').attr('disabled', true).prop('value', "You've reached the limit");
                 $("table.order-list").append(newRow);
                 counter++;
+                setTimeout(function() {
+                    $('.search_select').select2();
+                }, 100);
             });
 
             $("table.order-list").on("change", 'input[name^="qty"]', function(event) {
