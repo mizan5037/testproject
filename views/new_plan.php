@@ -65,7 +65,7 @@ include_once "includes/header.php";
                     </div>
                     <div class="col-md-4">
                         <label>Style</label>
-                        <select id="style" name="style" class=" mb-2 form-control-sm form-control" required>
+                        <select id="style" name="style" class=" mb-2 form-control-sm form-control search_select" required>
                             <option></option>
                         </select>
                     </div>
@@ -156,10 +156,8 @@ function customPagefooter()
 
     <script type="text/javascript">
         $('.search_select').select2({
-            placeholder: 'Select Card Numbers'
+            placeholder: 'Select Your Option'
         });
-
-        $("select").select2();
     </script>
     <script>
         $(document).ready(function() {

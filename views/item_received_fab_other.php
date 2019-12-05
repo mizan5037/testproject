@@ -55,7 +55,7 @@ include_once "includes/header.php";
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <select name="buyer[]" class="buyer mb-2 form-control-sm search_select width="10%"" required>
+                                    <select name="buyer[]" class="buyer mb-2 form-control-sm search_select width=" 10%"" required>
                                         <option></option>
                                         <?php
                                         $conn = db_connection();
@@ -150,7 +150,7 @@ function customPagefooter()
 
     <script type="text/javascript">
         $('.search_select').select2({
-            placeholder: 'Select Card Numbers'
+            placeholder: 'Select Your Option'
         });
 
         $("select").select2();

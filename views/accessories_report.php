@@ -124,7 +124,7 @@ function customPagefooter()
 
     <script type="text/javascript">
         $('.search_select').select2({
-            placeholder: 'Select Option'
+            placeholder: 'Select Your Option'
         });
 
     </script>
