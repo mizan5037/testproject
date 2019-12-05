@@ -256,6 +256,12 @@
                                                         All Master LC
                                                     </a>
                                                 </li>
+                                                <li <?php active('master_lc_report'); ?>>
+                                                    <a href="<?= $path ?>/index.php?page=master_lc_report">
+                                                        <i class="metismenu-icon"></i>
+                                                        Master LC Report
+                                                    </a>
+                                                </li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -378,13 +384,19 @@
                                                 <li <?php active('accessories_report'); ?>>
                                                     <a target="_blank" href="<?= $path ?>/index.php?page=accessories_report">
                                                         <i class="metismenu-icon">
-                                                        </i>Accessories Report
+                                                        </i>Acces Report(Item)
                                                     </a>
                                                 </li>
                                                 <li <?php active('stationery_report'); ?>>
                                                     <a target="_blank" href="<?= $path ?>/index.php?page=stationery_report">
                                                         <i class="metismenu-icon">
                                                         </i>Stationery Report
+                                                    </a>
+                                                </li>
+                                                <li <?php active('item_stock_report'); ?>>
+                                                    <a target="_blank" href="<?= $path ?>/index.php?page=item_stock_report">
+                                                        <i class="metismenu-icon">
+                                                        </i>Acces Report(Buyer)
                                                     </a>
                                                 </li>
 

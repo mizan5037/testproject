@@ -210,7 +210,7 @@ function customPagefooter()
 
     <script type="text/javascript">
         $('.search_select').select2({
-            placeholder: 'Select Card Numbers'
+            placeholder: 'Select Your Option'
         });
 
         $("select").select2();

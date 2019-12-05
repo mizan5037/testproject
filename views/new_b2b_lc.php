@@ -83,12 +83,11 @@ include_once "includes/header.php";
                         <thead>
                             <tr>
                                 <th width="1%">#</th>
+                                <th width="20%">PO</th>
+                                <th width="25%">Style</th>
                                 <th width="15%">Item</th>
-                                <th width="15%">Style</th>
-                                <th width="15%">PO</th>
                                 <th width="15%">Qty</th>
                                 <th width="15%">Price Per Unit</th>
-                                <th width="15%">Total Price</th>
                                 <th width="9%"></th>
                             </tr>
                         </thead>
@@ -132,9 +131,7 @@ include_once "includes/header.php";
                                 <td>
                                     <input placeholder="Price Per Unit" min="0.01" name="ppu[]" type="number" class="mb-2 form-control-sm form-control" step="0.01" required>
                                 </td>
-                                <td>
-                                    <input placeholder="Total Price" name="tp[]" type="number" class="mb-2 form-control-sm form-control" step="0.01" required>
-                                </td>
+
                                 <td><a class="deleteRow"></a></td>
                             </tr>
 
@@ -174,7 +171,7 @@ function customPagefooter()
 
     <script type="text/javascript">
         $('.search_select').select2({
-            placeholder: 'Select Card Numbers'
+            placeholder: 'Select Your Option'
         });
 
         $("select").select2();
@@ -203,8 +200,6 @@ function customPagefooter()
 
                 cols += '<td><input placeholder="Qty" name="qty[]" min="1" type="number" class="mb-2 form-control-sm form-control" required></td>';
                 cols += '<td><input placeholder="Price Per Unit" name="ppu[]" min="0.01" type="number" class="mb-2 form-control-sm form-control" step="0.01" required></td>';
-                cols += '<td><input placeholder="Total Price" name="tp[]" type="number" class="mb-2 form-control-sm form-control" step="0.01" required></td>';
-
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-sm btn-danger "  value="Delete"></td>';
                 newRow.append(cols);

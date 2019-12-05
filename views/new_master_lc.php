@@ -216,7 +216,7 @@ function customPagefooter()
 
     <script type="text/javascript">
         $('.search_select').select2({
-            placeholder: 'Please Select'
+            placeholder: 'Select Your Option'
         });
     </script>
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>

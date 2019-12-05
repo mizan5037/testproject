@@ -34,8 +34,7 @@ if (
     isset($_POST['style']) &&
     isset($_POST['po']) &&
     isset($_POST['qty']) &&
-    isset($_POST['ppu']) &&
-    isset($_POST['tp'])
+    isset($_POST['ppu'])
 ) {
     $masterlcid    = mysqli_real_escape_string($conn, $_POST['masterlcid']);
     $b2blcnumber   = mysqli_real_escape_string($conn, $_POST['b2blcnumber']);
@@ -64,15 +63,14 @@ if (
     $po    = ($_POST['po']);
     $qty   = ($_POST['qty']);
     $ppu   = ($_POST['ppu']);
-    $tp    = ($_POST['tp']);
 
     for ($i = 0; $i < sizeof($item); $i++) {
 
-        $totalprice  = $qty[$i] * $price_per_unit[$i];
+        $totalprice  = $qty[$i] * $ppu[$i];
 
         $sql = "INSERT INTO b2b_item (B2BLCID, ItemID, StyleID, POID, Qty, PricePerUnit, TotalPrice, AddedBy)
 
-		values('$last_id','$item[$i]','$style[$i]','$po[$i]','$qty[$i]','$ppu[$i]','$tp[$i]','$user_id') ";
+		values('$last_id','$item[$i]','$style[$i]','$po[$i]','$qty[$i]','$ppu[$i]','$totalprice','$user_id') ";
 
         if (mysqli_query($conn, $sql)) {
             notice('success', 'New B2B LC added Successfully');

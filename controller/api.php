@@ -7,6 +7,7 @@ require_once '../lib/functions.php';
 $conn = db_connection();
 
 $token = mysqli_real_escape_string($conn, $_POST["token"]);
+
 // po to style
 if (get_ses('token') === $token && $_POST["form"] == 'get_style') {
 
@@ -76,7 +77,7 @@ if (get_ses('token') === $token && $_POST["form"] == 'get_buyer_fab') {
 
 }
 
-// style to colour
+// style to colour for fab Relaxation
 if (get_ses('token') === $token && $_POST["form"] == 'get_style_color_fab') {
 
     $style_id = mysqli_real_escape_string($conn, $_POST["style_id"]);
@@ -92,3 +93,17 @@ if (get_ses('token') === $token && $_POST["form"] == 'get_style_color_fab') {
      }
 
 }
+
+// Style to Color
+if (get_ses('token') === $token && $_POST["form"] == 'get_color') {
+
+    $style_id = mysqli_real_escape_string($conn, $_POST["style"]);
+
+    $sql = "SELECT DISTINCT c.id,c.color FROM order_description od LEFT JOIN style s ON s.styleID = od.StyleID LEFT JOIN color c ON od.Color = c.id WHERE od.Status = '1' AND s.StyleID = '$style_id'";
+    $result = mysqli_query($conn, $sql);
+    echo '<option>Select Color</option>';
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo '<option value="' . $row['id'] . '">' . $row['color'] . '</option>';
+    }
+}
+
