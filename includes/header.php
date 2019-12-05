@@ -312,6 +312,12 @@
                                                         B2B Report
                                                     </a>
                                                 </li>
+                                                <li <?php active('b2blc_report_single'); ?>>
+                                                    <a target="_blank" href="<?= $path ?>/index.php?page=b2blc_report_single">
+                                                        <i class="metismenu-icon"></i>
+                                                        B2B Report(Single)
+                                                    </a>
+                                                </li>
                                                 <li <?php active('new_b2b_lc'); ?>>
                                                     <a href="<?= $path ?>/index.php?page=new_b2b_lc">
                                                         <i class="metismenu-icon"></i>
