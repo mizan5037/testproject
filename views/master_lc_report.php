@@ -3,7 +3,7 @@
 $page_privilege = 5;
 hasAccess();
 
-$PageTitle = "Fabric Register (Store) | Optima Inventory";
+$PageTitle = "Master Lc Report | Optima Inventory";
 $conn = db_connection();
 
 function customPageHeader()
@@ -44,45 +44,19 @@ include_once "includes/header.php";
             <div class="col-md-8">
                 <div class="main-card mb-3 card">
                     <div class="card-body">
-                        <form action="<?= $path ?>/index.php?report=access_report" method="post">
+                        <form action="<?= $path ?>/index.php?report=masterlc_report" method="post">
                             <div class="form-row">
                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="">Buyer</label>
-                                        <select name="buyer" id="buyer" class="style mb-2 form-control-sm form-control search_select" required>
-                                            <option></option>
-                                            <?php
-                                            $sql = "SELECT * FROM buyer WHERE status = 1";
-                                            $results = mysqli_query($conn, $sql);
-                                            while ($result = mysqli_fetch_assoc($results)) {
-                                                echo '<option value="' . $result['BuyerID'] . '">' . $result['BuyerName'] . '</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Item</label>
-                                        <select name="item" class="style mb-2 form-control-sm form-control search_select" required>
-                                            <option></option>
-                                            <?php
-                                            $sql = "SELECT * FROM item WHERE status = 1";
-                                            $results = mysqli_query($conn, $sql);
-                                            while ($result = mysqli_fetch_assoc($results)) {
-                                                echo '<option value="' . $result['ItemID'] . '">' . $result['ItemName'] . '</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
 
                                     <div class="form-group">
-                                        <label for="">Size</label>
-                                        <select name="size" class="style mb-2 form-control-sm form-control" required>
+                                        <label for="">Master Lc Number</label>
+                                        <select name="masterlc" id="" class="style mb-2 form-control-sm form-control search_select" required>
                                             <option></option>
                                             <?php
-                                            $sql = "SELECT * FROM size WHERE status = 1";
+                                            $sql = "SELECT MasterLCNumber,MasterLCID FROM masterlc WHERE Status = '1';";
                                             $results = mysqli_query($conn, $sql);
                                             while ($result = mysqli_fetch_assoc($results)) {
-                                                echo '<option value="' . $result['id'] . '">' . $result['size'] . '</option>';
+                                                echo '<option value="' . $result['MasterLCID'] . '">' . $result['MasterLCNumber'] . '</option>';
                                             }
                                             ?>
                                         </select>
@@ -90,7 +64,7 @@ include_once "includes/header.php";
 
                                     <div class="form-group">
                                         <label for="">Type</label>
-                                        <select name="name" id="" class="form-control form-control-sm">
+                                        <select name="type" id="" class="form-control form-control-sm">
                                             <option value="view">View</option>
                                             <option value="download">Download</option>
                                         </select>

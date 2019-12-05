@@ -45,7 +45,7 @@ include_once "includes/header.php";
                     <div class="col-md-2">
                         <h4> Title: </h4>
                     </div>
-                    <div class="col-md-10"> <input type="text" name="title" id="title" class="form-control"> </div>
+                    <div class="col-md-10"> <input type="text" name="title" id="title" class="form-control" required> </div>
                 </div>
                 <br>
                 <div class="form-row">

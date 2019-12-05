@@ -256,6 +256,12 @@
                                                         All Master LC
                                                     </a>
                                                 </li>
+                                                <li <?php active('master_lc_report'); ?>>
+                                                    <a href="<?= $path ?>/index.php?page=master_lc_report">
+                                                        <i class="metismenu-icon"></i>
+                                                        Master LC Report
+                                                    </a>
+                                                </li>
                                             </ul>
                                         </li>
                                     </ul>
