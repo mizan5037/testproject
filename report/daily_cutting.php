@@ -73,8 +73,6 @@
       </tr>';
     }
 
-
-
     $html .= '
       <tr>
         <th colspan = "12">&nbsp;</th>
