@@ -809,6 +809,12 @@
                                                 </i>Shipment (Report)
                                             </a>
                                         </li>
+                                        <li <?php active('po_shipment_report'); ?>>
+                                            <a href="<?= $path ?>/index.php?page=po_shipment_report" target="_blanck">
+                                                <i class="metismenu-icon">
+                                                </i>PO Shipment (Report)
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                             <?php } ?>
