@@ -752,6 +752,12 @@
                                                 </i>All Carton
                                             </a>
                                         </li>
+                                        <li <?php active('packing_list'); ?>>
+                                            <a href="<?= $path ?>/index.php?page=packing_list" target="_black">
+                                                <i class="metismenu-icon">
+                                                </i>Packing List
+                                            </a>
+                                        </li>
                                         <li <?php active('packet_goods'); ?>>
                                             <a href="<?= $path ?>/index.php?page=packet_goods" target="_black">
                                                 <i class="metismenu-icon">
