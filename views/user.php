@@ -169,7 +169,9 @@ include_once "includes/header.php";
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Download</th>
+                                    <?php if ($row['Designation'] == 1) { ?>
                                     <th>Delete</th>
+                                    <?php } ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -199,11 +201,13 @@ include_once "includes/header.php";
                                             <td>
                                                 <a class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-success" href="<?= $path . '/db/' . $value ?>">Download</a>
                                             </td>
+                                            <?php if ($row['Designation'] == 1) { ?>
                                             <td>
                                                 <a onclick="return confirm('Are You sure want to this backup?')" href="<?= $path ?>/index.php?page=delete_backup&name=<?= $value ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-danger">
                                                     Delete
                                                 </a>
                                             </td>
+                                            <?php } ?>
                                         </tr>
                                 <?php }
                                     } ?>
