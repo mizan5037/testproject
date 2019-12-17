@@ -290,14 +290,14 @@ function customPagefooter()
                     }
                     ?>
                 cols1 += '</select></td>';
-                cols1 += '<td><select name="color[]" class="style mb-2 form-control-sm form-control search_select" required> <option></option> <?php
+                cols1 += `<td><select name="color[]" class="style mb-2 form-control-sm form-control search_select" required> <option></option> <?php
                                                                                                                                                     $conn = db_connection();
                                                                                                                                                     $sql = "SELECT * FROM color WHERE status = 1";
                                                                                                                                                     $results = mysqli_query($conn, $sql);
                                                                                                                                                     while ($result = mysqli_fetch_assoc($results)) {
                                                                                                                                                         echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
                                                                                                                                                     }
-                                                                                                                                                    ?>  </select></td>';
+                                                                                                                                                    ?>  </select></td>`;
                 cols1 += '<td><input type="text" placeholder="CLR No" class="mb-2 form-control-sm form-control" name="clrno[]"/></td>';
                 cols1 += '<td><input type="number" placeholder="DZS" class="mb-2 form-control-sm form-control" name="dzs[]"/></td>';
                 cols1 += '<td><input type="number" placeholder="P/Pack" class="mb-2 form-control-sm form-control" name="ppack[]"/></td>';
@@ -376,12 +376,12 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><select name="size[]" class="style mb-2 form-control-sm form-control search_select" required> <option></option> <?php $conn = db_connection();
+                cols += `<td><select name="size[]" class="style mb-2 form-control-sm form-control search_select" required> <option></option> <?php $conn = db_connection();
                                                                                                                                                     $sql = "SELECT * FROM size WHERE status = 1";
                                                                                                                                                     $results = mysqli_query($conn, $sql);
                                                                                                                                                     while ($result = mysqli_fetch_assoc($results)) {
                                                                                                                                                         echo '<option value="' . $result['id'] . '">' . $result['size'] . '</option>';
-                                                                                                                                                    } ?>  </select></td>';
+                                                                                                                                                    } ?>  </select></td>`;
                 cols += '<td><input type="text" placeholder="PrePack Code" class="mb-2 form-control-sm form-control" name="ppk[]" required/></td>';
                 cols += '<td><input type="number" placeholder="Qty" class="mb-2 form-control-sm form-control" name="qty[]"/></td>';
 
