@@ -196,14 +196,14 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
-                cols += '<td><select name="color[]" class="style form-control-sm search_select" required> <option></option> <?php
+                cols += `<td><select name="color[]" class="style form-control-sm search_select" required> <option></option> <?php
                                                                                                                                 $conn = db_connection();
                                                                                                                                 $sql = "SELECT * FROM color WHERE status = 1";
                                                                                                                                 $results = mysqli_query($conn, $sql);
                                                                                                                                 while ($result = mysqli_fetch_assoc($results)) {
                                                                                                                                     echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
                                                                                                                                 }
-                                                                                                                                ?> </select></td>';
+                                                                                                                                ?> </select></td>`;
                 cols += '<td><select name="shade[]" class="form-control-sm search_select"> <option value="A">A</option> <option value="B">B</option> <option value="C">C</option> <option value="D">D</option> <option value="E">E</option> <option value="F">F</option> <option value="G">G</option> <option value="H">H</option> </select></td>';
                 cols += '<td><input placeholder="Shrinkage" type="text" name="shrinkage[]" class="form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Width" type="number" name="width[]" class="form-control-sm form-control" step="0.01"></td>';
