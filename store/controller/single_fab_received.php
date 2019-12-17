@@ -7,7 +7,7 @@ if (isset($_GET['fabRecBuyer'])&& isset($_GET['fbRecPOID'])&& isset($_GET['fbRec
     $fbRecStyle  = mysqli_real_escape_string($conn, $_GET['fbRecStyle']);
     $fbRecColor  = mysqli_real_escape_string($conn, $_GET['fbRecColor']);
 
-    $fab_Recd  = "SELECT b.BuyerID,b.BuyerName, fr.* FROM fab_receive fr LEFT JOIN masterlc_description md ON md.POID = fr.POID LEFT JOIN masterlc m ON m.MasterLCID = md.MasterLCID LEFT JOIN buyer b ON b.BuyerID = m.MasterLCBuyer WHERE fr.StyleID = '$fbRecStyle' AND b.BuyerID = '$fabRecBuyer' AND fr.POID = '$fbRecPOID' AND fr.Color ='$fbRecColor' AND fr.Status = '1'";
+    $fab_Recd  = "SELECT DISTINCT b.BuyerID,b.BuyerName, fr.* FROM fab_receive fr LEFT JOIN masterlc_description md ON md.POID = fr.POID LEFT JOIN masterlc m ON m.MasterLCID = md.MasterLCID LEFT JOIN buyer b ON b.BuyerID = m.MasterLCBuyer WHERE fr.StyleID = '$fbRecStyle' AND b.BuyerID = '$fabRecBuyer' AND fr.POID = '$fbRecPOID' AND fr.Color ='$fbRecColor' AND fr.Status = '1'";
 
     $fab_Recd  = (mysqli_query($conn, $fab_Recd));
     if (isset($_POST['FabReceiveID']) && isset($_POST['fabRecDel'])) {

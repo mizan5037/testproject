@@ -1,0 +1,125 @@
+<?php
+$page_privilege = 3;
+hasAccess();
+
+$PageTitle = "ALL PO | Optima Inventory";
+function customPageHeader()
+{
+    ?>
+    <!--Arbitrary HTML Tags-->
+<?php }
+$conn = db_connection();
+
+if (isset($_GET['delete_po'])) {
+    $delete_po = $_GET['delete_po'];
+
+    $sql = "UPDATE po SET Status=0 where POID='$delete_po'";
+
+
+    if (mysqli_query($conn, $sql)) {
+        notice('danger', ' PO Deleted Successfully');
+    } else {
+        notice('error', $sql . "<br>" . mysqli_error($conn));
+    }
+}
+
+include_once "includes/header.php";
+
+?>
+
+<div class="app-main__inner">
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="pe-7s-news-paper icon-gradient bg-mean-fruit">
+                    </i>
+                </div>
+                <div>ALL PO
+                    <div class="page-title-subheading">
+                        All the PO created Upto Now.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-card mb-3 card">
+        <div class="card-body">
+            <h5 class="card-title">LC List</h5>
+            <table class="mb-0 table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>PO Number</th>
+                        <th>PO Date</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $paginate = paginate('po');
+                    $add_sql = $paginate['sql'];
+                    $page_no = $paginate['page_no'];
+                    $total_pages = $paginate['total_pages'];
+                    $sql = "SELECT * FROM po WHERE status = 1 " . $add_sql;
+                    $po = mysqli_query($conn, $sql);
+
+                    $count = ($page_no * 10) - 9;
+                    while ($key = mysqli_fetch_assoc($po)) {
+                        $poid = $key['POID'];
+
+                        $sql1 = "SELECT * FROM order_description WHERE POID = " . $poid . " and status = 1 ";
+
+                        $style = mysqli_query($conn, $sql1);
+
+                        ?>
+                        <tr>
+                            <th scope="row"><?php echo $count++; ?></th>
+                            <td><?php echo $key['PONumber']; ?></td>
+                            <td><?php echo $key['PODate']; ?></td>
+
+                            <td>
+                                <a href="<?= $path ?>/index.php?page=po_single&poid=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
+                                    Details
+                                </a>
+                                <a href="<?= $path ?>/index.php?page=new_time_action&POID=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-secondary">
+                                    View Time/Action Calender
+                                </a>
+                                <a href="<?= $path ?>/index.php?page=all_po&delete_po=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-danger">
+                                    DELETE
+                                </a>
+                                <a href="<?= $path ?>/index.php?page=po_edit&id=<?php echo $key['POID']; ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-danger">
+                                    EDIT
+                                </a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+
+                </tbody>
+            </table>
+            <br><br>
+            <div class="row">
+                <div class="col-md-12">
+                    <?php
+                    links($page_no, $total_pages);
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<?php
+function customPagefooter()
+{
+    ?>
+
+    <!-- Extra Script Here -->
+
+<?php }
+include_once "includes/footer.php";
+?>

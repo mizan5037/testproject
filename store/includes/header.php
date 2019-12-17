@@ -12,8 +12,8 @@
     <meta name="msapplication-tap-highlight" content="no">
     <!-- Additional tags here -->
     <?php if (function_exists('customPageHeader')) {
-        customPageHeader();
-    } ?>
+                customPageHeader();
+            } ?>
     <link href="<?= $path ?>/main.css" type="text/css" rel="stylesheet">
     <link href="<?= $path ?>/assets/style.css" type="text/css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
@@ -23,9 +23,9 @@
 <body>
     <?php
 
-    if (function_exists('modal')) {
-        modal();
-    } ?>
+                if (function_exists('modal')) {
+                    modal();
+                } ?>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo">
@@ -125,8 +125,8 @@
                                 </a>
                             </li>
                             <?php
-                            $previlige = get_ses('designation');
-                            if ($previlige == 1 || $previlige == 2 || $previlige == 3) { ?>
+                                                $previlige = get_ses('designation');
+                                                if ($previlige == 1 || $previlige == 2 || $previlige == 3) { ?>
                                 <!-- Merchandising -->
                                 <li>
                                     <a href="#">
@@ -142,14 +142,14 @@
                                                 </i>New Inquire
                                             </a>
                                         </li>
-                                        <li <?php active('color_size'); ?>>
+                                        <!-- <li <?php active('color_size'); ?>>
                                             <a href="<?= $path ?>/index.php?page=color_size">
                                                 <i class="metismenu-icon">
                                                 </i>Color & Size
                                             </a>
-                                        </li>
+                                        </li> -->
                                         <!-- Item -->
-                                        <li>
+                                        <!-- <li>
                                             <a href="#">
                                                 <i class="metismenu-icon pe-7s-users"></i>
                                                 Item
@@ -169,7 +169,7 @@
                                                     </a>
                                                 </li>
                                             </ul>
-                                        </li>
+                                        </li> -->
                                         <!-- Style -->
                                         <li>
                                             <a href="#">
@@ -267,9 +267,9 @@
                                     </ul>
                                 </li>
                             <?php
-                            }
-                            if ($previlige == 1 || $previlige == 2 || $previlige == 4) {
-                                ?>
+                                                            }
+                                                            if ($previlige == 1 || $previlige == 2 || $previlige == 4) {
+                            ?>
                                 <!-- Commercial -->
                                 <li>
                                     <a href="#">
@@ -335,9 +335,9 @@
                                     </ul>
                                 </li>
                             <?php
-                            }
-                            if ($previlige == 1 || $previlige == 2 || $previlige == 5) {
-                                ?>
+                                                                            }
+                                                                            if ($previlige == 1 || $previlige == 2 || $previlige == 5) {
+                            ?>
                                 <!-- Production -->
                                 <li>
                                     <a href="#">
@@ -407,6 +407,12 @@
                                                 </li>
 
                                             </ul>
+                                        </li>
+                                        <li <?php active('color_size'); ?>>
+                                            <a href="<?= $path ?>/index.php?page=color_size">
+                                                <i class="metismenu-icon">
+                                                </i>Color & Size
+                                            </a>
                                         </li>
                                         <li>
                                             <a href="#">
@@ -485,6 +491,29 @@
                                             </a>
 
                                             <ul>
+
+                                                <!-- Item -->
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="metismenu-icon pe-7s-users"></i>
+                                                        Item
+                                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                                    </a>
+                                                    <ul>
+                                                        <li <?php active('new_item'); ?>>
+                                                            <a href="<?= $path ?>/index.php?page=new_item">
+                                                                <i class="metismenu-icon">
+                                                                </i>New Item
+                                                            </a>
+                                                        </li>
+                                                        <li <?php active('all_item'); ?>>
+                                                            <a href="<?= $path ?>/index.php?page=all_item">
+                                                                <i class="metismenu-icon">
+                                                                </i>All Items
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
                                                 <li <?php active('item_stock'); ?>>
                                                     <a href="<?= $path ?>/index.php?page=item_stock">
                                                         <i class="metismenu-icon">
@@ -826,8 +855,8 @@
             <div class="app-main__outer">
                 <!-- Notice -->
                 <?php
-                //notice('error', 'Updated Successfully');
-                if (get_ses('notice')) { ?>
+                                                                            //notice('error', 'Updated Successfully');
+                                                                            if (get_ses('notice')) { ?>
                     <div class="alert alert-<?php echo get_ses('notice'); ?> alert-dismissible fade show notification" data-auto-dismiss="7000" role="alert">
                         <?php echo get_ses('notice_content'); ?>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -835,8 +864,8 @@
                         </button>
                     </div>
                 <?php }
-                del_ses('notice');
-                del_ses('notice_content');
+                                                                            del_ses('notice');
+                                                                            del_ses('notice_content');
                 ?>
 
                 <div id="notice"></div>

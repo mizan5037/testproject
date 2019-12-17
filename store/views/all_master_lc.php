@@ -1,0 +1,103 @@
+<?php
+
+$page_privilege = 3;
+hasAccess();
+
+$PageTitle = "All Master LC | Optima Inventory";
+function customPageHeader()
+{
+    ?>
+    <!--Arbitrary HTML Tags-->
+<?php }
+include_once "controller/all_master_lc.php";
+include_once "includes/header.php";
+
+?>
+
+<div class="app-main__inner">
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="pe-7s-news-paper icon-gradient bg-mean-fruit">
+                    </i>
+                </div>
+                <div>ALL Master LC
+                    <div class="page-title-subheading">
+                        All the Master LC created Upto Now.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-card mb-3 card">
+        <div class="card-body">
+            <h5 class="card-title">LC List</h5>
+            <table class="mb-0 table table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Master LC Number</th>
+                        <th>Buyer</th>
+                        <th>Issue Date</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $paginate = paginate('masterlc');
+                    $add_sql = $paginate['sql'];
+                    $page_no = $paginate['page_no'];
+                    $total_pages = $paginate['total_pages'];
+                    $sql = "SELECT MasterLCID, MasterLCBuyer, MasterLCIssueDate, MasterLCNumber FROM masterlc WHERE status = 1" . $add_sql;
+                    $po = mysqli_query($conn, $sql);
+
+                    $count = ($page_no * 10) - 9;
+                    while ($key = mysqli_fetch_assoc($po)) {
+                        ?>
+                        <tr>
+                            <th scope="row"><?= $count++ ?></th>
+                            <td><?= $key['MasterLCNumber'] ?></td>
+                            <td>
+                                <a href="<?= $path ?>/index.php?page=single_buyer&buyer_id=<?= $key['MasterLCBuyer'] ?>" target="_blank" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-success">
+                                    <?= searchForBuyer($key['MasterLCBuyer'], $buyerArr) ?>
+                                </a></td>
+                            <td><?= $key['MasterLCIssueDate'] ?></td>
+                            <td>
+                                <a href="<?= $path ?>/index.php?page=single_masterlc&id=<?= $key['MasterLCID'] ?>" class="mb-2 mr-2 btn-transition btn btn-sm btn-outline-primary">
+                                    Details
+                                </a>
+                                /
+                                <a onclick="return confirm('Are You sure want to delete this item permanently?')" href="<?= $path ?>/index.php?page=all_master_lc&delete=<?= $key['MasterLCID'] ?>" class="mb-2 mr-2 btn-transition btn-danger btn btn-sm btn-outline-secondary" id="details">
+                                    <i class="fas fa-trash-alt" style="color: white;"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+            <br><br>
+            <div class="row">
+                <div class="col-md-12">
+                    <?php
+                    links($page_no, $total_pages);
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<?php
+function customPagefooter()
+{
+    ?>
+
+    <!-- Extra Script Here -->
+
+<?php }
+include_once "includes/footer.php";
+?>
