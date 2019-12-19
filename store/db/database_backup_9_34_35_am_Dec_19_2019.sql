@@ -1,9 +1,9 @@
 -- mysqldump-php https://github.com/ifsnop/mysqldump-php
 --
--- Host: localhost	Database: optima_inventory
+-- Host: localhost	Database: store
 -- ------------------------------------------------------
 -- Server version 	5.5.5-10.4.8-MariaDB
--- Date: Tue, 17 Dec 2019 06:00:51 +0100
+-- Date: Thu, 19 Dec 2019 09:34:35 +0100
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -473,8 +473,7 @@ CREATE TABLE `fab_receive` (
   `POID` int(11) NOT NULL,
   `StyleID` int(11) NOT NULL,
   `Color` varchar(200) NOT NULL,
-  `Shade` varchar(200) NOT NULL,
-  `Shrinkage` varchar(200) NOT NULL,
+  `Buyer` int(200) NOT NULL,
   `Width` varchar(200) NOT NULL,
   `ReceivedFab` float NOT NULL,
   `ReceivedRoll` int(11) NOT NULL,
@@ -864,6 +863,7 @@ COMMIT;
 CREATE TABLE `item_issue_access` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `CuttingNumber` varchar(200) NOT NULL,
+  `buyer` int(11) NOT NULL,
   `ItemID` int(11) NOT NULL,
   `StyleID` int(11) NOT NULL,
   `POID` int(11) NOT NULL,
@@ -902,6 +902,7 @@ COMMIT;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `item_receive_access` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `buyer` int(11) NOT NULL,
   `ItemID` int(11) NOT NULL,
   `ColorID` int(11) NOT NULL,
   `StyleID` int(11) NOT NULL,
@@ -1779,4 +1780,4 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Tue, 17 Dec 2019 06:00:51 +0100
+-- Dump completed on: Thu, 19 Dec 2019 09:34:36 +0100
