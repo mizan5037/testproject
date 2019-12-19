@@ -85,6 +85,7 @@ include_once "includes/header.php";
             </table>
         </div>
     </div>
+    <?php if($queryissue){ ?>
     <div class="main-card mb-3 card">
         <div class="card-body text-center">
             <table class="table table-bordered text-center">
@@ -119,6 +120,7 @@ include_once "includes/header.php";
             </table>
         </div>
     </div>
+                    <?php }?>
 </div>
 
 

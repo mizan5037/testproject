@@ -119,7 +119,7 @@ include_once "includes/header.php";
                                         <td>
                                             <input placeholder="Shortage/Excess Yds" type="number" name="sortexs[]" class="form-control-sm form-control">
                                         </td>
-                                        <td><input type="button" class="ibtnDel btn btn-danger"  value="Delete" disabled></td>
+                                        <td><input type="button" class="ibtnDel btn btn-danger" value="Delete" disabled></td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
@@ -175,13 +175,14 @@ function customPagefooter()
                 cols += '<th>' + counter + '</th>';
                 cols += '<td><select name="buyer[]" class="buyer mb-2 form-control-sm search_select" required><option></option>';
                 <?php
-                    $conn = db_connection();
-                    $sql = "SELECT * FROM buyer WHERE status = 1";
-                    $results = mysqli_query($conn, $sql);
-                    while ($result = mysqli_fetch_assoc($results)) {
-                        echo 'cols += \'<option value="' . $result['BuyerID'] . '">' . $result['BuyerName'] . '</option>\'; ';
-                    }
-                    ?>
+                $conn = db_connection();
+                $sql = "SELECT * FROM buyer WHERE status = 1";
+                $results = mysqli_query($conn, $sql);
+                while ($result = mysqli_fetch_assoc($results)) {
+                    echo 'cols += \'<option value="' . $result['BuyerID'] . '">' . $result['BuyerName'] . '</option>\'; ';
+                }
+                ?>
+                cols += '</select></td>';
                 cols += '<td><select name="po[]" class="po form-control-sm search_select" required><option></option>';
                 <?php
                 $conn = db_connection();
@@ -202,7 +203,7 @@ function customPagefooter()
                 }
                 ?>
                 cols += '</select></td>';
-                
+
                 cols += `<td><select name="color[]" class="style form-control-sm search_select" required> <option></option> <?php
                                                                                                                             $conn = db_connection();
                                                                                                                             $sql = "SELECT * FROM color WHERE status = 1";
@@ -211,7 +212,7 @@ function customPagefooter()
                                                                                                                                 echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
                                                                                                                             }
                                                                                                                             ?> </select></td>`;
-                
+
                 cols += '<td><input placeholder="Width" type="number" name="width[]" class="form-control-sm form-control" step="0.01"></td>';
                 cols += '<td><input placeholder="Received Fabric Yds" type="number" name="receivefab[]" class="form-control-sm form-control"  step="0.01"></td>';
                 cols += '<td><input placeholder="Received Roll" type="number" name="receiveroll[]" class="form-control-sm form-control"></td>';

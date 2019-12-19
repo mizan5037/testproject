@@ -6,7 +6,7 @@ hasAccess();
 $PageTitle = "Item Received | Optima Inventory";
 function customPageHeader()
 {
-    ?>
+?>
     <!--Arbitrary HTML Tags-->
 <?php }
 include_once "controller/add_item_received.php";
@@ -39,6 +39,7 @@ include_once "includes/header.php";
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th width="15%">Buyer</th>
                                 <th width="15%">PO</th>
                                 <th width="15%">Style</th>
                                 <th width="15%">Color</th>
@@ -52,6 +53,19 @@ include_once "includes/header.php";
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
+                                <td>
+                                    <select name="buyer[]" class="buyer mb-2 form-control-sm search_select" required>
+                                        <option></option>
+                                        <?php
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM buyer WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['BuyerID'] . '">' . $result['BuyerName'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
                                 <td>
                                     <select name="po[]" id="po" class="po mb-2 form-control-sm form-control search_select" required>
                                         <option></option>
@@ -69,12 +83,12 @@ include_once "includes/header.php";
                                     <select name="style[]" id="style" class="style mb-2 form-control-sm form-control search_select" required>
                                         <option></option>
                                         <?php
-                                        // $conn = db_connection();
-                                        // $sql = "SELECT * FROM style WHERE status = 1";
-                                        // $results = mysqli_query($conn, $sql);
-                                        // while ($result = mysqli_fetch_assoc($results)) {
-                                        //     echo '<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
-                                        // }
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM style WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                        }
                                         ?>
                                     </select>
                                 </td>
@@ -82,12 +96,12 @@ include_once "includes/header.php";
                                     <select name="color[]" id="color" class="color mb-2 form-control-sm form-control search_select" required>
                                         <option></option>
                                         <?php
-                                        // $conn = db_connection();
-                                        // $sql = "SELECT * FROM color WHERE status = 1";
-                                        // $results = mysqli_query($conn, $sql);
-                                        // while ($result = mysqli_fetch_assoc($results)) {
-                                        //     echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
-                                        // }
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM color WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                        }
                                         ?>
                                     </select>
                                 </td>
@@ -158,7 +172,7 @@ include_once "includes/header.php";
 function customPagefooter()
 {
     global $path;
-    ?>
+?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 
     <script type="text/javascript">
@@ -167,51 +181,6 @@ function customPagefooter()
         });
     </script>
     <script>
-        // po to style
-        function getstyle(poid, styleid) {
-            let poids = $(poid).val();
-            if (poids != '') {
-                $.ajax({
-                    url: "<?= $path ?>/controller/api.php",
-                    method: "POST",
-                    data: {
-                        po: poids,
-                        form: 'get_style',
-                        token: '<?= get_ses('token') ?>'
-                    },
-                    dataType: "text",
-                    success: function(data) {
-                        $(styleid).html(data);
-                    }
-                });
-            } else {
-                $(styleid).html("<option>---</option>");
-            }
-        }
-
-        function getcolor(styleid, colorid) {
-            let style_id = $(styleid).val();
-            // console.log(style_id);
-            // console.log(colorid);
-            if (style_id != '') {
-                $.ajax({
-                    url: "<?= $path ?>/controller/api.php",
-                    method: "POST",
-                    data: {
-                        style: style_id,
-                        form: 'get_color',
-                        token: '<?= get_ses('token') ?>'
-                    },
-                    dataType: "text",
-                    success: function(data) {
-                        $(colorid).html(data);
-                        // console.log(data);
-                    }
-                });
-            } else {
-                $(colorid).html("<option>-----</option>");
-            }
-        }
         $(document).ready(function() {
             var counter = 0;
             var limit = 100;
@@ -224,43 +193,68 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th>' + counter + '</th>';
-                cols += '<td><select name="po[]" onchange="getstyle(\'#po' + counter + '\',\'#style' + counter + '\');" id="po' + counter + '" class="po mb-2 form-control-sm form-control search_select" required><option></option>';
+                cols += '<td><select name="buyer[]" class="buyer mb-2 form-control-sm search_select" required><option></option>';
                 <?php
-                    $conn = db_connection();
-                    $sql = "SELECT * FROM po WHERE status = 1";
-                    $results = mysqli_query($conn, $sql);
-                    while ($result = mysqli_fetch_assoc($results)) {
-                        echo 'cols += \'<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>\'; ';
-                    }
-                    ?>
+                $conn = db_connection();
+                $sql = "SELECT * FROM buyer WHERE status = 1";
+                $results = mysqli_query($conn, $sql);
+                while ($result = mysqli_fetch_assoc($results)) {
+                    echo 'cols += \'<option value="' . $result['BuyerID'] . '">' . $result['BuyerName'] . '</option>\'; ';
+                }
+                ?>
                 cols += '</select></td>';
-                cols += '<td><select name="style[]" onchange="getcolor(\'#style' + counter + '\',\'#color' + counter + '\');" id="style' + counter + '" class="style mb-2 form-control-sm form-control search_select" required><option></option>';
+                cols += '<td><select name="po[]" id="po' + counter + '" class="po mb-2 form-control-sm form-control search_select" required><option></option>';
+                <?php
+                $conn = db_connection();
+                $sql = "SELECT * FROM po WHERE status = 1";
+                $results = mysqli_query($conn, $sql);
+                while ($result = mysqli_fetch_assoc($results)) {
+                    echo 'cols += \'<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>\'; ';
+                }
+                ?>
+                cols += '</select></td>';
+                cols += '<td><select name="style[]" id="style' + counter + '" class="style mb-2 form-control-sm form-control search_select" required><option></option>';
 
+                <?php
+                $conn = db_connection();
+                $sql = "SELECT * FROM style WHERE status = 1";
+                $results = mysqli_query($conn, $sql);
+                while ($result = mysqli_fetch_assoc($results)) {
+                    echo 'cols += \'<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>\'; ';
+                }
+                ?>
                 cols += '</select></td>';
                 cols += '<td><select name="color[]" id="color' + counter + '" class="color mb-2 form-control-sm form-control search_select" required><option></option>';
-
+                <?php
+                $conn = db_connection();
+                $sql = "SELECT * FROM color WHERE status = 1";
+                $results = mysqli_query($conn, $sql);
+                while ($result = mysqli_fetch_assoc($results)) {
+                    echo 'cols += \'<option value="' . $result['id'] . '">' . $result['color'] . '</option>\';';
+                }
+                ?>
                 cols += '</select></td>';
                 cols += '<td><select name="item[]" class="item mb-2 form-control-sm form-control search_select" required><option></option>';
                 <?php
-                    $conn = db_connection();
-                    $sql = "SELECT * FROM item WHERE status = 1";
-                    $results = mysqli_query($conn, $sql);
-                    while ($result = mysqli_fetch_assoc($results)) {
-                        echo 'cols += \'<option value="' . $result['ItemID'] . '">' . $result['ItemName'] . '</option>\'; ';
-                    }
-                    ?>
+                $conn = db_connection();
+                $sql = "SELECT * FROM item WHERE status = 1";
+                $results = mysqli_query($conn, $sql);
+                while ($result = mysqli_fetch_assoc($results)) {
+                    echo 'cols += \'<option value="' . $result['ItemID'] . '">' . $result['ItemName'] . '</option>\'; ';
+                }
+                ?>
                 cols += '</select></td>';
 
 
                 cols += '<td><select name="size[]" class="size mb-2 form-control-sm form-control" required><option></option>';
                 <?php
-                    $conn = db_connection();
-                    $sql = "SELECT * FROM size WHERE status = 1";
-                    $results = mysqli_query($conn, $sql);
-                    while ($result = mysqli_fetch_assoc($results)) {
-                        echo 'cols += \'<option value="' . $result['id'] . '">' . $result['size'] . '</option>\'; ';
-                    }
-                    ?>
+                $conn = db_connection();
+                $sql = "SELECT * FROM size WHERE status = 1";
+                $results = mysqli_query($conn, $sql);
+                while ($result = mysqli_fetch_assoc($results)) {
+                    echo 'cols += \'<option value="' . $result['id'] . '">' . $result['size'] . '</option>\'; ';
+                }
+                ?>
                 cols += '</select></td>';
                 cols += '<td><input placeholder="Received" type="number" name="receiveroll[]" class="mb-2 form-control-sm form-control"></td>';
                 cols += '<td><input placeholder="Shortage/Excess" type="number" name="sortexs[]" class="mb-2 form-control-sm form-control"></td>';
@@ -292,52 +286,6 @@ function customPagefooter()
                 counter -= 1
                 $('#addrow').attr('disabled', false).prop('value', "Add Row");
             });
-
-            // po to style
-            $("#po").change(function() {
-                let po = this.value;
-                if (po != '') {
-                    $.ajax({
-                        url: "<?= $path ?>/controller/api.php",
-                        method: "POST",
-                        data: {
-                            po: po,
-                            form: 'get_style',
-                            token: '<?= get_ses('token') ?>'
-                        },
-                        dataType: "text",
-                        success: function(data) {
-                            $("#style").html(data);
-                        }
-                    });
-                } else {
-                    $("#style").html("<option>-----</option>");
-                }
-
-            });
-            // style to color
-            $("#style").change(function() {
-                let style = this.value;
-                if (style != '') {
-                    $.ajax({
-                        url: "<?= $path ?>/controller/api.php",
-                        method: "POST",
-                        data: {
-                            style: style,
-                            form: 'get_color',
-                            token: '<?= get_ses('token') ?>'
-                        },
-                        dataType: "text",
-                        success: function(data) {
-                            $("#color").html(data);
-                        }
-                    });
-                } else {
-                    $("#color").html("<option>-----</option>");
-                }
-
-            });
-
 
         });
     </script>

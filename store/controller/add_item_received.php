@@ -3,6 +3,7 @@ $conn = db_connection();
 if (isset($_POST['item']) && $_POST['style'] && isset($_POST['color']) && isset($_POST['po']) && isset($_POST['size']) && isset($_POST['receiveroll']) && isset($_POST['sortexs'])) {
 
 
+	$buyer        = ($_POST['buyer']);
 	$item        = ($_POST['item']);
 	$style       = ($_POST['style']);
 	$color       = ($_POST['color']);
@@ -15,8 +16,8 @@ if (isset($_POST['item']) && $_POST['style'] && isset($_POST['color']) && isset(
 
 	for ($i = 0; $i < sizeof($item); $i++) {
 
-		$sql = "INSERT INTO item_receive_access (ItemID,ColorID,StyleID,POID,Size,Received,Shortage,AddedBy)
-		values('$item[$i]','$color[$i]','$style[$i]','$po[$i]','$size[$i]','$receiveroll[$i]','$sortexs[$i]','$user_id')";
+		$sql = "INSERT INTO item_receive_access (buyer,ItemID,ColorID,StyleID,POID,Size,Received,Shortage,AddedBy)
+		values('$buyer[$i]','$item[$i]','$color[$i]','$style[$i]','$po[$i]','$size[$i]','$receiveroll[$i]','$sortexs[$i]','$user_id')";
 
 		if (mysqli_query($conn, $sql)) {
 			notice('success', 'New Item Received Successfully');

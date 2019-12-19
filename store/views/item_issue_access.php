@@ -36,11 +36,26 @@ include_once "includes/header.php";
             <div class="container">
                 <form action="" class="needs-validation" method="POST" novalidate>
                     <div class="form-row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="validationTooltip02">Cutting No</label>
                             <input type="text" class="mb-2 form-control-sm form-control" id="validationTooltip02" name="cutting_no" laceholder="Cutting No" required>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <label for="validationTooltip02">Buyer</label>
+
+                            <select class="form-control form-control-sm search_select" name="buyer" required>
+                            <option></option>
+                            <?php
+                            $sql = "SELECT BuyerID, BuyerName FROM buyer WHERE Status = 1";
+                            $results = mysqli_query($conn, $sql);
+                            while ($result = mysqli_fetch_assoc($results)) {
+                                echo '<option value="' . $result['BuyerID'] . '">' . $result['BuyerName'] . '</option>';
+                            }
+                            ?>
+                        </select>
+
+                        </div>
+                        <div class="col-md-3">
                             <label for="validationTooltip02">Style No</label>
 
                             <select name="style" class="style mb-2 form-control-sm form-control" required>
@@ -56,7 +71,7 @@ include_once "includes/header.php";
                             </select>
 
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="validationTooltip02">P.O. No</label>
                             <select name="po" class="po mb-2 form-control-sm form-control" required>
                                 <option></option>
