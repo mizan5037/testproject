@@ -68,13 +68,13 @@
             <div class="card-body text-center">
                 <h6>
                     Buyer :
-                    <a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=single_buyer&buyer_id=<?= $rowttl['BuyerID'] ?>" target="_blank"><?= $rowttl['BuyerName'] ?></a>
+                    <?= $rowttl['BuyerName'] ?>
                     &nbsp; &nbsp;
                     Style :
-                    <a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=single_style&id=<?= $rowttl['StyleID'] ?>" target="_blank"><?= $rowttl['StyleNumber'] ?></a>
+                    <?= $rowttl['StyleNumber'] ?>
                     &nbsp; &nbsp;
                     P.O. :
-                    <a class="btn btn-sm btn-outline-success" href="<?= $path ?>/index.php?page=po_single&poid=<?= $rowttl['POID'] ?>" target="_blank"><?= $rowttl['PONumber'] ?></a>
+                    <?= $rowttl['PONumber'] ?>
                     &nbsp; &nbsp;
                     Color : <?= $rowttl['color'] ?>
                 </h6>

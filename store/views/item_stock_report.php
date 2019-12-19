@@ -65,21 +65,42 @@ include_once "includes/header.php";
                                         <label for="">PO</label>
                                         <select name="po" id="po" class="style mb-2 form-control-sm form-control" required>
                                             <option value=""></option>
-
+                                            <?php
+                                                $conn = db_connection();
+                                                $sql = "SELECT * FROM po WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    echo '<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
+                                                }
+                                                ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Style</label>
                                         <select name="style" id="style" class="style mb-2 form-control-sm form-control" required>
                                             <option value=""></option>
-
+                                            <?php
+                                                $conn = db_connection();
+                                                $sql = "SELECT * FROM style WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    echo '<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                                }
+                                                ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
 
                                         <label for="">Colour</label>
                                         <select name="color" id="color" class="color mb-2 form-control-sm form-control" required>
-
+                                        <?php
+                                                $conn = db_connection();
+                                                $sql = "SELECT * FROM color WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                                }
+                                                ?>
 
                                         </select>
                                     </div>
@@ -115,76 +136,7 @@ function customPagefooter()
     ?>
 
     <!-- Extra Script Here -->
-    <script type="text/javascript">
-        $(document).ready(function() {
-            //get buyer to PO
-            $("#buyer").change(function() {
-                let buyer_id = this.value;
-                if (buyer_id != '') {
-                    $.ajax({
-                        url: "<?= $path ?>/controller/api.php",
-                        method: "POST",
-                        data: {
-                            buyer_id: buyer_id,
-                            form: 'get_po_size_wise',
-                            token: '<?= get_ses('token') ?>'
-                        },
-                        dataType: "text",
-                        success: function(data) {
-                            $("#po").html(data);
-                        }
-                    });
-                } else {
-                    $("#po").html("<option>-----</option>");
-                }
-
-            });
-            // po to style
-            $("#po").change(function() {
-                let po = this.value;
-                if (po != '') {
-                    $.ajax({
-                        url: "<?= $path ?>/controller/api.php",
-                        method: "POST",
-                        data: {
-                            po: po,
-                            form: 'get_style',
-                            token: '<?= get_ses('token') ?>'
-                        },
-                        dataType: "text",
-                        success: function(data) {
-                            $("#style").html(data);
-                        }
-                    });
-                } else {
-                    $("#style").html("<option>-----</option>");
-                }
-
-            });
-            // style to color
-            $("#style").change(function() {
-                let style = this.value;
-                if (style != '') {
-                    $.ajax({
-                        url: "<?= $path ?>/controller/api.php",
-                        method: "POST",
-                        data: {
-                            style: style,
-                            form: 'get_color',
-                            token: '<?= get_ses('token') ?>'
-                        },
-                        dataType: "text",
-                        success: function(data) {
-                            $("#color").html(data);
-                        }
-                    });
-                } else {
-                    $("#color").html("<option>-----</option>");
-                }
-
-            });
-        });
-    </script>
+   
 
 <?php }
 include_once "includes/footer.php";

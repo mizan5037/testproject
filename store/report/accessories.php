@@ -59,7 +59,7 @@
                 <td>Date</td>
                 <td>PO Number</td>
                 <td>Style</td>
-                <td>Received Itme</td>
+                <td>Received Item</td>
             </tr>
         </thead>
         <tbody>
@@ -102,7 +102,7 @@
                 <td>Date</td>
                 <td>PO Number</td>
                 <td>Style</td>
-                <td>Issued Itme</td>
+                <td>Issued Item</td>
             </tr>
         </thead>
         <tbody>

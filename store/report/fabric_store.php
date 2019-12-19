@@ -82,7 +82,7 @@ td{
 
 
 
-$sql = "SELECT f.*, s.StyleNumber,c.color,c.id as colorid from buyer b LEFT JOIN masterlc m ON b.BuyerID = m.MasterLCBuyer LEFT JOIN masterlc_description md ON m.MasterLCID = md.MasterLCID LEFT JOIN fab_receive f ON md.POID = f.POID LEFT JOIN style s ON f.StyleID = s.StyleID LEFT JOIN color c ON f.Color = c.id WHERE NOT (s.StyleNumber <=> NULL) AND b.BuyerID='$buyer' GROUP BY f.StyleID,c.color";
+$sql = "SELECT f.*, s.StyleNumber,c.color,c.id as colorid from buyer b LEFT JOIN fab_receive f ON f.Buyer = b.BuyerID LEFT JOIN style s ON f.StyleID = s.StyleID LEFT JOIN color c ON f.Color = c.id WHERE NOT (s.StyleNumber <=> NULL) AND b.BuyerID=$buyer GROUP BY f.StyleID,c.color";
 
 $stylenumber             = '';
 $count                   = 0;
