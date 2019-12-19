@@ -11,9 +11,6 @@ if (isset($_GET['fab_Rec_id']) && isset($_GET['buyer_id'])) {
 
     if (isset($_POST['fabRc']) && isset($_POST['receivefab']) && isset($_POST['receiveroll']) && isset($_POST['sortexs'])) {
 
-
-        $shade       = ($_POST['shade']);
-        $shrinkage   = ($_POST['shrinkage']);
         $width       = ($_POST['width']);
         $receivefab  = ($_POST['receivefab']);
         $receiveroll = ($_POST['receiveroll']);
@@ -21,7 +18,7 @@ if (isset($_GET['fab_Rec_id']) && isset($_GET['buyer_id'])) {
         $user_id     = (get_ses('user_id'));
 
 
-        $sql = "UPDATE fab_receive SET Shade='$shade', Shrinkage='$shrinkage', Width='$width', ReceivedFab='$receivefab', ReceivedRoll='$receiveroll', Shortage='$sortexs', AddedBy='$user_id' WHERE FabReceiveID ='$fab_rec_id'";
+        $sql = "UPDATE fab_receive SET Width='$width', ReceivedFab='$receivefab', ReceivedRoll='$receiveroll', Shortage='$sortexs', AddedBy='$user_id' WHERE FabReceiveID ='$fab_rec_id'";
 
         if (mysqli_query($conn, $sql)) {
             notice('success', 'Fabric Updated Successfully');
@@ -36,8 +33,6 @@ if (isset($_GET['fab_Rec_id']) && isset($_GET['buyer_id'])) {
     $fab_other_all = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
     if (isset($_POST['fabRcOther']) && isset($_POST['receivefab']) && isset($_POST['receiveroll']) && isset($_POST['sortexs'])) {
-        $shade       = ($_POST['shade']);
-        $shrinkage   = ($_POST['shrinkage']);
         $width       = ($_POST['width']);
         $receivefab  = ($_POST['receivefab']);
         $receiveroll = ($_POST['receiveroll']);
@@ -46,7 +41,7 @@ if (isset($_GET['fab_Rec_id']) && isset($_GET['buyer_id'])) {
 
 
 
-        $sql = "UPDATE fab_receive_other SET Shade= '$shade',Shrinkage='$shrinkage',Width='$width' ,ReceivedFab= '$receivefab' ,ReceivedRoll='$receiveroll',Shortage='$sortexs',AddedBy='$user_id' WHERE id='$fab_Rec_other_id'";
+        $sql = "UPDATE fab_receive_other SET Width='$width' ,ReceivedFab= '$receivefab' ,ReceivedRoll='$receiveroll',Shortage='$sortexs',AddedBy='$user_id' WHERE id='$fab_Rec_other_id'";
 
         if (mysqli_query($conn, $sql)) {
             notice('success', 'Fabric Updated (Contrast,Pocketing) Successfully');

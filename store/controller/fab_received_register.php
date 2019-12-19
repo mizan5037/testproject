@@ -1,6 +1,6 @@
 <?php
 $conn = db_connection();
-$sql = "SELECT p.POID,b.BuyerID,fr.FabReceiveID,s.StyleID, b.BuyerName, s.StyleNumber,fr.Color FROM fab_receive fr LEFT JOIN po p ON p.POID = fr.POID LEFT JOIN masterlc_description md ON md.POID = p.POID LEFT JOIN masterlc m ON m.MasterLCID = md.MasterLCID LEFT JOIN buyer b ON m.MasterLCBuyer = b.BuyerID LEFT JOIN style s ON fr.StyleID = s.StyleID LEFT JOIN color c ON c.id = fr.Color WHERE fr.Status = '1' GROUP BY b.BuyerID ORDER BY fr.FabReceiveID DESC";
+$sql = "SELECT fr.FabReceiveID, fr.POID, fr.StyleID, fr.Buyer, fr.Color, b.BuyerName, p.PONumber, s.StyleNumber, c.color FROM fab_receive fr, Buyer b, po p, style s, color c WHERE fr.Status = '1' AND fr.Buyer = b.BuyerID AND fr.StyleID = s.StyleID AND fr.POID = p.POID AND fr.Color = c.id GROUP BY fr.Buyer, fr.StyleID, fr.POID, fr.Color ORDER BY fr.FabReceiveID DESC";
 
 $query = mysqli_query($conn, $sql);
 

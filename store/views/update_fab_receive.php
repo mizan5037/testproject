@@ -40,11 +40,10 @@ include_once "includes/header.php";
                                         <thead>
                                             <tr width="100%">
                                                 <th width="5%">#</th>
+                                                <th width="15%">Buyer</th>
                                                 <th width="10%">PO</th>
                                                 <th width="10%">Style</th>
                                                 <th width="10%">Color</th>
-                                                <th width="7%">Shade</th>
-                                                <th width="8%">Shrinkage</th>
                                                 <th width="15%">Width</th>
                                                 <th width="15%">Received Yds</th>
                                                 <th width="10%">Received Roll</th>
@@ -54,6 +53,12 @@ include_once "includes/header.php";
                                         <tbody>
                                             <tr>
                                                 <th scope="row">1</th>
+                                                <td>
+                                                    <select name="buyer" class="po form-control-sm search_select" disabled>
+                                                        <option value="<?= $fab_all['buyer'] ?>"><?= getname('buyer', 'BuyerName', 'BuyerID', $fab_all['Buyer']) ?></option>
+
+                                                    </select>
+                                                </td>
                                                 <td>
                                                     <select name="po" class="po form-control-sm search_select" disabled>
                                                         <option value="<?= $fab_all['POID'] ?>"><?= getname('po', 'PONumber', 'POID', $fab_all['POID']) ?></option>
@@ -71,22 +76,6 @@ include_once "includes/header.php";
                                                         <option value="<?= $fab_all['Color'] ?>"><?= getname('color', 'color', 'id', $fab_all['Color']) ?></option>
 
                                                     </select>
-                                                </td>
-                                                <td>
-                                                    <select name="shade" class="form-control-sm ">
-                                                        <option value="<?= $fab_all['Shade'] ?>"><?= $fab_all['Shade'] ?></option>
-                                                        <option value="A">A</option>
-                                                        <option value="B">B</option>
-                                                        <option value="C">C</option>
-                                                        <option value="D">D</option>
-                                                        <option value="E">E</option>
-                                                        <option value="F">F</option>
-                                                        <option value="G">G</option>
-                                                        <option value="H">H</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <input placeholder="Shrinkage" type="text" name="shrinkage" class="form-control-sm form-control" value="<?= $fab_all['Shrinkage'] ?>">
                                                 </td>
                                                 <td>
                                                     <input placeholder="Width" type="number" name="width" class="form-control-sm form-control" step="0.01" value="<?= $fab_all['Width'] ?>">
@@ -129,8 +118,6 @@ include_once "includes/header.php";
                                         <th width="5%">#</th>
                                         <th width="20%">Contrast / Pocketing</th>
                                         <th width="15%">Color</th>
-                                        <th width="15%">Shade</th>
-                                        <th width="15%">Shrinkage</th>
                                         <th width="10%">Width</th>
                                         <th width="10%">Received Fabric</th>
                                         <th width="10%">Received Roll</th>
@@ -149,22 +136,6 @@ include_once "includes/header.php";
                                             <select name="color" class="buyer mb-2 form-control-sm search_select" disabled>
                                                 <option value="<?= $fab_other_all['Color'] ?>"><?= getname('color', 'color', 'id', $fab_other_all['Color']) ?></option>
                                             </select>
-                                        </td>
-                                        <td>
-                                            <select name="shade" class="form-control-sm search_select">
-                                                <option value="<?= $fab_other_all['Shade'] ?>"><?= $fab_other_all['Shade'] ?></option>
-                                                <option value="A">A</option>
-                                                <option value="B">B</option>
-                                                <option value="C">C</option>
-                                                <option value="D">D</option>
-                                                <option value="E">E</option>
-                                                <option value="F">F</option>
-                                                <option value="G">G</option>
-                                                <option value="H">H</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <input placeholder="Shrinkage" type="text" name="shrinkage" class="form-control-sm form-control" value="<?= $fab_other_all['Shrinkage'] ?>">
                                         </td>
                                         <td>
                                             <input placeholder="Width" type="number" name="width" class="form-control-sm form-control" step="0.01" value="<?= $fab_other_all['Width'] ?>">

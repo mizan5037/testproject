@@ -7,9 +7,10 @@ if (isset($_GET['fabRecBuyer'])&& isset($_GET['fbRecPOID'])&& isset($_GET['fbRec
     $fbRecStyle  = mysqli_real_escape_string($conn, $_GET['fbRecStyle']);
     $fbRecColor  = mysqli_real_escape_string($conn, $_GET['fbRecColor']);
 
-    $fab_Recd  = "SELECT DISTINCT b.BuyerID,b.BuyerName, fr.* FROM fab_receive fr LEFT JOIN masterlc_description md ON md.POID = fr.POID LEFT JOIN masterlc m ON m.MasterLCID = md.MasterLCID LEFT JOIN buyer b ON b.BuyerID = m.MasterLCBuyer WHERE fr.StyleID = '$fbRecStyle' AND b.BuyerID = '$fabRecBuyer' AND fr.POID = '$fbRecPOID' AND fr.Color ='$fbRecColor' AND fr.Status = '1'";
+    $fab_Recd  = "SELECT fr.*, fr.POID, fr.StyleID, fr.Buyer, fr.Color, b.BuyerName, p.PONumber, s.StyleNumber, c.color FROM fab_receive fr, Buyer b, po p, style s, color c WHERE fr.Status = '1' AND fr.Buyer = b.BuyerID AND fr.StyleID = s.StyleID AND fr.POID = p.POID AND fr.Color = c.id AND fr.Buyer = 1 AND fr.StyleID = 1 AND fr.POID = 1 ORDER BY fr.FabReceiveID DESC";
 
     $fab_Recd  = (mysqli_query($conn, $fab_Recd));
+
     if (isset($_POST['FabReceiveID']) && isset($_POST['fabRecDel'])) {
         $FabReceiveID = $_POST['FabReceiveID'];
         $sql = "UPDATE fab_receive SET  Status='0' WHERE FabReceiveID='$FabReceiveID'";

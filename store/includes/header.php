@@ -12,8 +12,8 @@
     <meta name="msapplication-tap-highlight" content="no">
     <!-- Additional tags here -->
     <?php if (function_exists('customPageHeader')) {
-                customPageHeader();
-            } ?>
+        customPageHeader();
+    } ?>
     <link href="<?= $path ?>/main.css" type="text/css" rel="stylesheet">
     <link href="<?= $path ?>/assets/style.css" type="text/css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
@@ -23,9 +23,9 @@
 <body>
     <?php
 
-                if (function_exists('modal')) {
-                    modal();
-                } ?>
+    if (function_exists('modal')) {
+        modal();
+    } ?>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo">
@@ -125,51 +125,64 @@
                                 </a>
                             </li>
                             <?php
-                                                $previlige = get_ses('designation');
-                                                if ($previlige == 1 || $previlige == 2 || $previlige == 3) { ?>
+                            $previlige = get_ses('designation');
+                            if ($previlige == 1 || $previlige == 2 || $previlige == 3) { ?>
                                 <!-- Merchandising -->
+                                
+                            <?php
+                            }
+                            if ($previlige == 1 || $previlige == 2 || $previlige == 4) {
+                            ?>
+                                <!-- Commercial -->
+                              
+                            <?php
+                            }
+                            if ($previlige == 1 || $previlige == 2 || $previlige == 5) {
+                            ?>
+                                <!-- Production -->
+                                
                                 <li>
                                     <a href="#">
-                                        <i class="metismenu-icon pe-7s-hourglass"></i>
-                                        Merchandising
+                                        <i class="metismenu-icon pe-7s-server"></i>
+                                        Store
                                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                     </a>
                                     <ul>
-                                        <!-- New Inquire -->
-                                        <li <?php active('new_inquire'); ?>>
-                                            <a href="<?= $path ?>/index.php?page=new_inquire">
-                                                <i class="metismenu-icon">
-                                                </i>New Inquire
-                                            </a>
-                                        </li>
-                                        <!-- <li <?php active('color_size'); ?>>
-                                            <a href="<?= $path ?>/index.php?page=color_size">
-                                                <i class="metismenu-icon">
-                                                </i>Color & Size
-                                            </a>
-                                        </li> -->
-                                        <!-- Item -->
-                                        <!-- <li>
+                                        <li>
                                             <a href="#">
-                                                <i class="metismenu-icon pe-7s-users"></i>
-                                                Item
+                                                <i class="metismenu-icon"></i>
+                                                Reports
                                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                             </a>
                                             <ul>
-                                                <li <?php active('new_item'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=new_item">
+                                                <li <?php active('fabric_store'); ?>>
+                                                    <a target="_blank" href="<?= $path ?>/index.php?page=fabric_store">
                                                         <i class="metismenu-icon">
-                                                        </i>New Item
+                                                        </i>Fabric Store
                                                     </a>
                                                 </li>
-                                                <li <?php active('all_item'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=all_item">
+
+                                                <li <?php active('accessories_report'); ?>>
+                                                    <a target="_blank" href="<?= $path ?>/index.php?page=accessories_report">
                                                         <i class="metismenu-icon">
-                                                        </i>All Items
+                                                        </i>Acces Report(Item)
                                                     </a>
                                                 </li>
+                                                <li <?php active('stationery_report'); ?>>
+                                                    <a target="_blank" href="<?= $path ?>/index.php?page=stationery_report">
+                                                        <i class="metismenu-icon">
+                                                        </i>Stationery Report
+                                                    </a>
+                                                </li>
+                                                <li <?php active('item_stock_report'); ?>>
+                                                    <a target="_blank" href="<?= $path ?>/index.php?page=item_stock_report">
+                                                        <i class="metismenu-icon">
+                                                        </i>Acces Report(Buyer)
+                                                    </a>
+                                                </li>
+
                                             </ul>
-                                        </li> -->
+                                        </li>
                                         <!-- Style -->
                                         <li>
                                             <a href="#">
@@ -234,178 +247,6 @@
                                                         </i>All Buyer
                                                     </a>
                                                 </li>
-                                            </ul>
-                                        </li>
-                                        <!-- Master LC -->
-                                        <li>
-                                            <a href="#">
-                                                <i class="metismenu-icon"></i>
-                                                Master LC
-                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                            </a>
-                                            <ul>
-                                                <li <?php active('new_master_lc'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=new_master_lc">
-                                                        <i class="metismenu-icon"></i>
-                                                        New Master LC
-                                                    </a>
-                                                </li>
-                                                <li <?php active('all_master_lc'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=all_master_lc">
-                                                        <i class="metismenu-icon"></i>
-                                                        All Master LC
-                                                    </a>
-                                                </li>
-                                                <li <?php active('master_lc_report'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=master_lc_report">
-                                                        <i class="metismenu-icon"></i>
-                                                        Master LC Report
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            <?php
-                                                            }
-                                                            if ($previlige == 1 || $previlige == 2 || $previlige == 4) {
-                            ?>
-                                <!-- Commercial -->
-                                <li>
-                                    <a href="#">
-                                        <i class="metismenu-icon pe-7s-mail-open-file"></i>
-                                        Commercial
-                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                    </a>
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <i class="metismenu-icon"></i>
-                                                PI
-                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                            </a>
-                                            <ul>
-                                                <li <?php active('new_pi'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=new_pi">
-                                                        <i class="metismenu-icon"></i>
-                                                        New PI
-                                                    </a>
-                                                </li>
-                                                <li <?php active('all_pi'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=all_pi">
-                                                        <i class="metismenu-icon"></i>
-                                                        All PI
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="metismenu-icon"></i>
-                                                B2B LC
-                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                            </a>
-                                            <ul>
-                                                <li <?php active('b2b_report'); ?>>
-                                                    <a target="_blank" href="<?= $path ?>/index.php?page=b2b_report">
-                                                        <i class="metismenu-icon"></i>
-                                                        B2B Report
-                                                    </a>
-                                                </li>
-                                                <li <?php active('b2blc_report_single'); ?>>
-                                                    <a target="_blank" href="<?= $path ?>/index.php?page=b2blc_report_single">
-                                                        <i class="metismenu-icon"></i>
-                                                        B2B Report(Single)
-                                                    </a>
-                                                </li>
-                                                <li <?php active('new_b2b_lc'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=new_b2b_lc">
-                                                        <i class="metismenu-icon"></i>
-                                                        New B2B LC
-                                                    </a>
-                                                </li>
-                                                <li <?php active('all_b2b_lc'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=all_b2b_lc">
-                                                        <i class="metismenu-icon"></i>
-                                                        All B2B LC
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            <?php
-                                                                            }
-                                                                            if ($previlige == 1 || $previlige == 2 || $previlige == 5) {
-                            ?>
-                                <!-- Production -->
-                                <li>
-                                    <a href="#">
-                                        <i class="metismenu-icon pe-7s-network"></i>
-                                        Planning
-                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                    </a>
-                                    <ul>
-                                        <li <?php active('line'); ?>>
-                                            <a href="<?= $path ?>/index.php?page=line">
-                                                <i class="metismenu-icon"></i>
-                                                Line
-                                            </a>
-                                        </li>
-                                        <li <?php active('new_plan'); ?>>
-                                            <a href="<?= $path ?>/index.php?page=new_plan">
-                                                <i class="metismenu-icon"></i>
-                                                New Plan
-                                            </a>
-                                        </li>
-                                        <li <?php active('all_plan'); ?>>
-                                            <a href="<?= $path ?>/index.php?page=all_plan">
-                                                <i class="metismenu-icon"></i>
-                                                All Plans
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="metismenu-icon pe-7s-server"></i>
-                                        Store
-                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                    </a>
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <i class="metismenu-icon"></i>
-                                                Reports
-                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                            </a>
-                                            <ul>
-                                                <li <?php active('fabric_store'); ?>>
-                                                    <a target="_blank" href="<?= $path ?>/index.php?page=fabric_store">
-                                                        <i class="metismenu-icon">
-                                                        </i>Fabric Store
-                                                    </a>
-                                                </li>
-
-                                                <li <?php active('accessories_report'); ?>>
-                                                    <a target="_blank" href="<?= $path ?>/index.php?page=accessories_report">
-                                                        <i class="metismenu-icon">
-                                                        </i>Acces Report(Item)
-                                                    </a>
-                                                </li>
-                                                <li <?php active('stationery_report'); ?>>
-                                                    <a target="_blank" href="<?= $path ?>/index.php?page=stationery_report">
-                                                        <i class="metismenu-icon">
-                                                        </i>Stationery Report
-                                                    </a>
-                                                </li>
-                                                <li <?php active('item_stock_report'); ?>>
-                                                    <a target="_blank" href="<?= $path ?>/index.php?page=item_stock_report">
-                                                        <i class="metismenu-icon">
-                                                        </i>Acces Report(Buyer)
-                                                    </a>
-                                                </li>
-
                                             </ul>
                                         </li>
                                         <li <?php active('color_size'); ?>>
@@ -564,288 +405,6 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="metismenu-icon pe-7s-scissors"></i>
-                                        Cutting
-                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                    </a>
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <i class="metismenu-icon"></i>
-                                                Reports
-                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                            </a>
-                                            <ul>
-                                                <li <?php active('lay_report'); ?>>
-                                                    <a target="_blank" href="<?= $path ?>/index.php?page=lay_report">
-                                                        <i class="metismenu-icon">
-                                                        </i>Lay Report
-                                                    </a>
-                                                </li>
-                                                <li <?php active('daily_cutting'); ?>>
-                                                    <a target="_blank" href="<?= $path ?>/index.php?page=daily_cutting">
-                                                        <i class="metismenu-icon">
-                                                        </i>Daily Cutting,Print & EMB
-                                                    </a>
-                                                </li>
-                                                <li <?php active('consumption_report'); ?>>
-                                                    <a target="_blank" href="<?= $path ?>/index.php?page=consumption_report">
-                                                        <i class="metismenu-icon">
-                                                        </i>Cunsumption Report
-                                                    </a>
-                                                </li>
-
-
-                                                <li <?php active('fab_relaxation_report'); ?>>
-                                                    <a target="_blank" href="<?= $path ?>/index.php?page=fab_relaxation_report">
-                                                        <i class="metismenu-icon">
-                                                        </i>Fab Relaxation Report
-                                                    </a>
-                                                </li>
-                                                <li <?php active('size_wize_cutting_report'); ?>>
-                                                    <a target="_blank" href="<?= $path ?>/index.php?page=size_wize_cutting_report">
-                                                        <i class="metismenu-icon">
-                                                        </i>Size Wise Cutting Report
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-
-                                        <li>
-                                            <a href="#">
-                                                <i class="metismenu-icon"></i>
-                                                Lay
-                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                            </a>
-                                            <ul>
-                                                <li <?php active('lay_form'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=lay_form">
-                                                        <i class="metismenu-icon">
-                                                        </i>Lay Form
-                                                    </a>
-                                                </li>
-                                                <li <?php active('all_lay'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=all_lay">
-                                                        <i class="metismenu-icon"></i>
-                                                        All Lay
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">
-                                                <i class="metismenu-icon"></i>
-                                                Fabric Relaxation
-                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                            </a>
-                                            <ul>
-                                                <li <?php active('fab_relaxation'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=fab_relaxation">
-                                                        <i class="metismenu-icon">
-                                                        </i>Fabric Relaxation Form
-                                                    </a>
-                                                </li>
-                                                <li <?php active('all_fabric_relaxation'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=all_fabric_relaxation">
-                                                        <i class="metismenu-icon"></i>
-                                                        All Fabric
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">
-                                                <i class="metismenu-icon"></i>
-                                                Cutting
-                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                            </a>
-                                            <ul>
-                                                <li <?php active('cutting_form'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=cutting_form">
-                                                        <i class="metismenu-icon">
-                                                        </i>Cutting Form
-                                                    </a>
-                                                </li>
-                                                <li <?php active('all_cutting'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=all_cutting">
-                                                        <i class="metismenu-icon"></i>
-                                                        All Cutting
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="metismenu-icon pe-7s-shuffle"></i>
-                                        Sewing
-                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                    </a>
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                Hourly
-                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                            </a>
-                                            <ul>
-                                                <li <?php active('hourly_form'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=hourly_form">
-                                                        <i class="metismenu-icon">
-                                                        </i>Hourly Form
-                                                    </a>
-                                                </li>
-                                                <li <?php active('all_hourly_form'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=all_hourly_form">
-                                                        <i class="metismenu-icon">
-                                                        </i>All Hourly
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                Wash
-                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                            </a>
-                                            <ul>
-                                                <li <?php active('wash_form'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=wash_form">
-                                                        <i class="metismenu-icon">
-                                                        </i>Wash
-                                                    </a>
-                                                </li>
-                                                <li <?php active('all_wash'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=all_wash">
-                                                        <i class="metismenu-icon">
-                                                        </i>All Wash
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-
-                                        <li>
-                                            <a href="#">
-                                                Reports
-                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                            </a>
-                                            <ul>
-                                                <li <?php active('hourly_swing_form'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=hourly_swing_form">
-                                                        <i class="metismenu-icon">
-                                                        </i>Hourly Reports
-                                                    </a>
-                                                </li>
-                                                <li <?php active('wash_report'); ?>>
-                                                    <a href="<?= $path ?>/index.php?page=wash_report">
-                                                        <i class="metismenu-icon">
-                                                        </i>Wash Reports
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="metismenu-icon pe-7s-ticket"></i>
-                                        Finishing
-                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                    </a>
-                                    <ul>
-                                        <li <?php active('hourly_form_finishing'); ?>>
-                                            <a href="<?= $path ?>/index.php?page=hourly_form_finishing">
-                                                <i class="metismenu-icon">
-                                                </i>Hourly Finishing Form
-                                            </a>
-                                        </li>
-                                        <li <?php active('all_finishing_form'); ?>>
-                                            <a href="<?= $path ?>/index.php?page=all_finishing_form">
-                                                <i class="metismenu-icon">
-                                                </i>All Finishing Form
-                                            </a>
-                                        </li>
-                                        <li <?php active('finishing_report'); ?>>
-                                            <a href="<?= $path ?>/index.php?page=finishing_report">
-                                                <i class="metismenu-icon">
-                                                </i>Finishing(Report)
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="metismenu-icon pe-7s-shopbag"></i>
-                                        Packing
-                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                    </a>
-                                    <ul>
-                                        <li <?php active('carton_form'); ?>>
-                                            <a href="<?= $path ?>/index.php?page=carton_form">
-                                                <i class="metismenu-icon">
-                                                </i>Carton
-                                            </a>
-                                        </li>
-                                        <li <?php active('all_carton'); ?>>
-                                            <a href="<?= $path ?>/index.php?page=all_carton">
-                                                <i class="metismenu-icon">
-                                                </i>All Carton
-                                            </a>
-                                        </li>
-                                        <li <?php active('packing_list'); ?>>
-                                            <a href="<?= $path ?>/index.php?page=packing_list" target="_black">
-                                                <i class="metismenu-icon">
-                                                </i>Packing List
-                                            </a>
-                                        </li>
-                                        <li <?php active('packet_goods'); ?>>
-                                            <a href="<?= $path ?>/index.php?page=packet_goods" target="_black">
-                                                <i class="metismenu-icon">
-                                                </i>Packet Goods (Reports)
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="metismenu-icon pe-7s-car"></i>
-                                        Shipment
-                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                    </a>
-                                    <ul>
-                                        <li <?php active('shipment_form'); ?>>
-                                            <a href="<?= $path ?>/index.php?page=shipment_form">
-                                                <i class="metismenu-icon">
-                                                </i>Shipment Form
-                                            </a>
-                                        </li>
-                                        <li <?php active('all_shipment'); ?>>
-                                            <a href="<?= $path ?>/index.php?page=all_shipment">
-                                                <i class="metismenu-icon">
-                                                </i>ALL Shipment
-                                            </a>
-                                        </li>
-                                        <li <?php active('shipment_report'); ?>>
-                                            <a href="<?= $path ?>/index.php?page=shipment_report" target="_blanck">
-                                                <i class="metismenu-icon">
-                                                </i>Shipment (Report)
-                                            </a>
-                                        </li>
-                                        <li <?php active('po_shipment_report'); ?>>
-                                            <a href="<?= $path ?>/index.php?page=po_shipment_report" target="_blanck">
-                                                <i class="metismenu-icon">
-                                                </i>PO Shipment (Report)
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
                             <?php } ?>
                         </ul>
                     </div>
@@ -855,8 +414,8 @@
             <div class="app-main__outer">
                 <!-- Notice -->
                 <?php
-                                                                            //notice('error', 'Updated Successfully');
-                                                                            if (get_ses('notice')) { ?>
+                //notice('error', 'Updated Successfully');
+                if (get_ses('notice')) { ?>
                     <div class="alert alert-<?php echo get_ses('notice'); ?> alert-dismissible fade show notification" data-auto-dismiss="7000" role="alert">
                         <?php echo get_ses('notice_content'); ?>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -864,8 +423,8 @@
                         </button>
                     </div>
                 <?php }
-                                                                            del_ses('notice');
-                                                                            del_ses('notice_content');
+                del_ses('notice');
+                del_ses('notice_content');
                 ?>
 
                 <div id="notice"></div>

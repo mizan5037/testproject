@@ -64,9 +64,7 @@ include_once "includes/header.php";
                         </tr>
                         <tr>
                             <th>#</th>
-                            <th>Shade</th>
                             <th>Width</th>
-                            <th>Shrinkage</th>
                             <th>Received Yds</th>
                             <th>Received Roll</th>
                             <th>Shortage</th>
@@ -86,9 +84,7 @@ include_once "includes/header.php";
                                 ?>
                             <tr>
                                 <td><?= $count++ ?></td>
-                                <td><?= $row['Shade'] ?></td>
                                 <td><?= $row['Width'] ?></td>
-                                <td><?= $row['Shrinkage'] ?></td>
                                 <td><?= $row['ReceivedFab'] ?></td>
                                 <td><?= $row['ReceivedRoll'] ?></td>
                                 <td><?= $row['Shortage'] ?></td>
@@ -207,9 +203,7 @@ include_once "includes/header.php";
                         </tr>
                         <tr>
                             <th>#</th>
-                            <th>Shade</th>
                             <th>Width</th>
-                            <th>Shrinkage</th>
                             <th>Received Yds</th>
                             <th>Received Roll</th>
                             <th>Shortage</th>
@@ -229,9 +223,7 @@ include_once "includes/header.php";
                                 ?>
                             <tr>
                                 <td><?= $count++ ?></td>
-                                <td><?= $row['Shade'] ?></td>
                                 <td><?= $row['Width'] ?></td>
-                                <td><?= $row['Shrinkage'] ?></td>
                                 <td><?= $row['ReceivedFab'] ?></td>
                                 <td><?= $row['ReceivedRoll'] ?></td>
                                 <td><?= $row['Shortage'] ?></td>

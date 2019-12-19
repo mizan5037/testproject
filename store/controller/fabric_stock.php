@@ -1,6 +1,6 @@
 <?php
 $conn = db_connection();
-$sql = "SELECT DISTINCT  b.BuyerName, f.Color, f.FabReceiveID,  b.BuyerID, c.color, s.StyleID, s.StyleNumber from buyer b LEFT JOIN masterlc m ON b.BuyerID = m.MasterLCBuyer LEFT JOIN masterlc_description md ON m.MasterLCID = md.MasterLCID LEFT JOIN fab_receive f ON md.POID = f.POID LEFT JOIN style s ON f.StyleID = s.StyleID LEFT JOIN color c ON f.Color = c.id WHERE NOT (s.StyleNumber <=> NULL) GROUP BY f.Color, f.StyleID";
+$sql = "SELECT fr.FabReceiveID, fr.POID, fr.StyleID, fr.Buyer, fr.Color, b.BuyerName, p.PONumber, s.StyleNumber, c.color FROM fab_receive fr, Buyer b, po p, style s, color c WHERE fr.Status = '1' AND fr.Buyer = b.BuyerID AND fr.StyleID = s.StyleID AND fr.POID = p.POID AND fr.Color = c.id GROUP BY fr.Buyer, fr.StyleID, fr.POID, fr.Color ORDER BY fr.FabReceiveID DESC";
 
 $query = mysqli_query($conn, $sql);
 

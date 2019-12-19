@@ -92,8 +92,6 @@ include_once "includes/header.php";
                     <tr>
                         <th>#</th>
                         <th>Color</th>
-                        <th>Shade</th>
-                        <th>Shirkage</th>
                         <th>Width</th>
                         <th>Received Fab</th>
                         <th>Received Roll</th>
@@ -115,8 +113,6 @@ include_once "includes/header.php";
                             <tr>
                                 <td><?= $count++ ?></td>
                                 <td><?= getname('color', 'color', 'id', $fab_Rec['Color']) ?></td>
-                                <td><?= $fab_Rec['Shade'] ?></td>
-                                <td><?= $fab_Rec['Shrinkage'] ?></td>
                                 <td><?= $fab_Rec['Width'] ?></td>
                                 <td><?= $fab_Rec['ReceivedFab'] ?></td>
                                 <td><?= $fab_Rec['ReceivedRoll'] ?></td>
@@ -142,8 +138,6 @@ include_once "includes/header.php";
                             <tr>
                                 <td><?= $count++ ?></td>
                                 <td><?= getname('color', 'color', 'id', $fab_Rec_other['Color']) ?></td>
-                                <td><?= $fab_Rec_other['Shade'] ?></td>
-                                <td><?= $fab_Rec_other['Shrinkage'] ?></td>
                                 <td><?= $fab_Rec_other['Width'] ?></td>
                                 <td><?= $fab_Rec_other['ReceivedFab'] ?></td>
                                 <td><?= $fab_Rec_other['ReceivedRoll'] ?></td>
