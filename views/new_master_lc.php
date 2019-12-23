@@ -134,7 +134,7 @@ include_once "includes/header.php";
                                 <th width="10%">Qty</th>
                                 <th width="10%">Unit Name</th>
                                 <th width="12%">Unit Price</th>
-                                <th width="7%" title="Latest Shipment Date">L.S.D</th>
+                                <th width="7%" title="Latest Shipment Date">Shipping E.T.D</th>
                                 <th width="18%">Action</th>
                             </tr>
                         </thead>
