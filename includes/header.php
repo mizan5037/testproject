@@ -269,7 +269,7 @@
                             <?php
                             }
                             if ($previlige == 1 || $previlige == 2 || $previlige == 4) {
-                            ?>
+                                ?>
                                 <!-- Commercial -->
                                 <li>
                                     <a href="#">
@@ -337,7 +337,7 @@
                             <?php
                             }
                             if ($previlige == 1 || $previlige == 2 || $previlige == 5) {
-                            ?>
+                                ?>
                                 <!-- Production -->
                                 <li>
                                     <a href="#">
@@ -373,12 +373,6 @@
                                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                     </a>
                                     <ul>
-                                        <li <?php active('fab_issue_stock'); ?>>
-                                            <a href="<?= $path ?>/store">
-                                                <i class="metismenu-icon">
-                                                </i>Only Store
-                                            </a>
-                                        </li>
                                         <li>
                                             <a href="#">
                                                 <i class="metismenu-icon"></i>

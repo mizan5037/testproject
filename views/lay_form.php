@@ -92,20 +92,7 @@ include_once "includes/header.php";
                         <label for="validationTooltip02">Date</label>
                         <input type="date" class="form-control" name="date" id="validationTooltip02" placeholder="Date" required>
                     </div>
-                    <div class="col-md-2 mb-3">
-                        <label for="validationTooltipUsername">Item</label>
-                        <select name="item" class="item  form-control" required>
-                            <option></option>
-                            <?php
-                            $conn = db_connection();
-                            $sql = "SELECT * FROM item WHERE status = 1";
-                            $results = mysqli_query($conn, $sql);
-                            while ($result = mysqli_fetch_assoc($results)) {
-                                echo '<option value="' . $result['ItemID'] . '">' . $result['ItemName'] . '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
+               
                     <div class="col-md-2 mb-3">
                         <label for="validationTooltipUsername">M/W</label>
                         <input type="text" class="form-control" id="validationTooltipUsername" name="mw" placeholder="M/W" required>
