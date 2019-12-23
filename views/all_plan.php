@@ -43,7 +43,7 @@ $conn = db_connection();
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Title</th>
+                        <th>Item Description</th>
                         <th>PO</th>
                         <th>Style</th>
                         <th>Details</th>

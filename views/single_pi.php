@@ -143,9 +143,11 @@ function modal()
                         <table class="mb-0 table table-bordered order-list2" id="myTable2" width="100%">
                             <thead>
                                 <tr>
-                                    <th width="20%">PO No</th>
+                                    <th width="10%">PO No</th>
+                                    <th width="10%">Style No</th>
+                                    <th width="10%">Color</th>
                                     <th width="20%">Item</th>
-                                    <th width="30%">Description</th>
+                                    <th width="20%">Description</th>
                                     <th width="15%">Qty</th>
                                     <th width="15%">Price Per Unit</th>
                                 </tr>
@@ -161,6 +163,32 @@ function modal()
                                                 $results = mysqli_query($conn, $sql);
                                                 while ($result = mysqli_fetch_assoc($results)) {
                                                     echo '<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
+                                                }
+                                                ?>
+                                        </select>
+                                    </td>
+                                     <td>
+                                        <select name="style" class="style mb-2 form-control-sm form-control" required>
+                                            <option></option>
+                                            <?php
+                                                $conn = db_connection();
+                                                $sql = "SELECT * FROM style WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    echo '<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                                }
+                                                ?>
+                                        </select>
+                                    </td>
+                                     <td>
+                                        <select name="color" class="color mb-2 form-control-sm form-control" required>
+                                            <option></option>
+                                            <?php
+                                                $conn = db_connection();
+                                                $sql = "SELECT * FROM color WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
                                                 }
                                                 ?>
                                         </select>
@@ -287,7 +315,7 @@ include_once "includes/header.php";
                 <div class="col-md-6 text-right">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal1">
-                        Add PO
+                        Add PI
                     </button>
                 </div>
             </div>
@@ -298,6 +326,8 @@ include_once "includes/header.php";
                         <thead>
                             <th>#</th>
                             <th>PO Number</th>
+                            <th>Style Number</th>
+                            <th>Color</th>
                             <th>Item</th>
                             <th>Description</th>
                             <th>Qty</th>
@@ -318,12 +348,20 @@ include_once "includes/header.php";
                                 $sql = "SELECT ItemName FROM item where ItemID=" . $row['ItemID'];
                                 $item_name = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
+                                $sql = "SELECT StyleNumber FROM style where StyleID=" . $row['StyleID'];
+                                $StyleNumber = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+
+                                $sql = "SELECT color FROM color where id=" . $row['color'];
+                                $colorname = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+
 
 
                                 ?>
                                 <tr>
                                     <td><?= $count ?></td>
                                     <td> <a class="btn btn-sm btn-outline-success" target="_blank" href="<?=$path?>/index.php?page=po_single&poid=<?=$row['POID']?>"> <?= $po_number['PONumber'] ?></a></td>
+                                    <td> <a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=single_style&id=<?= $row['StyleID'] ?>" target="_blank"><?= $StyleNumber['StyleNumber'] ?></a> </td>
+                                    <td><?= $colorname['color'] ?></td>
                                     <td> <a class="btn btn-sm btn-outline-success" href="<?=$path?>/index.php?page=all_item" target="_blank"><?= $item_name['ItemName'] ?></a> </td>
                                     <td><?= nl2br($row['Description']) ?></td>
                                     <td><?= $row['Qty'] ?></td>

@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST['refno'])  && isset($_POST['date']) && isset($_POST['supplier']) && isset($_POST['po']) && isset($_POST['item']) && isset($_POST['description']) && isset($_POST['qty']) && isset($_POST['ppu'])) {
+if (isset($_POST['refno'])  && isset($_POST['date']) && isset($_POST['supplier']) && isset($_POST['po']) && isset($_POST['style']) && isset($_POST['color']) && isset($_POST['item']) && isset($_POST['description']) && isset($_POST['qty']) && isset($_POST['ppu'])) {
 	$conn = db_connection();
 
 	$reference_no = mysqli_real_escape_string($conn, $_POST['refno']);
@@ -25,6 +25,8 @@ if (isset($_POST['refno'])  && isset($_POST['date']) && isset($_POST['supplier']
   //PI Description Table
 
 	$po_number      = ($_POST['po']);
+	$style      	= ($_POST['style']);
+	$color      	= ($_POST['color']);
 	$item           = ($_POST['item']);
 	$description    = ($_POST['description']);
 	$qty            = ($_POST['qty']);
@@ -33,9 +35,9 @@ if (isset($_POST['refno'])  && isset($_POST['date']) && isset($_POST['supplier']
 
 		$totalprice  = $qty[$i] * $price_per_unit[$i];
 
-		$sql = "INSERT INTO pi_description (PIID,POID,ItemID,Description,Qty,PricePerUnit,TotalPrice,AddedBy)
+		$sql = "INSERT INTO pi_description (PIID,POID,StyleID,color,ItemID,Description,Qty,PricePerUnit,TotalPrice,AddedBy)
 
-		values('$last_id','$po_number[$i]','$item[$i]','$description[$i]','$qty[$i]','$price_per_unit[$i]','$totalprice','$user_id') ";
+		values('$last_id','$po_number[$i]','$style[$i]','$color[$i]','$item[$i]','$description[$i]','$qty[$i]','$price_per_unit[$i]','$totalprice','$user_id') ";
 
 
 

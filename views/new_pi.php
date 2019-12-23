@@ -36,8 +36,8 @@ include_once "includes/header.php";
             <form class="needs-validation" method="POST" novalidate>
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
-                        <label for="validationTooltip01">REF NO</label>
-                        <input type="text" class="form-control" name="refno" id="validationTooltip01" placeholder="REF NO" required>
+                        <label for="validationTooltip01">PI Number</label>
+                        <input type="text" class="form-control" name="refno" id="validationTooltip01" placeholder="PI Number" required>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltip02">Issue Date</label>
@@ -53,9 +53,11 @@ include_once "includes/header.php";
                         <thead>
                             <tr>
                                 <th width="5%">#</th>
-                                <th width="18%">PO No</th>
+                                <th width="15%">PO No</th>
+                                <th width="10%">Style No</th>
+                                <th width="10%">Color</th>
                                 <th width="18%">Item</th>
-                                <th width="30%">Description</th>
+                                <th width="20%">Description</th>
                                 <th width="10%">Qty</th>
                                 <th width="10%">Price Per Unit</th>
                                 <th width="9%"></th>
@@ -73,6 +75,32 @@ include_once "includes/header.php";
                                         $results = mysqli_query($conn, $sql);
                                         while ($result = mysqli_fetch_assoc($results)) {
                                             echo '<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                 <td>
+                                    <select name="style[]" class="style mb-2 form-control-sm form-control search_select" required>
+                                        <option></option>
+                                        <?php
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM style WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                 <td>
+                                    <select name="color[]" class="color mb-2 form-control-sm form-control search_select" required>
+                                        <option></option>
+                                        <?php
+                                        $conn = db_connection();
+                                        $sql = "SELECT * FROM color WHERE status = 1";
+                                        $results = mysqli_query($conn, $sql);
+                                        while ($result = mysqli_fetch_assoc($results)) {
+                                            echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
                                         }
                                         ?>
                                     </select>
@@ -164,6 +192,29 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
+
+                cols += '<td><select name="style[]" class="style mb-2 form-control-sm form-control search_select" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM style WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
+
+                cols += '<td><select name="color[]" class="color mb-2 form-control-sm form-control search_select" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM color WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['id'] . '">' . $result['color'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
+
                 cols += '<td><select name="item[]" class="item mb-2 form-control-sm form-control search_select" required><option></option>';
                 <?php
                     $conn = db_connection();

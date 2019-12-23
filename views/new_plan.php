@@ -43,7 +43,7 @@ include_once "includes/header.php";
             <form method="post">
                 <div class="form-row">
                     <div class="col-md-2">
-                        <h4> Title: </h4>
+                        <h6> Item Description: </h6>
                     </div>
                     <div class="col-md-10"> <input type="text" name="title" id="title" class="form-control" required> </div>
                 </div>

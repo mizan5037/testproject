@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST['refno'])  && isset($_POST['date']) && isset($_POST['supplier']) && isset($_POST['po']) && isset($_POST['item']) && isset($_POST['description']) && isset($_POST['qty']) && isset($_POST['ppu']) && isset($_POST['totalprice'])) {
+if (isset($_POST['refno'])  && isset($_POST['date']) && isset($_POST['supplier']) && isset($_POST['po']) && isset($_POST['style']) && isset($_POST['color']) && isset($_POST['item']) && isset($_POST['description']) && isset($_POST['qty']) && isset($_POST['ppu']) && isset($_POST['totalprice'])) {
 	$conn = db_connection();
 
 	$reference_no = mysqli_real_escape_string($conn, $_POST['refno']);
@@ -20,6 +20,8 @@ if (isset($_POST['refno'])  && isset($_POST['date']) && isset($_POST['supplier']
 	//PI Description Table
 	$pidesid        = ($_POST['pidesid']);
 	$po_number      = ($_POST['po']);
+	$style	        = ($_POST['style']);
+	$color	        = ($_POST['color']);
 	$item           = ($_POST['item']);
 	$description    = ($_POST['description']);
 	$qty            = ($_POST['qty']);
@@ -28,7 +30,7 @@ if (isset($_POST['refno'])  && isset($_POST['date']) && isset($_POST['supplier']
 
 	for ($i = 0; $i < sizeof($item); $i++) {
 
-		$sql = "UPDATE pi_description SET POID='$po_number[$i]', ItemID='$item[$i]', Description='$description[$i]', Qty='$qty[$i]',PricePerUnit='$price_per_unit[$i]',TotalPrice='$totalprice[$i]' where PIDescriptionID=" . $pidesid[$i];
+		$sql = "UPDATE pi_description SET POID='$po_number[$i]',StyleID='$style[$i]',color='$color[$i]', ItemID='$item[$i]', Description='$description[$i]', Qty='$qty[$i]',PricePerUnit='$price_per_unit[$i]',TotalPrice='$totalprice[$i]' where PIDescriptionID=" . $pidesid[$i];
 
 		if (mysqli_query($conn, $sql)) {
 			notice('success', 'PI Updated Successfully');

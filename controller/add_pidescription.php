@@ -1,7 +1,9 @@
 <?php
 $conn = db_connection();
-if (isset($_POST['po']) && isset($_POST['item']) && isset($_POST['description']) && isset($_POST['qty']) && isset($_POST['ppu'])) {
+if (isset($_POST['po']) && isset($_POST['style']) && isset($_POST['color']) && isset($_POST['item']) && isset($_POST['description']) && isset($_POST['qty']) && isset($_POST['ppu'])) {
 	$po_number      = mysqli_real_escape_string($conn, $_POST['po']);
+	$style          = mysqli_real_escape_string($conn, $_POST['style']);
+	$color          = mysqli_real_escape_string($conn, $_POST['color']);
 	$item           = mysqli_real_escape_string($conn, $_POST['item']);
 	$description    = mysqli_real_escape_string($conn, $_POST['description']);
 	$qty            = mysqli_real_escape_string($conn, $_POST['qty']);
@@ -9,9 +11,9 @@ if (isset($_POST['po']) && isset($_POST['item']) && isset($_POST['description'])
 	$totalprice     = $qty * $price_per_unit;
 	$user_id        = mysqli_real_escape_string($conn, get_ses('user_id'));
 
-		$sql = "INSERT INTO pi_description (PIID,POID,ItemID,Description,Qty,PricePerUnit,TotalPrice,AddedBy)
+		$sql = "INSERT INTO pi_description (PIID,POID,StyleID,color,ItemID,Description,Qty,PricePerUnit,TotalPrice,AddedBy)
 
-		values('$piid','$po_number','$item','$description','$qty','$price_per_unit','$totalprice','$user_id') ";
+		values('$piid','$po_number','$style','$color','$item','$description','$qty','$price_per_unit','$totalprice','$user_id') ";
 
 		if (mysqli_query($conn, $sql)) {
 			notice('success', 'PI Description Added Successfully');

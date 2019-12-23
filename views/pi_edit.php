@@ -60,8 +60,10 @@ include_once "includes/header.php";
                             <tr>
                                 <th width="5%">#</th>
                                 <th width="10%">PO No</th>
+                                <th width="10%">Style No</th>
+                                <th width="10%">Color</th>
                                 <th width="10%">Item</th>
-                                <th width="30%">Description</th>
+                                <th width="20%">Description</th>
                                 <th width="10%">Qty</th>
                                 <th width="10%">Price Per Unit</th>
                                 <th width="10%">Total Price</th>
@@ -86,13 +88,54 @@ include_once "includes/header.php";
                                                 while ($result = mysqli_fetch_assoc($results)) {
                                                     if ($row['POID'] == $result['POID']) {
                                                         $selected = 'selected';
+                                                         echo '<option  selected="'.$selected.'"  value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
                                                     }
-                                                    echo '<option  selected="'.$selected.'"  value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
+                                                    else
+                                                        echo '<option  value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>';
                                                 }
                                                 ?>
                                         </select>
 
                                     </td>
+                                    <td>
+                                        <select name="style[]" class="style mb-2 form-control-sm form-control" required>
+                                            <?php
+
+                                                $sql = "SELECT * FROM style WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    if ($row['StyleID'] == $result['StyleID']) {
+                                                        $selected = 'selected';
+                                                         echo '<option  selected="'.$selected.'"  value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                                    }
+                                                    else
+                                                         echo '<option   value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>';
+                                                }
+                                                ?>
+                                        </select>
+
+                                    </td>
+
+                                    <td>
+                                        <select name="color[]" class="color mb-2 form-control-sm form-control" required>
+                                            <?php
+
+                                                $sql = "SELECT * FROM color WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    if ($row['color'] == $result['id']) {
+                                                        $selected = 'selected';
+                                                        echo '<option  selected="'.$selected.'"  value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                                    }
+                                                    else
+                                                        echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                                    
+                                                }
+                                                ?>
+                                        </select>
+
+                                    </td>
+
                                     <td>
                                         <select name="item[]" class="item mb-2 form-control-sm form-control" required>
                                             <?php
@@ -102,8 +145,10 @@ include_once "includes/header.php";
                                                 while ($result = mysqli_fetch_assoc($results)) {
                                                     if ($row['ItemID'] == $result['ItemID']) {
                                                         $selected = 'selected';
+                                                         echo '<option  selected="'.$selected.'"  value="' . $result['ItemID'] . '">' . $result['ItemName'] . '</option>';
                                                     }
-                                                    echo '<option  selected="'.$selected.'"  value="' . $result['ItemID'] . '">' . $result['ItemName'] . '</option>';
+                                                    else
+                                                        echo '<option  value="' . $result['ItemID'] . '">' . $result['ItemName'] . '</option>';
                                                 }
                                                 ?>
                                         </select>
