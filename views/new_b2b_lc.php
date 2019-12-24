@@ -86,7 +86,7 @@ include_once "includes/header.php";
                                 <th width="20%">PO</th>
                                 <th width="25%">Style</th>
                                 <th width="15%">Item</th>
-                                <th width="15%">Qty(DZS)</th>
+                                <th width="15%">Qty</th>
                                 <th width="15%">Price Per Unit</th>
                                 <th width="9%"></th>
                             </tr>
@@ -122,10 +122,10 @@ include_once "includes/header.php";
                                 </td>
 
                                 <td>
-                                    <input placeholder="Qty" id="qty" name="qty[]" min="1" type="number" class="mb-2 form-control-sm form-control" required>
+                                    <input placeholder="Qty" id="" name="qty[]" min="1" type="number" class="mb-2 form-control-sm form-control" required>
                                 </td>
                                 <td>
-                                    <input placeholder="Price Per Unit" id="unitprice" min="0.01" name="ppu[]" type="number" class="mb-2 form-control-sm form-control" step="0.01" required>
+                                    <input placeholder="Price Per Unit" id="" min="0.01" name="ppu[]" type="number" class="mb-2 form-control-sm form-control" step="0.01" required>
                                 </td>
 
                                 <td><a class="deleteRow"></a></td>
@@ -349,8 +349,8 @@ function customPagefooter()
                          } ?></select></td>';
 
 
-                cols += '<td><input placeholder="Qty" id="qty' + counter + '"  name="qty[]" min="1" type="number" class="mb-2 form-control-sm form-control" required></td>';
-                cols += '<td><input placeholder="Price Per Unit" id="unitprice' + counter + '" name="ppu[]" min="0.01" type="number" class="mb-2 form-control-sm form-control" step="0.01" required></td>';
+                cols += '<td><input placeholder="Qty" id=""  name="qty[]" min="1" type="number" class="mb-2 form-control-sm form-control" required></td>';
+                cols += '<td><input placeholder="Price Per Unit" id="" name="ppu[]" min="0.01" type="number" class="mb-2 form-control-sm form-control" step="0.01" required></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-sm btn-danger "  value="Delete"></td>';
                 newRow.append(cols);
