@@ -8,7 +8,6 @@ if (isset($_POST['lay_description']) && isset($_POST['color']) && isset($_POST['
   $cutting_no    = ($_POST['cutting_no']);
   $unit          = ($_POST['unit']);
   $date          = ($_POST['date']);
-  $item          = ($_POST['item']);
   $mw            = ($_POST['mw']);
   $marker_length = ($_POST['marker_length']);
   $specialaction = ($_POST['specialaction']);
