@@ -34,6 +34,56 @@ if (get_ses('token') === $token && $_POST["form"] == 'get_qty') {
 
 }
 
+if (get_ses('token') === $token && $_POST["form"] == 'style_qty') {
+
+
+    $style = mysqli_real_escape_string($conn, $_POST["style"]);
+
+    
+
+    $sql    = "SELECT Dzs FROM order_description d WHERE d.StyleID = '$style' ";
+    $result = mysqli_query($conn, $sql);
+    $row    = mysqli_fetch_assoc($result);
+    echo $row['Dzs'];
+
+}
+
+if (get_ses('token') === $token && $_POST["form"] == 'fob_unit_price') {
+
+
+    $po = mysqli_real_escape_string($conn, $_POST["po"]);
+
+    $sql    = "SELECT FOB FROM po  WHERE POID = '$po' ";
+    $result = mysqli_query($conn, $sql);
+    $row    = mysqli_fetch_assoc($result);
+    echo $row['FOB'];
+
+}
+
+if (get_ses('token') === $token && $_POST["form"] == 'style_qtys') {
+
+
+    $style = mysqli_real_escape_string($conn, $_POST["styles"]);
+
+    $sql    = "SELECT Dzs FROM order_description  WHERE StyleID = '$style' ";
+    $result = mysqli_query($conn, $sql);
+    $row    = mysqli_fetch_assoc($result);
+    echo $row['Dzs'];
+
+}
+
+if (get_ses('token') === $token && $_POST["form"] == 'fob_unit_prices') {
+
+
+    $po = mysqli_real_escape_string($conn, $_POST["poos"]);
+
+    $sql    = "SELECT FOB FROM po  WHERE POID = '$po' ";
+    $result = mysqli_query($conn, $sql);
+    $row    = mysqli_fetch_assoc($result);
+    echo $row['FOB'];
+
+}
+
 
 if (get_ses('token') === $token && $_POST["form"] == 'get_line') {
 

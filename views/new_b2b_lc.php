@@ -86,7 +86,7 @@ include_once "includes/header.php";
                                 <th width="20%">PO</th>
                                 <th width="25%">Style</th>
                                 <th width="15%">Item</th>
-                                <th width="15%">Qty</th>
+                                <th width="15%">Qty(DZS)</th>
                                 <th width="15%">Price Per Unit</th>
                                 <th width="9%"></th>
                             </tr>
@@ -95,7 +95,7 @@ include_once "includes/header.php";
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <select class="form-control form-control-sm" name="po[]" required>
+                                    <select class="form-control form-control-sm" id="po"name="po[]" required>
                                         <option></option>
                                         <?php
                                         foreach ($poArr as $key) {
@@ -105,14 +105,10 @@ include_once "includes/header.php";
                                     </select>
                                 </td>
                                 <td>
-                                    <select class="form-control form-control-sm" name="style[]" required>
-                                        <option></option>
-                                        <?php
-                                        foreach ($styleArr as $key) {
-                                            echo '<option value="' . $key['StyleID'] . '">' . $key['StyleNumber'] . '</option>';
-                                        }
-                                        ?>
-                                    </select>
+                                    <select name="style" id="style" class="style mb-2 form-control-sm form-control" required>
+                                        <option value=""></option>
+
+                                      </select>
                                 </td>
                                 <td>
                                     <select class="form-control form-control-sm" name="item[]" required>
@@ -126,10 +122,10 @@ include_once "includes/header.php";
                                 </td>
 
                                 <td>
-                                    <input placeholder="Qty" name="qty[]" min="1" type="number" class="mb-2 form-control-sm form-control" required>
+                                    <input placeholder="Qty" id="qty" name="qty[]" min="1" type="number" class="mb-2 form-control-sm form-control" required>
                                 </td>
                                 <td>
-                                    <input placeholder="Price Per Unit" min="0.01" name="ppu[]" type="number" class="mb-2 form-control-sm form-control" step="0.01" required>
+                                    <input placeholder="Price Per Unit" id="unitprice" min="0.01" name="ppu[]" type="number" class="mb-2 form-control-sm form-control" step="0.01" required>
                                 </td>
 
                                 <td><a class="deleteRow"></a></td>
@@ -166,6 +162,8 @@ function customPagefooter()
     global $styleArr;
     global $itemArr;
     global $poArr;
+
+    global $path;
     ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 
@@ -179,6 +177,152 @@ function customPagefooter()
     <script>
         // Add new row code
 
+        function getstyle(poid, styleid) {
+            let poids = $(poid).val();
+            if (poids != '') {
+                $.ajax({
+                    url: "<?= $path ?>/controller/api.php",
+                    method: "POST",
+                    data: {
+                        po: poids,
+                        form: 'get_style',
+                        token: '<?= get_ses('token') ?>'
+                    },
+                    dataType: "text",
+                    success: function(data) {
+                        $(styleid).html(data);
+                    }
+                });
+            } else {
+                $(styleid).html("<option>---</option>");
+            }
+        }
+
+
+        function getqty(poo,style,qtyid,unitpriceid) {
+          
+            let poos = $(poo).val();
+            let styles = $(style).val();
+
+            console.log(poos);
+            console.log(styles);
+
+            console.log(qtyid);
+            console.log(unitpriceid);
+          
+
+            if (styles != '') {
+                    $.ajax({
+                        url: "<?= $path ?>/controller/api.php",
+                        method: "POST",
+                        data: {
+                            
+                            styles: styles,
+                            form: 'style_qtys',
+                            token: '<?= get_ses('token') ?>'
+                        },
+                        dataType: "text",
+                        success: function(data) {
+                            $(qtyid).val(data);
+
+                        }
+                    });
+                } else {
+                    $(qtyid).val(00);
+                }
+
+                if (poos != '') {
+                    $.ajax({
+                        url: "<?= $path ?>/controller/api.php",
+                        method: "POST",
+                        data: {
+                            
+                            poos: poos,
+                            form: 'fob_unit_prices',
+                            token: '<?= get_ses('token') ?>'
+                        },
+                        dataType: "text",
+                        success: function(data) {
+                            $(unitpriceid).val(data);
+                           
+
+                        }
+                    });
+                } else {
+                    $(unitpriceid).val(00);
+                }
+
+           
+        }
+
+
+
+
+        $("#po").change(function() {
+            let po = this.value;
+            if (po != '') {
+                $.ajax({
+                    url: "<?= $path ?>/controller/api.php",
+                    method: "POST",
+                    data: {
+                        po: po,
+                        form: 'get_style',
+                        token: '<?= get_ses('token') ?>'
+                    },
+                    dataType: "text",
+                    success: function(data) {
+                        $("#style").html(data);
+                    }
+                });
+            } else {
+                $("#style").html("<option>-----</option>");
+            }
+
+        });
+
+        $("#style").change(function() {
+                let style = this.value;
+                let po = $("#po").val();
+                if (style != '') {
+                    $.ajax({
+                        url: "<?= $path ?>/controller/api.php",
+                        method: "POST",
+                        data: {
+                            
+                            style: style,
+                            form: 'style_qty',
+                            token: '<?= get_ses('token') ?>'
+                        },
+                        dataType: "text",
+                        success: function(data) {
+                            $("#qty").val(data);
+                        }
+                    });
+                } else {
+                    $("#qty").val(00);
+                }
+
+                if (po != '') {
+                    $.ajax({
+                        url: "<?= $path ?>/controller/api.php",
+                        method: "POST",
+                        data: {
+                            
+                            po: po,
+                            form: 'fob_unit_price',
+                            token: '<?= get_ses('token') ?>'
+                        },
+                        dataType: "text",
+                        success: function(data) {
+                            $("#unitprice").val(data);
+                        }
+                    });
+                } else {
+                    $("#unitprice").val(00);
+                }
+
+            });
+
         $(document).ready(function() {
             var counter = 2;
 
@@ -187,19 +331,26 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><select class="form-control form-control-sm search_select" name="po[]" required> <option></option>  <?php foreach ($poArr as $key) {
-                                                                                                                                            echo '<option value="' . $key['POID'] . '">' . $key['PONumber'] . '</option>';
-                                                                                                                                        }  ?> </select></td>';
-                cols += '<td><select class="form-control form-control-sm search_select" name="style[]" required> <option></option> <?php foreach ($styleArr as $key) {
-                                                                                                                                            echo '<option value="' . $key['StyleID'] . '">' . $key['StyleNumber'] . '</option>';
-                                                                                                                                        } ?> </select></td>';
+                cols += '<td><select name="po[]" onchange="getstyle(\'#po' + counter + '\',\'#style' + counter + '\');" id="po' + counter + '" class="po mb-2 form-control-sm form-control search_select" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM po WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
+                cols += '<td><select name="style[]" onchange="getqty(\'#po' + counter + '\',\'#style' + counter + '\',\'#qty' + counter + '\',\'#unitprice' + counter + '\');"   id="style' + counter + '" class="style mb-2 form-control-sm form-control search_select" required><option></option>';
+                cols += '</select></td>';
+                  
                 cols += '<td><select class="form-control form-control-sm search_select" name="item[]" required> <option></option>  <?php foreach ($itemArr as $key) {
-                                                                                                                                            echo '<option value="' . $key['ItemID'] . '">' . $key['ItemName'] . '</option>';
-                                                                                                                                        } ?></select></td>';
+                             echo '<option value="' . $key['ItemID'] . '">' . $key['ItemName'] . '</option>';
+                         } ?></select></td>';
 
 
-                cols += '<td><input placeholder="Qty" name="qty[]" min="1" type="number" class="mb-2 form-control-sm form-control" required></td>';
-                cols += '<td><input placeholder="Price Per Unit" name="ppu[]" min="0.01" type="number" class="mb-2 form-control-sm form-control" step="0.01" required></td>';
+                cols += '<td><input placeholder="Qty" id="qty' + counter + '"  name="qty[]" min="1" type="number" class="mb-2 form-control-sm form-control" required></td>';
+                cols += '<td><input placeholder="Price Per Unit" id="unitprice' + counter + '" name="ppu[]" min="0.01" type="number" class="mb-2 form-control-sm form-control" step="0.01" required></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-sm btn-danger "  value="Delete"></td>';
                 newRow.append(cols);
