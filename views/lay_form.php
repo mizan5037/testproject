@@ -34,7 +34,7 @@ include_once "includes/header.php";
     <div class="main-card mb-3 card">
         <div class="card-body">
             <!-- <h5 class="card-title">PO</h5> -->
-            <form class="needs-validation" method="POST" novalidate>
+            <form action="" class="needs-validation" method="POST" novalidate>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label for="validationTooltip01">Buyer Name</label>
