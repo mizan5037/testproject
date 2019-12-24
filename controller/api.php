@@ -21,13 +21,14 @@ if (get_ses('token') === $token && $_POST["form"] == 'get_style') {
 }
 
 
+//get qty
 if (get_ses('token') === $token && $_POST["form"] == 'get_qty') {
 
 
     $style = mysqli_real_escape_string($conn, $_POST["style"]);
     $po    = mysqli_real_escape_string($conn, $_POST["po"]);
 
-    $sql    = "SELECT SUM(d.Units) FROM order_description d WHERE d.StyleID = '$style' AND d.POID = '$po'";
+    $sql    = "SELECT SUM(d.Units) FROM order_description d WHERE d.StyleID = '$style' AND d.POID = '$po' AND Status = 1";
     $result = mysqli_query($conn, $sql);
     $row    = mysqli_fetch_assoc($result);
     echo $row['SUM(d.Units)'];

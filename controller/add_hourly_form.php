@@ -16,7 +16,7 @@ if (isset($_POST['date']) && isset($_POST['floor']) && isset($_POST['line']) && 
     $hour     = ($_POST['hour']);
     $quantity = ($_POST['quantity']);
 
-
+ 
     for ($i = 0; $i < sizeof($color); $i++) {
 
       $lineCount = "SELECT p.*, d.* FROM hourly_production_details d LEFT JOIN hourly_production p ON p.HourlyProductionID = d.HourlyProductionID WHERE  p.Date = '$date' AND p.FloorNO = '$floorno' AND d.LineNo = '$line[$i]' AND d.POID = '$po[$i]' AND d.StyleID='$style[$i]' AND d.Color = '$color[$i]'";

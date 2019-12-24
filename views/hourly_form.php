@@ -7,7 +7,7 @@ $PageTitle = "Hourly Production Form | Optima Inventory";
 $conn = db_connection();
 function customPageHeader()
 {
-    ?>
+?>
     <!--Arbitrary HTML Tags-->
 <?php }
 include_once "controller/add_hourly_form.php";
@@ -42,7 +42,7 @@ include_once "includes/header.php";
 
                     <div class="col-md-4 mb-4">
                         <label for="validationTooltip02">Floor No.</label>
-                        <select name="floor" class="po  form-control form-control-sm search_select" required>
+                        <select name="floor" id="floor" class="po  form-control form-control-sm search_select" required>
                             <option>Choose </option>
                             <?php
                             $sql = "SELECT * FROM floor WHERE status = 1";
@@ -74,15 +74,8 @@ include_once "includes/header.php";
                             <tr>
                                 <th scope="row">1</th>
                                 <td>
-                                    <select name="line[]" class="po  form-control form-control-sm search_select" required>
+                                    <select name="line[]" class="line form-control form-control-sm" required>
                                         <option></option>
-                                        <?php
-                                        $sql = "SELECT * FROM line WHERE status = 1";
-                                        $results = mysqli_query($conn, $sql);
-                                        while ($result = mysqli_fetch_assoc($results)) {
-                                            echo '<option value="' . $result['id'] . '">' . $result['line'] . '</option>';
-                                        }
-                                        ?>
                                     </select>
                                 </td>
                                 <td>
@@ -169,7 +162,8 @@ include_once "includes/header.php";
 <?php
 function customPagefooter()
 {
-    ?>
+    global $path;
+?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 
     <script type="text/javascript">
@@ -178,6 +172,31 @@ function customPagefooter()
         });
     </script>
     <script>
+        $(document).ready(function() {
+            $('#mytable').on("focus",".line",function() {
+                var $this = $(this);
+
+                let floor = document.getElementById('floor').value;
+                if (floor != '') {
+                    $.ajax({
+                        url: "<?= $path ?>/controller/api.php",
+                        method: "POST",
+                        data: {
+                            floor: floor,
+                            form: 'get_line',
+                            token: '<?= get_ses('token') ?>'
+                        },
+                        dataType: "text",
+                        success: function(data) {
+                            $this.html(data);
+                        }
+                    });
+                } else {
+                    $this.html("<option>---</option>");
+                }
+                // Do stuff with $tr like checking it, extracting $tr.attr('id') ...
+            });
+        });
         // Add new row code
 
         $(document).ready(function() {
@@ -188,43 +207,36 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<th scope="row">' + counter + '</th>';
-                cols += '<td><select name="line[]" class="po form-control form-control-sm search_select" required><option></option><?php
-                                                                                                                                        $conn = db_connection();
-                                                                                                                                        $sql = "SELECT * FROM line WHERE status = 1";
-                                                                                                                                        $results = mysqli_query($conn, $sql);
-                                                                                                                                        while ($result = mysqli_fetch_assoc($results)) {
-                                                                                                                                            echo '<option value="' . $result['id'] . '">' . $result['line'] . '</option>';
-                                                                                                                                        }
-                                                                                                                                        ?></select></td>';
+                cols += `<td><select name="line[]" class="line form-control form-control-sm" required><option></option></select></td>`;
                 cols += '<td><select name="po[]" class="po form-control form-control-sm search_select" required><option></option>';
                 <?php
-                    $conn = db_connection();
-                    $sql = "SELECT * FROM po WHERE status = 1";
-                    $results = mysqli_query($conn, $sql);
-                    while ($result = mysqli_fetch_assoc($results)) {
-                        echo 'cols += \'<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>\'; ';
-                    }
-                    ?>
+                $conn = db_connection();
+                $sql = "SELECT * FROM po WHERE status = 1";
+                $results = mysqli_query($conn, $sql);
+                while ($result = mysqli_fetch_assoc($results)) {
+                    echo 'cols += \'<option value="' . $result['POID'] . '">' . $result['PONumber'] . '</option>\'; ';
+                }
+                ?>
                 cols += '</select></td>';
                 cols += '<td><select name="style[]" class="style  form-control form-control-sm search_select" required><option></option>';
                 <?php
-                    $conn = db_connection();
-                    $sql = "SELECT * FROM style WHERE status = 1";
-                    $results = mysqli_query($conn, $sql);
-                    while ($result = mysqli_fetch_assoc($results)) {
-                        echo 'cols += \'<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>\'; ';
-                    }
-                    ?>
+                $conn = db_connection();
+                $sql = "SELECT * FROM style WHERE status = 1";
+                $results = mysqli_query($conn, $sql);
+                while ($result = mysqli_fetch_assoc($results)) {
+                    echo 'cols += \'<option value="' . $result['StyleID'] . '">' . $result['StyleNumber'] . '</option>\'; ';
+                }
+                ?>
                 cols += '</select></td>';
                 cols += '<td><select name="color[]" class="color form-control form-control-sm search_select" required><option></option>';
                 <?php
-                    $conn = db_connection();
-                    $sql = "SELECT * FROM color WHERE status = 1";
-                    $results = mysqli_query($conn, $sql);
-                    while ($result = mysqli_fetch_assoc($results)) {
-                        echo 'cols += \'<option value="' . $result['id'] . '">' . $result['color'] . '</option>\'; ';
-                    }
-                    ?>
+                $conn = db_connection();
+                $sql = "SELECT * FROM color WHERE status = 1";
+                $results = mysqli_query($conn, $sql);
+                while ($result = mysqli_fetch_assoc($results)) {
+                    echo 'cols += \'<option value="' . $result['id'] . '">' . $result['color'] . '</option>\'; ';
+                }
+                ?>
                 cols += '</select></td>';
                 cols += '<td><select name="hour[]" class="form-control form-control-sm search_select" required><option >Choose Hour</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="1">1</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value=8>8</option></select></td>';
                 cols += '<td><input placeholder="Quantity" name="quantity[]" type="number" class="form-control form-control-sm"></td>';

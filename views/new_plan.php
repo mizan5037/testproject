@@ -246,14 +246,14 @@ function customPagefooter()
                 var cols = "";
 
                 cols += '<td><input type="date" name="date[]" class="form-control form-control-sm" /></td>';
-                cols += '<td><select name="floor[]" onchange="getline(\'floor' + counter + '\',\'#line' + counter + '\');" id="floor' + counter + '" class=" mb-2 form-control-sm form-control search_select" required> <option></option> <?php
+                cols += `<td><select name="floor[]" onchange="getline(\'floor' + counter + '\',\'#line' + counter + '\');" id="floor' + counter + '" class=" mb-2 form-control-sm form-control search_select" required> <option></option> <?php
                                                                                                                                                                                                                                                 $conn = db_connection();
                                                                                                                                                                                                                                                 $sql = "SELECT * FROM floor WHERE status = 1";
                                                                                                                                                                                                                                                 $results = mysqli_query($conn, $sql);
                                                                                                                                                                                                                                                 while ($result = mysqli_fetch_assoc($results)) {
                                                                                                                                                                                                                                                     echo '<option value="' . $result['floor_id'] . '">' . $result['floor_name'] . '</option>';
                                                                                                                                                                                                                                                 }
-                                                                                                                                                                                                                                                ?> </select></td>';
+                                                                                                                                                                                                                                                ?> </select></td>`;
                 cols += '<td><select id="line' + counter + '" name="line[]" class=" mb-2 form-control-sm form-control search_select" required> <option></option></select></td>';
                 cols += '<td><input type="number" name="qty[]" class="form-control form-control-sm" /></td>';
 
