@@ -120,12 +120,13 @@ include_once "includes/header.php";
                         <table class="mb-0 table table-bordered order-list" id="myTable" width="100%">
                             <thead>
                                 <tr>
-                                    <th colspan="5">Item Requirments</th>
+                                    <th colspan="6">Consumption</th>
                                 </tr>
                                 <tr>
                                     <th width="3%">#</th>
-                                    <th width="30%">Size</th>
+                                    <th width="15%">Size</th>
                                     <th width="30%">Item</th>
+                                    <th width="15%">Color</th>
                                     <th width="20%">Qty</th>
                                     <th width="17%">Action</th>
                                 </tr>
@@ -160,6 +161,19 @@ include_once "includes/header.php";
                                         </select>
                                     </td>
                                     <td>
+                                        <select name="color[]" class="item mb-2 form-control-sm form-control search_select" required>
+                                            <option></option>
+                                            <?php
+                                            $conn = db_connection();
+                                            $sql = "SELECT * FROM color WHERE status = 1";
+                                            $results = mysqli_query($conn, $sql);
+                                            while ($result = mysqli_fetch_assoc($results)) {
+                                                echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                    </td>
+                                    <td>
                                         <input placeholder="Qty" type="number" name="qty[]" class="mb-2 form-control-sm form-control" required>
                                     </td>
                                     <td><a class="deleteRow"></a></td>
@@ -170,11 +184,7 @@ include_once "includes/header.php";
                                 <tr>
                                     <td colspan="7" class="text-center"><input type="button" class="btn btn-sm btn-success" id="addrow" value="Add Row" /><br></td>
                                 </tr>
-                                <tr>
-                                    <td colspan="7" class="text-right"><span id="grandtotal"></span>
-
-                                    </td>
-                                </tr>
+                                
                             </tfoot>
                         </table>
                     </div>
@@ -259,6 +269,16 @@ function customPagefooter()
                     }
                     ?>
                 cols += '</select></td>';
+                cols += '<td><select name="color[]" class="item mb-2 form-control-sm form-control search_select" required><option></option>';
+                <?php
+                    $conn = db_connection();
+                    $sql = "SELECT * FROM color WHERE status = 1";
+                    $results = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($results)) {
+                        echo 'cols += \'<option value="' . $result['id'] . '">' . $result['color'] . '</option>\'; ';
+                    }
+                    ?>
+                cols += '</select></td>';
                 cols += '<td><input type="number" placeholder="Qty" class="mb-2 form-control-sm form-control" name="qty[]" required/></td>';
 
                 cols += '<td><input type="button" class="ibtnDel btn btn-sm btn-warning"  value="Delete"></td>';
@@ -300,7 +320,7 @@ function customPagefooter()
             $("table.order-list").find('input[name^="qty"]').each(function() {
                 grandTotal += +$(this).val();
             });
-            $("#grandtotal").text('Total Qty: ' + grandTotal.toFixed(0));
+            // $("#grandtotal").text('Total Qty: ' + grandTotal.toFixed(0));
         }
 
         $("#reset").on("click", function() {

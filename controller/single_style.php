@@ -63,14 +63,15 @@ if (isset($_POST['size']) && isset($_POST['item']) && isset($_POST['qty'])) {
     //array Item Requirments
     $size = ( $_POST['size']);
     $item = ( $_POST['item']);
+    $color = ( $_POST['color']);
     $qty  = ( $_POST['qty']);
 
 
     for ($i = 0; $i < sizeof($size); $i++) {
         if ($size[$i] != '') {
-            $sqli = "INSERT INTO itemrequirment (ItemRequirmentStyleID,ItemRequirmentItemID,ItemRequirmentSize,ItemRequirmentQty,AddedBy)
+            $sqli = "INSERT INTO itemrequirment (ItemRequirmentStyleID,ColorID,ItemRequirmentItemID,ItemRequirmentSize,ItemRequirmentQty,AddedBy)
 
-            values('$id','$item[$i]','$size[$i]','$qty[$i]','$user_id')";
+            values('$id','$color[$i]','$item[$i]','$size[$i]','$qty[$i]','$user_id')";
 
             if (mysqli_query($conn, $sqli)) {
                 notice('success', 'New Item Added Successfully.');

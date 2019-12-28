@@ -135,8 +135,9 @@ function modal()
                             <thead>
                                 <tr>
                                     <th width="3%">#</th>
-                                    <th width="30%">Size</th>
+                                    <th width="15%">Size</th>
                                     <th width="30%">Item</th>
+                                    <th width="15%">Color</th>
                                     <th width="20%">Qty</th>
                                 </tr>
                             </thead>
@@ -176,6 +177,19 @@ function modal()
                                         </select>
                                     </td>
                                     <td>
+                                        <select name="color[]" class="style mb-2 form-control-sm form-control" required>
+                                            <option></option>
+                                            <?php
+                                                $conn = db_connection();
+                                                $sql = "SELECT * FROM color WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                                }
+                                                ?>
+                                        </select>
+                                    </td>
+                                    <td>
                                         <input placeholder="Qty" type="number" name="qty[]" class="mb-2 form-control-sm form-control" required>
                                     </td>
                                 </tr>
@@ -200,6 +214,19 @@ function modal()
                                             <?php
                                                 foreach ($itemArr as $key) {
                                                     echo '<option value="' . $key['ItemID'] . '">' . $key['ItemName'] . '</option>';
+                                                }
+                                                ?>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="color[]" class="style mb-2 form-control-sm form-control">
+                                            <option></option>
+                                            <?php
+                                                $conn = db_connection();
+                                                $sql = "SELECT * FROM color WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
                                                 }
                                                 ?>
                                         </select>
@@ -234,6 +261,19 @@ function modal()
                                         </select>
                                     </td>
                                     <td>
+                                        <select name="color[]" class="style mb-2 form-control-sm form-control">
+                                            <option></option>
+                                            <?php
+                                                $conn = db_connection();
+                                                $sql = "SELECT * FROM color WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
+                                                }
+                                                ?>
+                                        </select>
+                                    </td>
+                                    <td>
                                         <input placeholder="Qty" type="number" name="qty[]" class="mb-2 form-control-sm form-control">
                                     </td>
                                 </tr>
@@ -258,6 +298,19 @@ function modal()
                                             <?php
                                                 foreach ($itemArr as $key) {
                                                     echo '<option value="' . $key['ItemID'] . '">' . $key['ItemName'] . '</option>';
+                                                }
+                                                ?>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="color[]" class="style mb-2 form-control-sm form-control">
+                                            <option></option>
+                                            <?php
+                                                $conn = db_connection();
+                                                $sql = "SELECT * FROM color WHERE status = 1";
+                                                $results = mysqli_query($conn, $sql);
+                                                while ($result = mysqli_fetch_assoc($results)) {
+                                                    echo '<option value="' . $result['id'] . '">' . $result['color'] . '</option>';
                                                 }
                                                 ?>
                                         </select>
@@ -564,6 +617,7 @@ include_once "includes/header.php";
                         <thead>
                             <th>#</th>
                             <th>Name</th>
+                            <th>Color</th>
                             <th>Description</th>
                             <th>Size</th>
                             <th>Qty</th>
@@ -571,7 +625,7 @@ include_once "includes/header.php";
                         </thead>
                         <tbody>
                             <?php
-                            $sql = "SELECT s.size, i.ItemName, i.ItemDescription, ir.ItemRequirmentQty, i.ItemMeasurementUnit,ir.ItemRequirmentID FROM itemrequirment ir LEFT JOIN item i ON ir.ItemRequirmentItemID = i.ItemID LEFT JOIN size s ON ir.ItemRequirmentSize = s.id WHERE ir.status = 1 AND ir.ItemRequirmentStyleID ='$id'";
+                            $sql = "SELECT s.size, i.ItemName, i.ItemDescription, ir.ItemRequirmentQty, i.ItemMeasurementUnit,ir.ItemRequirmentID, c.color FROM itemrequirment ir LEFT JOIN item i ON ir.ItemRequirmentItemID = i.ItemID LEFT JOIN size s ON ir.ItemRequirmentSize = s.id LEFT JOIN color c ON c.id = ir.ColorID WHERE ir.status = 1 AND ir.ItemRequirmentStyleID ='$id'";
 
                             $item = mysqli_query($conn, $sql);
                             $count = 1;
@@ -580,6 +634,7 @@ include_once "includes/header.php";
                                 <tr>
                                     <td><?= $count ?></td>
                                     <td><?= $row['ItemName'] ?></td>
+                                    <td><?= $row['color'] ?></td>
                                     <td><?= $row['ItemDescription'] ?></td>
                                     <td><?= $row['size'] ?></td>
                                     <td><?= $row['ItemRequirmentQty'] . " " . $row['ItemMeasurementUnit'] ?></td>

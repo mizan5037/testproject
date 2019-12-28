@@ -94,14 +94,15 @@ if (isset($_POST['stylenumber']) && $_POST['styledescription'] != '' && isset($_
     //array Item Requirments
     $size = ($_POST['size']);
     $item = ($_POST['item']);
+    $color  = ($_POST['color']);
     $qty  = ($_POST['qty']);
 
 
     for ($i = 0; $i < sizeof($size); $i++) {
 
-        $sql = "INSERT INTO itemrequirment (ItemRequirmentStyleID,ItemRequirmentItemID,ItemRequirmentSize,ItemRequirmentQty,AddedBy)
+        $sql = "INSERT INTO itemrequirment (ItemRequirmentStyleID,ColorID,ItemRequirmentItemID,ItemRequirmentSize,ItemRequirmentQty,AddedBy)
 
-		   		values('$last_id','$item[$i]','$size[$i]','$qty[$i]','$user_id')";
+		   		values('$last_id','$color[$i]','$item[$i]','$size[$i]','$qty[$i]','$user_id')";
 
         if (mysqli_query($conn, $sql)) {
             notice('success', 'New Style Added Successfully.<br>' . $error);
