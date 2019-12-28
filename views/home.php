@@ -180,7 +180,7 @@ include_once "includes/header.php";
         $floor_id = $floorn['floor'];
 
         // $line_sql = "SELECT l.line, pd.qty, hd.LineNo, hd.nine, hd.ten, hd.eleven, hd.twelve, hd.one, hd.three, hd.four, hd.five, hd.six, hd.seven, hd.eight FROM plan_details pd LEFT JOIN line l on l.id = pd.line, hourly_production h LEFT JOIN hourly_production_details hd ON h.HourlyProductionID = hd.HourlyProductionID WHERE pd.floor = '2' AND h.FloorNO = pd.floor AND hd.LineNo = l.id AND hd.status = 1";
-        $line_sql = "SELECT p.qty, l.line, p.line as line_id FROM plan_details p LEFT JOIN line l ON l.id = p.line WHERE p.floor = $floor_id AND l.status = 1";
+        $line_sql = "SELECT p.qty, l.line, p.line as line_id FROM plan_details p LEFT JOIN line l ON l.id = p.line WHERE p.floor = $floor_id AND l.status = 1 AND p.date = '$today'";
 
         $lines = mysqli_query($conn, $line_sql);
 

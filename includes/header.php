@@ -281,6 +281,27 @@
                                         <li>
                                             <a href="#">
                                                 <i class="metismenu-icon"></i>
+                                                Booking
+                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                            </a>
+                                            <ul>
+                                                <li <?php active('new_booking'); ?>>
+                                                    <a href="<?= $path ?>/index.php?page=new_booking">
+                                                        <i class="metismenu-icon"></i>
+                                                        New Booking
+                                                    </a>
+                                                </li>
+                                                <li <?php active('all_booking'); ?>>
+                                                    <a href="<?= $path ?>/index.php?page=all_booking">
+                                                        <i class="metismenu-icon"></i>
+                                                        All Booking
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="metismenu-icon"></i>
                                                 PI
                                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                             </a>
